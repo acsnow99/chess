@@ -1,7 +1,7 @@
 package chess;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Represents a single chess piece
@@ -59,7 +59,7 @@ public class ChessPiece {
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
 
-        Collection<ChessMove> available_moves = new ArrayList();
+        Collection<ChessMove> available_moves = new HashSet<>();
         PieceType piece_type = this.getPieceType();
 
         switch (piece_type) {
@@ -69,11 +69,11 @@ public class ChessPiece {
                 var _column = myPosition.getColumn();
 
                 /**
-                 * Up-left directional check
+                 * Down-right directional check
                  */
-                while (_row > 1 && _column > 1) {
-                    _row--;
-                    _column--;
+                while (_row < 8 && _column < 8) {
+                    _row++;
+                    _column++;
                     var position_to_check = new ChessPosition(_row, _column);
                     var piece_at_position = board.getPiece(position_to_check);
 
@@ -88,7 +88,7 @@ public class ChessPiece {
                      * break out of while loop if there is a piece at that position
                      */
                     if (piece_at_position != null) {
-                        _row = 0;
+                        _row = 9;
                     }
                 }
 
@@ -121,11 +121,11 @@ public class ChessPiece {
                 _row = myPosition.getRow();
                 _column = myPosition.getColumn();
                 /**
-                 * Down-right directional check
+                 * Up-left directional check
                  */
-                while (_row < 8 && _column < 8) {
-                    _row++;
-                    _column++;
+                while (_row > 1 && _column > 1) {
+                    _row--;
+                    _column--;
                     var position_to_check = new ChessPosition(_row, _column);
                     var piece_at_position = board.getPiece(position_to_check);
 
@@ -140,7 +140,7 @@ public class ChessPiece {
                      * break out of while loop if there is a piece at that position
                      */
                     if (piece_at_position != null) {
-                        _row = 9;
+                        _row = 0;
                     }
                 }
 

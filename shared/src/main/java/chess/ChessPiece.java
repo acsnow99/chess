@@ -79,6 +79,9 @@ public class ChessPiece {
             case QUEEN:
                 available_moves = this.getQueenMoves(board, myPosition);
                 break;
+            case ROOK:
+                available_moves = this.getRookMoves(board, myPosition);
+                break;
             default: break;
 
         }
@@ -578,6 +581,114 @@ public class ChessPiece {
             var piece_at_position = board.getPiece(position_to_check);
 
             
+            var move_to_add = new ChessMove(myPosition, position_to_check, null);
+
+            // break out of while loop if there is a piece at that position
+            if (piece_at_position != null) {
+                if (piece_at_position.getTeamColor() != this.getTeamColor()) {
+                    available_moves.add(move_to_add);
+                }
+                break;
+            }
+
+            available_moves.add(move_to_add);
+
+        }
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Left directional check
+         */
+        while (_column > 1) {
+            _column--;
+            var position_to_check = new ChessPosition(_row, _column);
+            var piece_at_position = board.getPiece(position_to_check);
+
+
+            var move_to_add = new ChessMove(myPosition, position_to_check, null);
+
+            // break out of while loop if there is a piece at that position
+            if (piece_at_position != null) {
+                if (piece_at_position.getTeamColor() != this.getTeamColor()) {
+                    available_moves.add(move_to_add);
+                }
+                break;
+            }
+
+            available_moves.add(move_to_add);
+
+        }
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Up directional check
+         */
+        while (_row < 8) {
+            _row++;
+            var position_to_check = new ChessPosition(_row, _column);
+            var piece_at_position = board.getPiece(position_to_check);
+
+
+            var move_to_add = new ChessMove(myPosition, position_to_check, null);
+
+            // break out of while loop if there is a piece at that position
+            if (piece_at_position != null) {
+                if (piece_at_position.getTeamColor() != this.getTeamColor()) {
+                    available_moves.add(move_to_add);
+                }
+                break;
+            }
+
+            available_moves.add(move_to_add);
+
+        }
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Down directional check
+         */
+        while (_row > 1) {
+            _row--;
+            var position_to_check = new ChessPosition(_row, _column);
+            var piece_at_position = board.getPiece(position_to_check);
+
+
+            var move_to_add = new ChessMove(myPosition, position_to_check, null);
+
+            // break out of while loop if there is a piece at that position
+            if (piece_at_position != null) {
+                if (piece_at_position.getTeamColor() != this.getTeamColor()) {
+                    available_moves.add(move_to_add);
+                }
+                break;
+            }
+
+            available_moves.add(move_to_add);
+
+        }
+
+        return available_moves;
+
+    }
+
+    private Collection<ChessMove> getRookMoves(ChessBoard board, ChessPosition myPosition) {
+
+        Collection<ChessMove> available_moves = new HashSet<>();
+        var _row = myPosition.getRow();
+        var _column = myPosition.getColumn();
+
+        /**
+         * Right directional check
+         */
+        while (_column < 8) {
+            _column++;
+            var position_to_check = new ChessPosition(_row, _column);
+            var piece_at_position = board.getPiece(position_to_check);
+
+
             var move_to_add = new ChessMove(myPosition, position_to_check, null);
 
             // break out of while loop if there is a piece at that position

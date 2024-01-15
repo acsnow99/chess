@@ -73,6 +73,9 @@ public class ChessPiece {
             case KNIGHT:
                 available_moves = this.getKnightMoves(board, myPosition);
                 break;
+            case PAWN:
+                available_moves = this.getPawnMoves(board, myPosition);
+                break;
             default: break;
 
         }
@@ -224,7 +227,7 @@ public class ChessPiece {
          */
         _column++;
         var position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -235,7 +238,7 @@ public class ChessPiece {
         _row++;
         _column++;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -245,7 +248,7 @@ public class ChessPiece {
          */
         _row++;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -256,7 +259,7 @@ public class ChessPiece {
         _row++;
         _column--;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -266,7 +269,7 @@ public class ChessPiece {
          */
         _column--;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -277,7 +280,7 @@ public class ChessPiece {
         _row--;
         _column--;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -287,7 +290,7 @@ public class ChessPiece {
          */
         _row--;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -298,7 +301,7 @@ public class ChessPiece {
         _row--;
         _column++;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
         return available_moves;
 
@@ -316,7 +319,7 @@ public class ChessPiece {
         _row += 2;
         _column++;
         var position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -327,7 +330,7 @@ public class ChessPiece {
         _row += 2;
         _column--;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -338,7 +341,7 @@ public class ChessPiece {
         _row--;
         _column += 2;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -349,7 +352,7 @@ public class ChessPiece {
         _row++;
         _column += 2;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -360,7 +363,7 @@ public class ChessPiece {
         _row--;
         _column -= 2;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -371,7 +374,7 @@ public class ChessPiece {
         _row++;
         _column -= 2;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -382,7 +385,7 @@ public class ChessPiece {
         _row -= 2;
         _column++;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
 
         _row = myPosition.getRow();
@@ -393,13 +396,86 @@ public class ChessPiece {
         _row -= 2;
         _column--;
         position_to_check = new ChessPosition(_row, _column);
-        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
 
         return available_moves;
 
     }
 
-    private void checkMoveIsValid(ChessBoard board, ChessPosition myPosition, ChessPosition position_to_check, Collection<ChessMove> available_moves) {
+    private Collection<ChessMove> getPawnMoves(ChessBoard board, ChessPosition myPosition) {
+
+        Collection<ChessMove> available_moves = new HashSet<>();
+
+        var _row = myPosition.getRow();
+        var _column = myPosition.getColumn();
+        /**
+         * Forward directional check (cannot capture enemy pieces)
+         */
+        if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
+            _row++;
+        }
+        else {
+            _row--;
+        }
+        var position_to_check = new ChessPosition(_row, _column);
+        var can_move_one_space_forward = checkMoveIsValid(board, myPosition, position_to_check, available_moves, false, false);
+
+
+        if (can_move_one_space_forward && ((this.getTeamColor() == ChessGame.TeamColor.WHITE && myPosition.getRow() == 2)
+                || (this.getTeamColor() == ChessGame.TeamColor.BLACK && myPosition.getRow() == 7))) {
+            _row = myPosition.getRow();
+            _column = myPosition.getColumn();
+            /**
+             * Initial forward directional check (can't capture enemy pieces)
+             */
+            if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
+                _row += 2;
+            } else {
+                _row -= 2;
+            }
+            position_to_check = new ChessPosition(_row, _column);
+            checkMoveIsValid(board, myPosition, position_to_check, available_moves, false, false);
+        }
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Forward-left directional check (can capture enemy pieces)
+         */
+        if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
+            _row++;
+            _column--;
+        }
+        else {
+            _row--;
+            _column++;
+        }
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, true);
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Forward-right directional check (can capture enemy pieces)
+         */
+        if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
+            _row++;
+            _column++;
+        }
+        else {
+            _row--;
+            _column--;
+        }
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, true);
+
+        return available_moves;
+
+    }
+
+    private boolean checkMoveIsValid(ChessBoard board, ChessPosition myPosition, ChessPosition position_to_check, Collection<ChessMove> available_moves, boolean can_capture, boolean must_capture) {
         ChessMove move_to_add;
         ChessPiece piece_at_position;
         if (!position_to_check.outOfBounds()) {
@@ -408,13 +484,44 @@ public class ChessPiece {
             move_to_add = new ChessMove(myPosition, position_to_check, null);
 
             if (piece_at_position != null) {
-                if (piece_at_position.getTeamColor() != this.getTeamColor()) {
-                    available_moves.add(move_to_add);
+                if (can_capture && piece_at_position.getTeamColor() != this.getTeamColor()) {
+                    if (canPromote(this.pieceType, position_to_check)) {
+                        for (PieceType piece_type : PieceType.values()) {
+                            if (piece_type != PieceType.KING && piece_type != PieceType.PAWN) {
+                                move_to_add = new ChessMove(myPosition, position_to_check, piece_type);
+                                available_moves.add(move_to_add);
+                            }
+                        }
+                        return true;
+                    }
+                    else {
+                        available_moves.add(move_to_add);
+                        return true;
+                    }
                 }
-            } else {
-                available_moves.add(move_to_add);
+            } else if (!must_capture) {
+                if (canPromote(this.pieceType, position_to_check)) {
+                    for (PieceType piece_type : PieceType.values()) {
+                        if (piece_type != PieceType.KING && piece_type != PieceType.PAWN) {
+                            move_to_add = new ChessMove(myPosition, position_to_check, piece_type);
+                            available_moves.add(move_to_add);
+                        }
+                    }
+                    return true;
+                }
+                else {
+                    available_moves.add(move_to_add);
+                    return true;
+                }
             }
         }
+        return false;
+    }
+
+    private boolean canPromote(PieceType piece_type, ChessPosition position_to_check) {
+        return piece_type == PieceType.PAWN &&
+                ((position_to_check.getRow() == 8 && this.getTeamColor() == ChessGame.TeamColor.WHITE)
+                        || (position_to_check.getRow() == 1 && this.getTeamColor() == ChessGame.TeamColor.BLACK));
     }
 
 }

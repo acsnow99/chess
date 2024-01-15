@@ -82,4 +82,11 @@ public class ChessPosition {
 
     }
 
+    @Override
+    public String toString() {
+        return "Position[" +
+                "row=" + row +
+                ", column=" + column +
+                ']';
+    }
 }

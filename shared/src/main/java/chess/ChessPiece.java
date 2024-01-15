@@ -97,9 +97,7 @@ public class ChessPiece {
         var _row = myPosition.getRow();
         var _column = myPosition.getColumn();
 
-        /**
-         * Down-right directional check
-         */
+        // Down-right directional check
         while (_row < 8 && _column < 8) {
             _row++;
             _column++;
@@ -123,9 +121,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down-left directional check
-         */
+        // Down-left directional check
         while (_row > 1 && _column < 8) {
             _row--;
             _column++;
@@ -149,9 +145,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up-left directional check
-         */
+        // Up-left directional check
         while (_row > 1 && _column > 1) {
             _row--;
             _column--;
@@ -175,9 +169,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up-right directional check
-         */
+        // Up-right directional check
         while (_row < 8 && _column > 1) {
             _row++;
             _column--;
@@ -209,9 +201,7 @@ public class ChessPiece {
 
         var _row = myPosition.getRow();
         var _column = myPosition.getColumn();
-        /**
-         * Right directional check
-         */
+        // Right directional check
         _column++;
         var position_to_check = new ChessPosition(_row, _column);
         checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
@@ -219,9 +209,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up-right directional check
-         */
+        // Up-right directional check
         _row++;
         _column++;
         position_to_check = new ChessPosition(_row, _column);
@@ -230,9 +218,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up directional check
-         */
+        // Up directional check
         _row++;
         position_to_check = new ChessPosition(_row, _column);
         checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
@@ -240,9 +226,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up-left directional check
-         */
+        // Up-left directional check
         _row++;
         _column--;
         position_to_check = new ChessPosition(_row, _column);
@@ -251,9 +235,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * left directional check
-         */
+        // left directional check
         _column--;
         position_to_check = new ChessPosition(_row, _column);
         checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
@@ -261,9 +243,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down-left directional check
-         */
+        // Down-left directional check
         _row--;
         _column--;
         position_to_check = new ChessPosition(_row, _column);
@@ -272,9 +252,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down directional check
-         */
+        // Down directional check
         _row--;
         position_to_check = new ChessPosition(_row, _column);
         checkMoveIsValid(board, myPosition, position_to_check, available_moves, true, false);
@@ -282,9 +260,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down-right directional check
-         */
+        // Down-right directional check
         _row--;
         _column++;
         position_to_check = new ChessPosition(_row, _column);
@@ -300,9 +276,7 @@ public class ChessPiece {
 
         var _row = myPosition.getRow();
         var _column = myPosition.getColumn();
-        /**
-         * Up-right directional check
-         */
+        // Up-right directional check
         _row += 2;
         _column++;
         var position_to_check = new ChessPosition(_row, _column);
@@ -311,9 +285,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up-left directional check
-         */
+        // Up-left directional check
         _row += 2;
         _column--;
         position_to_check = new ChessPosition(_row, _column);
@@ -322,9 +294,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Right-down directional check
-         */
+        // Right-down directional check
         _row--;
         _column += 2;
         position_to_check = new ChessPosition(_row, _column);
@@ -333,9 +303,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Right-up directional check
-         */
+        // Right-up directional check
         _row++;
         _column += 2;
         position_to_check = new ChessPosition(_row, _column);
@@ -344,9 +312,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Left-down directional check
-         */
+        // Left-down directional check
         _row--;
         _column -= 2;
         position_to_check = new ChessPosition(_row, _column);
@@ -355,9 +321,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Left-up directional check
-         */
+        // Left-up directional check
         _row++;
         _column -= 2;
         position_to_check = new ChessPosition(_row, _column);
@@ -366,9 +330,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down-right directional check
-         */
+        // Down-right directional check
         _row -= 2;
         _column++;
         position_to_check = new ChessPosition(_row, _column);
@@ -377,9 +339,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down-left directional check
-         */
+        // Down-left directional check
         _row -= 2;
         _column--;
         position_to_check = new ChessPosition(_row, _column);
@@ -395,9 +355,7 @@ public class ChessPiece {
 
         var _row = myPosition.getRow();
         var _column = myPosition.getColumn();
-        /**
-         * Forward directional check (cannot capture enemy pieces)
-         */
+        // Forward directional check (cannot capture enemy pieces)
         if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
             _row++;
         }
@@ -408,13 +366,11 @@ public class ChessPiece {
         var can_move_one_space_forward = checkMoveIsValid(board, myPosition, position_to_check, available_moves, false, false);
 
 
+        // Initial forward directional check (can't capture enemy pieces)
         if (can_move_one_space_forward && ((this.getTeamColor() == ChessGame.TeamColor.WHITE && myPosition.getRow() == 2)
                 || (this.getTeamColor() == ChessGame.TeamColor.BLACK && myPosition.getRow() == 7))) {
             _row = myPosition.getRow();
             _column = myPosition.getColumn();
-            /**
-             * Initial forward directional check (can't capture enemy pieces)
-             */
             if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
                 _row += 2;
             } else {
@@ -427,9 +383,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Forward-left directional check (can capture enemy pieces)
-         */
+        // Forward-left directional check (can capture enemy pieces)
         if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
             _row++;
             _column--;
@@ -444,9 +398,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Forward-right directional check (can capture enemy pieces)
-         */
+        // Forward-right directional check (can capture enemy pieces)
         if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
             _row++;
             _column++;
@@ -468,9 +420,7 @@ public class ChessPiece {
         var _row = myPosition.getRow();
         var _column = myPosition.getColumn();
 
-        /**
-         * Down-right directional check
-         */
+        // Down-right directional check
         while (_row < 8 && _column < 8) {
             _row++;
             _column++;
@@ -494,9 +444,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down-left directional check
-         */
+        // Down-left directional check
         while (_row > 1 && _column < 8) {
             _row--;
             _column++;
@@ -520,9 +468,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up-left directional check
-         */
+        // Up-left directional check
         while (_row > 1 && _column > 1) {
             _row--;
             _column--;
@@ -546,9 +492,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up-right directional check
-         */
+        // Up-right directional check
         while (_row < 8 && _column > 1) {
             _row++;
             _column--;
@@ -573,9 +517,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Right directional check
-         */
+        // Right directional check
         while (_column < 8) {
             _column++;
             var position_to_check = new ChessPosition(_row, _column);
@@ -598,9 +540,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Left directional check
-         */
+        // Left directional check
         while (_column > 1) {
             _column--;
             var position_to_check = new ChessPosition(_row, _column);
@@ -623,9 +563,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up directional check
-         */
+        // Up directional check
         while (_row < 8) {
             _row++;
             var position_to_check = new ChessPosition(_row, _column);
@@ -648,9 +586,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down directional check
-         */
+        // Down directional check
         while (_row > 1) {
             _row--;
             var position_to_check = new ChessPosition(_row, _column);
@@ -681,9 +617,7 @@ public class ChessPiece {
         var _row = myPosition.getRow();
         var _column = myPosition.getColumn();
 
-        /**
-         * Right directional check
-         */
+        // Right directional check
         while (_column < 8) {
             _column++;
             var position_to_check = new ChessPosition(_row, _column);
@@ -706,9 +640,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Left directional check
-         */
+        // Left directional check
         while (_column > 1) {
             _column--;
             var position_to_check = new ChessPosition(_row, _column);
@@ -731,9 +663,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Up directional check
-         */
+        // Up directional check
         while (_row < 8) {
             _row++;
             var position_to_check = new ChessPosition(_row, _column);
@@ -756,9 +686,7 @@ public class ChessPiece {
 
         _row = myPosition.getRow();
         _column = myPosition.getColumn();
-        /**
-         * Down directional check
-         */
+        // Down directional check
         while (_row > 1) {
             _row--;
             var position_to_check = new ChessPosition(_row, _column);

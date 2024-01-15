@@ -7,6 +7,9 @@ package chess;
  * signature of the existing methods.
  */
 public class ChessPosition {
+    /**
+     * Position 0,0 is outside the game board. Used indices go from 1-8
+     */
     private int row = 0;
     private int column = 0;
     public ChessPosition(int row, int col) {
@@ -35,4 +38,24 @@ public class ChessPosition {
         return this.column;
 
     }
+
+    public void setRow(int row) {
+
+        this.row = row;
+
+    }
+
+    public void setColumn(int column) {
+
+        this.column = column;
+
+    }
+
+    public void setPosition(int row, int column) {
+
+        this.setRow(row);
+        this.setColumn(column);
+
+    }
+
 }

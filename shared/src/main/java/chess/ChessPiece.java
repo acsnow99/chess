@@ -70,6 +70,9 @@ public class ChessPiece {
             case KING:
                 available_moves = this.getKingMoves(board, myPosition);
                 break;
+            case KNIGHT:
+                available_moves = this.getKnightMoves(board, myPosition);
+                break;
             default: break;
 
         }
@@ -294,6 +297,101 @@ public class ChessPiece {
          */
         _row--;
         _column++;
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+
+        return available_moves;
+
+    }
+
+    private Collection<ChessMove> getKnightMoves(ChessBoard board, ChessPosition myPosition) {
+
+        Collection<ChessMove> available_moves = new HashSet<>();
+
+        var _row = myPosition.getRow();
+        var _column = myPosition.getColumn();
+        /**
+         * Up-right directional check
+         */
+        _row += 2;
+        _column++;
+        var position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Up-left directional check
+         */
+        _row += 2;
+        _column--;
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Right-down directional check
+         */
+        _row--;
+        _column += 2;
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Right-up directional check
+         */
+        _row++;
+        _column += 2;
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Left-down directional check
+         */
+        _row--;
+        _column -= 2;
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Left-up directional check
+         */
+        _row++;
+        _column -= 2;
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Down-right directional check
+         */
+        _row -= 2;
+        _column++;
+        position_to_check = new ChessPosition(_row, _column);
+        checkMoveIsValid(board, myPosition, position_to_check, available_moves);
+
+
+        _row = myPosition.getRow();
+        _column = myPosition.getColumn();
+        /**
+         * Down-left directional check
+         */
+        _row -= 2;
+        _column--;
         position_to_check = new ChessPosition(_row, _column);
         checkMoveIsValid(board, myPosition, position_to_check, available_moves);
 

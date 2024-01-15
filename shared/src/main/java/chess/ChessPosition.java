@@ -76,4 +76,10 @@ public class ChessPosition {
 
     }
 
+    public boolean outOfBounds() {
+
+        return (this.getRow() < 1 || this.getColumn() < 1 || this.getRow() > 8 || this.getColumn() > 8);
+
+    }
+
 }

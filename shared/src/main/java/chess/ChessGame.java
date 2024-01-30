@@ -70,11 +70,16 @@ public class ChessGame {
         if (pieceToMove == null) {
             throw new InvalidMoveException("Piece doesn't exist at position that it trying to move");
         }
+        var colorOfPiece = pieceToMove.getTeamColor();
+        if (colorOfPiece != this.getTeamTurn()) {
+            throw new InvalidMoveException("Piece is not on current player's team");
+        }
         var valid = false;
         var startPosition = move.getStartPosition();
         var validMoves = this.validMoves(startPosition);
         for (var moveToCheck : validMoves) {
-            if (moveToCheck.getEndPosition().equals(move.getEndPosition())) {
+            var endPosToCheck = moveToCheck.getEndPosition();
+            if (endPosToCheck.equals(endPosition)) {
                 valid = true;
                 break;
             }
@@ -83,6 +88,11 @@ public class ChessGame {
             throw new InvalidMoveException("Piece cannot make provided move");
         }
         this.board.movePiece(move, pieceToMove);
+        if (this.getTeamTurn() == TeamColor.WHITE) {
+            this.setTeamTurn(TeamColor.BLACK);
+        } else {
+            this.setTeamTurn(TeamColor.WHITE);
+        }
     }
 
     /**

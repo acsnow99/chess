@@ -23,9 +23,11 @@ public class ChessBoard {
      * @param piece    the piece to add
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
-
         this.board_spaces[position.getRow()][position.getColumn()] = piece;
+    }
 
+    private void removePiece(ChessPosition position) {
+        this.board_spaces[position.getRow()][position.getColumn()] = null;
     }
 
     /**
@@ -39,16 +41,16 @@ public class ChessBoard {
         var _piece_at_position = board_spaces[position.getRow()][position.getColumn()];
         var _exists_piece_at_position = _piece_at_position != null;
         if (_exists_piece_at_position) {
-
             return _piece_at_position;
-
         }
         else {
-
             return null;
-
         }
+    }
 
+    public void movePiece(ChessMove move, ChessPiece pieceToMove) {
+        this.addPiece(move.getEndPosition(), pieceToMove);
+        this.removePiece(move.getStartPosition());
     }
 
     /**

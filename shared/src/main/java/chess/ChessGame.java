@@ -62,7 +62,15 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        throw new RuntimeException("Not implemented");
+        var endPosition = move.getEndPosition();
+        if (endPosition.outOfBounds()) {
+            throw new InvalidMoveException("Move tries to move piece out of bounds");
+        }
+        var pieceToMove = board.getPiece(move.getStartPosition());
+        if (pieceToMove == null) {
+            throw new InvalidMoveException("Piece doesn't exist at position that it trying to move");
+        }
+        this.board.movePiece(move, pieceToMove);
     }
 
     /**

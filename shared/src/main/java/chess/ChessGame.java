@@ -70,6 +70,18 @@ public class ChessGame {
         if (pieceToMove == null) {
             throw new InvalidMoveException("Piece doesn't exist at position that it trying to move");
         }
+        var valid = false;
+        var startPosition = move.getStartPosition();
+        var validMoves = this.validMoves(startPosition);
+        for (var moveToCheck : validMoves) {
+            if (moveToCheck.getEndPosition().equals(move.getEndPosition())) {
+                valid = true;
+                break;
+            }
+        }
+        if (!valid) {
+            throw new InvalidMoveException("Piece cannot make provided move");
+        }
         this.board.movePiece(move, pieceToMove);
     }
 

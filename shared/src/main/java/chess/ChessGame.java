@@ -87,6 +87,9 @@ public class ChessGame {
         if (!valid) {
             throw new InvalidMoveException("Piece cannot make provided move");
         }
+        if (this.isInCheck(this.getTeamTurn())) {
+            throw new InvalidMoveException("Player is in check and provided move will not get them out");
+        }
         this.board.movePiece(move, pieceToMove);
         if (this.getTeamTurn() == TeamColor.WHITE) {
             this.setTeamTurn(TeamColor.BLACK);
@@ -102,7 +105,29 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        var numRows = this.board.getBoardNumRows();
+        var numCols = this.board.getBoardNumCols();
+        for (var r = 0; r < numRows; r++) {
+            for (var c = 0; c < numCols; c++) {
+                var positionToCheck = new ChessPosition(r, c);
+                var pieceToCheck = this.board.getPiece(positionToCheck);
+                // if there is no piece there, or if the piece there is the same color
+                //  as the king being checked
+                if (pieceToCheck == null || pieceToCheck.getTeamColor() == teamColor) {
+                    continue;
+                } else {
+                    var movesToCheck = pieceToCheck.pieceMoves(this.board, positionToCheck);
+                    for (ChessMove move : movesToCheck) {
+                        var endPosition = move.getEndPosition();
+                        var endPieceToCheck = board.getPiece(endPosition);
+                        if (endPieceToCheck != null && endPieceToCheck.getPieceType() == ChessPiece.PieceType.KING) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -112,7 +137,8 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        var isInCheck = this.isInCheck(teamColor);
+        return true;
     }
 
     /**

@@ -10,10 +10,20 @@ import java.util.Arrays;
  */
 public class ChessBoard {
 
+    private final int boardNumRows = 8;
+    private final int boardNumCols = 8;
     private ChessPiece[][] board_spaces = new ChessPiece[9][9];
 
     public ChessBoard() {
         
+    }
+
+    public int getBoardNumRows() {
+        return this.boardNumRows;
+    }
+
+    public int getBoardNumCols() {
+        return this.boardNumCols;
     }
 
     /**

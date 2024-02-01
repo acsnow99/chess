@@ -55,6 +55,19 @@ public class ChessGame {
         return pieceAtPosition.pieceMoves(this.getBoard(), startPosition);
     }
 
+    private boolean moveResultsInCheckOnSelf(ChessMove move, TeamColor color) {
+        var startPosition = move.getStartPosition();
+        var endPosition = move.getEndPosition();
+        var pieceAtStart = this.board.getPiece(startPosition);
+        var pieceAtEnd = this.board.getPiece(endPosition);
+        this.board.movePiece(move, pieceAtStart);
+        var moveBack = new ChessMove(endPosition, startPosition, null);
+        var inCheck = this.isInCheck(color);
+        this.board.movePiece(moveBack, pieceAtStart);
+        this.board.addPiece(endPosition, pieceAtEnd);
+        return inCheck;
+    }
+
     /**
      * Makes a move in a chess game
      *
@@ -87,7 +100,7 @@ public class ChessGame {
         if (!valid) {
             throw new InvalidMoveException("Piece cannot make provided move");
         }
-        if (this.isInCheck(this.getTeamTurn())) {
+        if (this.isInCheck(this.getTeamTurn()) && this.moveResultsInCheckOnSelf(move, this.getTeamTurn())) {
             throw new InvalidMoveException("Player is in check and provided move will not get them out");
         }
         this.board.movePiece(move, pieceToMove);

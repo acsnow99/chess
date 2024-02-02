@@ -59,7 +59,11 @@ public class ChessBoard {
     }
 
     public void movePiece(ChessMove move, ChessPiece pieceToMove) {
-        this.addPiece(move.getEndPosition(), pieceToMove);
+        if (move.getPromotionPiece() != null) {
+            this.addPiece(move.getEndPosition(), new ChessPiece(pieceToMove.getTeamColor(), move.getPromotionPiece()));
+        } else {
+            this.addPiece(move.getEndPosition(), pieceToMove);
+        }
         this.removePiece(move.getStartPosition());
     }
 

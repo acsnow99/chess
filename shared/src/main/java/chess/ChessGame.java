@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 
 /**
  * For a class that can manage a chess game, making moves on a board
@@ -52,7 +53,10 @@ public class ChessGame {
         if (pieceAtPosition == null) {
             return null;
         }
-        return pieceAtPosition.pieceMoves(this.getBoard(), startPosition);
+        var color = pieceAtPosition.getTeamColor();
+        var allValidMoves = pieceAtPosition.pieceMoves(this.getBoard(), startPosition);
+        allValidMoves.removeIf(move -> moveResultsInCheckOnSelf(move, color));
+        return allValidMoves;
     }
 
     private boolean moveResultsInCheckOnSelf(ChessMove move, TeamColor color) {
@@ -60,11 +64,15 @@ public class ChessGame {
         var endPosition = move.getEndPosition();
         var pieceAtStart = this.board.getPiece(startPosition);
         var pieceAtEnd = this.board.getPiece(endPosition);
+
         this.board.movePiece(move, pieceAtStart);
+
         var moveBack = new ChessMove(endPosition, startPosition, null);
         var inCheck = this.isInCheck(color);
+
         this.board.movePiece(moveBack, pieceAtStart);
         this.board.addPiece(endPosition, pieceAtEnd);
+
         return inCheck;
     }
 
@@ -120,8 +128,8 @@ public class ChessGame {
     public boolean isInCheck(TeamColor teamColor) {
         var numRows = this.board.getBoardNumRows();
         var numCols = this.board.getBoardNumCols();
-        for (var r = 0; r < numRows; r++) {
-            for (var c = 0; c < numCols; c++) {
+        for (var r = 1; r <= numRows; r++) {
+            for (var c = 1; c <= numCols; c++) {
                 var positionToCheck = new ChessPosition(r, c);
                 var pieceToCheck = this.board.getPiece(positionToCheck);
                 // if there is no piece there, or if the piece there is the same color
@@ -150,8 +158,28 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        var isInCheck = this.isInCheck(teamColor);
-        return true;
+        if (this.isInCheck(teamColor)) {
+            var numRows = this.board.getBoardNumRows();
+            var numCols = this.board.getBoardNumCols();
+            ChessPiece pieceToCheck;
+            Collection<ChessMove> movesToCheck;
+            for (var r = 1; r <= numRows; r++) {
+                for (var c = 1; c <= numCols; c++) {
+                    var position = new ChessPosition(r, c);
+                    pieceToCheck = this.board.getPiece(position);
+                    if (pieceToCheck != null && pieceToCheck.getTeamColor() == teamColor) {
+                        movesToCheck = pieceToCheck.pieceMoves(this.board, position);
+                        for (var move : movesToCheck) {
+                            if (!this.moveResultsInCheckOnSelf(move, teamColor)) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -162,7 +190,28 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        if (!this.isInCheck(teamColor)) {
+            var numRows = this.board.getBoardNumRows();
+            var numCols = this.board.getBoardNumCols();
+            ChessPiece pieceToCheck;
+            Collection<ChessMove> movesToCheck;
+            for (var r = 1; r <= numRows; r++) {
+                for (var c = 1; c <= numCols; c++) {
+                    var position = new ChessPosition(r, c);
+                    pieceToCheck = this.board.getPiece(position);
+                    if (pieceToCheck != null && pieceToCheck.getTeamColor() == teamColor) {
+                        movesToCheck = pieceToCheck.pieceMoves(this.board, position);
+                        for (var move : movesToCheck) {
+                            if (!this.moveResultsInCheckOnSelf(move, teamColor)) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**

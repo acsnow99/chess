@@ -1,0 +1,114 @@
+actor Client
+participant Server
+participant User
+participant RegistrationService
+participant LoginService
+participant LogoutService
+participant GameService
+participant DataAccess
+participant AuthData
+participant GameData
+database db
+
+entryspacing 0.8
+group #navy Registration #white
+Client -> Server: [POST] /user\n{username, password, email}
+Server -> User: User(username, password, email)
+User --> Server: User
+Server -> RegistrationService: register(User)
+RegistrationService -> DataAccess: getUser(username)
+DataAccess -> db: SELECT username from user
+db --> DataAccess: null
+DataAccess --> RegistrationService: null
+RegistrationService -> DataAccess: createUser(User)
+DataAccess -> db: INSERT username, password, email INTO user
+DataAccess -> DataAccess: createRandomToken()\nauthToken
+DataAccess -> db: SELECT username, authToken from auth
+db --> DataAccess: null
+DataAccess -> AuthData: AuthData(username, authToken)
+AuthData --> DataAccess: AuthData
+DataAccess -> db: INSERT username, authToken INTO auth
+DataAccess --> RegistrationService: AuthData
+RegistrationService --> Server: AuthData
+Server --> Client: 200\n{username, authToken}
+end
+
+group #orange Login #white
+Client -> Server: [POST] /session\n{username, password}
+Server -> User: User(username, password, null)
+User --> Server: User
+Server ->LoginService: login(User)
+LoginService ->DataAccess: authenticateUser(User)
+DataAccess -> db: SELECT username and password from user
+db --> DataAccess: username, password
+DataAccess --> LoginService: true
+LoginService -> LoginService: createRandomToken()\nauthToken
+LoginService -> AuthData: AuthData(username, authToken)
+AuthData --> LoginService: AuthData
+LoginService -> DataAccess: createAuth(AuthData)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: null
+DataAccess -> db: INSERT username, authToken INTO auth
+DataAccess --> LoginService: null
+LoginService --> Server: AuthData
+Server --> Client: 200\n{username, authToken}
+end
+
+group #green Logout #white
+Client -> Server: [DELETE] /session\nauthToken
+Server -> LogoutService: logout(authToken)
+LogoutService -> DataAccess: logout(authToken)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: {username, authToken} (not null)
+DataAccess -> db: DELETE authToken and \ncorresponding username from auth
+db --> DataAccess: null
+DataAccess --> LogoutService: null
+LogoutService --> Server: null
+Server --> Client: 200
+end
+
+group #red List Games #white
+Client -> Server: [GET] /game\nauthToken
+Server-> GameService: getGames(authToken)
+GameService -> DataAccess: getGames(authToken)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: {username, authToken} (not null)
+DataAccess -> db: SELECT all game data from game
+db --> DataAccess: {games: [{gameID, whiteUserName, \nblackUserName, gameName}]}
+DataAccess -> GameData: Make a new list.\nFor each entry in the list:\nGameData(gameID, whiteUserName, \nblackUserName, gameName)
+GameData --> DataAccess: List of GameData objects
+DataAccess --> GameService: List of GameData objs
+GameService --> Server: List of GameData objects
+Server --> Client: 200\n{games: [{gameID,\nwhiteUserName, \nblackUserName, \ngameName}]}
+end
+
+group #purple Create Game #white
+Client -> Server: [POST] /game\nauthToken\n{gameName}
+Server -> GameService: createGame(gameName, authToken)
+GameService -> GameService: createRandomGameID()\ngameID
+GameService -> DataAccess: createGame(gameName,\n gameID,\n authToken)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: {username, authToken} (not null)
+DataAccess -> db: SELECT gameID from game
+db --> DataAccess: null
+DataAccess -> db: INSERT gameName, whiteUserName=null,\nblackUserName=null, gameID into game
+DataAccess --> GameService: null
+GameService --> Server: gameID
+Server --> Client: 200\n{gameID}
+end
+
+group #yellow Join Game #black
+Client -> Server: [PUT] /game\nauthToken\n{ClientColor, gameID}
+end
+
+group #gray Clear application #white
+Client -> Server: [DELETE] /db
+Server -> RegistrationService: clear()
+RegistrationService ->DataAccess: clearDatabase()
+DataAccess -> db: DELETE all entries from user
+DataAccess -> db: DELETE all entries from game
+DataAccess -> db: DELETE all entries from auth
+DataAccess -->RegistrationService: null
+RegistrationService --> Server: null
+Server --> Client: 200
+end

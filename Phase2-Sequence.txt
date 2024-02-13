@@ -8,6 +8,7 @@ participant GameService
 participant DataAccess
 participant AuthData
 participant GameData
+participant Observers
 database db
 
 entryspacing 0.8
@@ -16,11 +17,12 @@ Client -> Server: [POST] /user\n{username, password, email}
 Server -> User: User(username, password, email)
 User --> Server: User
 Server -> RegistrationService: register(User)
+RegistrationService -> RegistrationService: if \nUser.password != null\n|| User.username != null\ncontinue
 RegistrationService -> DataAccess: getUser(username)
 DataAccess -> db: SELECT username from user
 db --> DataAccess: null
 DataAccess --> RegistrationService: null
-RegistrationService -> DataAccess: createUser(User)
+RegistrationService -> DataAccess: registerUser(User)
 DataAccess -> db: INSERT username, password, email INTO user
 DataAccess -> DataAccess: createRandomToken()\nauthToken
 DataAccess -> db: SELECT username, authToken from auth
@@ -99,6 +101,24 @@ end
 
 group #yellow Join Game #black
 Client -> Server: [PUT] /game\nauthToken\n{ClientColor, gameID}
+Server -> GameService: joinGame(authToken, ClientColor, gameID)
+GameService -> DataAccess: joinGame(authToken,\n ClientColor, gameID)
+DataAccess -> GameData: if ClientColor == black\nGameData(gameID, whiteUserName,\n username, gameName)
+DataAccess -> GameData: if ClientColor == white\nGameData(gameID, username,\n blackUserName, gameName)
+GameData --> DataAccess: GameData
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: {username, authToken} (not null)
+DataAccess -> db: SELECT gameID from game
+db --> DataAccess: {gameID, whiteUserName, blackUserName, gameName, observers}
+DataAccess -> db: if ClientColor == white\nUPDATE game \nSET whiteUserName = username\nWHERE gameID = gameID
+DataAccess -> db: if ClientColor == black\nUPDATE game \nSET blackUserName = username\nWHERE gameID = gameID
+DataAccess -> Observers: if ClientColor is null\nObservers(observers)
+Observers --> DataAccess: Observers
+DataAccess -> Observers: addObserver(username)
+DataAccess -> db: if ClientColor is null\nUPDATE game \nSET observers = Observers.serialized()\nWHERE gameID = gameID
+DataAccess --> GameService: null
+GameService --> Server: null
+Server --> Client: 200
 end
 
 group #gray Clear application #white
@@ -111,4 +131,83 @@ DataAccess -> db: DELETE all entries from auth
 DataAccess -->RegistrationService: null
 RegistrationService --> Server: null
 Server --> Client: 200
+end
+
+
+group #navy Registration Failure - Already Taken #white
+Client -> Server: [POST] /user\n{username, password, email}
+Server -> User: User(username, password, email)
+User --> Server: User
+Server -> RegistrationService: register(User)
+RegistrationService -> RegistrationService: if \nUser.password != null\n|| User.username != null\ncontinue
+RegistrationService -> DataAccess: getUser(username)
+DataAccess -> db: SELECT username from user
+db --> DataAccess: {username, password, email}
+DataAccess -> User: User(username, password, email)
+User --> DataAccess: User
+DataAccess --> RegistrationService: User
+RegistrationService --> Server: null
+Server --> Client: [403] {"message": "Error: already taken"}
+end
+
+group #navy Registration Failure - Bad Request #white
+Client -> Server: [POST] /user\n{username/null, password/null, email}
+Server -> User: User(username/null, \n password/null, email)
+User --> Server: User
+Server -> RegistrationService: register(User)
+RegistrationService -> RegistrationService: if \nUser.password != null\n|| User.username != null\ncontinue
+RegistrationService --> Server: throwException("Error: bad request")
+Server --> Client: 400\n{"message": "Error: bad request"}
+end
+
+group #orange Login Failure - Unauthorized #white
+Client -> Server: [POST] /session\n{username, password}
+Server -> User: User(username, password, null)
+User --> Server: User
+Server ->LoginService: login(User)
+LoginService ->DataAccess: authenticateUser(User)
+DataAccess -> db: SELECT username and password from user
+db --> DataAccess: null
+DataAccess --> LoginService: false
+LoginService --> Server: null
+Server --> Client: 401\n{"message":"Error: unauthorized"}
+end
+
+group #green Logout Failure - Unauthorized #white
+Client -> Server: [DELETE] /session\nauthToken
+Server -> LogoutService: logout(authToken)
+LogoutService -> DataAccess: logout(authToken)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: null
+DataAccess --> Server: throwException("Error: unauthorized")
+Server --> Client: 401\n{"message:"Error: unauthorized"}
+end
+
+group #red List Games Failure - Unauthorized #white
+Client -> Server: [GET] /game\nauthToken
+Server-> GameService: getGames(authToken)
+GameService -> DataAccess: getGames(authToken)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: null
+DataAccess --> Server: throwException("Error: unauthorized")
+Server --> Client: 401\n{"message:"Error: unauthorized"}
+end
+
+group #purple Create Game Failure - Bad Request #white
+Client -> Server: [POST] /game\nauthToken\n{gameName=null}
+Server -> GameService: createGame(gameName=null, authToken)
+GameService -> GameService: if \ngameName != null\ncontinue
+GameService --> Server: throwException("Error: bad request")
+Server --> Client: 400\n{"message":"Error: bad request"}
+end
+
+group #purple Create Game Failure - Unauthorized #white
+Client -> Server: [POST] /game\nauthToken\n{gameName}
+Server -> GameService: createGame(gameName, authToken)
+GameService -> GameService: createRandomGameID()\ngameID
+GameService -> DataAccess: createGame(gameName,\n gameID,\n authToken)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: null
+DataAccess --> Server: throwException("Error: not authorized")
+Server --> Client: 401\n{"message":"Error: not authorized"}
 end

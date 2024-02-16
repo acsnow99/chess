@@ -5,22 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/chess.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HelloWorld.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/authData/AuthData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase2-Sequence.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Phase2-Sequence.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -67,7 +58,7 @@
     "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.RegistrationServiceTests.registerRegularUser">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="server" />
@@ -76,8 +67,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RegistrationServiceTests.registerRegularUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
+      <option name="METHOD_NAME" value="registerRegularUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.RegistrationServiceTests.registerRegularUser" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RegistrationServiceTests.registerRegularUser" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>

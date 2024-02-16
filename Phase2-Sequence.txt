@@ -6,7 +6,7 @@ participant LoginService
 participant LogoutService
 participant GameService
 participant DataAccess
-participant AuthData
+participant authData
 participant GameData
 participant Observers
 database db
@@ -27,11 +27,11 @@ DataAccess -> db: INSERT username, password, email INTO user
 DataAccess -> DataAccess: createRandomToken()\nauthToken
 DataAccess -> db: SELECT username, authToken from auth
 db --> DataAccess: null
-DataAccess -> AuthData: AuthData(username, authToken)
-AuthData --> DataAccess: AuthData
+DataAccess -> authData: authData(username, authToken)
+authData --> DataAccess: authData
 DataAccess -> db: INSERT username, authToken INTO auth
-DataAccess --> RegistrationService: AuthData
-RegistrationService --> Server: AuthData
+DataAccess --> RegistrationService: authData
+RegistrationService --> Server: authData
 Server --> Client: 200\n{username, authToken}
 end
 
@@ -45,14 +45,14 @@ DataAccess -> db: SELECT username and password from user
 db --> DataAccess: username, password
 DataAccess --> LoginService: true
 LoginService -> LoginService: createRandomToken()\nauthToken
-LoginService -> AuthData: AuthData(username, authToken)
-AuthData --> LoginService: AuthData
-LoginService -> DataAccess: createAuth(AuthData)
+LoginService -> authData: authData(username, authToken)
+authData --> LoginService: authData
+LoginService -> DataAccess: createAuth(authData)
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: null
 DataAccess -> db: INSERT username, authToken INTO auth
 DataAccess --> LoginService: null
-LoginService --> Server: AuthData
+LoginService --> Server: authData
 Server --> Client: 200\n{username, authToken}
 end
 

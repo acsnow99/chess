@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/authData/AuthData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/authTokenGenerator/AuthTokenGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/UserDataAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase2-Sequence.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Phase2-Sequence.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +45,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.RegistrationServiceTests.registerRegularUser.executor": "Run",
+    "JUnit.RegistrationServiceTests.registerTwice.executor": "Run",
+    "JUnit.RegistrationServiceTests.registerUserReturnsName.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -58,7 +60,7 @@
     "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.RegistrationServiceTests.registerRegularUser">
+  <component name="RunManager" selected="JUnit.RegistrationServiceTests.registerUserReturnsName">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="server" />
@@ -83,12 +85,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RegistrationServiceTests.registerTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
+      <option name="METHOD_NAME" value="registerTwice" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegistrationServiceTests.registerUserReturnsName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
+      <option name="METHOD_NAME" value="registerUserReturnsName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.RegistrationServiceTests.registerRegularUser" />
+      <item itemvalue="JUnit.RegistrationServiceTests.registerTwice" />
+      <item itemvalue="JUnit.RegistrationServiceTests.registerUserReturnsName" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RegistrationServiceTests.registerUserReturnsName" />
+        <item itemvalue="JUnit.RegistrationServiceTests.registerTwice" />
         <item itemvalue="JUnit.RegistrationServiceTests.registerRegularUser" />
         <item itemvalue="Application.Main" />
       </list>

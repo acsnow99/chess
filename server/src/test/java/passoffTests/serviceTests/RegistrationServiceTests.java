@@ -13,11 +13,19 @@ public class RegistrationServiceTests {
     private User regularUser = new User("kevin23", "okokokok99", "okay@gmail.com");
 
     @Test
-    @DisplayName("Register regular User")
-    public void registerRegularUser() {
+    @DisplayName("Regular user's name returns correctly from service")
+    public void registerUserReturnsName() {
         AuthData result = registrationService.registerUser(regularUser);
 
         assertEquals(regularUser.username(), result.username());
     }
 
+    @Test
+    @DisplayName("Same user can't be registered twice")
+    public void registerTwice() {
+        AuthData result = registrationService.registerUser(regularUser);
+
+        assertNull(registrationService.registerUser(regularUser));
+    }
+    
 }

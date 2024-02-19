@@ -1,6 +1,7 @@
 package passoffTests.serviceTests;
 
 import authData.AuthData;
+import dataAccess.DataAccessException;
 import org.junit.jupiter.api.*;
 import registrationService.RegistrationService;
 import user.User;
@@ -15,7 +16,12 @@ public class RegistrationServiceTests {
     @Test
     @DisplayName("Regular user's name returns correctly from service")
     public void registerUserReturnsName() {
-        AuthData result = registrationService.registerUser(regularUser);
+        AuthData result = null;
+        try {
+            result = registrationService.registerUser(regularUser);
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
 
         assertEquals(regularUser.username(), result.username());
     }
@@ -23,18 +29,36 @@ public class RegistrationServiceTests {
     @Test
     @DisplayName("Same user can't be registered twice")
     public void registerSameUserTwice() {
-        AuthData result = registrationService.registerUser(regularUser);
-
-        assertNull(registrationService.registerUser(regularUser));
+        try {
+            AuthData result = registrationService.registerUser(regularUser);
+            assertNull(registrationService.registerUser(regularUser));
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
     @DisplayName("Same username can't be registered twice")
     public void registerSameNameTwice() {
-        AuthData result = registrationService.registerUser(regularUser);
+        try {
+            AuthData result = registrationService.registerUser(regularUser);
+            var otherUser = new User(regularUser.username(), "otherpass", "email@email.com");
+            assertNull(registrationService.registerUser(otherUser));
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        var otherUser = new User(regularUser.username(), "otherpass", "email@email.com");
-        assertNull(registrationService.registerUser(otherUser));
+    @Test
+    @DisplayName("Same username can't be registered twice")
+    public void registerTwoUsers() {
+        try {
+            AuthData result = registrationService.registerUser(regularUser);
+            var otherUser = new User("otherguy", "otherpass", "email@email.com");
+            registrationService.registerUser(otherUser);
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

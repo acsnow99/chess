@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/gameData/GameData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/sessionService/SessionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase2-Sequence.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Phase2-Sequence.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/authTokenGenerator/AuthTokenGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/authTokenGenerator/AuthTokenGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/UserDataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" afterDir="false" />
@@ -52,6 +50,7 @@
     "JUnit.RegistrationServiceTests.registerSameNameTwice.executor": "Run",
     "JUnit.RegistrationServiceTests.registerSameUserTwice.executor": "Run",
     "JUnit.RegistrationServiceTests.registerTwice.executor": "Run",
+    "JUnit.RegistrationServiceTests.registerTwoUsers.executor": "Run",
     "JUnit.RegistrationServiceTests.registerUserReturnsName.executor": "Run",
     "JUnit.StandardAPITests.staticFiles.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -66,7 +65,7 @@
     "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.StandardAPITests.staticFiles">
+  <component name="RunManager" selected="JUnit.RegistrationServiceTests.registerTwoUsers">
     <configuration name="RegistrationServiceTests.registerSameNameTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -99,7 +98,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegistrationServiceTests.registerTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationServiceTests.registerTwoUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -109,7 +108,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
-      <option name="METHOD_NAME" value="registerTwice" />
+      <option name="METHOD_NAME" value="registerTwoUsers" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,19 +147,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.RegistrationServiceTests.registerTwoUsers" />
       <item itemvalue="JUnit.RegistrationServiceTests.registerSameNameTwice" />
       <item itemvalue="JUnit.RegistrationServiceTests.registerSameUserTwice" />
-      <item itemvalue="JUnit.RegistrationServiceTests.registerTwice" />
       <item itemvalue="JUnit.RegistrationServiceTests.registerUserReturnsName" />
       <item itemvalue="JUnit.StandardAPITests.staticFiles" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StandardAPITests.staticFiles" />
+        <item itemvalue="JUnit.RegistrationServiceTests.registerTwoUsers" />
         <item itemvalue="JUnit.RegistrationServiceTests.registerSameNameTwice" />
-        <item itemvalue="JUnit.RegistrationServiceTests.registerSameUserTwice" />
         <item itemvalue="JUnit.RegistrationServiceTests.registerUserReturnsName" />
-        <item itemvalue="JUnit.RegistrationServiceTests.registerTwice" />
+        <item itemvalue="JUnit.StandardAPITests.staticFiles" />
+        <item itemvalue="JUnit.RegistrationServiceTests.registerSameUserTwice" />
       </list>
     </recent_temporary>
   </component>
@@ -189,16 +188,5 @@
     <option featureType="dependencySupport" implementationName="executable:docker" />
     <option featureType="dependencySupport" implementationName="java:com.google.protobuf:protobuf-java" />
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/StandardAPITests.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -3,17 +3,20 @@ package dataAccess;
 import authData.AuthData;
 import authTokenGenerator.AuthTokenGenerator;
 import user.User;
+import gameData.GameData;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class UserDataAccess {
+public class DataAccess {
 
     private ArrayList<User> userDB = new ArrayList<>();
     private ArrayList<AuthData> authDB = new ArrayList<>();
+    private ArrayList<GameData> gameDB = new ArrayList<>();
 
     public User getUser(User user) {
         // CHANGEME - check just username
-        if (userDB.contains(user)) {
+        if (userDBContainsUsername(user.username())) {
             return user;
         } else {
             return null;
@@ -37,4 +40,19 @@ public class UserDataAccess {
         return authDataResult;
     }
 
+    private boolean userDBContainsUsername(String username) {
+        for (User user : userDB) {
+            if (Objects.equals(user.username(), username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Object clear() {
+        userDB = new ArrayList<>();
+        authDB = new ArrayList<>();
+        gameDB = new ArrayList<>();
+        return null;
+    }
 }

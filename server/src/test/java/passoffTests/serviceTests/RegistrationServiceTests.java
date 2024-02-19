@@ -22,10 +22,19 @@ public class RegistrationServiceTests {
 
     @Test
     @DisplayName("Same user can't be registered twice")
-    public void registerTwice() {
+    public void registerSameUserTwice() {
         AuthData result = registrationService.registerUser(regularUser);
 
         assertNull(registrationService.registerUser(regularUser));
     }
-    
+
+    @Test
+    @DisplayName("Same username can't be registered twice")
+    public void registerSameNameTwice() {
+        AuthData result = registrationService.registerUser(regularUser);
+
+        var otherUser = new User(regularUser.username(), "otherpass", "email@email.com");
+        assertNull(registrationService.registerUser(otherUser));
+    }
+
 }

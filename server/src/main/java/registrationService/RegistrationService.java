@@ -1,19 +1,23 @@
 package registrationService;
 
-import dataAccess.UserDataAccess;
+import dataAccess.DataAccess;
 import user.User;
 import authData.AuthData;
 
 public class RegistrationService {
 
-    private UserDataAccess userDataAccess = new UserDataAccess();
+    private DataAccess dataAccess = new DataAccess();
+
+    public Object clearDatabase() {
+        return this.dataAccess.clear();
+    }
 
     public AuthData registerUser(User user) {
         // username already taken
-        if (userDataAccess.getUser(user) != null) {
+        if (dataAccess.getUser(user) != null) {
             return null;
         }
-        return userDataAccess.registerUser(user);
+        return dataAccess.registerUser(user);
     }
 
 }

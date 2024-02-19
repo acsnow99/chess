@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/authTokenGenerator/AuthTokenGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/UserDataAccess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/gameData/GameData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase2-Sequence.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Phase2-Sequence.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/authTokenGenerator/AuthTokenGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/authTokenGenerator/AuthTokenGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/UserDataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,10 +36,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2cQLCr4pT9QYppTvhJE1dsQMFGB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -46,8 +49,11 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "JUnit.RegistrationServiceTests.registerRegularUser.executor": "Run",
+    "JUnit.RegistrationServiceTests.registerSameNameTwice.executor": "Run",
+    "JUnit.RegistrationServiceTests.registerSameUserTwice.executor": "Run",
     "JUnit.RegistrationServiceTests.registerTwice.executor": "Run",
     "JUnit.RegistrationServiceTests.registerUserReturnsName.executor": "Run",
+    "JUnit.StandardAPITests.staticFiles.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -60,16 +66,8 @@
     "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.RegistrationServiceTests.registerUserReturnsName">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="server" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/server" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RegistrationServiceTests.registerRegularUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StandardAPITests.staticFiles">
+    <configuration name="RegistrationServiceTests.registerSameNameTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -79,7 +77,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
-      <option name="METHOD_NAME" value="registerRegularUser" />
+      <option name="METHOD_NAME" value="registerSameNameTwice" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegistrationServiceTests.registerSameUserTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
+      <option name="METHOD_NAME" value="registerSameUserTwice" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -117,18 +131,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StandardAPITests.staticFiles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="METHOD_NAME" value="staticFiles" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.RegistrationServiceTests.registerRegularUser" />
+      <item itemvalue="JUnit.RegistrationServiceTests.registerSameNameTwice" />
+      <item itemvalue="JUnit.RegistrationServiceTests.registerSameUserTwice" />
       <item itemvalue="JUnit.RegistrationServiceTests.registerTwice" />
       <item itemvalue="JUnit.RegistrationServiceTests.registerUserReturnsName" />
+      <item itemvalue="JUnit.StandardAPITests.staticFiles" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StandardAPITests.staticFiles" />
+        <item itemvalue="JUnit.RegistrationServiceTests.registerSameNameTwice" />
+        <item itemvalue="JUnit.RegistrationServiceTests.registerSameUserTwice" />
         <item itemvalue="JUnit.RegistrationServiceTests.registerUserReturnsName" />
         <item itemvalue="JUnit.RegistrationServiceTests.registerTwice" />
-        <item itemvalue="JUnit.RegistrationServiceTests.registerRegularUser" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -157,5 +189,16 @@
     <option featureType="dependencySupport" implementationName="executable:docker" />
     <option featureType="dependencySupport" implementationName="java:com.google.protobuf:protobuf-java" />
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/StandardAPITests.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

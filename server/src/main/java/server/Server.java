@@ -14,10 +14,18 @@ public class Server {
 
         Spark.staticFiles.location("web");
 
-        Spark.post("/register", this::registerUser);
+        Spark.delete("/db", this::clearDatabase);
+        Spark.post("/user", this::registerUser);
 
         Spark.awaitInitialization();
         return Spark.port();
+    }
+
+
+    private Object clearDatabase(Request request, Response response) {
+        this.registrationService.clearDatabase();
+        response.status(200);
+        return new Gson().toJson(response.body());
     }
 
     private Object registerUser(Request request, Response response) {

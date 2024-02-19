@@ -7,7 +7,7 @@ participant LogoutService
 participant GameService
 participant DataAccess
 participant authData
-participant GameData
+participant gameData
 participant Observers
 database db
 
@@ -77,10 +77,10 @@ DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: {username, authToken} (not null)
 DataAccess -> db: SELECT all game data from game
 db --> DataAccess: {games: [{gameID, whiteUserName, \nblackUserName, gameName}]}
-DataAccess -> GameData: Make a new list.\nFor each entry in the list:\nGameData(gameID, whiteUserName, \nblackUserName, gameName)
-GameData --> DataAccess: List of GameData objects
-DataAccess --> GameService: List of GameData objs
-GameService --> Server: List of GameData objects
+DataAccess -> gameData: Make a new list.\nFor each entry in the list:\nGameData(gameID, whiteUserName, \nblackUserName, gameName)
+gameData --> DataAccess: List of gameData objects
+DataAccess --> GameService: List of gameData objs
+GameService --> Server: List of gameData objects
 Server --> Client: 200\n{games: [{gameID,\nwhiteUserName, \nblackUserName, \ngameName}]}
 end
 
@@ -103,9 +103,9 @@ group #yellow Join Game #black
 Client -> Server: [PUT] /game\nauthToken\n{ClientColor, gameID}
 Server -> GameService: joinGame(authToken, ClientColor, gameID)
 GameService -> DataAccess: joinGame(authToken,\n ClientColor, gameID)
-DataAccess -> GameData: if ClientColor == black\nGameData(gameID, whiteUserName,\n username, gameName)
-DataAccess -> GameData: if ClientColor == white\nGameData(gameID, username,\n blackUserName, gameName)
-GameData --> DataAccess: GameData
+DataAccess -> gameData: if ClientColor == black\nGameData(gameID, whiteUserName,\n username, gameName)
+DataAccess -> gameData: if ClientColor == white\nGameData(gameID, username,\n blackUserName, gameName)
+gameData --> DataAccess: gameData
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: {username, authToken} (not null)
 DataAccess -> db: SELECT gameID from game

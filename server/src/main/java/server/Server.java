@@ -2,6 +2,7 @@ package server;
 
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
+import otherExceptions.MissingDataException;
 import registrationService.RegistrationService;
 import sessionService.SessionService;
 import spark.*;
@@ -42,15 +43,22 @@ public class Server {
         try {
             this.registrationService.registerUser(user);
         } catch (DataAccessException exception) {
-            return new User(null, null, null);
+            response.status(500);
+            response.body(exception.getMessage());
         }
         return new Gson().toJson(user);
     }
 
     private Object login(Request request, Response response) {
         var user = new Gson().fromJson(request.body(), User.class);
-        var authData = this.sessionService.login(user);
-        return new Gson().toJson(authData);
+        try {
+            var authData = this.sessionService.loginUser(user);
+            return new Gson().toJson(authData);
+        } catch (Exception exception) {
+            response.status(500);
+            response.body(exception.getMessage());
+        }
+        return null;
     }
 
     public void stop() {

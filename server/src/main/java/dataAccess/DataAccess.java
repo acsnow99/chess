@@ -2,19 +2,15 @@ package dataAccess;
 
 import authData.AuthData;
 import authTokenGenerator.AuthTokenGenerator;
-import com.google.gson.JsonArray;
 import com.google.gson.stream.JsonReader;
 import user.User;
 import gameData.GameData;
 
 import com.google.gson.Gson;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -22,8 +18,8 @@ public class DataAccess {
 
     private String emptyDBString = "[]";
     private String userDBFileName = "db/user.json";
-    private ArrayList<AuthData> authDB = new ArrayList<>();
     private ArrayList<GameData> gameDB = new ArrayList<>();
+    private String authDBFileName = "db/auth.json";
 
     public User getUser(User user) throws DataAccessException {
         if (userDBContainsUsername(user.username())) {
@@ -34,28 +30,64 @@ public class DataAccess {
     }
 
     public AuthData registerUser(User user) throws DataAccessException {
-        var db = readJsonFromLocalDBFile(userDBFileName);
+        var db = userReadJsonFromLocalDBFile(userDBFileName);
         db.add(user);
         var dbAsJson = new Gson().toJson(db);
         writeToLocalDBFile(userDBFileName, dbAsJson);
         return loginUser(user);
     }
 
-    public AuthData loginUser(User user) {
+    public AuthData loginUser(User user) throws DataAccessException {
+        var authDB = authReadJsonFromLocalDBFile(authDBFileName);
+        for (var auth : authDB) {
+            if (Objects.equals(auth.username(), user.username())) {
+                return auth;
+            }
+        }
         String authToken = new AuthTokenGenerator().generateToken();
         AuthData authDataResult = new AuthData(user.username(), authToken);
-        // CHANGEME - check for existing token based on authToken only, not username
-        while (authDB.contains(authDataResult)) {
-            authToken = new AuthTokenGenerator().generateToken();
-            authDataResult = new AuthData(user.username(), authToken);
-        }
+        // TO-DO: check for existing token based on authToken
         authDB.add(authDataResult);
+        writeToLocalDBFile(authDBFileName, new Gson().toJson(authDB));
         return authDataResult;
     }
 
+    public boolean authorizeUser(User user) throws DataAccessException {
+        var userDB = userReadJsonFromLocalDBFile(userDBFileName);
+        for (var userEntry : userDB) {
+            if (Objects.equals(user.username(), userEntry.username()) && Objects.equals(user.password(), userEntry.password())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // NOTE: authData's username may be null. This function only compares authTokens only
+    public AuthData getAuthDataFromToken(AuthData authData) throws DataAccessException {
+        var authDB = authReadJsonFromLocalDBFile(authDBFileName);
+        for (var auth : authDB) {
+            if (Objects.equals(auth.authToken(), authData.authToken())) {
+                return auth;
+            }
+        }
+        return null;
+    }
+
+    public void logoutUser(AuthData authData) throws DataAccessException {
+        var authDB = authReadJsonFromLocalDBFile(authDBFileName);
+        var authDBResult = new ArrayList<AuthData>();
+        for (var auth : authDB) {
+            if (!Objects.equals(auth.authToken(), authData.authToken())) {
+                authDBResult.add(auth);
+            }
+        }
+        writeToLocalDBFile(authDBFileName, new Gson().toJson(authDBResult));
+    }
+
     private boolean userDBContainsUsername(String username) {
+        // TO-DO: Make function throw exception
         try {
-            var userDB = readJsonFromLocalDBFile(userDBFileName);
+            var userDB = userReadJsonFromLocalDBFile(userDBFileName);
             for (var user : userDB) {
                 if (Objects.equals(user.username(), username)) {
                     return true;
@@ -68,9 +100,8 @@ public class DataAccess {
     }
 
     public Object clear() throws DataAccessException {
-        var emptyDBString = "[]";
         writeToLocalDBFile(userDBFileName, emptyDBString);
-        authDB = new ArrayList<>();
+        writeToLocalDBFile(authDBFileName, emptyDBString);
         gameDB = new ArrayList<>();
         return null;
     }
@@ -83,7 +114,7 @@ public class DataAccess {
         }
     }
 
-    private ArrayList<User> readJsonFromLocalDBFile(String dbFileName) throws DataAccessException {
+    private ArrayList<User> userReadJsonFromLocalDBFile(String dbFileName) throws DataAccessException {
         try (var fileReader = new JsonReader(new FileReader(dbFileName))) {
             var usersInDB = new ArrayList<User>();
             fileReader.beginArray();
@@ -92,6 +123,20 @@ public class DataAccess {
             }
             fileReader.endArray();
             return usersInDB;
+        } catch (IOException exception) {
+            throw new DataAccessException("Error: could not read from " + dbFileName);
+        }
+    }
+
+    private ArrayList<AuthData> authReadJsonFromLocalDBFile(String dbFileName) throws DataAccessException {
+        try (var fileReader = new JsonReader(new FileReader(dbFileName))) {
+            var authInDB = new ArrayList<AuthData>();
+            fileReader.beginArray();
+            while (fileReader.hasNext()) {
+                authInDB.add(new Gson().fromJson(fileReader, AuthData.class));
+            }
+            fileReader.endArray();
+            return authInDB;
         } catch (IOException exception) {
             throw new DataAccessException("Error: could not read from " + dbFileName);
         }

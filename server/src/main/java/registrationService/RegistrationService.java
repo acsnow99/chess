@@ -14,6 +14,7 @@ public class RegistrationService {
     }
 
     public AuthData registerUser(User user) throws DataAccessException {
+        // TO-DO: Check if user object has null fields (bad request, missing data exception)
         // username already taken
         if (dataAccess.getUser(user) != null) {
             return null;

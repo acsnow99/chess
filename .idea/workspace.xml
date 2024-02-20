@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server/db/auth.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/otherExceptions/MissingDataException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/otherExceptions/UnauthorizedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/SessionServiceTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/user.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/sessionService/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/sessionService/SessionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +57,9 @@
     "JUnit.RegistrationServiceTests.registerTwice.executor": "Run",
     "JUnit.RegistrationServiceTests.registerTwoUsers.executor": "Run",
     "JUnit.RegistrationServiceTests.registerUserReturnsName.executor": "Run",
+    "JUnit.SessionServiceTests.loginSimple.executor": "Debug",
+    "JUnit.SessionServiceTests.logoutSimple.executor": "Debug",
+    "JUnit.SessionServiceTests.logoutWithoutUsers.executor": "Run",
     "JUnit.StandardAPITests.staticFiles.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -63,55 +73,12 @@
     "settings.editor.selected.configurable": "actions.on.save"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.RegistrationServiceTests.registerTwoUsers">
-    <configuration name="RegistrationServiceTests.clearDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
-      <option name="METHOD_NAME" value="clearDatabase" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RegistrationServiceTests.registerSameNameTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
-      <option name="METHOD_NAME" value="registerSameNameTwice" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RegistrationServiceTests.registerSameUserTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
-      <option name="METHOD_NAME" value="registerSameUserTwice" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="otherExceptions" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.SessionServiceTests.logoutWithoutUsers">
     <configuration name="RegistrationServiceTests.registerTwoUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -144,20 +111,68 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SessionServiceTests.loginSimple" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
+      <option name="METHOD_NAME" value="loginSimple" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SessionServiceTests.logoutSimple" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
+      <option name="METHOD_NAME" value="logoutSimple" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SessionServiceTests.logoutWithoutUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
+      <option name="METHOD_NAME" value="logoutWithoutUsers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.RegistrationServiceTests.clearDatabase" />
       <item itemvalue="JUnit.RegistrationServiceTests.registerTwoUsers" />
-      <item itemvalue="JUnit.RegistrationServiceTests.registerSameNameTwice" />
-      <item itemvalue="JUnit.RegistrationServiceTests.registerSameUserTwice" />
+      <item itemvalue="JUnit.SessionServiceTests.loginSimple" />
+      <item itemvalue="JUnit.SessionServiceTests.logoutSimple" />
+      <item itemvalue="JUnit.SessionServiceTests.logoutWithoutUsers" />
       <item itemvalue="JUnit.RegistrationServiceTests.registerUserReturnsName" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SessionServiceTests.logoutWithoutUsers" />
+        <item itemvalue="JUnit.SessionServiceTests.logoutSimple" />
+        <item itemvalue="JUnit.SessionServiceTests.loginSimple" />
         <item itemvalue="JUnit.RegistrationServiceTests.registerTwoUsers" />
         <item itemvalue="JUnit.RegistrationServiceTests.registerUserReturnsName" />
-        <item itemvalue="JUnit.RegistrationServiceTests.registerSameUserTwice" />
-        <item itemvalue="JUnit.RegistrationServiceTests.registerSameNameTwice" />
-        <item itemvalue="JUnit.RegistrationServiceTests.clearDatabase" />
       </list>
     </recent_temporary>
   </component>
@@ -186,16 +201,5 @@
     <option featureType="dependencySupport" implementationName="executable:docker" />
     <option featureType="dependencySupport" implementationName="java:com.google.protobuf:protobuf-java" />
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

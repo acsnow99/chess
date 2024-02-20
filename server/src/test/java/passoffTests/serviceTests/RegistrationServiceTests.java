@@ -13,6 +13,15 @@ public class RegistrationServiceTests {
     private RegistrationService registrationService = new RegistrationService();
     private User regularUser = new User("kevin23", "okokokok99", "okay@gmail.com");
 
+    @BeforeEach
+    public void init() {
+        try {
+            registrationService.clearDatabase();
+        } catch (DataAccessException e) {
+            System.out.println(e);
+        }
+    }
+
     @Test
     @DisplayName("Regular user's name returns correctly from service")
     public void registerUserReturnsName() {
@@ -22,7 +31,7 @@ public class RegistrationServiceTests {
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }
-
+        assertNotNull(result);
         assertEquals(regularUser.username(), result.username());
     }
 
@@ -50,12 +59,26 @@ public class RegistrationServiceTests {
     }
 
     @Test
-    @DisplayName("Same username can't be registered twice")
+    @DisplayName("Register two unique users")
     public void registerTwoUsers() {
         try {
             AuthData result = registrationService.registerUser(regularUser);
             var otherUser = new User("otherguy", "otherpass", "email@email.com");
             registrationService.registerUser(otherUser);
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @DisplayName("Clearing Database removes all user entries")
+    public void clearDatabase() {
+        try {
+            registrationService.registerUser(regularUser);
+            registrationService.clearDatabase();
+            AuthData result = registrationService.registerUser(regularUser);
+            assertNotNull(result.username());
+            assertEquals(result.username(), regularUser.username());
         } catch (DataAccessException e) {
             throw new RuntimeException(e);
         }

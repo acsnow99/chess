@@ -64,4 +64,28 @@ public class SessionServiceTests {
         }
     }
 
+    @Test
+    @DisplayName("User can login again after having logged out, then they can log in again")
+    public void loginAgain() {
+        try {
+            registrationService.registerUser(regularUser);
+
+            AuthData result = sessionService.loginUser(regularUser);
+            assertNotNull(result.username());
+
+            var authData = new AuthData(null, result.authToken());
+            assertDoesNotThrow(() -> sessionService.logoutUser(authData));
+            assertThrows(UnauthorizedException.class, () -> sessionService.logoutUser(authData));
+
+            result = sessionService.loginUser(regularUser);
+            assertNotNull(result.username());
+
+            var authData1 = new AuthData(null, result.authToken());
+            assertDoesNotThrow(() -> sessionService.logoutUser(authData1));
+            assertThrows(UnauthorizedException.class, () -> sessionService.logoutUser(authData1));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }

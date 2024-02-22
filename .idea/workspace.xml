@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server/db/games.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/gameService/GameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/SessionServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/SessionServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase2-Sequence.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Phase2-Sequence.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/auth.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/gameData/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/gameData/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/sessionService/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/sessionService/SessionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +49,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.GameServiceTests.getGameData.executor": "Run",
     "JUnit.RegistrationServiceTests.clearDatabase.executor": "Run",
     "JUnit.RegistrationServiceTests.registerRegularUser.executor": "Run",
     "JUnit.RegistrationServiceTests.registerSameNameTwice.executor": "Run",
@@ -69,11 +76,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="passoffTests.serviceTests" />
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SessionServiceTests.loginAgain">
-    <configuration name="RegistrationServiceTests.registerTwoUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GameServiceTests.unauthorizedGameDataRequest">
+    <configuration name="GameServiceTests.getGameData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -82,8 +90,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.RegistrationServiceTests" />
-      <option name="METHOD_NAME" value="registerTwoUsers" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.GameServiceTests" />
+      <option name="METHOD_NAME" value="getGameData" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameServiceTests.unauthorizedGameDataRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.GameServiceTests" />
+      <option name="METHOD_NAME" value="unauthorizedGameDataRequest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -100,22 +124,6 @@
       <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
       <option name="METHOD_NAME" value="loginAgain" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SessionServiceTests.loginSimple" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
-      <option name="METHOD_NAME" value="loginSimple" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -154,19 +162,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.RegistrationServiceTests.registerTwoUsers" />
+      <item itemvalue="JUnit.GameServiceTests.getGameData" />
+      <item itemvalue="JUnit.GameServiceTests.unauthorizedGameDataRequest" />
       <item itemvalue="JUnit.SessionServiceTests.loginAgain" />
-      <item itemvalue="JUnit.SessionServiceTests.loginSimple" />
       <item itemvalue="JUnit.SessionServiceTests.logoutSimple" />
       <item itemvalue="JUnit.SessionServiceTests.logoutWithoutUsers" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameServiceTests.unauthorizedGameDataRequest" />
+        <item itemvalue="JUnit.GameServiceTests.getGameData" />
         <item itemvalue="JUnit.SessionServiceTests.loginAgain" />
         <item itemvalue="JUnit.SessionServiceTests.logoutWithoutUsers" />
         <item itemvalue="JUnit.SessionServiceTests.logoutSimple" />
-        <item itemvalue="JUnit.SessionServiceTests.loginSimple" />
-        <item itemvalue="JUnit.RegistrationServiceTests.registerTwoUsers" />
       </list>
     </recent_temporary>
   </component>

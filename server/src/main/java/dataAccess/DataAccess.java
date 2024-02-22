@@ -18,8 +18,8 @@ public class DataAccess {
 
     private String emptyDBString = "[]";
     private String userDBFileName = "db/user.json";
-    private ArrayList<GameData> gameDB = new ArrayList<>();
     private String authDBFileName = "db/auth.json";
+    private String gamesDBFileName = "db/games.json";
 
     public User getUser(User user) throws DataAccessException {
         if (userDBContainsUsername(user.username())) {
@@ -52,7 +52,7 @@ public class DataAccess {
         return authDataResult;
     }
 
-    public boolean authorizeUser(User user) throws DataAccessException {
+    public boolean userIsAuthorized(User user) throws DataAccessException {
         var userDB = userReadJsonFromLocalDBFile(userDBFileName);
         for (var userEntry : userDB) {
             if (Objects.equals(user.username(), userEntry.username()) && Objects.equals(user.password(), userEntry.password())) {
@@ -71,6 +71,14 @@ public class DataAccess {
             }
         }
         return null;
+    }
+
+    public boolean authDataIsAuthorized(AuthData authData) throws DataAccessException {
+        if (getAuthDataFromToken(authData) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void logoutUser(AuthData authData) throws DataAccessException {
@@ -102,7 +110,6 @@ public class DataAccess {
     public Object clear() throws DataAccessException {
         writeToLocalDBFile(userDBFileName, emptyDBString);
         writeToLocalDBFile(authDBFileName, emptyDBString);
-        gameDB = new ArrayList<>();
         return null;
     }
 
@@ -140,5 +147,23 @@ public class DataAccess {
         } catch (IOException exception) {
             throw new DataAccessException("Error: could not read from " + dbFileName);
         }
+    }
+
+    private ArrayList<GameData> gamesReadJsonFromLocalDBFile(String dbFileName) throws DataAccessException {
+        try (var fileReader = new JsonReader(new FileReader(dbFileName))) {
+            var authInDB = new ArrayList<GameData>();
+            fileReader.beginArray();
+            while (fileReader.hasNext()) {
+                authInDB.add(new Gson().fromJson(fileReader, GameData.class));
+            }
+            fileReader.endArray();
+            return authInDB;
+        } catch (IOException exception) {
+            throw new DataAccessException("Error: could not read from " + dbFileName);
+        }
+    }
+
+    public ArrayList<GameData> getGames() throws DataAccessException {
+        return gamesReadJsonFromLocalDBFile(gamesDBFileName);
     }
 }

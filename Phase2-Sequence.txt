@@ -18,17 +18,24 @@ Server -> User: User(username, password, email)
 User --> Server: User
 Server -> RegistrationService: register(User)
 RegistrationService -> RegistrationService: if \nUser.password != null\n|| User.username != null\ncontinue
-RegistrationService -> DataAccess: getUser(username)
+RegistrationService -> DataAccess: getUser(User)
 DataAccess -> db: SELECT username from user
 db --> DataAccess: null
 DataAccess --> RegistrationService: null
 RegistrationService -> DataAccess: registerUser(User)
 DataAccess -> db: INSERT username, password, email INTO user
-DataAccess -> DataAccess: createRandomToken()\nauthToken
+DataAccess --> RegistrationService: null
+RegistrationService -> AuthData: AuthData(username, authToken)
+AuthData --> RegistrationService: AuthData
+RegistrationService -> DataAccess: createAuth(AuthData)
+DataAccess -> AuthData: createRandomToken()
 DataAccess -> db: SELECT username, authToken from auth
 db --> DataAccess: null
+<<<<<<< HEAD
+=======
 DataAccess -> authData: authData(username, authToken)
 authData --> DataAccess: authData
+>>>>>>> 119a3a832e4e0f10881fad911585003515a4067a
 DataAccess -> db: INSERT username, authToken INTO auth
 DataAccess --> RegistrationService: authData
 RegistrationService --> Server: authData
@@ -44,10 +51,17 @@ LoginService ->DataAccess: authenticateUser(User)
 DataAccess -> db: SELECT username and password from user
 db --> DataAccess: username, password
 DataAccess --> LoginService: true
+<<<<<<< HEAD
+LoginService -> AuthData: AuthData(username, null)
+AuthData --> LoginService: AuthData
+LoginService -> DataAccess: createAuth(AuthData)
+DataAccess -> AuthData: createRandomToken()
+=======
 LoginService -> LoginService: createRandomToken()\nauthToken
 LoginService -> authData: authData(username, authToken)
 authData --> LoginService: authData
 LoginService -> DataAccess: createAuth(authData)
+>>>>>>> 119a3a832e4e0f10881fad911585003515a4067a
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: null
 DataAccess -> db: INSERT username, authToken INTO auth
@@ -58,10 +72,15 @@ end
 
 group #green Logout #white
 Client -> Server: [DELETE] /session\nauthToken
-Server -> LogoutService: logout(authToken)
-LogoutService -> DataAccess: logout(authToken)
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> LogoutService: logout(AuthData)
+LogoutService -> DataAccess: authenticateToken(AuthData)
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: {username, authToken} (not null)
+DataAccess -> AuthData: addUserName(username)
+DataAccess --> LogoutService: AuthData
+LogoutService -> DataAccess: logout(AuthData)
 DataAccess -> db: DELETE authToken and \ncorresponding username from auth
 db --> DataAccess: null
 DataAccess --> LogoutService: null
@@ -71,10 +90,15 @@ end
 
 group #red List Games #white
 Client -> Server: [GET] /game\nauthToken
-Server-> GameService: getGames(authToken)
-GameService -> DataAccess: getGames(authToken)
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server-> GameService: getGames(AuthData)
+GameService -> DataAccess: authenticateToken(AuthData)
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: {username, authToken} (not null)
+DataAccess -> AuthData: addUserName(username)
+DataAccess --> GameService: AuthData
+GameService -> DataAccess: getGames()
 DataAccess -> db: SELECT all game data from game
 db --> DataAccess: {games: [{gameID, whiteUserName, \nblackUserName, gameName}]}
 DataAccess -> gameData: Make a new list.\nFor each entry in the list:\nGameData(gameID, whiteUserName, \nblackUserName, gameName)
@@ -86,11 +110,16 @@ end
 
 group #purple Create Game #white
 Client -> Server: [POST] /game\nauthToken\n{gameName}
-Server -> GameService: createGame(gameName, authToken)
-GameService -> GameService: createRandomGameID()\ngameID
-GameService -> DataAccess: createGame(gameName,\n gameID,\n authToken)
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> GameService: createGame(gameName, AuthData)
+GameService -> DataAccess: authenticateToken(AuthData)
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: {username, authToken} (not null)
+DataAccess -> AuthData: addUserName(username)
+DataAccess --> GameService: AuthData
+GameService -> GameService: createRandomGameID()\ngameID
+GameService -> DataAccess: createGame(gameName,\n gameID)
 DataAccess -> db: SELECT gameID from game
 db --> DataAccess: null
 DataAccess -> db: INSERT gameName, whiteUserName=null,\nblackUserName=null, gameID into game
@@ -101,15 +130,30 @@ end
 
 group #yellow Join Game #black
 Client -> Server: [PUT] /game\nauthToken\n{ClientColor, gameID}
+<<<<<<< HEAD
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> GameService: joinGame(AuthData, ClientColor, gameID)
+GameService -> GameService: if gameID != null\n&& \nAuthData.getAuthToken() \n!= null\ncontinue
+GameService -> DataAccess: authenticateToken(AuthData)
+=======
 Server -> GameService: joinGame(authToken, ClientColor, gameID)
 GameService -> DataAccess: joinGame(authToken,\n ClientColor, gameID)
 DataAccess -> gameData: if ClientColor == black\nGameData(gameID, whiteUserName,\n username, gameName)
 DataAccess -> gameData: if ClientColor == white\nGameData(gameID, username,\n blackUserName, gameName)
 gameData --> DataAccess: gameData
+>>>>>>> 119a3a832e4e0f10881fad911585003515a4067a
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: {username, authToken} (not null)
+DataAccess -> AuthData: addUserName(username)
+DataAccess --> GameService: AuthData
+GameService -> DataAccess: joinGame(ClientColor, gameID)
 DataAccess -> db: SELECT gameID from game
 db --> DataAccess: {gameID, whiteUserName, blackUserName, gameName, observers}
+DataAccess -> GameData: GameData(gameID, whiteUserName,\n blackUserName, gameName)
+GameData --> DataAccess: GameData
+DataAccess -> GameData: if ClientColor == white\n&& GameData.getWhitePlayer()!=\n (null or username)\n|| ClientColor == black\n&& GameData.getBlackPlayer()!=\n (null or username)\ncontinue
+DataAccess -> GameData: updateWhitePlayer(username) \n or updateBlackPlayer(username)
 DataAccess -> db: if ClientColor == white\nUPDATE game \nSET whiteUserName = username\nWHERE gameID = gameID
 DataAccess -> db: if ClientColor == black\nUPDATE game \nSET blackUserName = username\nWHERE gameID = gameID
 DataAccess -> Observers: if ClientColor is null\nObservers(observers)
@@ -140,19 +184,19 @@ Server -> User: User(username, password, email)
 User --> Server: User
 Server -> RegistrationService: register(User)
 RegistrationService -> RegistrationService: if \nUser.password != null\n|| User.username != null\ncontinue
-RegistrationService -> DataAccess: getUser(username)
+RegistrationService -> DataAccess: getUser(User)
 DataAccess -> db: SELECT username from user
 db --> DataAccess: {username, password, email}
 DataAccess -> User: User(username, password, email)
 User --> DataAccess: User
 DataAccess --> RegistrationService: User
 RegistrationService --> Server: null
-Server --> Client: [403] {"message": "Error: already taken"}
+Server --> Client: 403\n{"message": "Error: already taken"}
 end
 
 group #navy Registration Failure - Bad Request #white
-Client -> Server: [POST] /user\n{username/null, password/null, email}
-Server -> User: User(username/null, \n password/null, email)
+Client -> Server: [POST] /user\n{username=null, password=null, email}
+Server -> User: User(username=null, \n password=null, email)
 User --> Server: User
 Server -> RegistrationService: register(User)
 RegistrationService -> RegistrationService: if \nUser.password != null\n|| User.username != null\ncontinue
@@ -175,27 +219,40 @@ end
 
 group #green Logout Failure - Unauthorized #white
 Client -> Server: [DELETE] /session\nauthToken
-Server -> LogoutService: logout(authToken)
-LogoutService -> DataAccess: logout(authToken)
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> LogoutService: logout(AuthData)
+LogoutService -> DataAccess: authenticateToken(AuthData)
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: null
-DataAccess --> Server: throwException("Error: unauthorized")
+DataAccess --> LogoutService: null
+LogoutService --> Server: throwException("Error: unauthorized")
 Server --> Client: 401\n{"message:"Error: unauthorized"}
 end
 
 group #red List Games Failure - Unauthorized #white
 Client -> Server: [GET] /game\nauthToken
-Server-> GameService: getGames(authToken)
-GameService -> DataAccess: getGames(authToken)
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server-> GameService: getGames(AuthData)
+GameService -> DataAccess: authenticateToken(AuthData)
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: null
-DataAccess --> Server: throwException("Error: unauthorized")
+DataAccess --> GameService: null
+GameService --> Server: throwException("Error: unauthorized")
 Server --> Client: 401\n{"message:"Error: unauthorized"}
 end
 
 group #purple Create Game Failure - Bad Request #white
 Client -> Server: [POST] /game\nauthToken\n{gameName=null}
-Server -> GameService: createGame(gameName=null, authToken)
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> GameService: createGame(gameName=null, AuthData)
+GameService -> DataAccess: authenticateToken(AuthData)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: {username, authToken} (not null)
+DataAccess -> AuthData: addUserName(username)
+DataAccess --> GameService: AuthData
 GameService -> GameService: if \ngameName != null\ncontinue
 GameService --> Server: throwException("Error: bad request")
 Server --> Client: 400\n{"message":"Error: bad request"}
@@ -203,11 +260,59 @@ end
 
 group #purple Create Game Failure - Unauthorized #white
 Client -> Server: [POST] /game\nauthToken\n{gameName}
-Server -> GameService: createGame(gameName, authToken)
-GameService -> GameService: createRandomGameID()\ngameID
-GameService -> DataAccess: createGame(gameName,\n gameID,\n authToken)
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> GameService: createGame(gameName, AuthData)
+GameService -> DataAccess: authenticateToken(AuthData)
 DataAccess -> db: SELECT authToken from auth
 db --> DataAccess: null
-DataAccess --> Server: throwException("Error: not authorized")
+DataAccess --> GameService: null
+GameService --> Server: throwException("Error: not authorized")
 Server --> Client: 401\n{"message":"Error: not authorized"}
+end
+
+group #yellow Join Game Failure - Bad Request #black
+Client -> Server: [PUT] /game\nauthToken\n{ClientColor, gameID}
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> GameService: joinGame(AuthData (authToken is , ClientColor, gameID=null)
+GameService -> GameService: if gameID != null\n&& authToken != null\ncontinue
+GameService --> Server: throwException("Error: bad request")
+Server --> Client: 400\n{"message":"Error: bad request"}
+end
+
+group #yellow Join Game Failure - Unauthorized #black
+Client -> Server: [PUT] /game\nauthToken\n{ClientColor, gameID}
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> GameService: joinGame(AuthData, ClientColor, gameID)
+GameService -> GameService: if gameID != null\n&& authToken != null\ncontinue
+GameService -> DataAccess: authenticateToken(AuthData)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: null
+DataAccess --> GameService: null
+GameService --> Server: throwException("Error: not authorized")
+Server --> Client: 401\n{"message":"Error: not authorized"}
+end
+
+group #yellow Join Game Failure - Already Taken#black
+Client -> Server: [PUT] /game\nauthToken\n{ClientColor, gameID}
+Server -> AuthData: AuthData(null, authToken)
+AuthData --> Server: AuthData
+Server -> GameService: joinGame(AuthData, ClientColor, gameID)
+GameService -> GameService: if gameID != null\n&& \nAuthData.getAuthToken() \n!= null\ncontinue
+GameService -> DataAccess: authenticateToken(AuthData)
+DataAccess -> db: SELECT authToken from auth
+db --> DataAccess: {username, authToken} (not null)
+DataAccess -> AuthData: addUserName(username)
+DataAccess --> GameService: AuthData
+GameService -> DataAccess: joinGame(ClientColor, gameID)
+DataAccess -> db: SELECT gameID from game
+db --> DataAccess: {gameID, whiteUserName, blackUserName, gameName, observers}
+DataAccess -> GameData: GameData(gameID, whiteUserName,\n blackUserName, gameName)
+GameData --> DataAccess: GameData
+DataAccess -> GameData: if ClientColor == white\n&& GameData.getWhitePlayer()!=\n (null or username)\n|| ClientColor == black\n&& GameData.getBlackPlayer()!=\n (null or username)\ncontinue
+GameData --> DataAccess: previous check returns false
+DataAccess --> Server: throwException("Error: already taken")
+Server --> Client: 403\n{"message": "Error: already taken"}
 end

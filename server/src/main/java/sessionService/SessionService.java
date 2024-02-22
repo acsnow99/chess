@@ -17,7 +17,7 @@ public class SessionService {
         } else if (user.password() == null) {
             throw new MissingDataException("Error: Missing password");
         }
-        if (!dataAccess.authorizeUser(user)) {
+        if (!dataAccess.userIsAuthorized(user)) {
             return null;
         }
         return dataAccess.loginUser(user);

@@ -3,6 +3,7 @@ package server;
 import com.google.gson.Gson;
 import dataAccess.DataAccessException;
 import otherExceptions.MissingDataException;
+import otherExceptions.UnauthorizedException;
 import registrationService.RegistrationService;
 import sessionService.SessionService;
 import spark.*;
@@ -54,11 +55,16 @@ public class Server {
         try {
             var authData = this.sessionService.loginUser(user);
             return new Gson().toJson(authData);
-        } catch (Exception exception) {
+        } catch (UnauthorizedException exception) {
+            response.status(401);
+            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+        } catch (MissingDataException exception) {
             response.status(500);
-            response.body(exception.getMessage());
+            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+        } catch (DataAccessException exception) {
+            response.status(500);
+            return "{ \"message\": \"" + exception.getMessage() + "\" }";
         }
-        return null;
     }
 
     public void stop() {

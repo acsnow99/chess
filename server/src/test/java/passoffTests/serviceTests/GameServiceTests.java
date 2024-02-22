@@ -51,7 +51,7 @@ public class GameServiceTests {
     }
 
     @Test
-    @DisplayName("Unauthorized request")
+    @DisplayName("Unauthorized gameData request")
     public void unauthorizedGameDataRequest() {
         try {
             AuthData authData = sessionService.loginUser(regularUser);

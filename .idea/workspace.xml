@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/db/games.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/gameService/GameService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase2-Sequence.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Phase2-Sequence.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/auth.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/gameData/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/gameData/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/user.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/sessionService/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/sessionService/SessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +47,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "JUnit.GameServiceTests.getGameData.executor": "Run",
+    "JUnit.GameServiceTests.unauthorizedGameDataRequest.executor": "Run",
     "JUnit.RegistrationServiceTests.clearDatabase.executor": "Run",
     "JUnit.RegistrationServiceTests.registerRegularUser.executor": "Run",
     "JUnit.RegistrationServiceTests.registerSameNameTwice.executor": "Run",
@@ -61,7 +59,9 @@
     "JUnit.SessionServiceTests.loginSimple.executor": "Debug",
     "JUnit.SessionServiceTests.logoutSimple.executor": "Debug",
     "JUnit.SessionServiceTests.logoutWithoutUsers.executor": "Run",
+    "JUnit.StandardAPITests.loginInvalidUser.executor": "Run",
     "JUnit.StandardAPITests.staticFiles.executor": "Debug",
+    "JUnit.StandardAPITests.successLogin.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -80,7 +80,7 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameServiceTests.unauthorizedGameDataRequest">
+  <component name="RunManager" selected="JUnit.StandardAPITests.loginInvalidUser">
     <configuration name="GameServiceTests.getGameData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -129,33 +129,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SessionServiceTests.logoutSimple" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests.loginInvalidUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
-      <option name="METHOD_NAME" value="logoutSimple" />
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="METHOD_NAME" value="loginInvalidUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SessionServiceTests.logoutWithoutUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests.successLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
-      <option name="METHOD_NAME" value="logoutWithoutUsers" />
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="METHOD_NAME" value="successLogin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -164,17 +164,17 @@
     <list>
       <item itemvalue="JUnit.GameServiceTests.getGameData" />
       <item itemvalue="JUnit.GameServiceTests.unauthorizedGameDataRequest" />
+      <item itemvalue="JUnit.StandardAPITests.loginInvalidUser" />
+      <item itemvalue="JUnit.StandardAPITests.successLogin" />
       <item itemvalue="JUnit.SessionServiceTests.loginAgain" />
-      <item itemvalue="JUnit.SessionServiceTests.logoutSimple" />
-      <item itemvalue="JUnit.SessionServiceTests.logoutWithoutUsers" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StandardAPITests.loginInvalidUser" />
+        <item itemvalue="JUnit.StandardAPITests.successLogin" />
         <item itemvalue="JUnit.GameServiceTests.unauthorizedGameDataRequest" />
         <item itemvalue="JUnit.GameServiceTests.getGameData" />
         <item itemvalue="JUnit.SessionServiceTests.loginAgain" />
-        <item itemvalue="JUnit.SessionServiceTests.logoutWithoutUsers" />
-        <item itemvalue="JUnit.SessionServiceTests.logoutSimple" />
       </list>
     </recent_temporary>
   </component>

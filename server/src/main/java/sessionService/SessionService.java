@@ -11,14 +11,14 @@ public class SessionService {
 
     private DataAccess dataAccess = new DataAccess();
 
-    public AuthData loginUser(User user) throws DataAccessException, MissingDataException {
+    public AuthData loginUser(User user) throws DataAccessException, MissingDataException, UnauthorizedException {
         if (user.username() == null) {
             throw new MissingDataException("Error: Missing username");
         } else if (user.password() == null) {
             throw new MissingDataException("Error: Missing password");
         }
         if (!dataAccess.userIsAuthorized(user)) {
-            return null;
+            throw new UnauthorizedException("Error: Unauthorized");
         }
         return dataAccess.loginUser(user);
     }

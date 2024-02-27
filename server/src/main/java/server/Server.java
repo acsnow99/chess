@@ -1,5 +1,6 @@
 package server;
 
+import exceptions.NotFoundException;
 import model.AuthData;
 import com.google.gson.Gson;
 import dataAccess.DataAccess;
@@ -51,6 +52,10 @@ public class Server {
             return "";
         } catch (UnauthorizedException exception) {
             response.status(401);
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
+        } catch (NotFoundException exception) {
+            response.status(400);
             var exceptionResponse = new ExceptionResponse(exception.getMessage());
             return new Gson().toJson(exceptionResponse);
         } catch (DataAccessException exception) {

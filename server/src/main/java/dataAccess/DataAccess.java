@@ -1,5 +1,6 @@
 package dataAccess;
 
+import exceptions.NotFoundException;
 import model.AuthData;
 import generators.AuthTokenGenerator;
 import com.google.gson.stream.JsonReader;
@@ -155,7 +156,7 @@ public class DataAccess {
         writeToLocalDBFile(gamesDBFileName, new Gson().toJson(gameData));
     }
 
-    public void joinGame(AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException {
+    public void joinGame(AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException, NotFoundException {
         var gamesDB = getGames();
         var foundGame = false;
         for (var game : gamesDB) {
@@ -182,7 +183,7 @@ public class DataAccess {
             }
         }
         if (!foundGame) {
-            throw new DataAccessException("Error: Could not find game");
+            throw new NotFoundException("Error: Could not find game");
         }
     }
 

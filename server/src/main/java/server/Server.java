@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import dataAccess.DataAccess;
 import exceptions.DataAccessException;
 import responses.CreateGameResponse;
+import responses.ExceptionResponse;
 import responses.GetGamesResponse;
 import services.GameService;
 import exceptions.MissingDataException;
@@ -50,10 +51,12 @@ public class Server {
             return "";
         } catch (UnauthorizedException exception) {
             response.status(401);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         } catch (DataAccessException exception) {
             response.status(500);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         }
     }
 
@@ -68,13 +71,16 @@ public class Server {
             return new Gson().toJson(responseObj);
         } catch (MissingDataException exception) {
             response.status(400);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         } catch (UnauthorizedException exception) {
             response.status(401);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         } catch (DataAccessException exception) {
             response.status(500);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         }
     }
 
@@ -85,14 +91,15 @@ public class Server {
             var gamesData = this.gameService.getGames(dataAccess, authData);
             var responseObj = new GetGamesResponse(gamesData);
             response.status(200);
-            var responseJson = new Gson().toJson(responseObj);
-            return responseJson;
+            return new Gson().toJson(responseObj);
         } catch (UnauthorizedException exception) {
             response.status(401);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         } catch (DataAccessException exception) {
             response.status(500);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         }
     }
 
@@ -100,26 +107,34 @@ public class Server {
         try {
             this.registrationService.clearDatabase(dataAccess);
             response.status(200);
+            return "";
         } catch (DataAccessException exception) {
             response.status(500);
-            response.body(exception.getMessage());
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         }
-        return new Gson().toJson(response.body());
     }
 
     private Object registerUser(Request request, Response response) {
         var user = new Gson().fromJson(request.body(), User.class);
         try {
             AuthData authData = this.registrationService.registerUser(dataAccess, user);
+            if (authData == null) {
+                throw new UnauthorizedException("Error: already taken");
+            }
             return new Gson().toJson(authData);
         } catch (DataAccessException exception) {
             response.status(500);
-            response.body(exception.getMessage());
-            return response;
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         } catch (MissingDataException exception) {
             response.status(400);
-            response.body(exception.getMessage());
-            return response;
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
+        } catch (UnauthorizedException exception) {
+            response.status(403);
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         }
     }
 
@@ -130,10 +145,12 @@ public class Server {
             return new Gson().toJson(authData);
         } catch (UnauthorizedException exception) {
             response.status(401);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         } catch (MissingDataException | DataAccessException exception) {
             response.status(500);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         }
     }
 
@@ -146,10 +163,12 @@ public class Server {
             return "";
         } catch (UnauthorizedException exception) {
             response.status(401);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         } catch (DataAccessException exception) {
             response.status(500);
-            return "{ \"message\": \"" + exception.getMessage() + "\" }";
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
         }
     }
 

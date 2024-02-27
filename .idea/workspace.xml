@@ -5,31 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/generators/GameIDGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/requests/CreateGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/requests/JoinGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/responses/CreateGameResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/responses/GetGamesResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/services/GameService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/services/RegistrationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/responses/ExceptionResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/auth.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/db/games.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/games.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/authData/AuthData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/model/AuthData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/authTokenGenerator/AuthTokenGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/generators/AuthTokenGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/exceptions/DataAccessException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/gameData/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/model/GameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/gameService/GameService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/otherExceptions/MissingDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/exceptions/MissingDataException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/otherExceptions/UnauthorizedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/exceptions/UnauthorizedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/registrationService/RegistrationService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/sessionService/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/services/SessionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/RegistrationServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/SessionServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/SessionServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,10 +72,19 @@
     "JUnit.SessionServiceTests.logoutWithoutUsers.executor": "Run",
     "JUnit.SessionServiceTests.noEmailLogin.executor": "Run",
     "JUnit.SessionServiceTests.unauthorizedLogin.executor": "Run",
+    "JUnit.StandardAPITests.badAuthCreate.executor": "Run",
+    "JUnit.StandardAPITests.badAuthWatch.executor": "Run",
+    "JUnit.StandardAPITests.failLogout.executor": "Run",
+    "JUnit.StandardAPITests.failRegister.executor": "Run",
+    "JUnit.StandardAPITests.goodCreate.executor": "Run",
+    "JUnit.StandardAPITests.goodWatch.executor": "Run",
     "JUnit.StandardAPITests.loginInvalidUser.executor": "Run",
     "JUnit.StandardAPITests.loginWrongPassword.executor": "Run",
+    "JUnit.StandardAPITests.registerTwice.executor": "Run",
     "JUnit.StandardAPITests.staticFiles.executor": "Debug",
     "JUnit.StandardAPITests.successLogin.executor": "Run",
+    "JUnit.StandardAPITests.successLogout.executor": "Run",
+    "JUnit.StandardAPITests.successRegister.executor": "Run",
     "JUnit.StandardAPITests.uniqueAuthorizationTokens.executor": "Debug",
     "JUnit.serviceTests in server.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -116,40 +105,8 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StandardAPITests.registerTwice">
-    <configuration name="GameServiceTests.joinGameSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.GameServiceTests" />
-      <option name="METHOD_NAME" value="joinGameSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameServiceTests.missingDataCreateGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.GameServiceTests" />
-      <option name="METHOD_NAME" value="missingDataCreateGame" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StandardAPITests.registerTwice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.StandardAPITests.badGameIDWatch">
+    <configuration name="StandardAPITests.badAuthCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -159,13 +116,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="registerTwice" />
+      <option name="METHOD_NAME" value="badAuthCreate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.successRegister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests.badAuthWatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -175,13 +132,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="successRegister" />
+      <option name="METHOD_NAME" value="badAuthWatch" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.uniqueAuthorizationTokens" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests.badGameIDWatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -191,26 +148,58 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="uniqueAuthorizationTokens" />
+      <option name="METHOD_NAME" value="badGameIDWatch" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests.goodCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="METHOD_NAME" value="goodCreate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StandardAPITests.goodWatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
+      <option name="METHOD_NAME" value="goodWatch" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.GameServiceTests.joinGameSuccess" />
-      <item itemvalue="JUnit.StandardAPITests.registerTwice" />
-      <item itemvalue="JUnit.StandardAPITests.successRegister" />
-      <item itemvalue="JUnit.GameServiceTests.missingDataCreateGame" />
-      <item itemvalue="JUnit.StandardAPITests.uniqueAuthorizationTokens" />
+      <item itemvalue="JUnit.StandardAPITests.badAuthCreate" />
+      <item itemvalue="JUnit.StandardAPITests.badAuthWatch" />
+      <item itemvalue="JUnit.StandardAPITests.badGameIDWatch" />
+      <item itemvalue="JUnit.StandardAPITests.goodCreate" />
+      <item itemvalue="JUnit.StandardAPITests.goodWatch" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StandardAPITests.registerTwice" />
-        <item itemvalue="JUnit.StandardAPITests.successRegister" />
-        <item itemvalue="JUnit.StandardAPITests.uniqueAuthorizationTokens" />
-        <item itemvalue="JUnit.GameServiceTests.joinGameSuccess" />
-        <item itemvalue="JUnit.GameServiceTests.missingDataCreateGame" />
+        <item itemvalue="JUnit.StandardAPITests.badGameIDWatch" />
+        <item itemvalue="JUnit.StandardAPITests.badAuthWatch" />
+        <item itemvalue="JUnit.StandardAPITests.goodWatch" />
+        <item itemvalue="JUnit.StandardAPITests.badAuthCreate" />
+        <item itemvalue="JUnit.StandardAPITests.goodCreate" />
       </list>
     </recent_temporary>
   </component>
@@ -252,16 +241,6 @@
           <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java</url>
           <line>158</line>
           <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/server/Server.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/server/Server.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

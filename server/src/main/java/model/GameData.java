@@ -1,8 +1,10 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-public record GameData(long gameID, String whiteUsername, String blackUsername, String gameName) {
+public record GameData(long gameID, String whiteUsername, String blackUsername, String gameName,
+                       ArrayList<String> watchers) {
 
     @Override
     public boolean equals(Object o) {

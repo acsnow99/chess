@@ -1,5 +1,6 @@
 package dataAccess;
 
+import exceptions.AlreadyTakenException;
 import exceptions.NotFoundException;
 import model.AuthData;
 import generators.AuthTokenGenerator;
@@ -151,12 +152,12 @@ public class DataAccess {
 
     public void createGame(String gameName, long gameID) throws DataAccessException {
         var gameData = gamesReadJsonFromLocalDBFile(gamesDBFileName);
-        var newGame = new GameData(gameID, null, null, gameName);
+        var newGame = new GameData(gameID, null, null, gameName, new ArrayList<String>());
         gameData.add(newGame);
         writeToLocalDBFile(gamesDBFileName, new Gson().toJson(gameData));
     }
 
-    public void joinGame(AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException, NotFoundException {
+    public void joinGame(AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException, NotFoundException, AlreadyTakenException {
         var gamesDB = getGames();
         var foundGame = false;
         for (var game : gamesDB) {
@@ -165,16 +166,18 @@ public class DataAccess {
                 GameData newGame;
                 if (Objects.equals(joinGameRequest.playerColor(), "WHITE")) {
                     if (game.whiteUsername() != null && !Objects.equals(game.whiteUsername(), authData.username())) {
-                        throw new DataAccessException("Error: Already taken");
+                        throw new AlreadyTakenException("Error: Already taken");
                     }
-                    newGame = new GameData(joinGameRequest.gameID(), authData.username(), game.blackUsername(), game.gameName());
+                    newGame = new GameData(joinGameRequest.gameID(), authData.username(), game.blackUsername(), game.gameName(), game.watchers());
                 } else if (Objects.equals(joinGameRequest.playerColor(), "BLACK")) {
                     if (game.blackUsername() != null && !Objects.equals(game.blackUsername(), authData.username())) {
-                        throw new DataAccessException("Error: Already taken");
+                        throw new AlreadyTakenException("Error: Already taken");
                     }
-                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), authData.username(), game.gameName());
+                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), authData.username(), game.gameName(), game.watchers());
                 } else {
-                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), game.blackUsername(), game.gameName());
+                    var newWatchers = game.watchers();
+                    newWatchers.add(authData.username());
+                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), game.blackUsername(), game.gameName(), newWatchers);
                 }
                 gamesDB.remove(game);
                 gamesDB.add(newGame);

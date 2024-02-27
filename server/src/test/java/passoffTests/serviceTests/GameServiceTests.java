@@ -1,6 +1,6 @@
 package passoffTests.serviceTests;
 
-import exceptions.MissingDataException;
+import exceptions.*;
 import model.AuthData;
 import dataAccess.DataAccess;
 import model.GameData;
@@ -8,8 +8,6 @@ import services.GameService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import exceptions.DataAccessException;
-import exceptions.UnauthorizedException;
 import services.RegistrationService;
 import requests.CreateGameRequest;
 import requests.JoinGameRequest;
@@ -42,7 +40,7 @@ public class GameServiceTests {
     @DisplayName("Default game data returns correctly")
     public void getGameData() {
         ArrayList<GameData> result = null;
-        var game = new GameData(12345, "Al", "Darin", "The Game");
+        var game = new GameData(12345, "Al", "Darin", "The Game", new ArrayList<>());
         var expected = new ArrayList<GameData>();
         try {
             AuthData authData = sessionService.loginUser(dataAccess, regularUser);
@@ -128,7 +126,7 @@ public class GameServiceTests {
             var gameName = "New Game";
             AuthData authData = sessionService.loginUser(dataAccess, regularUser);
             var gameID = gameService.createGame(dataAccess, new CreateGameRequest(gameName), authData);
-            gameService.joinGame(dataAccess, authData, new JoinGameRequest("white", gameID));
+            gameService.joinGame(dataAccess, authData, new JoinGameRequest("WHITE", gameID));
             var games = gameService.getGames(dataAccess, authData);
             var gameFirst = games.getFirst();
             assertEquals(authData.username(), gameFirst.whiteUsername());
@@ -145,7 +143,7 @@ public class GameServiceTests {
             AuthData authData = sessionService.loginUser(dataAccess, regularUser);
             var gameID = gameService.createGame(dataAccess, new CreateGameRequest(gameName), authData);
             var fakeAuth = new AuthData("fakeuser", "notatoken");
-            assertThrows(UnauthorizedException.class, () -> gameService.joinGame(dataAccess, fakeAuth, new JoinGameRequest("white", gameID)));
+            assertThrows(UnauthorizedException.class, () -> gameService.joinGame(dataAccess, fakeAuth, new JoinGameRequest("WHITE", gameID)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -161,7 +159,7 @@ public class GameServiceTests {
             var gameID = gameService.createGame(dataAccess, new CreateGameRequest(gameName), authData);
             long fakeGameID = 1234123412;
 
-            assertThrows(DataAccessException.class, () -> gameService.joinGame(dataAccess, authData, new JoinGameRequest("white", fakeGameID)));
+            assertThrows(NotFoundException.class, () -> gameService.joinGame(dataAccess, authData, new JoinGameRequest("WHITE", fakeGameID)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -179,8 +177,8 @@ public class GameServiceTests {
 
             var gameID = gameService.createGame(dataAccess, new CreateGameRequest(gameName), authData);
 
-            gameService.joinGame(dataAccess, authData1, new JoinGameRequest("white", gameID));
-            assertThrows(DataAccessException.class, () -> gameService.joinGame(dataAccess, authData, new JoinGameRequest("white", gameID)));
+            gameService.joinGame(dataAccess, authData1, new JoinGameRequest("WHITE", gameID));
+            assertThrows(AlreadyTakenException.class, () -> gameService.joinGame(dataAccess, authData, new JoinGameRequest("WHITE", gameID)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

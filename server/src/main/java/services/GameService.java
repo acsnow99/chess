@@ -1,13 +1,10 @@
 package services;
 
-import exceptions.MissingDataException;
-import exceptions.NotFoundException;
+import exceptions.*;
 import model.AuthData;
 import dataAccess.DataAccess;
-import exceptions.DataAccessException;
 import model.GameData;
 import generators.GameIDGenerator;
-import exceptions.UnauthorizedException;
 import requests.CreateGameRequest;
 import requests.JoinGameRequest;
 
@@ -36,7 +33,7 @@ public class GameService {
         }
     }
 
-    public void joinGame(DataAccess dataAccess, AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException, UnauthorizedException, NotFoundException {
+    public void joinGame(DataAccess dataAccess, AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException, UnauthorizedException, NotFoundException, AlreadyTakenException {
         if (dataAccess.authDataIsAuthorized(authData)) {
             var authDataComplete = dataAccess.getAuthDataFromToken(authData);
             dataAccess.joinGame(authDataComplete, joinGameRequest);

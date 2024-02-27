@@ -1,16 +1,13 @@
 package server;
 
-import exceptions.NotFoundException;
+import exceptions.*;
 import model.AuthData;
 import com.google.gson.Gson;
 import dataAccess.DataAccess;
-import exceptions.DataAccessException;
 import responses.CreateGameResponse;
 import responses.ExceptionResponse;
 import responses.GetGamesResponse;
 import services.GameService;
-import exceptions.MissingDataException;
-import exceptions.UnauthorizedException;
 import services.RegistrationService;
 import requests.CreateGameRequest;
 import requests.JoinGameRequest;
@@ -56,6 +53,10 @@ public class Server {
             return new Gson().toJson(exceptionResponse);
         } catch (NotFoundException exception) {
             response.status(400);
+            var exceptionResponse = new ExceptionResponse(exception.getMessage());
+            return new Gson().toJson(exceptionResponse);
+        } catch (AlreadyTakenException exception) {
+            response.status(403);
             var exceptionResponse = new ExceptionResponse(exception.getMessage());
             return new Gson().toJson(exceptionResponse);
         } catch (DataAccessException exception) {

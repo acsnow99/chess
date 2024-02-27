@@ -9,32 +9,13 @@ import java.util.Objects;
  * signature of the existing methods.
  */
 public class ChessPosition {
-    /**
-     * Position 0,0 is outside the game board. Used indices go from 1-8
-     */
-    private int row = 0;
-    private int column = 0;
+
+    private int row;
+    private int col;
+
     public ChessPosition(int row, int col) {
-
         this.row = row;
-        this.column = col;
-
-    }
-
-    /**
-     * Generated via wizard
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ChessPosition that = (ChessPosition) o;
-        return row == that.row && column == that.column;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(row, column);
+        this.col = col;
     }
 
     /**
@@ -42,9 +23,7 @@ public class ChessPosition {
      * 1 codes for the bottom row
      */
     public int getRow() {
-
         return this.row;
-
     }
 
     /**
@@ -52,41 +31,38 @@ public class ChessPosition {
      * 1 codes for the left row
      */
     public int getColumn() {
-
-        return this.column;
-
+        return this.col;
     }
 
-    public void setRow(int row) {
-
-        this.row = row;
-
+    public boolean isInBounds() {
+        return this.row < 9 && this.row > 0 && this.col < 9 && this.col > 0;
     }
 
-    public void setColumn(int column) {
-
-        this.column = column;
-
+    public boolean isInitialPawnMove(ChessGame.TeamColor color) {
+        return (this.row == 2 && color == ChessGame.TeamColor.WHITE) || (this.row == 7 && color == ChessGame.TeamColor.BLACK);
     }
 
-    public void setPosition(int row, int column) {
-
-        this.setRow(row);
-        this.setColumn(column);
-
+    public boolean canPromotePawn(ChessGame.TeamColor color) {
+        return (this.row == 2 && color == ChessGame.TeamColor.BLACK) || (this.row == 7 && color == ChessGame.TeamColor.WHITE);
     }
 
-    public boolean outOfBounds() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessPosition that = (ChessPosition) o;
+        return row == that.row && col == that.col;
+    }
 
-        return (this.getRow() < 1 || this.getColumn() < 1 || this.getRow() > 8 || this.getColumn() > 8);
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, col);
     }
 
     @Override
     public String toString() {
-        return "Position[" +
-                "row=" + row +
-                ", column=" + column +
+        return "position[" + row +
+                "][" + col +
                 ']';
     }
 }

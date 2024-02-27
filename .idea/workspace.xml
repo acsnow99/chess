@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
-    </list>
+    <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +59,7 @@
     &quot;JUnit.RegistrationServiceTests.registerTwoUsers.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.RegistrationServiceTests.registerUserReturnsName.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SessionServiceTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SessionServiceTests.loginAgain.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.SessionServiceTests.loginAgain.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SessionServiceTests.loginSimple.executor&quot;: &quot;Debug&quot;,
     &quot;JUnit.SessionServiceTests.loginTwiceInARow.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SessionServiceTests.logoutSimple.executor&quot;: &quot;Debug&quot;,
@@ -107,38 +104,7 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoffTests in server">
-    <configuration name="GameServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.GameServiceTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameServiceTests.joinFilledSpot" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.GameServiceTests" />
-      <option name="METHOD_NAME" value="joinFilledSpot" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.test in server">
     <configuration name="SessionServiceTests.loginAgain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -151,6 +117,14 @@
       <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
       <option name="METHOD_NAME" value="loginAgain" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in shared" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shared" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/shared/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -171,20 +145,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/server/src/test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="JUnit.java in shared" />
+      <item itemvalue="JUnit.test in server" />
       <item itemvalue="JUnit.SessionServiceTests.loginAgain" />
-      <item itemvalue="JUnit.GameServiceTests" />
-      <item itemvalue="JUnit.GameServiceTests.joinFilledSpot" />
       <item itemvalue="JUnit.passoffTests in server" />
       <item itemvalue="JUnit.serviceTests in server" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.test in server" />
+        <item itemvalue="JUnit.java in shared" />
         <item itemvalue="JUnit.passoffTests in server" />
         <item itemvalue="JUnit.SessionServiceTests.loginAgain" />
         <item itemvalue="JUnit.serviceTests in server" />
-        <item itemvalue="JUnit.GameServiceTests.joinFilledSpot" />
-        <item itemvalue="JUnit.GameServiceTests" />
       </list>
     </recent_temporary>
   </component>
@@ -213,5 +195,16 @@
     <option featureType="dependencySupport" implementationName="executable:docker" />
     <option featureType="dependencySupport" implementationName="java:com.google.protobuf:protobuf-java" />
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/services/SessionService.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

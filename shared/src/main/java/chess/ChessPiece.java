@@ -104,8 +104,7 @@ public class ChessPiece {
                 var vertDir = 0;
                 if (this.getTeamColor() == ChessGame.TeamColor.WHITE) {
                     vertDir = 1;
-                }
-                else {
+                } else {
                     vertDir = -1;
                 }
 
@@ -138,41 +137,29 @@ public class ChessPiece {
                         allMoves.add(new ChessMove(myPosition, newPosition, null));
                     }
                     break;
-                }
-                else {
+                } else {
                     allMoves.add(new ChessMove(myPosition, newPosition, null));
                 }
                 row += vertDir;
                 col += horizDir;
                 newPosition = new ChessPosition(row, col);
             }
-        }
-        else {
+        } else {
             if (newPosition.isInBounds()) {
                 pieceAtPosition = board.getPiece(newPosition);
                 if (pieceAtPosition != null) {
                     if (canCapture && pieceAtPosition.getTeamColor() != this.getTeamColor()) {
-                        if (isPawn && myPosition.canPromotePawn(this.getTeamColor())){
-                            for (PieceType type : PieceType.values()) {
-                                if (type != PieceType.KING && type != PieceType.PAWN) {
-                                    allMoves.add(new ChessMove(myPosition, newPosition, type));
-                                }
-                            }
-                        }
-                        else {
+                        if (isPawn && myPosition.canPromotePawn(this.getTeamColor())) {
+                            allMoves = addMoveWithEachType(allMoves, myPosition, newPosition);
+                        } else {
                             allMoves.add(new ChessMove(myPosition, newPosition, null));
                         }
                     }
                 } else if (!(isPawn && canCapture)) {
                     // ^^ pawns can't move into an empty space if they are moving diagonally - they must capture
-                    if (isPawn && myPosition.canPromotePawn(this.getTeamColor())){
-                        for (PieceType type : PieceType.values()) {
-                            if (type != PieceType.KING && type != PieceType.PAWN) {
-                                allMoves.add(new ChessMove(myPosition, newPosition, type));
-                            }
-                        }
-                    }
-                    else {
+                    if (isPawn && myPosition.canPromotePawn(this.getTeamColor())) {
+                        allMoves = addMoveWithEachType(allMoves, myPosition, newPosition);
+                    } else {
                         allMoves.add(new ChessMove(myPosition, newPosition, null));
                         // pawns can move an extra space on their first move
                         if (isPawn && myPosition.isInitialPawnMove(this.getTeamColor())) {
@@ -187,6 +174,15 @@ public class ChessPiece {
                 }
             }
         }
+    }
+
+    private Collection<ChessMove> addMoveWithEachType(Collection<ChessMove> allMoves, ChessPosition startPos, ChessPosition endPos) {
+        for (PieceType type : PieceType.values()) {
+            if (type != PieceType.KING && type != PieceType.PAWN) {
+                allMoves.add(new ChessMove(startPos, endPos, type));
+            }
+        }
+        return allMoves;
     }
 
     @Override

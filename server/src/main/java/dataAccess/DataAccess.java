@@ -75,7 +75,6 @@ public class DataAccess {
     }
 
     private boolean userDBContainsUsername(String username) {
-        // TO-DO: Make function throw exception
         try {
             var userDB = userReadJsonFromLocalDBFile(userDBFileName);
             for (var user : userDB) {

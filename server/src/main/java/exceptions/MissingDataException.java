@@ -1,4 +1,4 @@
-package otherExceptions;
+package exceptions;
 
 public class MissingDataException extends Exception {
     public MissingDataException(String message) {

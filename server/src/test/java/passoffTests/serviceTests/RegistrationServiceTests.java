@@ -1,22 +1,25 @@
 package passoffTests.serviceTests;
 
-import authData.AuthData;
-import dataAccess.DataAccessException;
+import model.AuthData;
+import dataAccess.DataAccess;
+import exceptions.DataAccessException;
 import org.junit.jupiter.api.*;
-import registrationService.RegistrationService;
-import user.User;
+import exceptions.MissingDataException;
+import services.RegistrationService;
+import model.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RegistrationServiceTests {
 
+    private DataAccess dataAccess = new DataAccess();
     private RegistrationService registrationService = new RegistrationService();
     private User regularUser = new User("kevin23", "okokokok99", "okay@gmail.com");
 
     @BeforeEach
     public void init() {
         try {
-            registrationService.clearDatabase();
+            registrationService.clearDatabase(dataAccess);
         } catch (DataAccessException e) {
             System.out.println(e);
         }
@@ -27,8 +30,8 @@ public class RegistrationServiceTests {
     public void registerUserReturnsName() {
         AuthData result = null;
         try {
-            result = registrationService.registerUser(regularUser);
-        } catch (DataAccessException e) {
+            result = registrationService.registerUser(dataAccess, regularUser);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         assertNotNull(result);
@@ -36,12 +39,34 @@ public class RegistrationServiceTests {
     }
 
     @Test
+    @DisplayName("Request missing username, email, or password")
+    public void missingDataRegister() {
+        AuthData result = null;
+        try {
+            var missingPassUser = new User("aka", "", "email");
+            assertThrows(MissingDataException.class, () -> registrationService.registerUser(dataAccess, missingPassUser));
+            var missingPassUser1 = new User("aka", null, "email");
+            assertThrows(MissingDataException.class, () -> registrationService.registerUser(dataAccess, missingPassUser1));
+            var missingNameUser = new User("", "what", "email");
+            assertThrows(MissingDataException.class, () -> registrationService.registerUser(dataAccess, missingNameUser));
+            var missingNameUser1 = new User(null, "what", "email");
+            assertThrows(MissingDataException.class, () -> registrationService.registerUser(dataAccess, missingNameUser1));
+            var missingEmailUser = new User("okay", "what", "");
+            assertThrows(MissingDataException.class, () -> registrationService.registerUser(dataAccess, missingEmailUser));
+            var missingEmailUser1 = new User("okay", "what", null);
+            assertThrows(MissingDataException.class, () -> registrationService.registerUser(dataAccess, missingEmailUser1));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
     @DisplayName("Same user can't be registered twice")
     public void registerSameUserTwice() {
         try {
-            AuthData result = registrationService.registerUser(regularUser);
-            assertNull(registrationService.registerUser(regularUser));
-        } catch (DataAccessException e) {
+            AuthData result = registrationService.registerUser(dataAccess, regularUser);
+            assertNull(registrationService.registerUser(dataAccess, regularUser));
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -50,10 +75,10 @@ public class RegistrationServiceTests {
     @DisplayName("Same username can't be registered twice")
     public void registerSameNameTwice() {
         try {
-            AuthData result = registrationService.registerUser(regularUser);
+            AuthData result = registrationService.registerUser(dataAccess, regularUser);
             var otherUser = new User(regularUser.username(), "otherpass", "email@email.com");
-            assertNull(registrationService.registerUser(otherUser));
-        } catch (DataAccessException e) {
+            assertNull(registrationService.registerUser(dataAccess, otherUser));
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -62,10 +87,10 @@ public class RegistrationServiceTests {
     @DisplayName("Register two unique users")
     public void registerTwoUsers() {
         try {
-            AuthData result = registrationService.registerUser(regularUser);
+            AuthData result = registrationService.registerUser(dataAccess, regularUser);
             var otherUser = new User("otherguy", "otherpass", "email@email.com");
-            registrationService.registerUser(otherUser);
-        } catch (DataAccessException e) {
+            registrationService.registerUser(dataAccess, otherUser);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -74,12 +99,12 @@ public class RegistrationServiceTests {
     @DisplayName("Clearing Database removes all user entries")
     public void clearDatabase() {
         try {
-            registrationService.registerUser(regularUser);
-            registrationService.clearDatabase();
-            AuthData result = registrationService.registerUser(regularUser);
+            registrationService.registerUser(dataAccess, regularUser);
+            registrationService.clearDatabase(dataAccess);
+            AuthData result = registrationService.registerUser(dataAccess, regularUser);
             assertNotNull(result.username());
             assertEquals(result.username(), regularUser.username());
-        } catch (DataAccessException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

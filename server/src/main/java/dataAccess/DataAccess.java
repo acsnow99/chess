@@ -1,10 +1,12 @@
 package dataAccess;
 
-import authData.AuthData;
-import authTokenGenerator.AuthTokenGenerator;
+import model.AuthData;
+import generators.AuthTokenGenerator;
 import com.google.gson.stream.JsonReader;
-import user.User;
-import gameData.GameData;
+import exceptions.DataAccessException;
+import requests.JoinGameRequest;
+import model.User;
+import model.GameData;
 
 import com.google.gson.Gson;
 
@@ -20,6 +22,7 @@ public class DataAccess {
     private String userDBFileName = "db/user.json";
     private String authDBFileName = "db/auth.json";
     private String gamesDBFileName = "db/games.json";
+
 
     public User getUser(User user) throws DataAccessException {
         if (userDBContainsUsername(user.username())) {
@@ -39,11 +42,6 @@ public class DataAccess {
 
     public AuthData loginUser(User user) throws DataAccessException {
         var authDB = authReadJsonFromLocalDBFile(authDBFileName);
-        for (var auth : authDB) {
-            if (Objects.equals(auth.username(), user.username())) {
-                return auth;
-            }
-        }
         String authToken = new AuthTokenGenerator().generateToken();
         AuthData authDataResult = new AuthData(user.username(), authToken);
         // TO-DO: check for existing token based on authToken
@@ -62,24 +60,6 @@ public class DataAccess {
         return false;
     }
 
-    // NOTE: authData's username may be null. This function only compares authTokens only
-    public AuthData getAuthDataFromToken(AuthData authData) throws DataAccessException {
-        var authDB = authReadJsonFromLocalDBFile(authDBFileName);
-        for (var auth : authDB) {
-            if (Objects.equals(auth.authToken(), authData.authToken())) {
-                return auth;
-            }
-        }
-        return null;
-    }
-
-    public boolean authDataIsAuthorized(AuthData authData) throws DataAccessException {
-        if (getAuthDataFromToken(authData) != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public void logoutUser(AuthData authData) throws DataAccessException {
         var authDB = authReadJsonFromLocalDBFile(authDBFileName);
@@ -107,10 +87,23 @@ public class DataAccess {
         }
     }
 
-    public Object clear() throws DataAccessException {
-        writeToLocalDBFile(userDBFileName, emptyDBString);
-        writeToLocalDBFile(authDBFileName, emptyDBString);
+    // NOTE: authData's username may be null. This function only compares authTokens only
+    public AuthData getAuthDataFromToken(AuthData authData) throws DataAccessException {
+        var authDB = authReadJsonFromLocalDBFile(authDBFileName);
+        for (var auth : authDB) {
+            if (Objects.equals(auth.authToken(), authData.authToken())) {
+                return auth;
+            }
+        }
         return null;
+    }
+
+    public boolean authDataIsAuthorized(AuthData authData) throws DataAccessException {
+        if (getAuthDataFromToken(authData) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void writeToLocalDBFile(String dbFileName, String textToWrite) throws DataAccessException {
@@ -135,6 +128,7 @@ public class DataAccess {
         }
     }
 
+
     private ArrayList<AuthData> authReadJsonFromLocalDBFile(String dbFileName) throws DataAccessException {
         try (var fileReader = new JsonReader(new FileReader(dbFileName))) {
             var authInDB = new ArrayList<AuthData>();
@@ -146,6 +140,49 @@ public class DataAccess {
             return authInDB;
         } catch (IOException exception) {
             throw new DataAccessException("Error: could not read from " + dbFileName);
+        }
+    }
+
+
+    public ArrayList<GameData> getGames() throws DataAccessException {
+        return gamesReadJsonFromLocalDBFile(gamesDBFileName);
+    }
+
+    public void createGame(String gameName, long gameID) throws DataAccessException {
+        var gameData = gamesReadJsonFromLocalDBFile(gamesDBFileName);
+        var newGame = new GameData(gameID, null, null, gameName);
+        gameData.add(newGame);
+        writeToLocalDBFile(gamesDBFileName, new Gson().toJson(gameData));
+    }
+
+    public void joinGame(AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException {
+        var gamesDB = getGames();
+        var foundGame = false;
+        for (var game : gamesDB) {
+            if (game.gameID() == joinGameRequest.gameID()) {
+                foundGame = true;
+                GameData newGame;
+                if (Objects.equals(joinGameRequest.playerColor(), "WHITE")) {
+                    if (game.whiteUsername() != null && !Objects.equals(game.whiteUsername(), authData.username())) {
+                        throw new DataAccessException("Error: Already taken");
+                    }
+                    newGame = new GameData(joinGameRequest.gameID(), authData.username(), game.blackUsername(), game.gameName());
+                } else if (Objects.equals(joinGameRequest.playerColor(), "BLACK")) {
+                    if (game.blackUsername() != null && !Objects.equals(game.blackUsername(), authData.username())) {
+                        throw new DataAccessException("Error: Already taken");
+                    }
+                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), authData.username(), game.gameName());
+                } else {
+                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), game.blackUsername(), game.gameName());
+                }
+                gamesDB.remove(game);
+                gamesDB.add(newGame);
+                writeToLocalDBFile(gamesDBFileName, new Gson().toJson(gamesDB));
+                break;
+            }
+        }
+        if (!foundGame) {
+            throw new DataAccessException("Error: Could not find game");
         }
     }
 
@@ -163,7 +200,11 @@ public class DataAccess {
         }
     }
 
-    public ArrayList<GameData> getGames() throws DataAccessException {
-        return gamesReadJsonFromLocalDBFile(gamesDBFileName);
+
+    public Object clear() throws DataAccessException {
+        writeToLocalDBFile(userDBFileName, emptyDBString);
+        writeToLocalDBFile(authDBFileName, emptyDBString);
+        writeToLocalDBFile(gamesDBFileName, emptyDBString);
+        return null;
     }
 }

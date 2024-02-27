@@ -1,17 +1,15 @@
-package sessionService;
+package services;
 
-import authData.AuthData;
+import model.AuthData;
 import dataAccess.DataAccess;
-import dataAccess.DataAccessException;
-import otherExceptions.MissingDataException;
-import otherExceptions.UnauthorizedException;
-import user.User;
+import exceptions.DataAccessException;
+import exceptions.MissingDataException;
+import exceptions.UnauthorizedException;
+import model.User;
 
 public class SessionService {
 
-    private DataAccess dataAccess = new DataAccess();
-
-    public AuthData loginUser(User user) throws DataAccessException, MissingDataException, UnauthorizedException {
+    public AuthData loginUser(DataAccess dataAccess, User user) throws DataAccessException, MissingDataException, UnauthorizedException {
         if (user.username() == null) {
             throw new MissingDataException("Error: Missing username");
         } else if (user.password() == null) {
@@ -23,7 +21,7 @@ public class SessionService {
         return dataAccess.loginUser(user);
     }
 
-    public void logoutUser(AuthData authData) throws UnauthorizedException, DataAccessException {
+    public void logoutUser(DataAccess dataAccess, AuthData authData) throws UnauthorizedException, DataAccessException {
         var authDataFromDB = dataAccess.getAuthDataFromToken(authData);
         if (authDataFromDB != null) {
             dataAccess.logoutUser(authDataFromDB);

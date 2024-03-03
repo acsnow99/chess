@@ -8,12 +8,22 @@ import model.GameData;
 import model.User;
 import requests.JoinGameRequest;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DataAccessDB implements DataAccess {
     @Override
-    public User getUser(User user) {
-        return null;
+    public User getUser(User user) throws DataAccessException {
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("SELECT * from user where username=\"Testito\"")) {
+                var rs = preparedStatement.executeQuery();
+                rs.next();
+                System.out.println(rs.getString("username"));
+                return new User("", "", "");
+            }
+        } catch (SQLException exception) {
+            throw new DataAccessException("Error: SQL database error");
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public interface DataAccess {
-    User getUser(User user);
+    User getUser(User user) throws DataAccessException;
 
     AuthData registerUser(User user);
 

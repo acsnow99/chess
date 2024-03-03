@@ -1,5 +1,6 @@
 package passoffTests.serviceTests;
 
+import dataAccess.DataAccessMemory;
 import model.AuthData;
 import dataAccess.DataAccess;
 import exceptions.DataAccessException;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RegistrationServiceTests {
 
-    private DataAccess dataAccess = new DataAccess();
+    private DataAccess dataAccess = new DataAccessMemory();
     private RegistrationService registrationService = new RegistrationService();
     private User regularUser = new User("kevin23", "okokokok99", "okay@gmail.com");
 

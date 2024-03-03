@@ -1,5 +1,6 @@
 package server;
 
+import dataAccess.DataAccessMemory;
 import exceptions.*;
 import model.AuthData;
 import com.google.gson.Gson;
@@ -17,7 +18,7 @@ import model.User;
 
 public class Server {
 
-    private DataAccess dataAccess = new DataAccess();
+    private DataAccess dataAccess = new DataAccessMemory();
     private RegistrationService registrationService = new RegistrationService();
     private SessionService sessionService = new SessionService();
     private GameService gameService = new GameService();

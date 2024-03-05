@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" afterDir="false" />
     </list>
@@ -47,7 +48,11 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Run",
+    "JUnit.DataAccessDBTests.getAuthDataFromTokenPos.executor": "Run",
     "JUnit.DataAccessDBTests.getUser.executor": "Run",
+    "JUnit.DataAccessDBTests.getUserNeg.executor": "Run",
+    "JUnit.DataAccessDBTests.getUserPos.executor": "Run",
+    "JUnit.DataAccessDBTests.loginUserPos.executor": "Run",
     "JUnit.GameServiceTests.addGameToDB.executor": "Run",
     "JUnit.GameServiceTests.emptyDBGameDataRequest.executor": "Run",
     "JUnit.GameServiceTests.executor": "Run",
@@ -115,7 +120,23 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataAccessDBTests.getUser">
+  <component name="RunManager" selected="JUnit.DataAccessDBTests.getAuthDataFromTokenPos">
+    <configuration name="DataAccessDBTests.getAuthDataFromTokenPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
+      <option name="METHOD_NAME" value="getAuthDataFromTokenPos" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DataAccessDBTests.getUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -132,60 +153,68 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SessionServiceTests.loginAgain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataAccessDBTests.getUserNeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.SessionServiceTests" />
-      <option name="METHOD_NAME" value="loginAgain" />
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
+      <option name="METHOD_NAME" value="getUserNeg" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in shared" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shared" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/shared/src/test/java" />
+    <configuration name="DataAccessDBTests.getUserPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
+      <option name="METHOD_NAME" value="getUserPos" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="passoffTests in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataAccessDBTests.loginUserPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/server/src/test/java/passoffTests" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/server/src/test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
+      <option name="METHOD_NAME" value="loginUserPos" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.DataAccessDBTests.getAuthDataFromTokenPos" />
+      <item itemvalue="JUnit.DataAccessDBTests.getUserNeg" />
+      <item itemvalue="JUnit.DataAccessDBTests.getUserPos" />
+      <item itemvalue="JUnit.DataAccessDBTests.loginUserPos" />
       <item itemvalue="JUnit.DataAccessDBTests.getUser" />
-      <item itemvalue="JUnit.java in shared" />
-      <item itemvalue="JUnit.test in server" />
-      <item itemvalue="JUnit.SessionServiceTests.loginAgain" />
-      <item itemvalue="JUnit.passoffTests in server" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DataAccessDBTests.getAuthDataFromTokenPos" />
+        <item itemvalue="JUnit.DataAccessDBTests.loginUserPos" />
+        <item itemvalue="JUnit.DataAccessDBTests.getUserNeg" />
+        <item itemvalue="JUnit.DataAccessDBTests.getUserPos" />
         <item itemvalue="JUnit.DataAccessDBTests.getUser" />
-        <item itemvalue="JUnit.test in server" />
-        <item itemvalue="JUnit.java in shared" />
-        <item itemvalue="JUnit.passoffTests in server" />
-        <item itemvalue="JUnit.SessionServiceTests.loginAgain" />
       </list>
     </recent_temporary>
   </component>
@@ -225,6 +254,11 @@
           <url>file://$PROJECT_DIR$/server/src/main/java/services/SessionService.java</url>
           <line>24</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -17,7 +17,7 @@ public interface DataAccess {
 
     AuthData registerUser(User user);
 
-    AuthData loginUser(User user);
+    AuthData loginUser(User user) throws DataAccessException;
 
     boolean userIsAuthorized(User user);
 
@@ -27,7 +27,7 @@ public interface DataAccess {
     boolean userDBContainsUsername(String username);
 
     // NOTE: authData's username may be null. This function only compares authTokens only
-    AuthData getAuthDataFromToken(AuthData authData);
+    AuthData getAuthDataFromToken(AuthData authData) throws DataAccessException;
 
     boolean authDataIsAuthorized(AuthData authData);
 

@@ -1,27 +1,58 @@
 package passoffTests.serverTests;
 
 import dataAccess.DataAccessDB;
+import exceptions.DataAccessException;
 import model.User;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class DataAccessDBTests {
 
     private DataAccessDB dataAccessDB = new DataAccessDB();
+    private User testUser = new User("Test", "pass", "mail@mail.org");
 
-    @BeforeAll
-    public static void init() {
-
+    @BeforeEach
+    public void init() {
+        dataAccessDB.clear();
     }
 
     @Test
-    public void getUser() {
+    @DisplayName("Can get an existing user from DB")
+    public void getUserPos() {
         try {
-            var testUser = new User("Testito", "pass", "mail@mail.org");
-            Assertions.assertEquals(testUser, dataAccessDB.getUser(new User("Testito", "pass", "mail@mail.org")));
+            Assertions.assertEquals(testUser, dataAccessDB.getUser(testUser));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Nonexistent user can't be found")
+    public void getUserNeg() {
+        try {
+            Assertions.assertNull(dataAccessDB.getUser(new User("Burrito", "pass", "mail@mail.org")));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("User with a session can login")
+    public void loginUserPos() {
+        try {
+            Assertions.assertEquals(testUser.username(), dataAccessDB.loginUser(testUser).username());
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Can get an existing authToken from auth")
+    public void getAuthDataFromTokenPos() {
+        try {
+            var authData = dataAccessDB.loginUser(testUser);
+            Assertions.assertEquals(testUser.username(), dataAccessDB.getAuthDataFromToken(authData).username());
+        } catch (Exception e) {
+            Assertions.fail();
         }
     }
 }

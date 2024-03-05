@@ -3,6 +3,7 @@ package dataAccess;
 import exceptions.AlreadyTakenException;
 import exceptions.DataAccessException;
 import exceptions.NotFoundException;
+import generators.AuthTokenGenerator;
 import model.AuthData;
 import model.GameData;
 import model.User;
@@ -21,7 +22,7 @@ public class DataAccessDB implements DataAccess {
                 return new User(rs.getString("username"), rs.getString("password"), rs.getString("email"));
             }
         } catch (SQLException exception) {
-            throw new DataAccessException("Error: SQL database error");
+            return null;
         }
     }
 
@@ -31,8 +32,17 @@ public class DataAccessDB implements DataAccess {
     }
 
     @Override
-    public AuthData loginUser(User user) {
-        return null;
+    public AuthData loginUser(User user) throws DataAccessException {
+        String authToken = new AuthTokenGenerator().generateToken();
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("INSERT INTO auth (username, authToken) " +
+                    "VALUES (\"" + user.username() + "\", \"" + authToken + "\")")) {
+                var rs = preparedStatement.executeUpdate();
+            }
+        } catch (SQLException exception) {
+            return null;
+        }
+        return new AuthData(user.username(), authToken);
     }
 
     @Override
@@ -51,8 +61,17 @@ public class DataAccessDB implements DataAccess {
     }
 
     @Override
-    public AuthData getAuthDataFromToken(AuthData authData) {
-        return null;
+    public AuthData getAuthDataFromToken(AuthData authData) throws DataAccessException {
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("select * from auth where authToken=\""
+                    + authData.authToken() + "\"")) {
+                var rs = preparedStatement.executeQuery();
+                rs.next();
+                return new AuthData(rs.getString("username"), rs.getString("authData"));
+            }
+        } catch (SQLException exception) {
+            return null;
+        }
     }
 
     @Override

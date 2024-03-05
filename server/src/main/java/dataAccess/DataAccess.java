@@ -15,7 +15,7 @@ import java.util.Objects;
 public interface DataAccess {
     User getUser(User user) throws DataAccessException;
 
-    AuthData registerUser(User user);
+    AuthData registerUser(User user) throws DataAccessException;
 
     AuthData loginUser(User user) throws DataAccessException;
 

@@ -2,6 +2,7 @@ package passoffTests.serverTests;
 
 import dataAccess.DataAccessDB;
 import exceptions.DataAccessException;
+import model.AuthData;
 import model.User;
 import org.junit.jupiter.api.*;
 
@@ -9,11 +10,13 @@ public class DataAccessDBTests {
 
     private DataAccessDB dataAccessDB = new DataAccessDB();
     private User testUser = new User("Test", "pass", "mail@mail.org");
+    private AuthData authDataInit;
 
     @BeforeEach
     public void init() {
         try {
             dataAccessDB.clear();
+            authDataInit = dataAccessDB.registerUser(testUser);
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -63,8 +66,7 @@ public class DataAccessDBTests {
     @DisplayName("Can get an existing authToken from auth")
     public void getAuthDataFromTokenPos() {
         try {
-            var authData = dataAccessDB.loginUser(testUser);
-            Assertions.assertEquals(testUser.username(), dataAccessDB.getAuthDataFromToken(authData).username());
+            Assertions.assertEquals(testUser.username(), dataAccessDB.getAuthDataFromToken(authDataInit).username());
         } catch (Exception e) {
             Assertions.fail();
         }

@@ -47,6 +47,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Run",
+    "JUnit.DataAccessDBTests.executor": "Debug",
     "JUnit.DataAccessDBTests.getAuthDataFromTokenPos.executor": "Run",
     "JUnit.DataAccessDBTests.getUser.executor": "Run",
     "JUnit.DataAccessDBTests.getUserNeg.executor": "Run",
@@ -120,7 +121,22 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataAccessDBTests.getUserPos">
+  <component name="RunManager" selected="JUnit.DataAccessDBTests.getAuthDataFromTokenPos">
+    <configuration name="DataAccessDBTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DataAccessDBTests.getAuthDataFromTokenPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -132,22 +148,6 @@
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
       <option name="METHOD_NAME" value="getAuthDataFromTokenPos" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DataAccessDBTests.getUserNeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="getUserNeg" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -202,19 +202,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.DataAccessDBTests" />
       <item itemvalue="JUnit.DataAccessDBTests.getAuthDataFromTokenPos" />
-      <item itemvalue="JUnit.DataAccessDBTests.getUserNeg" />
       <item itemvalue="JUnit.DataAccessDBTests.getUserPos" />
       <item itemvalue="JUnit.DataAccessDBTests.loginUserPos" />
       <item itemvalue="JUnit.DataAccessDBTests.userIsAuthorized" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DataAccessDBTests.getUserPos" />
-        <item itemvalue="JUnit.DataAccessDBTests.userIsAuthorized" />
         <item itemvalue="JUnit.DataAccessDBTests.getAuthDataFromTokenPos" />
         <item itemvalue="JUnit.DataAccessDBTests.loginUserPos" />
-        <item itemvalue="JUnit.DataAccessDBTests.getUserNeg" />
+        <item itemvalue="JUnit.DataAccessDBTests" />
+        <item itemvalue="JUnit.DataAccessDBTests.getUserPos" />
+        <item itemvalue="JUnit.DataAccessDBTests.userIsAuthorized" />
       </list>
     </recent_temporary>
   </component>
@@ -256,9 +256,9 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -27,8 +27,16 @@ public class DataAccessDB implements DataAccess {
     }
 
     @Override
-    public AuthData registerUser(User user) {
-        return null;
+    public AuthData registerUser(User user) throws DataAccessException {
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("INSERT INTO user (username, password, email) " +
+                    "VALUES (\"" + user.username() + "\", \"" + user.password() + "\",\"" + user.email() + "\")")) {
+                preparedStatement.executeUpdate();
+                return loginUser(user);
+            }
+        } catch (SQLException exception) {
+            return null;
+        }
     }
 
     @Override
@@ -37,7 +45,7 @@ public class DataAccessDB implements DataAccess {
         try (var connection = DatabaseManager.getConnection()) {
             try (var preparedStatement = connection.prepareStatement("INSERT INTO auth (username, authToken) " +
                     "VALUES (\"" + user.username() + "\", \"" + authToken + "\")")) {
-                var rs = preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
                 return new AuthData(user.username(), authToken);
             }
         } catch (SQLException exception) {

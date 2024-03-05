@@ -67,7 +67,7 @@ public class DataAccessDB implements DataAccess {
                     + authData.authToken() + "\"")) {
                 var rs = preparedStatement.executeQuery();
                 rs.next();
-                return new AuthData(rs.getString("username"), rs.getString("authData"));
+                return new AuthData(rs.getString("username"), rs.getString("authtoken"));
             }
         } catch (SQLException exception) {
             return null;

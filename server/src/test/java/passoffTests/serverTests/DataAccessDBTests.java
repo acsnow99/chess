@@ -63,6 +63,18 @@ public class DataAccessDBTests {
     }
 
     @Test
+    @DisplayName("User loses access when they log out")
+    public void logoutUserPos() {
+        try {
+            Assertions.assertNotNull(dataAccessDB.getAuthDataFromToken(authDataInit));
+            dataAccessDB.logoutUser(authDataInit);
+            Assertions.assertNull(dataAccessDB.getAuthDataFromToken(authDataInit));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
     @DisplayName("Can get an existing authToken from auth")
     public void getAuthDataFromTokenPos() {
         try {

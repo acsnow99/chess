@@ -70,7 +70,13 @@ public class DataAccessDB implements DataAccess {
 
     @Override
     public void logoutUser(AuthData authData) throws DataAccessException {
-
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("DELETE FROM auth WHERE authtoken=\"" + authData.authToken() + "\"")) {
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException exception) {
+            throw new DataAccessException("Error: Could not logout user");
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package passoffTests.serverTests;
 import dataAccess.DataAccessDB;
 import exceptions.DataAccessException;
 import model.AuthData;
+import model.GameData;
 import model.User;
 import org.junit.jupiter.api.*;
 
@@ -11,12 +12,14 @@ public class DataAccessDBTests {
     private DataAccessDB dataAccessDB = new DataAccessDB();
     private User testUser = new User("Test", "pass", "mail@mail.org");
     private AuthData authDataInit;
+    private GameData gameInit = new GameData(1, null, null, "GameInit", null);
 
     @BeforeEach
     public void init() {
         try {
             dataAccessDB.clear();
             authDataInit = dataAccessDB.registerUser(testUser);
+            dataAccessDB.createGame("GameInit", 1);
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -119,6 +122,16 @@ public class DataAccessDBTests {
     public void authDataIsAuthorizedNeg() {
         try {
             Assertions.assertFalse(dataAccessDB.authDataIsAuthorized(new AuthData("notarealuser", "notarealtoken")));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Can get game data")
+    public void getGamesPos() {
+        try {
+            Assertions.assertNotNull(dataAccessDB.getGames());
         } catch (Exception e) {
             Assertions.fail();
         }

@@ -1,5 +1,6 @@
 package dataAccess;
 
+import com.google.gson.Gson;
 import exceptions.AlreadyTakenException;
 import exceptions.DataAccessException;
 import exceptions.NotFoundException;
@@ -114,13 +115,34 @@ public class DataAccessDB implements DataAccess {
     }
 
     @Override
-    public ArrayList<GameData> getGames() {
-        return null;
+    public ArrayList<GameData> getGames() throws DataAccessException {
+        var gamesList = new ArrayList<GameData>();
+        String gameDataJson;
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("SELECT * FROM game")) {
+                var rs = preparedStatement.executeQuery();
+                rs.next();
+                gameDataJson = rs.getString("gamedatajson");
+                gamesList.add(new Gson().fromJson(gameDataJson, GameData.class));
+                return gamesList;
+            }
+        } catch (SQLException exception) {
+            return null;
+        }
     }
 
     @Override
     public void createGame(String gameName, long gameID) throws DataAccessException {
-
+        var newGame = new GameData(gameID, null, null, gameName, null);
+        var newGameJson = new Gson().toJson(newGame);
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("INSERT INTO game (gamedatajson) VALUES ( ? );")) {
+                preparedStatement.setString(1, newGameJson);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException exception) {
+            throw new DataAccessException("Error: Could not create game");
+        }
     }
 
     @Override

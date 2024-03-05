@@ -53,6 +53,26 @@ public class DataAccessDBTests {
     }
 
     @Test
+    @DisplayName("Get existing username from DB")
+    public void getUsernamePos() {
+        try {
+            Assertions.assertTrue(dataAccessDB.userDBContainsUsername(testUser));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Get nonexistent username from DB")
+    public void getUsernameNeg() {
+        try {
+            Assertions.assertFalse(dataAccessDB.userDBContainsUsername(new User("Notauser", null, null)));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
     @DisplayName("User with a session can login")
     public void loginUserPos() {
         try {
@@ -79,6 +99,26 @@ public class DataAccessDBTests {
     public void getAuthDataFromTokenPos() {
         try {
             Assertions.assertEquals(testUser.username(), dataAccessDB.getAuthDataFromToken(authDataInit).username());
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Existing authData is authorized")
+    public void authDataIsAuthorizedPos() {
+        try {
+            Assertions.assertTrue(dataAccessDB.authDataIsAuthorized(authDataInit));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Nonexistent authData is not authorized")
+    public void authDataIsAuthorizedNeg() {
+        try {
+            Assertions.assertFalse(dataAccessDB.authDataIsAuthorized(new AuthData("notarealuser", "notarealtoken")));
         } catch (Exception e) {
             Assertions.fail();
         }

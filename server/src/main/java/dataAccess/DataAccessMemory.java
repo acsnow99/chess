@@ -19,7 +19,7 @@ public class DataAccessMemory implements DataAccess {
 
 
     public User getUser(User user) {
-        if (userDBContainsUsername(user.username())) {
+        if (userDBContainsUsername(user)) {
             return user;
         } else {
             return null;
@@ -58,9 +58,9 @@ public class DataAccessMemory implements DataAccess {
         }
     }
 
-    public boolean userDBContainsUsername(String username) {
-        for (var user : userDB) {
-            if (Objects.equals(user.username(), username)) {
+    public boolean userDBContainsUsername(User user) {
+        for (var u : userDB) {
+            if (Objects.equals(u.username(), user.username())) {
                 return true;
             }
         }

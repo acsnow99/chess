@@ -24,14 +24,14 @@ public interface DataAccess {
 
     void logoutUser(AuthData authData) throws DataAccessException;
 
-    boolean userDBContainsUsername(String username);
+    boolean userDBContainsUsername(User user) throws DataAccessException;
 
     // NOTE: authData's username may be null. This function only compares authTokens only
     AuthData getAuthDataFromToken(AuthData authData) throws DataAccessException;
 
-    boolean authDataIsAuthorized(AuthData authData);
+    boolean authDataIsAuthorized(AuthData authData) throws DataAccessException;
 
-    ArrayList<GameData> getGames();
+    ArrayList<GameData> getGames() throws DataAccessException;
 
     void createGame(String gameName, long gameID) throws DataAccessException;
 

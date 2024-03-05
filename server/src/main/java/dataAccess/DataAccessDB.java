@@ -80,8 +80,18 @@ public class DataAccessDB implements DataAccess {
     }
 
     @Override
-    public boolean userDBContainsUsername(String username) {
-        return false;
+    public boolean userDBContainsUsername(User user) throws DataAccessException {
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("SELECT COUNT(*) from user where username=\""
+                    + user.username() + "\";")) {
+                var rs = preparedStatement.executeQuery();
+                rs.next();
+                var usersCount = rs.getInt(1);
+                return usersCount >= 1;
+            }
+        } catch (SQLException exception) {
+            return false;
+        }
     }
 
     @Override
@@ -99,8 +109,8 @@ public class DataAccessDB implements DataAccess {
     }
 
     @Override
-    public boolean authDataIsAuthorized(AuthData authData) {
-        return false;
+    public boolean authDataIsAuthorized(AuthData authData) throws DataAccessException {
+        return getAuthDataFromToken(authData) != null;
     }
 
     @Override

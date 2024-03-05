@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessMemory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,11 +49,15 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Run",
-    "JUnit.DataAccessDBTests.executor": "Debug",
+    "JUnit.DataAccessDBTests.authDataIsAuthorized.executor": "Run",
+    "JUnit.DataAccessDBTests.authDataIsAuthorizedNeg.executor": "Run",
+    "JUnit.DataAccessDBTests.executor": "Run",
     "JUnit.DataAccessDBTests.getAuthDataFromTokenPos.executor": "Run",
     "JUnit.DataAccessDBTests.getUser.executor": "Run",
     "JUnit.DataAccessDBTests.getUserNeg.executor": "Run",
     "JUnit.DataAccessDBTests.getUserPos.executor": "Run",
+    "JUnit.DataAccessDBTests.getUsernameNeg.executor": "Run",
+    "JUnit.DataAccessDBTests.getUsernamePos.executor": "Run",
     "JUnit.DataAccessDBTests.loginUserPos.executor": "Run",
     "JUnit.DataAccessDBTests.logoutUserPos.executor": "Debug",
     "JUnit.DataAccessDBTests.userIsAuthorized.executor": "Run",
@@ -122,7 +128,7 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataAccessDBTests.logoutUserPos">
+  <component name="RunManager" selected="JUnit.DataAccessDBTests.authDataIsAuthorizedNeg">
     <configuration name="DataAccessDBTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -138,7 +144,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.getAuthDataFromTokenPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataAccessDBTests.authDataIsAuthorized" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -148,13 +154,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="getAuthDataFromTokenPos" />
+      <option name="METHOD_NAME" value="authDataIsAuthorized" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.getUserPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataAccessDBTests.authDataIsAuthorizedNeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -164,13 +170,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="getUserPos" />
+      <option name="METHOD_NAME" value="authDataIsAuthorizedNeg" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.loginUserPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataAccessDBTests.getUsernameNeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -180,13 +186,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="loginUserPos" />
+      <option name="METHOD_NAME" value="getUsernameNeg" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.logoutUserPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataAccessDBTests.getUsernamePos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -196,26 +202,26 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="logoutUserPos" />
+      <option name="METHOD_NAME" value="getUsernamePos" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DataAccessDBTests.logoutUserPos" />
+      <item itemvalue="JUnit.DataAccessDBTests.authDataIsAuthorized" />
+      <item itemvalue="JUnit.DataAccessDBTests.authDataIsAuthorizedNeg" />
+      <item itemvalue="JUnit.DataAccessDBTests.getUsernameNeg" />
+      <item itemvalue="JUnit.DataAccessDBTests.getUsernamePos" />
       <item itemvalue="JUnit.DataAccessDBTests" />
-      <item itemvalue="JUnit.DataAccessDBTests.getAuthDataFromTokenPos" />
-      <item itemvalue="JUnit.DataAccessDBTests.getUserPos" />
-      <item itemvalue="JUnit.DataAccessDBTests.loginUserPos" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DataAccessDBTests.logoutUserPos" />
-        <item itemvalue="JUnit.DataAccessDBTests.getAuthDataFromTokenPos" />
-        <item itemvalue="JUnit.DataAccessDBTests.loginUserPos" />
+        <item itemvalue="JUnit.DataAccessDBTests.authDataIsAuthorizedNeg" />
+        <item itemvalue="JUnit.DataAccessDBTests.authDataIsAuthorized" />
+        <item itemvalue="JUnit.DataAccessDBTests.getUsernameNeg" />
+        <item itemvalue="JUnit.DataAccessDBTests.getUsernamePos" />
         <item itemvalue="JUnit.DataAccessDBTests" />
-        <item itemvalue="JUnit.DataAccessDBTests.getUserPos" />
       </list>
     </recent_temporary>
   </component>
@@ -255,16 +261,6 @@
           <url>file://$PROJECT_DIR$/server/src/main/java/services/SessionService.java</url>
           <line>24</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

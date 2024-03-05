@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +47,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Run",
-    "JUnit.DataAccessDBTests.getUser.executor": "Debug",
+    "JUnit.DataAccessDBTests.getUser.executor": "Run",
     "JUnit.GameServiceTests.addGameToDB.executor": "Run",
     "JUnit.GameServiceTests.emptyDBGameDataRequest.executor": "Run",
     "JUnit.GameServiceTests.executor": "Run",
@@ -226,11 +225,6 @@
           <url>file://$PROJECT_DIR$/server/src/main/java/services/SessionService.java</url>
           <line>24</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

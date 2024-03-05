@@ -15,11 +15,10 @@ public class DataAccessDB implements DataAccess {
     @Override
     public User getUser(User user) throws DataAccessException {
         try (var connection = DatabaseManager.getConnection()) {
-            try (var preparedStatement = connection.prepareStatement("SELECT * from user where username=\"Testito\"")) {
+            try (var preparedStatement = connection.prepareStatement("SELECT * from user where username=\"" + user.username() + "\"")) {
                 var rs = preparedStatement.executeQuery();
                 rs.next();
-                System.out.println(rs.getString("username"));
-                return new User("", "", "");
+                return new User(rs.getString("username"), rs.getString("password"), rs.getString("email"));
             }
         } catch (SQLException exception) {
             throw new DataAccessException("Error: SQL database error");

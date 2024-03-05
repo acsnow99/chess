@@ -12,7 +12,11 @@ public class DataAccessDBTests {
 
     @BeforeEach
     public void init() {
-        dataAccessDB.clear();
+        try {
+            dataAccessDB.clear();
+        } catch (Exception e) {
+            Assertions.fail();
+        }
     }
 
     @Test
@@ -37,7 +41,7 @@ public class DataAccessDBTests {
 
     @Test
     @DisplayName("User can log in with username and pass")
-    public void userIsAuthorized() {
+    public void userIsAuthorizedPos() {
         try {
             Assertions.assertTrue(dataAccessDB.userIsAuthorized(testUser));
         } catch (Exception e) {

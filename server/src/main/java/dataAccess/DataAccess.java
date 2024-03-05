@@ -38,5 +38,5 @@ public interface DataAccess {
     void joinGame(AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException, NotFoundException, AlreadyTakenException;
 
 
-    Object clear();
+    Object clear() throws DataAccessException;
 }

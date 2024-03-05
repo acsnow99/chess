@@ -105,7 +105,20 @@ public class DataAccessDB implements DataAccess {
     }
 
     @Override
-    public Object clear() {
+    public Object clear() throws DataAccessException {
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("TRUNCATE auth")) {
+                preparedStatement.executeUpdate();
+            }
+            try (var preparedStatement = connection.prepareStatement("TRUNCATE user")) {
+                preparedStatement.executeUpdate();
+            }
+            try (var preparedStatement = connection.prepareStatement("TRUNCATE game")) {
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException exception) {
+            throw new DataAccessException("Error: Could not clear database");
+        }
         return null;
     }
 }

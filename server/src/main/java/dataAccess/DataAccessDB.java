@@ -38,16 +38,26 @@ public class DataAccessDB implements DataAccess {
             try (var preparedStatement = connection.prepareStatement("INSERT INTO auth (username, authToken) " +
                     "VALUES (\"" + user.username() + "\", \"" + authToken + "\")")) {
                 var rs = preparedStatement.executeUpdate();
+                return new AuthData(user.username(), authToken);
             }
         } catch (SQLException exception) {
             return null;
         }
-        return new AuthData(user.username(), authToken);
     }
 
     @Override
-    public boolean userIsAuthorized(User user) {
-        return false;
+    public boolean userIsAuthorized(User user) throws DataAccessException {
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("SELECT COUNT(*) from user where username=\""
+                    + user.username() + "\" and password=\"" + user.password() + "\";")) {
+                var rs = preparedStatement.executeQuery();
+                rs.next();
+                var usersCount = rs.getInt(1);
+                return usersCount >= 1;
+            }
+        } catch (SQLException exception) {
+            return false;
+        }
     }
 
     @Override

@@ -36,6 +36,16 @@ public class DataAccessDBTests {
     }
 
     @Test
+    @DisplayName("User can log in with username and pass")
+    public void userIsAuthorized() {
+        try {
+            Assertions.assertTrue(dataAccessDB.userIsAuthorized(testUser));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
     @DisplayName("User with a session can login")
     public void loginUserPos() {
         try {

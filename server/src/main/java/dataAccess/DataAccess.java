@@ -19,7 +19,7 @@ public interface DataAccess {
 
     AuthData loginUser(User user) throws DataAccessException;
 
-    boolean userIsAuthorized(User user);
+    boolean userIsAuthorized(User user) throws DataAccessException;
 
 
     void logoutUser(AuthData authData) throws DataAccessException;

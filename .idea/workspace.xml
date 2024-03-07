@@ -133,7 +133,22 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataAccessDBTests.joinGamePos1">
+  <component name="RunManager" selected="JUnit.DataAccessDBTests">
+    <configuration name="DataAccessDBTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DataAccessDBTests.joinGameNeg0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -198,36 +213,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameServiceTests.joinGameSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serviceTests.GameServiceTests" />
-      <option name="METHOD_NAME" value="joinGameSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="JUnit.DataAccessDBTests" />
       <item itemvalue="JUnit.DataAccessDBTests.joinGameNeg0" />
       <item itemvalue="JUnit.DataAccessDBTests.joinGameNeg1" />
       <item itemvalue="JUnit.DataAccessDBTests.joinGamePos" />
       <item itemvalue="JUnit.DataAccessDBTests.joinGamePos1" />
-      <item itemvalue="JUnit.GameServiceTests.joinGameSuccess" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DataAccessDBTests" />
         <item itemvalue="JUnit.DataAccessDBTests.joinGamePos1" />
         <item itemvalue="JUnit.DataAccessDBTests.joinGameNeg1" />
         <item itemvalue="JUnit.DataAccessDBTests.joinGameNeg0" />
         <item itemvalue="JUnit.DataAccessDBTests.joinGamePos" />
-        <item itemvalue="JUnit.GameServiceTests.joinGameSuccess" />
       </list>
     </recent_temporary>
   </component>

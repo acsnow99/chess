@@ -82,11 +82,7 @@ public class DataAccessMemory implements DataAccess {
     }
 
     public boolean authDataIsAuthorized(AuthData authData) {
-        if (getAuthDataFromToken(authData) != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return getAuthDataFromToken(authData) != null;
     }
 
     public ArrayList<GameData> getGames() {

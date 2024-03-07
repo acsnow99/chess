@@ -16,7 +16,7 @@ public record GameData(long gameID, String whiteUsername, String blackUsername, 
 
     @Override
     public int hashCode() {
-        return Objects.hash(gameID, whiteUsername, blackUsername, gameName);
+        return Objects.hash(gameID, whiteUsername, blackUsername, gameName, watchers);
     }
 
     @Override
@@ -26,6 +26,7 @@ public record GameData(long gameID, String whiteUsername, String blackUsername, 
                 ", whiteUsername='" + whiteUsername + '\'' +
                 ", blackUsername='" + blackUsername + '\'' +
                 ", gameName='" + gameName + '\'' +
+                ", watchers=" + watchers +
                 '}';
     }
 }

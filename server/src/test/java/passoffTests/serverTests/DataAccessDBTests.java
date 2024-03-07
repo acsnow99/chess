@@ -1,6 +1,7 @@
 package passoffTests.serverTests;
 
 import dataAccess.DataAccessDB;
+import exceptions.AlreadyTakenException;
 import exceptions.DataAccessException;
 import model.AuthData;
 import model.GameData;
@@ -162,7 +163,7 @@ public class DataAccessDBTests {
 
     @Test
     @DisplayName("User can join a game")
-    public void joinGamePos() {
+    public void joinGamePos0() {
         try {
             var gameName = "New Game";
             long gameID = 12345678;
@@ -170,6 +171,47 @@ public class DataAccessDBTests {
             dataAccessDB.joinGame(authDataInit, new JoinGameRequest("WHITE", gameID));
             var games = dataAccessDB.getGames();
             var gameFirst = games.get(1);
+            assertEquals(authDataInit.username(), gameFirst.whiteUsername());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @DisplayName("User can join as a watcher")
+    public void joinGamePos1() {
+        try {
+            dataAccessDB.joinGame(authDataInit, new JoinGameRequest(null, gameInit.gameID()));
+            var games = dataAccessDB.getGames();
+            var gameFirst = games.getFirst();
+            assertEquals(authDataInit.username(), gameFirst.watchers().getFirst());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @DisplayName("User can't join nonexistent game")
+    public void joinGameNeg0() {
+        try {
+            long gameID = 12345678;
+            Assertions.assertThrows(DataAccessException.class, () ->
+                    dataAccessDB.joinGame(authDataInit, new JoinGameRequest("WHITE", gameID)));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @DisplayName("User can't join if a spot is taken")
+    public void joinGameNeg1() {
+        try {
+            dataAccessDB.joinGame(authDataInit, new JoinGameRequest("WHITE", gameInit.gameID()));
+            Assertions.assertThrows(AlreadyTakenException.class, () ->
+                    dataAccessDB.joinGame(new AuthData("otheruser", null),
+                            new JoinGameRequest("WHITE", gameInit.gameID())));
+            var games = dataAccessDB.getGames();
+            var gameFirst = games.getFirst();
             assertEquals(authDataInit.username(), gameFirst.whiteUsername());
         } catch (Exception e) {
             throw new RuntimeException(e);

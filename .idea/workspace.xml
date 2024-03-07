@@ -7,9 +7,8 @@
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/model/GameData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +59,10 @@
     "JUnit.DataAccessDBTests.getUserPos.executor": "Run",
     "JUnit.DataAccessDBTests.getUsernameNeg.executor": "Run",
     "JUnit.DataAccessDBTests.getUsernamePos.executor": "Run",
-    "JUnit.DataAccessDBTests.joinGamePos.executor": "Debug",
+    "JUnit.DataAccessDBTests.joinGameNeg0.executor": "Debug",
+    "JUnit.DataAccessDBTests.joinGameNeg1.executor": "Run",
+    "JUnit.DataAccessDBTests.joinGamePos.executor": "Run",
+    "JUnit.DataAccessDBTests.joinGamePos1.executor": "Debug",
     "JUnit.DataAccessDBTests.loginUserPos.executor": "Run",
     "JUnit.DataAccessDBTests.logoutUserPos.executor": "Debug",
     "JUnit.DataAccessDBTests.userIsAuthorized.executor": "Run",
@@ -131,8 +133,8 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataAccessDBTests.joinGamePos">
-    <configuration name="DataAccessDBTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DataAccessDBTests.joinGamePos1">
+    <configuration name="DataAccessDBTests.joinGameNeg0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -142,28 +144,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DataAccessDBTests.getGamesNeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="getGamesNeg" />
+      <option name="METHOD_NAME" value="joinGameNeg0" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.getGamesPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataAccessDBTests.joinGameNeg1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -173,7 +160,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="getGamesPos" />
+      <option name="METHOD_NAME" value="joinGameNeg1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -190,6 +177,22 @@
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
       <option name="METHOD_NAME" value="joinGamePos" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataAccessDBTests.joinGamePos1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
+      <option name="METHOD_NAME" value="joinGamePos1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -212,19 +215,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DataAccessDBTests" />
-      <item itemvalue="JUnit.DataAccessDBTests.getGamesNeg" />
+      <item itemvalue="JUnit.DataAccessDBTests.joinGameNeg0" />
+      <item itemvalue="JUnit.DataAccessDBTests.joinGameNeg1" />
       <item itemvalue="JUnit.DataAccessDBTests.joinGamePos" />
+      <item itemvalue="JUnit.DataAccessDBTests.joinGamePos1" />
       <item itemvalue="JUnit.GameServiceTests.joinGameSuccess" />
-      <item itemvalue="JUnit.DataAccessDBTests.getGamesPos" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DataAccessDBTests.joinGamePos1" />
+        <item itemvalue="JUnit.DataAccessDBTests.joinGameNeg1" />
+        <item itemvalue="JUnit.DataAccessDBTests.joinGameNeg0" />
         <item itemvalue="JUnit.DataAccessDBTests.joinGamePos" />
         <item itemvalue="JUnit.GameServiceTests.joinGameSuccess" />
-        <item itemvalue="JUnit.DataAccessDBTests.getGamesNeg" />
-        <item itemvalue="JUnit.DataAccessDBTests.getGamesPos" />
-        <item itemvalue="JUnit.DataAccessDBTests" />
       </list>
     </recent_temporary>
   </component>
@@ -273,12 +276,22 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java</url>
           <line>167</line>
-          <option name="timeStamp" value="25" />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java</url>
+          <line>182</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java</url>
-          <line>166</line>
-          <option name="timeStamp" value="26" />
+          <line>185</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java</url>
+          <line>131</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

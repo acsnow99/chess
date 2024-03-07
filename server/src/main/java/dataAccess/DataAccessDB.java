@@ -145,7 +145,7 @@ public class DataAccessDB implements DataAccess {
                 return game;
             }
         }
-        return null;
+        throw new DataAccessException("Error: Could not find game");
     }
 
     @Override
@@ -180,9 +180,13 @@ public class DataAccessDB implements DataAccess {
             gameToInsert = new GameData(joinGameRequest.gameID(), gameToUpdate.whiteUsername(),
                     authData.username(), gameToUpdate.gameName(), gameToUpdate.watchers());
         } else {
-            gameToUpdate.watchers().add(authData.username());
+            var watchersUpdated = gameToUpdate.watchers();
+            if (watchersUpdated == null) {
+                watchersUpdated = new ArrayList<String>();
+            }
+            watchersUpdated.add(authData.username());
             gameToInsert = new GameData(joinGameRequest.gameID(), gameToUpdate.whiteUsername(),
-                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), gameToUpdate.watchers());
+                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), watchersUpdated);
         }
         try (var connection = DatabaseManager.getConnection()) {
             try (var preparedStatement = connection.prepareStatement("UPDATE game SET gamedatajson = ? WHERE gameid = ?")) {

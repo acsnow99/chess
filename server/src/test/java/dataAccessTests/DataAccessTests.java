@@ -1,3 +1,5 @@
+package dataAccessTests;
+
 import dataAccess.DataAccessDB;
 import exceptions.AlreadyTakenException;
 import exceptions.NotFoundException;

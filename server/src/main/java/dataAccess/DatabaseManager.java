@@ -67,7 +67,7 @@ public class DatabaseManager {
                 preparedStatement.executeUpdate();
             }
             statement = "CREATE TABLE IF NOT EXISTS " + gameTableName
-                    + " ( gameid int PRIMARY KEY NOT NULL DEFAULT 1, gamedatajson varchar(1020) );";
+                    + " ( gameid bigint PRIMARY KEY NOT NULL DEFAULT 1, gamedatajson varchar(1020) );";
             try (var preparedStatement = conn.prepareStatement(statement)) {
                 preparedStatement.executeUpdate();
             }

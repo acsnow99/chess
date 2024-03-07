@@ -6,6 +6,10 @@ import model.AuthData;
 import model.GameData;
 import model.User;
 import org.junit.jupiter.api.*;
+import requests.CreateGameRequest;
+import requests.JoinGameRequest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DataAccessDBTests {
 
@@ -129,12 +133,46 @@ public class DataAccessDBTests {
     }
 
     @Test
-    @DisplayName("Can get game data")
+    @DisplayName("Can get all game data")
     public void getGamesPos() {
         try {
-            Assertions.assertNotNull(dataAccessDB.getGames());
+            dataAccessDB.createGame("newgame", 5687);
+            var gamesList = dataAccessDB.getGames();
+            Assertions.assertEquals(gameInit.gameName(), gamesList.get(0).gameName());
+            Assertions.assertEquals("newgame", gamesList.get(1).gameName());
         } catch (Exception e) {
             Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("getGames returns null if no entries")
+    public void getGamesNeg() {
+        try {
+            dataAccessDB.clear();
+            var gamesList = dataAccessDB.getGames();
+            Assertions.assertEquals(0, gamesList.size());
+            dataAccessDB.createGame("newgame", 5687);
+            gamesList = dataAccessDB.getGames();
+            Assertions.assertEquals("newgame", gamesList.get(0).gameName());
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("User can join a game")
+    public void joinGamePos() {
+        try {
+            var gameName = "New Game";
+            long gameID = 12345678;
+            dataAccessDB.createGame(gameName, gameID);
+            dataAccessDB.joinGame(authDataInit, new JoinGameRequest("WHITE", gameID));
+            var games = dataAccessDB.getGames();
+            var gameFirst = games.get(1);
+            assertEquals(authDataInit.username(), gameFirst.whiteUsername());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

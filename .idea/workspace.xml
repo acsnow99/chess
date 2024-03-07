@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/DataAccessDBTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,193 +44,179 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Main.executor": "Run",
-    "JUnit.DataAccessDBTests.authDataIsAuthorized.executor": "Run",
-    "JUnit.DataAccessDBTests.authDataIsAuthorizedNeg.executor": "Run",
-    "JUnit.DataAccessDBTests.executor": "Run",
-    "JUnit.DataAccessDBTests.getAuthDataFromTokenNeg.executor": "Run",
-    "JUnit.DataAccessDBTests.getAuthDataFromTokenPos.executor": "Run",
-    "JUnit.DataAccessDBTests.getGamesNeg.executor": "Run",
-    "JUnit.DataAccessDBTests.getGamesPos.executor": "Run",
-    "JUnit.DataAccessDBTests.getUser.executor": "Run",
-    "JUnit.DataAccessDBTests.getUserNeg.executor": "Run",
-    "JUnit.DataAccessDBTests.getUserPos.executor": "Run",
-    "JUnit.DataAccessDBTests.getUsernameNeg.executor": "Run",
-    "JUnit.DataAccessDBTests.getUsernamePos.executor": "Run",
-    "JUnit.DataAccessDBTests.joinGameNeg0.executor": "Debug",
-    "JUnit.DataAccessDBTests.joinGameNeg1.executor": "Run",
-    "JUnit.DataAccessDBTests.joinGamePos.executor": "Run",
-    "JUnit.DataAccessDBTests.joinGamePos1.executor": "Debug",
-    "JUnit.DataAccessDBTests.loginUserNeg.executor": "Run",
-    "JUnit.DataAccessDBTests.loginUserPos.executor": "Run",
-    "JUnit.DataAccessDBTests.logoutUserNeg.executor": "Run",
-    "JUnit.DataAccessDBTests.logoutUserPos.executor": "Debug",
-    "JUnit.DataAccessDBTests.userIsAuthorized.executor": "Run",
-    "JUnit.DataAccessDBTests.userIsAuthorizedNeg.executor": "Run",
-    "JUnit.GameServiceTests.addGameToDB.executor": "Run",
-    "JUnit.GameServiceTests.emptyDBGameDataRequest.executor": "Run",
-    "JUnit.GameServiceTests.executor": "Run",
-    "JUnit.GameServiceTests.getGameData.executor": "Run",
-    "JUnit.GameServiceTests.joinFilledSpot.executor": "Run",
-    "JUnit.GameServiceTests.joinGameSuccess.executor": "Debug",
-    "JUnit.GameServiceTests.joinNonexistentGame.executor": "Run",
-    "JUnit.GameServiceTests.missingDataCreateGame.executor": "Run",
-    "JUnit.GameServiceTests.unauthorizedCreateGameRequest.executor": "Run",
-    "JUnit.GameServiceTests.unauthorizedGameDataRequest.executor": "Run",
-    "JUnit.GameServiceTests.unauthorizedJoinGame.executor": "Run",
-    "JUnit.RegistrationServiceTests.clearDatabase.executor": "Run",
-    "JUnit.RegistrationServiceTests.missingDataRegister.executor": "Run",
-    "JUnit.RegistrationServiceTests.registerRegularUser.executor": "Run",
-    "JUnit.RegistrationServiceTests.registerSameNameTwice.executor": "Run",
-    "JUnit.RegistrationServiceTests.registerSameUserTwice.executor": "Run",
-    "JUnit.RegistrationServiceTests.registerTwice.executor": "Run",
-    "JUnit.RegistrationServiceTests.registerTwoUsers.executor": "Run",
-    "JUnit.RegistrationServiceTests.registerUserReturnsName.executor": "Run",
-    "JUnit.SessionServiceTests.executor": "Run",
-    "JUnit.SessionServiceTests.loginAgain.executor": "Run",
-    "JUnit.SessionServiceTests.loginSimple.executor": "Debug",
-    "JUnit.SessionServiceTests.loginTwiceInARow.executor": "Run",
-    "JUnit.SessionServiceTests.logoutSimple.executor": "Debug",
-    "JUnit.SessionServiceTests.logoutWithoutUsers.executor": "Run",
-    "JUnit.SessionServiceTests.noEmailLogin.executor": "Run",
-    "JUnit.SessionServiceTests.unauthorizedLogin.executor": "Run",
-    "JUnit.StandardAPITests.badAuthCreate.executor": "Run",
-    "JUnit.StandardAPITests.badAuthWatch.executor": "Run",
-    "JUnit.StandardAPITests.badColorJoin.executor": "Run",
-    "JUnit.StandardAPITests.badGameIDWatch.executor": "Debug",
-    "JUnit.StandardAPITests.executor": "Run",
-    "JUnit.StandardAPITests.failLogout.executor": "Run",
-    "JUnit.StandardAPITests.failRegister.executor": "Run",
-    "JUnit.StandardAPITests.goodCreate.executor": "Run",
-    "JUnit.StandardAPITests.goodWatch.executor": "Run",
-    "JUnit.StandardAPITests.loginInvalidUser.executor": "Run",
-    "JUnit.StandardAPITests.loginWrongPassword.executor": "Run",
-    "JUnit.StandardAPITests.manyWatch.executor": "Run",
-    "JUnit.StandardAPITests.registerTwice.executor": "Run",
-    "JUnit.StandardAPITests.staticFiles.executor": "Debug",
-    "JUnit.StandardAPITests.successLogin.executor": "Run",
-    "JUnit.StandardAPITests.successLogout.executor": "Run",
-    "JUnit.StandardAPITests.successRegister.executor": "Run",
-    "JUnit.StandardAPITests.uniqueAuthorizationTokens.executor": "Debug",
-    "JUnit.java in shared.executor": "Run",
-    "JUnit.passoffTests in server.executor": "Run",
-    "JUnit.serviceTests in server.executor": "Run",
-    "JUnit.test in server.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/acsno_/Desktop/school/cs240/chessTest",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propCompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.authDataIsAuthorized.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.authDataIsAuthorizedNeg.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getAuthDataFromTokenNeg.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getAuthDataFromTokenPos.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getGamesNeg.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getGamesPos.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getUserNeg.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getUserPos.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getUsernameNeg.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.getUsernamePos.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.joinGameNeg0.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.joinGameNeg1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.joinGamePos.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.joinGamePos1.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DataAccessDBTests.loginUserNeg.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.loginUserPos.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.logoutUserNeg.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.logoutUserPos.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DataAccessDBTests.userIsAuthorized.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DataAccessDBTests.userIsAuthorizedNeg.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.addGameToDB.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.emptyDBGameDataRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.getGameData.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.joinFilledSpot.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.joinGameSuccess.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.GameServiceTests.joinNonexistentGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.missingDataCreateGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.unauthorizedCreateGameRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.unauthorizedGameDataRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.GameServiceTests.unauthorizedJoinGame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PersistenceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegistrationServiceTests.clearDatabase.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegistrationServiceTests.missingDataRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegistrationServiceTests.registerRegularUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegistrationServiceTests.registerSameNameTwice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegistrationServiceTests.registerSameUserTwice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegistrationServiceTests.registerTwice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegistrationServiceTests.registerTwoUsers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegistrationServiceTests.registerUserReturnsName.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SessionServiceTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SessionServiceTests.loginAgain.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SessionServiceTests.loginSimple.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.SessionServiceTests.loginTwiceInARow.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SessionServiceTests.logoutSimple.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.SessionServiceTests.logoutWithoutUsers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SessionServiceTests.noEmailLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SessionServiceTests.unauthorizedLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badAuthCreate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badAuthWatch.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badColorJoin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.badGameIDWatch.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.failLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.failRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.goodCreate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.goodWatch.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.loginInvalidUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.loginWrongPassword.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.manyWatch.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.registerTwice.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.staticFiles.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.StandardAPITests.successLogin.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.successLogout.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.successRegister.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.StandardAPITests.uniqueAuthorizationTokens.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.java in shared.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.passoffTests in server.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.serverTests in server.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.serviceTests in server.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.test in server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/acsno_/Desktop/school/cs240/chessTest&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="passoffTests.serviceTests" />
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DataAccessDBTests">
-    <configuration name="DataAccessDBTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="DataAccessTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DataAccessTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.loginUserNeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DataAccessTests.joinGameNeg0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="loginUserNeg" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DataAccessTests" />
+      <option name="METHOD_NAME" value="joinGameNeg0" />
       <option name="TEST_OBJECT" value="method" />
+      <dir value="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.loginUserPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PersistenceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="loginUserPos" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.PersistenceTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.logoutUserNeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="serverTests in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="logoutUserNeg" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DataAccessDBTests.userIsAuthorizedNeg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="serviceTests in server" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.DataAccessDBTests" />
-      <option name="METHOD_NAME" value="userIsAuthorizedNeg" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DataAccessDBTests" />
-      <item itemvalue="JUnit.DataAccessDBTests.loginUserNeg" />
-      <item itemvalue="JUnit.DataAccessDBTests.loginUserPos" />
-      <item itemvalue="JUnit.DataAccessDBTests.logoutUserNeg" />
-      <item itemvalue="JUnit.DataAccessDBTests.userIsAuthorizedNeg" />
+      <item itemvalue="JUnit.DataAccessTests.joinGameNeg0" />
+      <item itemvalue="JUnit.DataAccessTests" />
+      <item itemvalue="JUnit.PersistenceTests" />
+      <item itemvalue="JUnit.serverTests in server" />
+      <item itemvalue="JUnit.serviceTests in server" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DataAccessDBTests" />
-        <item itemvalue="JUnit.DataAccessDBTests.userIsAuthorizedNeg" />
-        <item itemvalue="JUnit.DataAccessDBTests.logoutUserNeg" />
-        <item itemvalue="JUnit.DataAccessDBTests.loginUserNeg" />
-        <item itemvalue="JUnit.DataAccessDBTests.loginUserPos" />
+        <item itemvalue="JUnit.DataAccessTests.joinGameNeg0" />
+        <item itemvalue="JUnit.serverTests in server" />
+        <item itemvalue="JUnit.serviceTests in server" />
+        <item itemvalue="JUnit.PersistenceTests" />
+        <item itemvalue="JUnit.DataAccessTests" />
       </list>
     </recent_temporary>
   </component>

@@ -1,18 +1,15 @@
-package passoffTests.serverTests;
-
 import dataAccess.DataAccessDB;
 import exceptions.AlreadyTakenException;
-import exceptions.DataAccessException;
+import exceptions.NotFoundException;
 import model.AuthData;
 import model.GameData;
 import model.User;
 import org.junit.jupiter.api.*;
-import requests.CreateGameRequest;
 import requests.JoinGameRequest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DataAccessDBTests {
+public class DataAccessTests {
 
     private DataAccessDB dataAccessDB = new DataAccessDB();
     private User testUser = new User("Test", "pass", "mail@mail.org");
@@ -241,7 +238,7 @@ public class DataAccessDBTests {
     public void joinGameNeg0() {
         try {
             long gameID = 12345678;
-            Assertions.assertThrows(DataAccessException.class, () ->
+            Assertions.assertThrows(NotFoundException.class, () ->
                     dataAccessDB.joinGame(authDataInit, new JoinGameRequest("WHITE", gameID)));
         } catch (Exception e) {
             throw new RuntimeException(e);

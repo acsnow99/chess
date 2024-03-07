@@ -138,14 +138,14 @@ public class DataAccessDB implements DataAccess {
         }
     }
 
-    private GameData getGameByID(long gameID) throws DataAccessException {
+    private GameData getGameByID(long gameID) throws DataAccessException, NotFoundException {
         var gamesList = getGames();
         for (var game : gamesList) {
             if (game.gameID() == gameID) {
                 return game;
             }
         }
-        throw new DataAccessException("Error: Could not find game");
+        throw new NotFoundException("Error: Could not find game");
     }
 
     @Override

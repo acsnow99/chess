@@ -1,5 +1,6 @@
 package server;
 
+import dataAccess.DataAccessDB;
 import dataAccess.DataAccessMemory;
 import exceptions.*;
 import model.AuthData;
@@ -18,7 +19,7 @@ import model.User;
 
 public class Server {
 
-    private DataAccess dataAccess = new DataAccessMemory();
+    private DataAccess dataAccess = new DataAccessDB();
     private RegistrationService registrationService = new RegistrationService();
     private SessionService sessionService = new SessionService();
     private GameService gameService = new GameService();

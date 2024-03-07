@@ -140,7 +140,7 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoffTests in server">
+  <component name="RunManager" selected="JUnit.PersistenceTests">
     <configuration name="DataAccessTests.joinGameNeg0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -206,8 +206,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.passoffTests in server" />
         <item itemvalue="JUnit.PersistenceTests" />
+        <item itemvalue="JUnit.passoffTests in server" />
         <item itemvalue="JUnit.DataAccessTests.joinGameNeg0" />
         <item itemvalue="JUnit.serverTests in server" />
         <item itemvalue="JUnit.serviceTests in server" />

@@ -32,7 +32,7 @@ public class Server {
         try {
             dataAccess.databaseInit();
         } catch (DataAccessException exception) {
-            throw new RuntimeException("Error: Could not initialize database");
+            throw new RuntimeException(exception.getMessage());
         }
 
         Spark.delete("/db", this::clearDatabase);

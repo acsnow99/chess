@@ -10,9 +10,9 @@ public class DatabaseManager {
     private static final String user;
     private static final String password;
     private static final String connectionUrl;
-    private static final String userTableName;
-    private static final String authTableName;
-    private static final String gameTableName;
+    private static final String userTableName = "user";
+    private static final String authTableName = "auth";
+    private static final String gameTableName = "game";
 
     /*
      * Load the database information for the db.properties file.
@@ -24,9 +24,6 @@ public class DatabaseManager {
                 Properties props = new Properties();
                 props.load(propStream);
                 databaseName = props.getProperty("db.name");
-                userTableName = props.getProperty("db.userName");
-                authTableName = props.getProperty("db.authName");
-                gameTableName = props.getProperty("db.gameName");
                 user = props.getProperty("db.user");
                 password = props.getProperty("db.password");
 

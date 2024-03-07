@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/serviceTests/GameServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DatabaseManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +78,7 @@
     "JUnit.GameServiceTests.unauthorizedCreateGameRequest.executor": "Run",
     "JUnit.GameServiceTests.unauthorizedGameDataRequest.executor": "Run",
     "JUnit.GameServiceTests.unauthorizedJoinGame.executor": "Run",
-    "JUnit.PersistenceTests.executor": "Debug",
+    "JUnit.PersistenceTests.executor": "Run",
     "JUnit.RegistrationServiceTests.clearDatabase.executor": "Run",
     "JUnit.RegistrationServiceTests.missingDataRegister.executor": "Run",
     "JUnit.RegistrationServiceTests.registerRegularUser.executor": "Run",
@@ -253,7 +252,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DatabaseManager.java</url>
-          <line>74</line>
+          <line>71</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

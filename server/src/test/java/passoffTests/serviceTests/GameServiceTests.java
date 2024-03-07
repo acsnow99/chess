@@ -31,6 +31,7 @@ public class GameServiceTests {
     @BeforeEach
     public void init() {
         try {
+            dataAccess.databaseInit();
             registrationService.clearDatabase(dataAccess);
             registrationService.registerUser(dataAccess, regularUser);
         } catch (Exception e) {

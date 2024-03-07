@@ -52,10 +52,20 @@ public class DataAccessDBTests {
     }
 
     @Test
-    @DisplayName("User can log in with username and pass")
+    @DisplayName("User is authorized with username and pass")
     public void userIsAuthorizedPos() {
         try {
             Assertions.assertTrue(dataAccessDB.userIsAuthorized(testUser));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Invalid username, pass is not authorized")
+    public void userIsAuthorizedNeg() {
+        try {
+            Assertions.assertFalse(dataAccessDB.userIsAuthorized(new User("notauser", "passy", "mail")));
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -82,10 +92,24 @@ public class DataAccessDBTests {
     }
 
     @Test
-    @DisplayName("User with a session can login")
-    public void loginUserPos() {
+    @DisplayName("User can log in")
+    public void loginUserPos0() {
         try {
-            Assertions.assertEquals(testUser.username(), dataAccessDB.loginUser(testUser).username());
+            var newUser = new User("newuser", "passpass", "mailmail");
+            var authData = dataAccessDB.loginUser(newUser);
+            Assertions.assertTrue(dataAccessDB.authDataIsAuthorized(authData));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("User with an existing session can login; both sessions valid")
+    public void loginUserPos1() {
+        try {
+            var authData = dataAccessDB.loginUser(testUser);
+            Assertions.assertTrue(dataAccessDB.authDataIsAuthorized(authData));
+            Assertions.assertTrue(dataAccessDB.authDataIsAuthorized(authDataInit));
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -104,10 +128,32 @@ public class DataAccessDBTests {
     }
 
     @Test
+    @DisplayName("Nothing changes if an invalid user logs out")
+    public void logoutUserNeg() {
+        try {
+            Assertions.assertNotNull(dataAccessDB.getAuthDataFromToken(authDataInit));
+            dataAccessDB.logoutUser(new AuthData("notauser", "notatoken"));
+            Assertions.assertNotNull(dataAccessDB.getAuthDataFromToken(authDataInit));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
     @DisplayName("Can get an existing authToken from auth")
     public void getAuthDataFromTokenPos() {
         try {
             Assertions.assertEquals(testUser.username(), dataAccessDB.getAuthDataFromToken(authDataInit).username());
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Can't get authData with nonexistent authToken'")
+    public void getAuthDataFromTokenNeg() {
+        try {
+            Assertions.assertNull(dataAccessDB.getAuthDataFromToken(new AuthData("fakeuserhaker", "notatoken")));
         } catch (Exception e) {
             Assertions.fail();
         }

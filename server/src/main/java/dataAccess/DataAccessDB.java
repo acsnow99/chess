@@ -27,6 +27,11 @@ public class DataAccessDB implements DataAccess {
         }
     }
 
+    public void databaseInit() throws DataAccessException {
+        DatabaseManager.createDatabase();
+        DatabaseManager.createTables();
+    }
+
     @Override
     public AuthData registerUser(User user) throws DataAccessException {
         try (var connection = DatabaseManager.getConnection()) {

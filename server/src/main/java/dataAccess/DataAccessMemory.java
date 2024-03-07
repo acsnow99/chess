@@ -18,6 +18,10 @@ public class DataAccessMemory implements DataAccess {
     private ArrayList<User> userDB = new ArrayList<>();
 
 
+    public void databaseInit() {
+
+    }
+
     public User getUser(User user) {
         if (userDBContainsUsername(user)) {
             return user;

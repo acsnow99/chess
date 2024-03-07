@@ -17,6 +17,7 @@ public class DataAccessDBTests {
     @BeforeEach
     public void init() {
         try {
+            dataAccessDB.databaseInit();
             dataAccessDB.clear();
             authDataInit = dataAccessDB.registerUser(testUser);
             dataAccessDB.createGame("GameInit", 1);

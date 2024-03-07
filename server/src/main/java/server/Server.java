@@ -28,6 +28,12 @@ public class Server {
 
         Spark.staticFiles.location("web");
 
+        try {
+            dataAccess.databaseInit();
+        } catch (DataAccessException exception) {
+            throw new RuntimeException("Error: Could not initialize database");
+        }
+
         Spark.delete("/db", this::clearDatabase);
         Spark.post("/user", this::registerUser);
         Spark.post("/session", this::login);

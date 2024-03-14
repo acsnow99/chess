@@ -34,6 +34,13 @@ public class Repl {
                     // TO-DO: actually register the user :)
                     System.out.println("User " + lineItems[1] + " registered. Don't forget your password!");
                 }
+            } else if (Objects.equals(lineFirst, "login")) {
+                if (lineItems.length < 3) {
+                    System.out.println("Missing username or password");
+                } else {
+                    // TO-DO: actually login the user :)
+                    System.out.println("User " + lineItems[1] + " logged in. Type help to see available commands");
+                }
             } else {
                 System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
             }

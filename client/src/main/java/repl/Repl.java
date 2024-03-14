@@ -61,6 +61,10 @@ public class Repl {
                     System.out.println("logout - when you are finished playing");
                     System.out.println("quit - exit the chess CLI");
                     System.out.println("help - list possible commands (you just called this one)");
+                } else if (Objects.equals(lineFirst, "logout")) {
+                    // TO-DO: actually logout user :)
+                    loggedIn = false;
+                    System.out.println("User logged out");
                 } else {
                     System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }

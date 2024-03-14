@@ -38,8 +38,8 @@ public class Repl {
                     if (lineItems.length < 4) {
                         System.out.println("Missing username, password, or email");
                     } else {
-                        // TO-DO: actually register the user :)
-                        System.out.println("User " + lineItems[1] + " registered. Don't forget your password!");
+                        // TO-DO: actually register and login the user :)
+                        System.out.println("User " + lineItems[1] + " logged in. Don't forget your password!");
                     }
                 } else if (Objects.equals(lineFirst, "login")) {
                     if (lineItems.length < 3) {
@@ -89,6 +89,13 @@ public class Repl {
                         // TO-DO: actually join the user as player
                         inputColor = lineItems[2];
                         System.out.println("Joined game " + lineItems[1] + " as " + inputColor);
+                    }
+                } else if (Objects.equals(lineFirst, "observe")) {
+                    if (lineItems.length < 2) {
+                        System.out.println("Missing game ID number");
+                    } else {
+                        // TO-DO: actually join the user as observer
+                        System.out.println("Joined game " + lineItems[1] + " as observer");
                     }
                 } else if (Objects.equals(lineFirst, "logout")) {
                     // TO-DO: actually logout user :)

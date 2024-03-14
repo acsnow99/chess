@@ -61,6 +61,35 @@ public class Repl {
                     System.out.println("logout - when you are finished playing");
                     System.out.println("quit - exit the chess CLI");
                     System.out.println("help - list possible commands (you just called this one)");
+                } else if (Objects.equals(lineFirst, "create")) {
+                    if (lineItems.length < 2) {
+                        System.out.println("Missing game name");
+                    } else {
+                        // TO-DO: actually create game :)
+                        var gameName = lineItems[1];
+                        System.out.println("Created game named " + gameName);
+                    }
+                } else if (Objects.equals(lineFirst, "list")) {
+                    ArrayList<String> gameDataStrings = new ArrayList<>();
+                    gameDataStrings.add("Name:            ID:          White:          Black:           Watchers:");
+                    // TO-DO: get the gamedata strings from the server
+                    for (String gameDataString : gameDataStrings) {
+                        System.out.println(gameDataString);
+                    }
+                } else if (Objects.equals(lineFirst, "join")) {
+                    var whiteTaken = false;
+                    var blackTaken = false;
+                    String inputColor;
+                    if (lineItems.length < 2) {
+                        System.out.println("Missing game ID number");
+                    } else if (lineItems.length < 3) {
+                        // TO-DO: actually join the user as observer
+                        System.out.println("Joined game " + lineItems[1] + " as observer");
+                    } else {
+                        // TO-DO: actually join the user as player
+                        inputColor = lineItems[2];
+                        System.out.println("Joined game " + lineItems[1] + " as " + inputColor);
+                    }
                 } else if (Objects.equals(lineFirst, "logout")) {
                     // TO-DO: actually logout user :)
                     loggedIn = false;

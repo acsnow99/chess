@@ -266,7 +266,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/client/src/main/java/repl/Repl.java</url>
-          <line>22</line>
+          <line>28</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>

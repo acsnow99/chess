@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Repl {
     private String loggedInStatusString = "LOGGED OUT";
+    private boolean loggedIn = false;
     private String cliString;
 
     public void run() {
@@ -14,6 +15,11 @@ public class Repl {
         String[] lineItems;
         String lineFirst;
         while (true) {
+            if (loggedIn) {
+                loggedInStatusString = "LOGGED IN";
+            } else {
+                loggedInStatusString = "LOGGED OUT";
+            }
             cliString = "[" + loggedInStatusString + "] >>> ";
             System.out.print(cliString);
             line = clientReader.nextLine();
@@ -22,27 +28,42 @@ public class Repl {
 
             if (Objects.equals(lineFirst, "q") || Objects.equals(lineFirst, "quit")) {
                 return;
-            } else if (Objects.equals(lineFirst, "help")) {
-                System.out.println("register <USERNAME> <PASSWORD> <EMAIL> - to create an account");
-                System.out.println("login <USERNAME> <PASSWORD> - to log in with an existing account and play");
-                System.out.println("quit - exit the chess CLI");
-                System.out.println("help - list possible commands (you just called this one)");
-            } else if (Objects.equals(lineFirst, "register")) {
-                if (lineItems.length < 4) {
-                    System.out.println("Missing username, password, or email");
+            } else if (!loggedIn) {
+                if (Objects.equals(lineFirst, "help")) {
+                    System.out.println("register <USERNAME> <PASSWORD> <EMAIL> - to create an account");
+                    System.out.println("login <USERNAME> <PASSWORD> - to log in with an existing account and play");
+                    System.out.println("quit - exit the chess CLI");
+                    System.out.println("help - list possible commands (you just called this one)");
+                } else if (Objects.equals(lineFirst, "register")) {
+                    if (lineItems.length < 4) {
+                        System.out.println("Missing username, password, or email");
+                    } else {
+                        // TO-DO: actually register the user :)
+                        System.out.println("User " + lineItems[1] + " registered. Don't forget your password!");
+                    }
+                } else if (Objects.equals(lineFirst, "login")) {
+                    if (lineItems.length < 3) {
+                        System.out.println("Missing username or password");
+                    } else {
+                        // TO-DO: actually login the user :)
+                        loggedIn = true;
+                        System.out.println("User " + lineItems[1] + " logged in. Type help to see available commands");
+                    }
                 } else {
-                    // TO-DO: actually register the user :)
-                    System.out.println("User " + lineItems[1] + " registered. Don't forget your password!");
-                }
-            } else if (Objects.equals(lineFirst, "login")) {
-                if (lineItems.length < 3) {
-                    System.out.println("Missing username or password");
-                } else {
-                    // TO-DO: actually login the user :)
-                    System.out.println("User " + lineItems[1] + " logged in. Type help to see available commands");
+                    System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
             } else {
-                System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+                if (Objects.equals(lineFirst, "help")) {
+                    System.out.println("create <NAME> - create a game");
+                    System.out.println("list - see all game info");
+                    System.out.println("join <ID> [WHITE|BLACK|<empty>] - join a game (empty joins as observer)");
+                    System.out.println("observe <ID> - observe a game");
+                    System.out.println("logout - when you are finished playing");
+                    System.out.println("quit - exit the chess CLI");
+                    System.out.println("help - list possible commands (you just called this one)");
+                } else {
+                    System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+                }
             }
         }
     }

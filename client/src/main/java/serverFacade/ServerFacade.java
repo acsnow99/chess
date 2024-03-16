@@ -27,6 +27,9 @@ public class ServerFacade {
             try (OutputStream requestBody = connection.getOutputStream()) {
                 requestBody.write(reqData.getBytes());
             }
+            connection.connect();
+            var response = connection.getResponseMessage();
+            System.out.println(response);
         } catch (Exception exception) {
             System.out.println("An issue occurred");
         }

@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/exceptions/HttpResponseException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" afterDir="false" />
@@ -94,7 +95,7 @@
     "JUnit.RegistrationServiceTests.registerTwoUsers.executor": "Run",
     "JUnit.RegistrationServiceTests.registerUserReturnsName.executor": "Run",
     "JUnit.ServerFacadeTests.executor": "Debug",
-    "JUnit.ServerFacadeTests.registerUser (1).executor": "Debug",
+    "JUnit.ServerFacadeTests.registerUser (1).executor": "Run",
     "JUnit.ServerFacadeTests.registerUser.executor": "Run",
     "JUnit.SessionServiceTests.executor": "Run",
     "JUnit.SessionServiceTests.loginAgain.executor": "Run",
@@ -268,11 +269,6 @@
           <url>file://$PROJECT_DIR$/client/src/main/java/ui/Repl.java</url>
           <line>28</line>
           <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

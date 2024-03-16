@@ -29,7 +29,7 @@ public class ServerFacadeTests {
     @DisplayName("Register user with no errors")
     public void registerUser() {
         try {
-            var facade = new ServerFacade("http://127.0.0.1:" + port + "/user");
+            var facade = new ServerFacade("http://127.0.0.1:" + port);
             var user = new User("user", "pass", "mail@mail.mail");
             Assertions.assertDoesNotThrow(() -> facade.register(user));
         } catch (Exception e) {

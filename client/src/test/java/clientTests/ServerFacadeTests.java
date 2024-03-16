@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import serverFacade.ServerFacade;
 
 import server.Server;
+import serverFacade.*;
 
 
 public class ServerFacadeTests {
@@ -24,17 +25,36 @@ public class ServerFacadeTests {
         server.stop();
     }
 
+    @BeforeEach
+    public void clearDBBeforeTest() {
+        try {
+            var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
+            facade.clearDatabase();
+        } catch (Exception e) {
+        }
+    }
+
+
+    @Test
+    @DisplayName("Clear database with no errors")
+    public void clearDB() {
+        try {
+            var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
+            Assertions.assertDoesNotThrow(facade::clearDatabase);
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
 
     @Test
     @DisplayName("Register user with no errors")
     public void registerUser() {
         try {
-            var facade = new ServerFacade("http://127.0.0.1:" + port);
+            var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
             var user = new User("user", "pass", "mail@mail.mail");
             Assertions.assertDoesNotThrow(() -> facade.register(user));
         } catch (Exception e) {
             Assertions.fail();
         }
     }
-
 }

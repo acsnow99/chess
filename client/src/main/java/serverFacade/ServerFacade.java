@@ -19,15 +19,7 @@ public class ServerFacade {
         serverURL = URL;
     }
 
-    public void register(User user) throws HttpResponseException {
-        try {
-            makeHttpRequest("POST", "/user", user, null);
-        } catch (Exception exception) {
-            throw new HttpResponseException(exception.getMessage());
-        }
-    }
-
-    private <T> T makeHttpRequest(String method, String path, Object requestObject, Class<T> responseClass) throws HttpResponseException {
+    public <T> T makeHttpRequest(String method, String path, Object requestObject, Class<T> responseClass) throws HttpResponseException {
         try {
             URL url = (new URI(serverURL + path)).toURL();
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

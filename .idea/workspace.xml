@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/exceptions/HttpResponseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeRegistration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" afterDir="false" />
@@ -94,6 +94,7 @@
     "JUnit.RegistrationServiceTests.registerTwice.executor": "Run",
     "JUnit.RegistrationServiceTests.registerTwoUsers.executor": "Run",
     "JUnit.RegistrationServiceTests.registerUserReturnsName.executor": "Run",
+    "JUnit.ServerFacadeTests.clearDB.executor": "Run",
     "JUnit.ServerFacadeTests.executor": "Debug",
     "JUnit.ServerFacadeTests.registerUser (1).executor": "Run",
     "JUnit.ServerFacadeTests.registerUser.executor": "Run",
@@ -151,14 +152,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.ServerFacadeTests.registerUser (1)">
-    <configuration name="All in client" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ServerFacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
@@ -170,6 +163,22 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ServerFacadeTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerFacadeTests.clearDB" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="clientTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="clientTests" />
+      <option name="MAIN_CLASS_NAME" value="clientTests.ServerFacadeTests" />
+      <option name="METHOD_NAME" value="clearDB" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -207,8 +216,8 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.ServerFacadeTests.clearDB" />
       <item itemvalue="JUnit.ServerFacadeTests.registerUser (1)" />
-      <item itemvalue="JUnit.All in client" />
       <item itemvalue="JUnit.ServerFacadeTests" />
       <item itemvalue="JUnit.java in shared" />
       <item itemvalue="JUnit.test in server" />
@@ -216,10 +225,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ServerFacadeTests.registerUser (1)" />
+        <item itemvalue="JUnit.ServerFacadeTests.clearDB" />
         <item itemvalue="JUnit.ServerFacadeTests" />
         <item itemvalue="JUnit.java in shared" />
         <item itemvalue="JUnit.test in server" />
-        <item itemvalue="JUnit.All in client" />
       </list>
     </recent_temporary>
   </component>
@@ -269,6 +278,11 @@
           <url>file://$PROJECT_DIR$/client/src/main/java/ui/Repl.java</url>
           <line>28</line>
           <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeRegistration.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

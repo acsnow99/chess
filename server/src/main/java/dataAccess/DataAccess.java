@@ -3,14 +3,12 @@ package dataAccess;
 import exceptions.AlreadyTakenException;
 import exceptions.NotFoundException;
 import model.AuthData;
-import generators.AuthTokenGenerator;
 import exceptions.DataAccessException;
 import requests.JoinGameRequest;
 import model.User;
 import model.GameData;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public interface DataAccess {
     void databaseInit() throws DataAccessException;

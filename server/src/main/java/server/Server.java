@@ -1,7 +1,6 @@
 package server;
 
 import dataAccess.DataAccessDB;
-import dataAccess.DataAccessMemory;
 import exceptions.*;
 import model.AuthData;
 import com.google.gson.Gson;

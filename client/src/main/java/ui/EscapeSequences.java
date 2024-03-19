@@ -150,66 +150,15 @@ public class EscapeSequences {
     public static final String DEFAULT_BOARD_BLACK = EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR
             + "    H  G  F  E  D  C  B  A  \n" +
 
-            //TODO: Refactor the below chunk of code into a function that takes a row number and a list of pieces
-            " 8 " + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_ROOK
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_KNIGHT
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_BISHOP
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_KING
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_QUEEN
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_BISHOP
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_KNIGHT
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_ROOK +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 8" + "\n" +
-
-            " 7 " + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_PAWN
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_PAWN
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_PAWN
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_PAWN
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_PAWN
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_PAWN
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_PAWN
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_PAWN +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 7" + "\n" +
-
-            " 6 " + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 6" + "\n" +
-
-            " 5 " + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 5" + "\n" +
-
-            " 4 " + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 4" + "\n" +
-
-            " 3 " + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 3" + "\n" +
+            " 1 " + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_ROOK
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_KNIGHT
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_BISHOP
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_KING
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_QUEEN
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_BISHOP
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_KNIGHT
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_ROOK +
+            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 1" + "\n" +
 
             " 2 " + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_PAWN
             + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_PAWN
@@ -221,15 +170,65 @@ public class EscapeSequences {
             + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_PAWN +
             EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 2" + "\n" +
 
-            " 1 " + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_ROOK
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_KNIGHT
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_BISHOP
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_QUEEN
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_KING
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_BISHOP
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.WHITE_KNIGHT
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.WHITE_ROOK +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 1" + "\n" +
+            " 3 " + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY +
+            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 3" + "\n" +
+
+            " 4 " + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY +
+            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 4" + "\n" +
+
+            " 5 " + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY +
+            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 5" + "\n" +
+
+            " 6 " + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.EMPTY
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.EMPTY +
+            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 6" + "\n" +
+
+            " 7 " + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_PAWN
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_PAWN
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_PAWN
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_PAWN
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_PAWN
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_PAWN
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_PAWN
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_PAWN +
+            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 7" + "\n" +
+
+            " 8 " + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_ROOK
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_KNIGHT
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_BISHOP
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_KING
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_QUEEN
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_BISHOP
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_KNIGHT
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_ROOK +
+            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 8" + "\n" +
 
             EscapeSequences.RESET_BG_COLOR + "    H  G  F  E  D  C  B  A  \n";
 

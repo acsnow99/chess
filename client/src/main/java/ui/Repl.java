@@ -20,50 +20,7 @@ public class Repl {
     private ServerFacadeRegistration facadeRegistration;
     private ServerFacadeSession facadeSession;
     private ServerFacadeGame facadeGame;
-    private String boardString = EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR
-            + "    A  B  C  D  E  F  G  H  \n" +
-
-            " 8 " + EscapeSequences.SET_BG_COLOR_DARK_GREY
-            + EscapeSequences.BLACK_ROOK + EscapeSequences.BLACK_KNIGHT + EscapeSequences.BLACK_BISHOP + EscapeSequences.BLACK_KING
-            + EscapeSequences.BLACK_QUEEN + EscapeSequences.BLACK_BISHOP + EscapeSequences.BLACK_KNIGHT + EscapeSequences.BLACK_ROOK +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 8" + "\n" +
-
-            " 7 " + EscapeSequences.SET_BG_COLOR_DARK_GREY
-            + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN
-            + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 7" + "\n" +
-
-            " 6 " + EscapeSequences.SET_BG_COLOR_DARK_GREY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_BG_COLOR + " 6" + "\n" +
-
-            " 5 " + EscapeSequences.SET_BG_COLOR_DARK_GREY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 5" + "\n" +
-
-            " 4 " + EscapeSequences.SET_BG_COLOR_DARK_GREY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 4" + "\n" +
-
-            " 3 " + EscapeSequences.SET_BG_COLOR_DARK_GREY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 3" + "\n" +
-
-            " 2 " + EscapeSequences.SET_BG_COLOR_DARK_GREY
-            + EscapeSequences.WHITE_PAWN + EscapeSequences.WHITE_PAWN + EscapeSequences.WHITE_PAWN + EscapeSequences.WHITE_PAWN
-            + EscapeSequences.WHITE_PAWN + EscapeSequences.WHITE_PAWN + EscapeSequences.WHITE_PAWN + EscapeSequences.WHITE_PAWN +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 2" + "\n" +
-
-            " 1 " + EscapeSequences.SET_BG_COLOR_DARK_GREY
-            + EscapeSequences.WHITE_ROOK + EscapeSequences.WHITE_KNIGHT + EscapeSequences.WHITE_BISHOP + EscapeSequences.WHITE_KING
-            + EscapeSequences.WHITE_QUEEN + EscapeSequences.WHITE_BISHOP + EscapeSequences.WHITE_KNIGHT + EscapeSequences.WHITE_ROOK +
-            EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " 1" + "\n" +
-
-            EscapeSequences.RESET_BG_COLOR + "    A  B  C  D  E  F  G  H  \n";
+    private String boardStringWhite = EscapeSequences.DEFAULT_BOARD_WHITE + EscapeSequences.DEFAULT_BOARD_BLACK;
 
     public void run(int port) {
         initializeFacade(port);
@@ -148,7 +105,7 @@ public class Repl {
 
     private void printHelpLoggedOut() {
         //TODO: Remove the below line
-        System.out.println(boardString);
+        System.out.println(boardStringWhite);
 
         System.out.println("register <USERNAME> <PASSWORD> <EMAIL> - to create an account");
         System.out.println("login <USERNAME> <PASSWORD> - to log in with an existing account and play");
@@ -237,10 +194,9 @@ public class Repl {
             } else {
                 System.out.println("Joined game " + gameID + " as observer");
             }
-            System.out.println(boardString);
+            System.out.println(boardStringWhite);
         } catch (HttpResponseException exception) {
             System.out.println("Spot taken. Try joining with a different color.");
         }
-
     }
 }

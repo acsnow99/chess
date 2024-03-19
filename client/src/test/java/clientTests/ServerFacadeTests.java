@@ -103,6 +103,20 @@ public class ServerFacadeTests {
     }
 
     @Test
+    @DisplayName("Login multiple times in a row")
+    public void loginMultiple() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            facadeRegister.register(user);
+            var authData = facadeSession.login(user);
+            Assertions.assertDoesNotThrow(() -> facadeSession.login(user));
+            facadeRegister.clearDatabase();
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
     @DisplayName("Logout works with no errors")
     public void logoutUser() {
         try {
@@ -115,12 +129,41 @@ public class ServerFacadeTests {
     }
 
     @Test
+    @DisplayName("Create a game runs with no errors")
+    public void createGame() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            Assertions.assertDoesNotThrow(() -> facadeGame.createGame(authData, "testGame"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+        }
+    }
+
+    @Test
     @DisplayName("Get games runs with no errors")
     public void getGames() {
         try {
             var user = new User("user", "pass", "mail@mail.mail");
             var authData = facadeRegister.register(user);
+            facadeGame.createGame(authData, "testGame");
             Assertions.assertDoesNotThrow(() -> facadeGame.getGames(authData));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Get games returns correct list")
+    public void getGamesAndCheck() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            facadeGame.createGame(authData, "testGame");
+            var gamesList = facadeGame.getGames(authData);
+            Assertions.assertEquals("testGame", gamesList.getFirst().gameName());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();

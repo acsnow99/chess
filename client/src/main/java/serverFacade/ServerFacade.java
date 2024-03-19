@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.Objects;
 
 public class ServerFacade {
     private final String serverURL;
@@ -31,7 +32,10 @@ public class ServerFacade {
                 connection.setRequestProperty("Authorization", authorization.authToken());
             }
             connection.setDoOutput(true);
-            writeToBody(requestObject, connection);
+            if (Objects.equals(method, "POST")) {
+                writeToBody(requestObject, connection);
+            }
+            connection.connect();
             if (connection.getResponseCode() >= 300) {
                 throw new Exception("Error: Server responded with error code " + connection.getResponseCode());
             }

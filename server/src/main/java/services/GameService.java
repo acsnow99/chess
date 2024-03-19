@@ -21,7 +21,7 @@ public class GameService {
     }
 
     public long createGame(DataAccess dataAccess, CreateGameRequest createGameRequest, AuthData authData) throws DataAccessException, UnauthorizedException, MissingDataException {
-        if (createGameRequest.gameName() == null || createGameRequest.gameName().equals("")) {
+        if (createGameRequest == null || createGameRequest.gameName() == null || createGameRequest.gameName().equals("")) {
             throw new MissingDataException("Error: bad request");
         }
         if (dataAccess.authDataIsAuthorized(authData)) {

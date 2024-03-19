@@ -1,5 +1,7 @@
 package clientTests;
 
+import exceptions.HttpResponseException;
+import model.AuthData;
 import model.User;
 import org.junit.jupiter.api.*;
 import serverFacade.ServerFacade;
@@ -53,12 +55,36 @@ public class ServerFacadeTests {
     }
 
     @Test
-    @DisplayName("Register user with no errors")
+    @DisplayName("Clear database errors when trying to access invalid url")
+    public void clearDBNeg() {
+        try {
+            var facade = new ServerFacadeRegistration("http://127.0.0.1:" + 902984);
+            Assertions.assertThrows(HttpResponseException.class, facade::clearDatabase);
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Register user runs without error")
     public void registerUser() {
         try {
             var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
             var user = new User("user", "pass", "mail@mail.mail");
             Assertions.assertDoesNotThrow(() -> facade.register(user));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Register user errors if username is already taken")
+    public void registerUserNeg() {
+        try {
+            var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
+            var user = new User("user", "pass", "mail@mail.mail");
+            Assertions.assertDoesNotThrow(() -> facade.register(user));
+            Assertions.assertThrows(HttpResponseException.class, () -> facade.register(user));
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -84,6 +110,18 @@ public class ServerFacadeTests {
             var user = new User("user", "pass", "mail@mail.mail");
             facadeRegister.register(user);
             Assertions.assertDoesNotThrow(() -> facadeSession.login(user));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Login errors if username or password is incorrect")
+    public void loginUserNeg() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            facadeRegister.register(user);
+            Assertions.assertThrows(HttpResponseException.class, () -> facadeSession.login(new User(user.username(), "notapassword", null)));
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -129,12 +167,39 @@ public class ServerFacadeTests {
     }
 
     @Test
+    @DisplayName("Logout errors if authData is invalid")
+    public void logoutUserNeg() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            Assertions.assertDoesNotThrow(() -> facadeSession.logout(authData));
+            Assertions.assertThrows(HttpResponseException.class, () -> facadeSession.logout(authData));
+
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
     @DisplayName("Create a game runs with no errors")
     public void createGame() {
         try {
             var user = new User("user", "pass", "mail@mail.mail");
             var authData = facadeRegister.register(user);
             Assertions.assertDoesNotThrow(() -> facadeGame.createGame(authData, "testGame"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Cannot create a game without a name for the game")
+    public void createGameNeg() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            Assertions.assertThrows(HttpResponseException.class, () -> facadeGame.createGame(authData, null));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -149,6 +214,21 @@ public class ServerFacadeTests {
             var authData = facadeRegister.register(user);
             facadeGame.createGame(authData, "testGame");
             Assertions.assertDoesNotThrow(() -> facadeGame.getGames(authData));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Cannot get games without authorization")
+    public void getGamesNeg() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            facadeGame.createGame(authData, "testGame");
+            Assertions.assertThrows(HttpResponseException.class, () -> facadeGame.getGames(null));
+            Assertions.assertThrows(HttpResponseException.class, () -> facadeGame.getGames(new AuthData("notauser", "faketoken")));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -180,6 +260,21 @@ public class ServerFacadeTests {
             Assertions.assertDoesNotThrow(() -> facadeGame.joinGame(authData, "WHITE", gameID));
             Assertions.assertDoesNotThrow(() -> facadeGame.joinGame(authData, "BLACK", gameID));
             Assertions.assertDoesNotThrow(() -> facadeGame.joinGame(authData, null, gameID));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Cannot join game without authorization, or without correct gameID")
+    public void joinGameNeg() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            long gameID = facadeGame.createGame(authData, "testGame");
+            Assertions.assertThrows(HttpResponseException.class, () -> facadeGame.joinGame(new AuthData("notauser", "notatoken"), "WHITE", gameID));
+            Assertions.assertThrows(HttpResponseException.class, () -> facadeGame.joinGame(authData, "WHITE", 340905093));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();

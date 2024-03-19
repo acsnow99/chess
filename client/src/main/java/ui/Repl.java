@@ -20,7 +20,7 @@ public class Repl {
     private ServerFacadeRegistration facadeRegistration;
     private ServerFacadeSession facadeSession;
     private ServerFacadeGame facadeGame;
-    private String boardStringWhite = EscapeSequences.DEFAULT_BOARD_WHITE + EscapeSequences.DEFAULT_BOARD_BLACK;
+    private String boardString = EscapeSequences.DEFAULT_BOARD_WHITE + "\n" + EscapeSequences.DEFAULT_BOARD_BLACK;
 
     public void run(int port) {
         initializeFacade(port);
@@ -104,9 +104,6 @@ public class Repl {
     }
 
     private void printHelpLoggedOut() {
-        //TODO: Remove the below line
-        System.out.println(boardStringWhite);
-
         System.out.println("register <USERNAME> <PASSWORD> <EMAIL> - to create an account");
         System.out.println("login <USERNAME> <PASSWORD> - to log in with an existing account and play");
         System.out.println("quit - exit the chess CLI");
@@ -194,7 +191,7 @@ public class Repl {
             } else {
                 System.out.println("Joined game " + gameID + " as observer");
             }
-            System.out.println(boardStringWhite);
+            System.out.println(boardString);
         } catch (HttpResponseException exception) {
             System.out.println("Spot taken. Try joining with a different color.");
         }

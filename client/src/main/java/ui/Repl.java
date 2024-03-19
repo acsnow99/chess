@@ -2,6 +2,7 @@ package ui;
 
 import exceptions.HttpResponseException;
 import model.User;
+import org.springframework.security.core.parameters.P;
 import serverFacade.ServerFacadeGame;
 import serverFacade.ServerFacadeRegistration;
 import serverFacade.ServerFacadeSession;
@@ -52,9 +53,7 @@ public class Repl {
                     if (lineItems.length < 3) {
                         System.out.println("Missing username or password");
                     } else {
-                        // TO-DO: actually login the user :)
-                        loggedIn = true;
-                        System.out.println("User " + lineItems[1] + " logged in. Type help to see available commands");
+                        loginUser(lineItems[1], lineItems[2]);
                     }
                 } else {
                     System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
@@ -139,7 +138,17 @@ public class Repl {
             loggedIn = true;
             System.out.println("User " + username + " logged in. Don't forget your password!");
         } catch (HttpResponseException exception) {
-            System.out.println("Could not register user because of a server error... try again later");
+            System.out.println("Username already taken \nTry with a different name");
+        }
+    }
+
+    private void loginUser(String username, String password) {
+        try {
+            facadeSession.login(new User(username, password, null));
+            loggedIn = true;
+            System.out.println("User " + username + " logged in. Type help to see available commands");
+        } catch (HttpResponseException exception) {
+            System.out.println("Username or password didn't match our records... \nTry the register keyword to make a new account");
         }
     }
 }

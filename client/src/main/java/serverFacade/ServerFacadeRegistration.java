@@ -1,6 +1,7 @@
 package serverFacade;
 
 import exceptions.HttpResponseException;
+import model.AuthData;
 import model.User;
 
 public class ServerFacadeRegistration extends ServerFacade {
@@ -16,9 +17,9 @@ public class ServerFacadeRegistration extends ServerFacade {
         }
     }
 
-    public void register(User user) throws HttpResponseException {
+    public AuthData register(User user) throws HttpResponseException {
         try {
-            makeHttpRequest("POST", "/user", user, null);
+            return makeHttpRequest("POST", "/user", user, AuthData.class);
         } catch (Exception exception) {
             throw new HttpResponseException(exception.getMessage());
         }

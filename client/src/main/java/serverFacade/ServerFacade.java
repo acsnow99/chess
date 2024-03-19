@@ -29,7 +29,7 @@ public class ServerFacade {
             writeToBody(requestObject, connection);
             connection.connect();
             if (connection.getResponseCode() >= 300) {
-                throw new Exception("Error: Could not register user");
+                throw new Exception("Error: Server responded with error code " + connection.getResponseCode());
             }
             return readBody(connection, responseClass);
         } catch (Exception exception) {

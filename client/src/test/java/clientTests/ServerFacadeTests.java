@@ -31,6 +31,7 @@ public class ServerFacadeTests {
             var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
             facade.clearDatabase();
         } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -53,6 +54,48 @@ public class ServerFacadeTests {
             var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
             var user = new User("user", "pass", "mail@mail.mail");
             Assertions.assertDoesNotThrow(() -> facade.register(user));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Register returns valid authData")
+    public void registerUserGetName() {
+        try {
+            var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facade.register(user);
+            Assertions.assertEquals(user.username(), authData.username());
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Login with no errors")
+    public void loginUser() {
+        try {
+            var facadeLogin = new ServerFacadeSession("http://127.0.0.1:" + port);
+            var facadeRegister = new ServerFacadeRegistration("http://127.0.0.1:" + port);
+            var user = new User("user", "pass", "mail@mail.mail");
+            facadeRegister.register(user);
+            Assertions.assertDoesNotThrow(() -> facadeLogin.login(user));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Login returns valid authData")
+    public void loginUserGetName() {
+        try {
+            var facadeLogin = new ServerFacadeSession("http://127.0.0.1:" + port);
+            var facadeRegister = new ServerFacadeRegistration("http://127.0.0.1:" + port);
+            var user = new User("user", "pass", "mail@mail.mail");
+            facadeRegister.register(user);
+            var authData = facadeLogin.login(user);
+            Assertions.assertEquals(user.username(), authData.username());
         } catch (Exception e) {
             Assertions.fail();
         }

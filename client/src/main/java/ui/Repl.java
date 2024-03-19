@@ -73,25 +73,18 @@ public class Repl {
                 } else if (Objects.equals(lineFirst, "list")) {
                     getGames();
                 } else if (Objects.equals(lineFirst, "join")) {
-                    var whiteTaken = false;
-                    var blackTaken = false;
-                    String inputColor;
                     if (lineItems.length < 2) {
                         System.out.println("Missing game ID number");
                     } else if (lineItems.length < 3) {
-                        // TO-DO: actually join the user as observer
-                        System.out.println("Joined game " + lineItems[1] + " as observer");
+                        joinGame(null, lineItems[1]);
                     } else {
-                        // TO-DO: actually join the user as player
-                        inputColor = lineItems[2];
-                        System.out.println("Joined game " + lineItems[1] + " as " + inputColor);
+                        joinGame(lineItems[2], lineItems[1]);
                     }
                 } else if (Objects.equals(lineFirst, "observe")) {
                     if (lineItems.length < 2) {
                         System.out.println("Missing game ID number");
                     } else {
-                        // TO-DO: actually join the user as observer
-                        System.out.println("Joined game " + lineItems[1] + " as observer");
+                        joinGame(null, lineItems[1]);
                     }
                 } else if (Objects.equals(lineFirst, "logout")) {
                     // TO-DO: actually logout user :)
@@ -164,16 +157,32 @@ public class Repl {
             gameDataStrings.add("Name:            ID:          White:          Black:           Watchers:");
             var games = facadeGame.getGames(authorization);
             for (GameData game : games) {
+                // TODO: replace nulls with "none"
                 gameDataStrings.add(game.gameName() + " " + game.gameID() + " " + game.whiteUsername() + " "
                         + game.blackUsername() + " " + game.watchers());
             }
             for (String gameDataString : gameDataStrings) {
-                if (gameDataString != null) {
-                    System.out.println(gameDataString);
-                }
+                System.out.println(gameDataString);
             }
         } catch (HttpResponseException exception) {
             System.out.println("Could not list games because of a server error. Try again later.");
         }
+    }
+
+    private void joinGame(String playerColor, String gameID) {
+        try {
+            var gameIDLong = Long.parseLong(gameID);
+            facadeGame.joinGame(authorization, playerColor, gameIDLong);
+            if (Objects.equals(playerColor, "WHITE")) {
+                System.out.println("Joined game " + gameID + " as white");
+            } else if (Objects.equals(playerColor, "BLACK")) {
+                System.out.println("Joined game " + gameID + " as black");
+            } else {
+                System.out.println("Joined game " + gameID + " as observer");
+            }
+        } catch (HttpResponseException exception) {
+            System.out.println("Spot taken. Try joining with a different color.");
+        }
+
     }
 }

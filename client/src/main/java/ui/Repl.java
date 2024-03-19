@@ -87,9 +87,7 @@ public class Repl {
                         joinGame(null, lineItems[1]);
                     }
                 } else if (Objects.equals(lineFirst, "logout")) {
-                    // TO-DO: actually logout user :)
-                    loggedIn = false;
-                    System.out.println("User logged out");
+                    logoutUser();
                 } else {
                     System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
@@ -139,6 +137,17 @@ public class Repl {
             System.out.println("User " + username + " logged in. Type help to see available commands");
         } catch (HttpResponseException exception) {
             System.out.println("Username or password didn't match our records... \nTry the register keyword to make a new account");
+        }
+    }
+
+    private void logoutUser() {
+        try {
+            facadeSession.logout(authorization);
+            authorization = null;
+            loggedIn = false;
+            System.out.println("User logged out");
+        } catch (HttpResponseException exception) {
+            System.out.println("Could not logout. Token is invalid.");
         }
     }
 

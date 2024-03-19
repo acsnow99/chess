@@ -185,4 +185,29 @@ public class ServerFacadeTests {
             Assertions.fail();
         }
     }
+
+    @Test
+    @DisplayName("Joining game actually joins the user to the game")
+    public void joinGameCheck() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            long gameID = facadeGame.createGame(authData, "testGame");
+            facadeGame.joinGame(authData, null, gameID);
+
+            var gameData = facadeGame.getGames(authData);
+            Assertions.assertEquals(gameData.getFirst().watchers().getFirst(), "user");
+
+            facadeGame.joinGame(authData, "WHITE", gameID);
+            gameData = facadeGame.getGames(authData);
+            Assertions.assertEquals(gameData.getFirst().whiteUsername(), "user");
+
+            facadeGame.joinGame(authData, "BLACK", gameID);
+            gameData = facadeGame.getGames(authData);
+            Assertions.assertEquals(gameData.getFirst().blackUsername(), "user");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+        }
+    }
 }

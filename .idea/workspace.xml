@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,6 +99,7 @@
     "JUnit.ServerFacadeTests.getGames.executor": "Run",
     "JUnit.ServerFacadeTests.getGamesAndCheck.executor": "Run",
     "JUnit.ServerFacadeTests.joinGame.executor": "Run",
+    "JUnit.ServerFacadeTests.joinGameCheck.executor": "Run",
     "JUnit.ServerFacadeTests.loginMultiple.executor": "Run",
     "JUnit.ServerFacadeTests.loginUser.executor": "Run",
     "JUnit.ServerFacadeTests.loginUserGetName.executor": "Run",
@@ -160,7 +160,7 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerFacadeTests.joinGame">
+  <component name="RunManager" selected="JUnit.ServerFacadeTests.joinGameCheck">
     <configuration name="ServerFacadeTests.createGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
@@ -225,7 +225,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTests.loginMultiple" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFacadeTests.joinGameCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
         <pattern>
@@ -235,7 +235,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="clientTests" />
       <option name="MAIN_CLASS_NAME" value="clientTests.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="loginMultiple" />
+      <option name="METHOD_NAME" value="joinGameCheck" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -246,15 +246,15 @@
       <item itemvalue="JUnit.ServerFacadeTests.getGames" />
       <item itemvalue="JUnit.ServerFacadeTests.getGamesAndCheck" />
       <item itemvalue="JUnit.ServerFacadeTests.joinGame" />
-      <item itemvalue="JUnit.ServerFacadeTests.loginMultiple" />
+      <item itemvalue="JUnit.ServerFacadeTests.joinGameCheck" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServerFacadeTests.joinGameCheck" />
         <item itemvalue="JUnit.ServerFacadeTests.joinGame" />
         <item itemvalue="JUnit.ServerFacadeTests.getGamesAndCheck" />
         <item itemvalue="JUnit.ServerFacadeTests.getGames" />
         <item itemvalue="JUnit.ServerFacadeTests.createGame" />
-        <item itemvalue="JUnit.ServerFacadeTests.loginMultiple" />
       </list>
     </recent_temporary>
   </component>
@@ -329,15 +329,6 @@
           <url>file://$PROJECT_DIR$/server/src/main/java/server/Server.java</url>
           <line>143</line>
           <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java</url>
-          <line>174</line>
-          <properties class="clientTests.ServerFacadeTests" method="joinGame">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

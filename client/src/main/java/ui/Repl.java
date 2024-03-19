@@ -20,21 +20,22 @@ public class Repl {
     private ServerFacadeRegistration facadeRegistration;
     private ServerFacadeSession facadeSession;
     private ServerFacadeGame facadeGame;
-    private String boardString = EscapeSequences.SET_BG_COLOR_DARK_GREY + "   A  B  C  D  E  F  G  H  \n" +
+    private String boardString = EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.SET_BG_COLOR_DARK_GREY
+            + "   A  B  C  D  E  F  G  H  \n" +
 
-            " 8  " + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
+            " 8" + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
             + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY +
             EscapeSequences.RESET_BG_COLOR + "\n" + EscapeSequences.SET_BG_COLOR_DARK_GREY +
 
-            " 7  " + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
+            " 7" + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN
+            + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN + EscapeSequences.BLACK_PAWN +
+            EscapeSequences.SET_TEXT_COLOR_GREEN + EscapeSequences.RESET_BG_COLOR + "\n" + EscapeSequences.SET_BG_COLOR_DARK_GREY +
+
+            " 6" + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
             + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY +
             EscapeSequences.RESET_BG_COLOR + "\n" + EscapeSequences.SET_BG_COLOR_DARK_GREY +
 
-            " 6  " + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
-            + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY +
-            EscapeSequences.RESET_BG_COLOR + "\n" + EscapeSequences.SET_BG_COLOR_DARK_GREY +
-
-            " 5  " + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
+            " 5" + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY
             + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY + EscapeSequences.EMPTY +
             EscapeSequences.RESET_BG_COLOR + "\n" + EscapeSequences.SET_BG_COLOR_DARK_GREY +
 
@@ -63,6 +64,7 @@ public class Repl {
         var line = "";
         String[] lineItems;
         String lineFirst;
+        System.out.println(EscapeSequences.RESET_TEXT_COLOR);
         while (true) {
             String loggedInStatusString = "LOGGED OUT";
             if (loggedIn) {

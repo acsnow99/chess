@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +50,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main (1).executor": "Run",
     "Application.Main.executor": "Run",
     "JUnit.All in client.executor": "Run",
     "JUnit.DataAccessDBTests.authDataIsAuthorized.executor": "Run",
@@ -160,35 +163,17 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerFacadeTests.joinGameCheck">
-    <configuration name="ServerFacadeTests.createGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="clientTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="clientTests" />
-      <option name="MAIN_CLASS_NAME" value="clientTests.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="createGame" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTests.getGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="clientTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="clientTests" />
-      <option name="MAIN_CLASS_NAME" value="clientTests.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="getGames" />
-      <option name="TEST_OBJECT" value="method" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="server" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -242,19 +227,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ServerFacadeTests.createGame" />
-      <item itemvalue="JUnit.ServerFacadeTests.getGames" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
       <item itemvalue="JUnit.ServerFacadeTests.getGamesAndCheck" />
       <item itemvalue="JUnit.ServerFacadeTests.joinGame" />
       <item itemvalue="JUnit.ServerFacadeTests.joinGameCheck" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ServerFacadeTests.joinGameCheck" />
         <item itemvalue="JUnit.ServerFacadeTests.joinGame" />
         <item itemvalue="JUnit.ServerFacadeTests.getGamesAndCheck" />
-        <item itemvalue="JUnit.ServerFacadeTests.getGames" />
-        <item itemvalue="JUnit.ServerFacadeTests.createGame" />
       </list>
     </recent_temporary>
   </component>
@@ -302,7 +287,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/client/src/main/java/ui/Repl.java</url>
-          <line>28</line>
+          <line>39</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -329,6 +314,21 @@
           <url>file://$PROJECT_DIR$/server/src/main/java/server/Server.java</url>
           <line>143</line>
           <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/Main.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/ui/Repl.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

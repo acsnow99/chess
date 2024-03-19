@@ -32,7 +32,7 @@ public class ServerFacade {
                 connection.setRequestProperty("Authorization", authorization.authToken());
             }
             connection.setDoOutput(true);
-            if (Objects.equals(method, "POST")) {
+            if (!Objects.equals(method, "GET")) {
                 writeToBody(requestObject, connection);
             }
             connection.connect();

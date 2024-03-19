@@ -4,6 +4,7 @@ import exceptions.HttpResponseException;
 import model.AuthData;
 import model.GameData;
 import requests.CreateGameRequest;
+import requests.JoinGameRequest;
 import responses.CreateGameResponse;
 import responses.GetGamesResponse;
 
@@ -28,6 +29,15 @@ public class ServerFacadeGame extends ServerFacade {
             var request = new CreateGameRequest(gameName);
             var response = makeHttpRequest("POST", "/game", request, CreateGameResponse.class, authorization);
             return response.gameID();
+        } catch (Exception exception) {
+            throw new HttpResponseException(exception.getMessage());
+        }
+    }
+
+    public void joinGame(AuthData authorization, String playerColor, long gameID) throws HttpResponseException {
+        try {
+            var request = new JoinGameRequest(playerColor, gameID);
+            makeHttpRequest("PUT", "/game", request, CreateGameResponse.class, authorization);
         } catch (Exception exception) {
             throw new HttpResponseException(exception.getMessage());
         }

@@ -169,4 +169,20 @@ public class ServerFacadeTests {
             Assertions.fail();
         }
     }
+
+    @Test
+    @DisplayName("Joining game runs with no errors")
+    public void joinGame() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            long gameID = facadeGame.createGame(authData, "testGame");
+            Assertions.assertDoesNotThrow(() -> facadeGame.joinGame(authData, "WHITE", gameID));
+            Assertions.assertDoesNotThrow(() -> facadeGame.joinGame(authData, "BLACK", gameID));
+            Assertions.assertDoesNotThrow(() -> facadeGame.joinGame(authData, null, gameID));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+        }
+    }
 }

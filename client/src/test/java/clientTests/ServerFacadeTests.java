@@ -12,6 +12,9 @@ public class ServerFacadeTests {
 
     private static Server server;
     private static int port;
+    private ServerFacadeSession facadeSession;
+    private ServerFacadeRegistration facadeRegister;
+    private ServerFacadeGame facadeGame;
 
     @BeforeAll
     public static void init() {
@@ -27,9 +30,11 @@ public class ServerFacadeTests {
 
     @BeforeEach
     public void clearDBBeforeTest() {
+        facadeSession = new ServerFacadeSession("http://127.0.0.1:" + port);
+        facadeRegister = new ServerFacadeRegistration("http://127.0.0.1:" + port);
+        facadeGame = new ServerFacadeGame("http://127.0.0.1:" + port);
         try {
-            var facade = new ServerFacadeRegistration("http://127.0.0.1:" + port);
-            facade.clearDatabase();
+            facadeRegister.clearDatabase();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -76,11 +81,9 @@ public class ServerFacadeTests {
     @DisplayName("Login with no errors")
     public void loginUser() {
         try {
-            var facadeLogin = new ServerFacadeSession("http://127.0.0.1:" + port);
-            var facadeRegister = new ServerFacadeRegistration("http://127.0.0.1:" + port);
             var user = new User("user", "pass", "mail@mail.mail");
             facadeRegister.register(user);
-            Assertions.assertDoesNotThrow(() -> facadeLogin.login(user));
+            Assertions.assertDoesNotThrow(() -> facadeSession.login(user));
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -90,13 +93,36 @@ public class ServerFacadeTests {
     @DisplayName("Login returns valid authData")
     public void loginUserGetName() {
         try {
-            var facadeLogin = new ServerFacadeSession("http://127.0.0.1:" + port);
-            var facadeRegister = new ServerFacadeRegistration("http://127.0.0.1:" + port);
             var user = new User("user", "pass", "mail@mail.mail");
             facadeRegister.register(user);
-            var authData = facadeLogin.login(user);
+            var authData = facadeSession.login(user);
             Assertions.assertEquals(user.username(), authData.username());
         } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Logout works with no errors")
+    public void logoutUser() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            Assertions.assertDoesNotThrow(() -> facadeSession.logout(authData));
+        } catch (Exception e) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    @DisplayName("Get games runs with no errors")
+    public void getGames() {
+        try {
+            var user = new User("user", "pass", "mail@mail.mail");
+            var authData = facadeRegister.register(user);
+            Assertions.assertDoesNotThrow(() -> facadeGame.getGames(authData));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             Assertions.fail();
         }
     }

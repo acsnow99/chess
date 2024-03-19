@@ -11,7 +11,7 @@ public class ServerFacadeRegistration extends ServerFacade {
 
     public void clearDatabase() throws HttpResponseException {
         try {
-            makeHttpRequest("DELETE", "/db", null, null);
+            makeHttpRequest("DELETE", "/db", null, null, null);
         } catch (Exception exception) {
             throw new HttpResponseException(exception.getMessage());
         }
@@ -19,7 +19,7 @@ public class ServerFacadeRegistration extends ServerFacade {
 
     public AuthData register(User user) throws HttpResponseException {
         try {
-            return makeHttpRequest("POST", "/user", user, AuthData.class);
+            return makeHttpRequest("POST", "/user", user, AuthData.class, null);
         } catch (Exception exception) {
             throw new HttpResponseException(exception.getMessage());
         }

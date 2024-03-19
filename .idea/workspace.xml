@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeSession.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeSession.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/java/clientTests/ServerFacadeTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/requests/CreateGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/requests/CreateGameRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/requests/JoinGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/requests/JoinGameRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/responses/CreateGameResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/responses/CreateGameResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/responses/ExceptionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/responses/ExceptionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/responses/GetGamesResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/responses/GetGamesResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,11 +104,14 @@
     "JUnit.RegistrationServiceTests.registerUserReturnsName.executor": "Run",
     "JUnit.ServerFacadeTests (1).executor": "Run",
     "JUnit.ServerFacadeTests.clearDB.executor": "Run",
-    "JUnit.ServerFacadeTests.executor": "Debug",
+    "JUnit.ServerFacadeTests.executor": "Run",
+    "JUnit.ServerFacadeTests.getGames.executor": "Run",
     "JUnit.ServerFacadeTests.loginUser.executor": "Run",
     "JUnit.ServerFacadeTests.loginUserGetName.executor": "Run",
+    "JUnit.ServerFacadeTests.logoutUser.executor": "Run",
     "JUnit.ServerFacadeTests.registerUser (1).executor": "Run",
     "JUnit.ServerFacadeTests.registerUser.executor": "Run",
+    "JUnit.ServerFacadeTests.registerUserGetName.executor": "Debug",
     "JUnit.SessionServiceTests.executor": "Run",
     "JUnit.SessionServiceTests.loginAgain.executor": "Run",
     "JUnit.SessionServiceTests.loginSimple.executor": "Debug",
@@ -155,8 +165,8 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerFacadeTests.registerUserGetName">
-    <configuration name="ServerFacadeTests (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ServerFacadeTests">
+    <configuration name="ServerFacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
         <pattern>
@@ -167,6 +177,22 @@
       <option name="PACKAGE_NAME" value="clientTests" />
       <option name="MAIN_CLASS_NAME" value="clientTests.ServerFacadeTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerFacadeTests.getGames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="clientTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="clientTests" />
+      <option name="MAIN_CLASS_NAME" value="clientTests.ServerFacadeTests" />
+      <option name="METHOD_NAME" value="getGames" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -187,7 +213,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTests.loginUserGetName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerFacadeTests.logoutUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <extension name="coverage">
         <pattern>
@@ -197,7 +223,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="clientTests" />
       <option name="MAIN_CLASS_NAME" value="clientTests.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="loginUserGetName" />
+      <option name="METHOD_NAME" value="logoutUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -219,36 +245,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerFacadeTests.registerUserGetName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="clientTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="clientTests" />
-      <option name="MAIN_CLASS_NAME" value="clientTests.ServerFacadeTests" />
-      <option name="METHOD_NAME" value="registerUserGetName" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="JUnit.ServerFacadeTests (1)" />
+      <item itemvalue="JUnit.ServerFacadeTests.getGames" />
       <item itemvalue="JUnit.ServerFacadeTests.loginUser" />
-      <item itemvalue="JUnit.ServerFacadeTests.loginUserGetName" />
-      <item itemvalue="JUnit.ServerFacadeTests.registerUserGetName" />
+      <item itemvalue="JUnit.ServerFacadeTests.logoutUser" />
       <item itemvalue="JUnit.ServerFacadeTests.registerUser (1)" />
+      <item itemvalue="JUnit.ServerFacadeTests" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ServerFacadeTests.registerUserGetName" />
-        <item itemvalue="JUnit.ServerFacadeTests.registerUser (1)" />
-        <item itemvalue="JUnit.ServerFacadeTests.loginUserGetName" />
+        <item itemvalue="JUnit.ServerFacadeTests" />
         <item itemvalue="JUnit.ServerFacadeTests.loginUser" />
-        <item itemvalue="JUnit.ServerFacadeTests (1)" />
+        <item itemvalue="JUnit.ServerFacadeTests.logoutUser" />
+        <item itemvalue="JUnit.ServerFacadeTests.getGames" />
+        <item itemvalue="JUnit.ServerFacadeTests.registerUser (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -300,9 +310,19 @@
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeRegistration.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="41" />
+          <url>file://$PROJECT_DIR$/server/src/main/java/server/Server.java</url>
+          <line>172</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacade.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -2,6 +2,7 @@ package serverFacade;
 
 import com.google.gson.Gson;
 import exceptions.HttpResponseException;
+import model.AuthData;
 import model.User;
 
 import java.io.IOException;
@@ -19,19 +20,23 @@ public class ServerFacade {
         serverURL = URL;
     }
 
-    public <T> T makeHttpRequest(String method, String path, Object requestObject, Class<T> responseClass) throws HttpResponseException {
+    public <T> T makeHttpRequest(String method, String path, Object requestObject, Class<T> responseClass, AuthData authorization) throws HttpResponseException {
         try {
             URL url = (new URI(serverURL + path)).toURL();
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod(method);
 
+            // some requests will not require authorization and will provide null for that argument
+            if (authorization != null) {
+                connection.setRequestProperty("Authorization", authorization.authToken());
+            }
             connection.setDoOutput(true);
             writeToBody(requestObject, connection);
-            connection.connect();
             if (connection.getResponseCode() >= 300) {
                 throw new Exception("Error: Server responded with error code " + connection.getResponseCode());
             }
-            return readBody(connection, responseClass);
+            var responseBody = readBody(connection, responseClass);
+            return responseBody;
         } catch (Exception exception) {
             throw new HttpResponseException(exception.getMessage());
         }

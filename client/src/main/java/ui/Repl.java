@@ -2,6 +2,7 @@ package ui;
 
 import exceptions.HttpResponseException;
 import model.AuthData;
+import model.GameData;
 import model.User;
 import org.springframework.security.core.parameters.P;
 import serverFacade.ServerFacadeGame;
@@ -70,12 +71,7 @@ public class Repl {
                         createGame(lineItems[1]);
                     }
                 } else if (Objects.equals(lineFirst, "list")) {
-                    ArrayList<String> gameDataStrings = new ArrayList<>();
-                    gameDataStrings.add("Name:            ID:          White:          Black:           Watchers:");
-                    // TO-DO: get the gamedata strings from the server
-                    for (String gameDataString : gameDataStrings) {
-                        System.out.println(gameDataString);
-                    }
+                    getGames();
                 } else if (Objects.equals(lineFirst, "join")) {
                     var whiteTaken = false;
                     var blackTaken = false;
@@ -152,13 +148,32 @@ public class Repl {
             System.out.println("Username or password didn't match our records... \nTry the register keyword to make a new account");
         }
     }
-    
+
     private void createGame(String gameName) {
         try {
             facadeGame.createGame(authorization, gameName);
             System.out.println("Created game named " + gameName);
         } catch (HttpResponseException exception) {
             System.out.println("Game could not be created. Try again later.");
+        }
+    }
+
+    private void getGames() {
+        try {
+            ArrayList<String> gameDataStrings = new ArrayList<>();
+            gameDataStrings.add("Name:            ID:          White:          Black:           Watchers:");
+            var games = facadeGame.getGames(authorization);
+            for (GameData game : games) {
+                gameDataStrings.add(game.gameName() + " " + game.gameID() + " " + game.whiteUsername() + " "
+                        + game.blackUsername() + " " + game.watchers());
+            }
+            for (String gameDataString : gameDataStrings) {
+                if (gameDataString != null) {
+                    System.out.println(gameDataString);
+                }
+            }
+        } catch (HttpResponseException exception) {
+            System.out.println("Could not list games because of a server error. Try again later.");
         }
     }
 }

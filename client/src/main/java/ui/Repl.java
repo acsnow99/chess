@@ -1,6 +1,7 @@
 package ui;
 
 import exceptions.HttpResponseException;
+import model.AuthData;
 import model.User;
 import org.springframework.security.core.parameters.P;
 import serverFacade.ServerFacadeGame;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 
 public class Repl {
     private String serverURL = "http://127.0.0.1:";
+    private AuthData authorization;
     private boolean loggedIn = false;
     private ServerFacadeRegistration facadeRegistration;
     private ServerFacadeSession facadeSession;
@@ -65,10 +67,7 @@ public class Repl {
                     if (lineItems.length < 2) {
                         System.out.println("Missing game name");
                     } else {
-                        // TO-DO: actually create game :)
-                        var gameName = lineItems[1];
-
-                        System.out.println("Created game named " + gameName);
+                        createGame(lineItems[1]);
                     }
                 } else if (Objects.equals(lineFirst, "list")) {
                     ArrayList<String> gameDataStrings = new ArrayList<>();
@@ -134,7 +133,8 @@ public class Repl {
 
     private void registerUser(String username, String password, String email) {
         try {
-            facadeRegistration.register(new User(username, password, email));
+            var authData = facadeRegistration.register(new User(username, password, email));
+            authorization = authData;
             loggedIn = true;
             System.out.println("User " + username + " logged in. Don't forget your password!");
         } catch (HttpResponseException exception) {
@@ -144,11 +144,21 @@ public class Repl {
 
     private void loginUser(String username, String password) {
         try {
-            facadeSession.login(new User(username, password, null));
+            var authData = facadeSession.login(new User(username, password, null));
+            authorization = authData;
             loggedIn = true;
             System.out.println("User " + username + " logged in. Type help to see available commands");
         } catch (HttpResponseException exception) {
             System.out.println("Username or password didn't match our records... \nTry the register keyword to make a new account");
+        }
+    }
+    
+    private void createGame(String gameName) {
+        try {
+            facadeGame.createGame(authorization, gameName);
+            System.out.println("Created game named " + gameName);
+        } catch (HttpResponseException exception) {
+            System.out.println("Game could not be created. Try again later.");
         }
     }
 }

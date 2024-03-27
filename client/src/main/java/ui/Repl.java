@@ -8,15 +8,17 @@ import org.springframework.security.core.parameters.P;
 import serverFacade.ServerFacadeGame;
 import serverFacade.ServerFacadeRegistration;
 import serverFacade.ServerFacadeSession;
+import serverFacade.ServerFacadeWebsocket;
 
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Repl {
-    private String serverURL = "http://127.0.0.1:";
+    private String serverURL = "://127.0.0.1:";
     private AuthData authorization;
     private boolean loggedIn = false;
+    private ServerFacadeWebsocket facadeWebsocket;
     private ServerFacadeRegistration facadeRegistration;
     private ServerFacadeSession facadeSession;
     private ServerFacadeGame facadeGame;
@@ -58,6 +60,8 @@ public class Repl {
                     if (lineItems.length < 3) {
                         System.out.println("Missing username or password");
                     } else {
+                        //TODO: remove below line
+                        initializeWebsocket(port);
                         loginUser(lineItems[1], lineItems[2]);
                     }
                 } else {
@@ -98,9 +102,19 @@ public class Repl {
     }
 
     private void initializeFacade(int port) {
-        facadeRegistration = new ServerFacadeRegistration(serverURL + port);
-        facadeSession = new ServerFacadeSession(serverURL + port);
-        facadeGame = new ServerFacadeGame(serverURL + port);
+        var http = "http";
+        facadeRegistration = new ServerFacadeRegistration(http + serverURL + port);
+        facadeSession = new ServerFacadeSession(http + serverURL + port);
+        facadeGame = new ServerFacadeGame(http + serverURL + port);
+    }
+
+    private void initializeWebsocket(int port) {
+        try {
+            var websocket = "ws";
+            facadeWebsocket = new ServerFacadeWebsocket(websocket + serverURL + port);
+        } catch (Exception exception) {
+            System.out.println("Error: Could not connect to server because " + exception.getMessage());
+        }
     }
 
     private void printHelpLoggedOut() {

@@ -68,8 +68,8 @@ public class EscapeSequences {
             " 8 " + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_ROOK
             + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_KNIGHT
             + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_BISHOP
-            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_KING
-            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_QUEEN
+            + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_QUEEN
+            + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_KING
             + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_BISHOP
             + EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.BLACK_KNIGHT
             + EscapeSequences.SET_BG_COLOR_LIGHT_GREY + EscapeSequences.BLACK_ROOK +

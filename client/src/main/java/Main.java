@@ -11,5 +11,6 @@ public class Main {
         int port = 8080;
         port = server.run(port);
         new Repl().run(port);
+        server.stop();
     }
 }

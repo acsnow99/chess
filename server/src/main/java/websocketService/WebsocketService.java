@@ -1,5 +1,7 @@
 package websocketService;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.eclipse.jetty.websocket.api.*;
 import org.eclipse.jetty.websocket.api.annotations.*;
 
@@ -7,7 +9,9 @@ import org.eclipse.jetty.websocket.api.annotations.*;
 public class WebsocketService {
     @OnWebSocketMessage
     public void onMessage(Session session, String message) throws Exception {
-        System.out.printf("Received: %s", message);
-        session.getRemote().sendString("WebSocket response: " + message);
+        JsonObject jsonObject = JsonParser.parseString(message).getAsJsonObject();
+        if (jsonObject.has("commandType")) {
+            var commandType = jsonObject.get("commandType");
+        }
     }
 }

@@ -60,8 +60,6 @@ public class Repl {
                     if (lineItems.length < 3) {
                         System.out.println("Missing username or password");
                     } else {
-                        //TODO: remove below line
-                        initializeWebsocket(port);
                         loginUser(lineItems[1], lineItems[2]);
                     }
                 } else {
@@ -69,12 +67,6 @@ public class Repl {
                 }
             } else {
                 if (Objects.equals(lineFirst, "help")) {
-                    //TODO: remove below line
-                    try {
-                        facadeWebsocket.send("Wow what a message");
-                    } catch (Exception exception) {
-                        System.out.println("Error: could not send message to server because " + exception.getMessage());
-                    }
                     printHelpLoggedIn();
                 } else if (Objects.equals(lineFirst, "create")) {
                     if (lineItems.length < 2) {
@@ -90,6 +82,7 @@ public class Repl {
                     } else if (lineItems.length < 3) {
                         joinGame(null, lineItems[1]);
                     } else {
+                        initializeWebsocket(port);
                         joinGame(lineItems[2], lineItems[1]);
                     }
                 } else if (Objects.equals(lineFirst, "observe")) {
@@ -120,6 +113,14 @@ public class Repl {
             facadeWebsocket = new ServerFacadeWebsocket(websocket + serverURL + port);
         } catch (Exception exception) {
             System.out.println("Error: Could not connect to server because " + exception.getMessage());
+        }
+    }
+
+    private void sendWebsocketMessage(String message) {
+        try {
+            facadeWebsocket.send(message);
+        } catch (Exception exception) {
+            System.out.println("Error: could not send message to server because " + exception.getMessage());
         }
     }
 
@@ -204,6 +205,13 @@ public class Repl {
         try {
             var gameIDLong = Long.parseLong(gameID);
             facadeGame.joinGame(authorization, playerColor, gameIDLong);
+
+            try {
+                facadeWebsocket.joinPlayer(authorization, gameIDLong, playerColor);
+            } catch (Exception exception) {
+                System.out.println("Error: could not access server because " + exception.getMessage());
+            }
+
             if (Objects.equals(playerColor, "WHITE")) {
                 System.out.println("Joined game " + gameID + " as white");
             } else if (Objects.equals(playerColor, "BLACK")) {

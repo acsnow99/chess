@@ -1,5 +1,8 @@
 package serverFacade;
 
+import com.google.gson.Gson;
+import model.AuthData;
+import webSocketMessages.userCommands.JoinPlayerGameCommand;
 import websocketConnectionClient.WebsocketConnectionClient;
 
 public class ServerFacadeWebsocket {
@@ -12,6 +15,12 @@ public class ServerFacadeWebsocket {
     }
 
     public void send(String message) throws Exception {
+        websocketConnection.send(message);
+    }
+
+    public void joinPlayer(AuthData authData, long gameID, String playerColor) throws Exception {
+        var command = new JoinPlayerGameCommand(authData.authToken(), gameID, playerColor);
+        var message = new Gson().toJson(command);
         websocketConnection.send(message);
     }
 }

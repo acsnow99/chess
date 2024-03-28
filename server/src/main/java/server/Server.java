@@ -15,9 +15,11 @@ import requests.JoinGameRequest;
 import services.SessionService;
 import spark.*;
 import model.User;
+import websocketService.WebsocketService;
 
 public class Server {
 
+    private WebsocketService websocketService;
     private DataAccess dataAccess = new DataAccessDB();
     private RegistrationService registrationService = new RegistrationService();
     private SessionService sessionService = new SessionService();
@@ -34,6 +36,8 @@ public class Server {
             throw new RuntimeException(exception.getMessage());
         }
 
+        //this.websocketService = new WebsocketService("/joinws");
+        Spark.webSocket("/joinws", WebsocketService.class);
         Spark.delete("/db", this::clearDatabase);
         Spark.post("/user", this::registerUser);
         Spark.post("/session", this::login);

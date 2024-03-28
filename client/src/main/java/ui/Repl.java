@@ -69,6 +69,12 @@ public class Repl {
                 }
             } else {
                 if (Objects.equals(lineFirst, "help")) {
+                    //TODO: remove below line
+                    try {
+                        facadeWebsocket.send("Wow what a message");
+                    } catch (Exception exception) {
+                        System.out.println("Error: could not send message to server because " + exception.getMessage());
+                    }
                     printHelpLoggedIn();
                 } else if (Objects.equals(lineFirst, "create")) {
                     if (lineItems.length < 2) {

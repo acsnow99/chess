@@ -1,10 +1,12 @@
 package model;
 
+import chess.ChessBoard;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public record GameData(long gameID, String whiteUsername, String blackUsername, String gameName,
-                       ArrayList<String> watchers) {
+                       ArrayList<String> watchers, ChessBoard board) {
 
     @Override
     public boolean equals(Object o) {

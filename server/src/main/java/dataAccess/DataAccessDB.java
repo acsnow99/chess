@@ -1,5 +1,6 @@
 package dataAccess;
 
+import chess.ChessBoard;
 import com.google.gson.Gson;
 import exceptions.AlreadyTakenException;
 import exceptions.DataAccessException;
@@ -150,7 +151,9 @@ public class DataAccessDB implements DataAccess {
 
     @Override
     public void createGame(String gameName, long gameID) throws DataAccessException {
-        var newGame = new GameData(gameID, null, null, gameName, null);
+        var boardDefault = new ChessBoard();
+        boardDefault.resetBoard();
+        var newGame = new GameData(gameID, null, null, gameName, null, boardDefault);
         var newGameJson = new Gson().toJson(newGame);
         try (var connection = DatabaseManager.getConnection()) {
             try (var preparedStatement = connection.prepareStatement("INSERT INTO game (gameid, gamedatajson) VALUES ( ?, ? );")) {
@@ -172,13 +175,13 @@ public class DataAccessDB implements DataAccess {
                 throw new AlreadyTakenException("Error: Already taken");
             }
             gameToInsert = new GameData(joinGameRequest.gameID(), authData.username(),
-                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), gameToUpdate.watchers());
+                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
         } else if (Objects.equals(joinGameRequest.playerColor(), "BLACK")) {
             if (!(gameToUpdate.blackUsername() == null || gameToUpdate.blackUsername().isEmpty())) {
                 throw new AlreadyTakenException("Error: Already taken");
             }
             gameToInsert = new GameData(joinGameRequest.gameID(), gameToUpdate.whiteUsername(),
-                    authData.username(), gameToUpdate.gameName(), gameToUpdate.watchers());
+                    authData.username(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
         } else {
             var watchersUpdated = gameToUpdate.watchers();
             if (watchersUpdated == null) {
@@ -186,7 +189,7 @@ public class DataAccessDB implements DataAccess {
             }
             watchersUpdated.add(authData.username());
             gameToInsert = new GameData(joinGameRequest.gameID(), gameToUpdate.whiteUsername(),
-                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), watchersUpdated);
+                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), watchersUpdated, gameToUpdate.board());
         }
         try (var connection = DatabaseManager.getConnection()) {
             try (var preparedStatement = connection.prepareStatement("UPDATE game SET gamedatajson = ? WHERE gameid = ?")) {

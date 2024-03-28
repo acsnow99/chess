@@ -11,7 +11,15 @@ public class WebsocketService {
     public void onMessage(Session session, String message) throws Exception {
         JsonObject jsonObject = JsonParser.parseString(message).getAsJsonObject();
         if (jsonObject.has("commandType")) {
-            var commandType = jsonObject.get("commandType");
+            var commandType = jsonObject.get("commandType").toString();
+            switch (commandType) {
+                case "JOIN_PLAYER":
+
+                    session.getRemote().sendString("Joined");
+                    break;
+            }
+        } else {
+            session.getRemote().sendString("Error: Command type not included");
         }
     }
 }

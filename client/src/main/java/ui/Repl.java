@@ -209,7 +209,7 @@ public class Repl {
             try {
                 facadeWebsocket.joinPlayer(authorization, gameIDLong, playerColor);
             } catch (Exception exception) {
-                System.out.println("Error: could not access server because " + exception.getMessage());
+                System.out.println("Error: could not connect to server because " + exception.getMessage());
             }
 
             if (Objects.equals(playerColor, "WHITE")) {

@@ -13,6 +13,7 @@ public class WebsocketConnectionClient extends Endpoint {
 
         this.session.addMessageHandler(new MessageHandler.Whole<String>() {
             public void onMessage(String message) {
+                //TODO: Below line will instead be a call to the ServerMessageObserver
                 System.out.println(message);
             }
         });

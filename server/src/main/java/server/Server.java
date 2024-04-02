@@ -1,10 +1,16 @@
 package server;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import dataAccess.DataAccessDB;
 import exceptions.*;
 import model.AuthData;
 import com.google.gson.Gson;
 import dataAccess.DataAccess;
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.WebSocketListener;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import responses.CreateGameResponse;
 import responses.ExceptionResponse;
 import responses.GetGamesResponse;
@@ -15,11 +21,12 @@ import requests.JoinGameRequest;
 import services.SessionService;
 import spark.*;
 import model.User;
-import websocketService.WebsocketService;
+import webSocketMessages.serverMessages.ServerError;
+import webSocketMessages.serverMessages.ServerLoadGame;
 
+@WebSocket
 public class Server {
 
-    private WebsocketService websocketService;
     private DataAccess dataAccess = new DataAccessDB();
     private RegistrationService registrationService = new RegistrationService();
     private SessionService sessionService = new SessionService();
@@ -36,8 +43,7 @@ public class Server {
             throw new RuntimeException(exception.getMessage());
         }
 
-        //this.websocketService = new WebsocketService("/joinws");
-        Spark.webSocket("/joinws", WebsocketService.class);
+        Spark.webSocket("/joinws", this);
         Spark.delete("/db", this::clearDatabase);
         Spark.post("/user", this::registerUser);
         Spark.post("/session", this::login);
@@ -48,6 +54,26 @@ public class Server {
 
         Spark.awaitInitialization();
         return Spark.port();
+    }
+
+
+    @OnWebSocketMessage
+    public void onMessage(Session session, String message) throws Exception {
+        JsonObject jsonObject = JsonParser.parseString(message).getAsJsonObject();
+        if (jsonObject.has("commandType")) {
+            var commandType = jsonObject.get("commandType").toString();
+            switch (commandType) {
+                case "\"JOIN_PLAYER\"":
+                    var game = gameService.getGameByID(dataAccess, jsonObject.get("gameID").getAsInt());
+                    session.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
+                    break;
+                default:
+                    session.getRemote().sendString(new Gson().toJson(new ServerError("Error: Command type does not exist")));
+                    break;
+            }
+        } else {
+            session.getRemote().sendString(new Gson().toJson(new ServerError("Error: Command type not included")));
+        }
     }
 
     private String joinGame(Request request, Response response) {

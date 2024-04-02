@@ -20,6 +20,17 @@ public class GameService {
         }
     }
 
+    public GameData getGameByID(DataAccess dataAccess, int gameID) throws DataAccessException {
+        ArrayList<GameData> gamesList = dataAccess.getGames();
+        GameData gameResult = null;
+        for (var game : gamesList) {
+            if (game.gameID() == gameID) {
+                gameResult = game;
+            }
+        }
+        return gameResult;
+    }
+
     public long createGame(DataAccess dataAccess, CreateGameRequest createGameRequest, AuthData authData) throws DataAccessException, UnauthorizedException, MissingDataException {
         if (createGameRequest == null || createGameRequest.gameName() == null || createGameRequest.gameName().equals("")) {
             throw new MissingDataException("Error: bad request");

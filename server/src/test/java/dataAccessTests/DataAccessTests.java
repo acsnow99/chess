@@ -16,7 +16,7 @@ public class DataAccessTests {
     private DataAccessDB dataAccessDB = new DataAccessDB();
     private User testUser = new User("Test", "pass", "mail@mail.org");
     private AuthData authDataInit;
-    private GameData gameInit = new GameData(1, null, null, "GameInit", null);
+    private GameData gameInit = new GameData(1, null, null, "GameInit", null, null);
 
     @BeforeEach
     public void init() {

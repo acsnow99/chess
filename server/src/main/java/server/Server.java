@@ -1,5 +1,6 @@
 package server;
 
+import chess.ChessMove;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dataAccess.DataAccessDB;
@@ -63,9 +64,14 @@ public class Server {
         if (jsonObject.has("commandType")) {
             var commandType = jsonObject.get("commandType").toString();
             switch (commandType) {
-                case "\"JOIN_PLAYER\"":
-                    var game = gameService.getGameByID(dataAccess, jsonObject.get("gameID").getAsInt());
-                    session.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
+                case "\"JOIN_PLAYER\"", "\"JOIN_OBSERVER\"":
+                    userLoadGame(session, jsonObject.get("gameID").getAsInt());
+                    break;
+                case "\"MAKE_MOVE\"":
+                    gameService.makeMoveGame(dataAccess, new AuthData("", jsonObject.get("authToken").getAsString()),
+                            jsonObject.get("gameID").getAsLong(),
+                            new Gson().fromJson(jsonObject.get("move"), ChessMove.class));
+                    userLoadGame(session, jsonObject.get("gameID").getAsInt());
                     break;
                 default:
                     session.getRemote().sendString(new Gson().toJson(new ServerError("Error: Command type does not exist")));
@@ -74,6 +80,11 @@ public class Server {
         } else {
             session.getRemote().sendString(new Gson().toJson(new ServerError("Error: Command type not included")));
         }
+    }
+
+    private void userLoadGame(Session session, long gameID) throws Exception {
+        var game = gameService.getGameByID(dataAccess, gameID);
+        session.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
     }
 
     private String joinGame(Request request, Response response) {

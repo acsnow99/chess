@@ -1,6 +1,7 @@
 package dataAccess;
 
 import chess.ChessBoard;
+import chess.ChessMove;
 import exceptions.AlreadyTakenException;
 import exceptions.NotFoundException;
 import model.AuthData;
@@ -126,6 +127,10 @@ public class DataAccessMemory implements DataAccess {
         if (!foundGame) {
             throw new NotFoundException("Error: Could not find game");
         }
+    }
+
+    public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException {
+        
     }
 
 

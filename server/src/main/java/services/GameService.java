@@ -1,5 +1,6 @@
 package services;
 
+import chess.ChessMove;
 import exceptions.*;
 import model.AuthData;
 import dataAccess.DataAccess;
@@ -20,7 +21,7 @@ public class GameService {
         }
     }
 
-    public GameData getGameByID(DataAccess dataAccess, int gameID) throws DataAccessException {
+    public GameData getGameByID(DataAccess dataAccess, long gameID) throws DataAccessException {
         ArrayList<GameData> gamesList = dataAccess.getGames();
         GameData gameResult = null;
         for (var game : gamesList) {
@@ -48,6 +49,14 @@ public class GameService {
         if (dataAccess.authDataIsAuthorized(authData)) {
             var authDataComplete = dataAccess.getAuthDataFromToken(authData);
             dataAccess.joinGame(authDataComplete, joinGameRequest);
+        } else {
+            throw new UnauthorizedException("Error: Unauthorized");
+        }
+    }
+
+    public void makeMoveGame(DataAccess dataAccess, AuthData authData, long gameID, ChessMove move) throws DataAccessException, UnauthorizedException, NotFoundException {
+        if (dataAccess.authDataIsAuthorized(authData)) {
+            dataAccess.makeMoveGame(authData, gameID, move);
         } else {
             throw new UnauthorizedException("Error: Unauthorized");
         }

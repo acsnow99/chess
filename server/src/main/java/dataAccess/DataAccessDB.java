@@ -1,10 +1,12 @@
 package dataAccess;
 
 import chess.ChessBoard;
+import chess.ChessMove;
 import com.google.gson.Gson;
 import exceptions.AlreadyTakenException;
 import exceptions.DataAccessException;
 import exceptions.NotFoundException;
+import exceptions.UnauthorizedException;
 import generators.AuthTokenGenerator;
 import model.AuthData;
 import model.GameData;
@@ -199,6 +201,17 @@ public class DataAccessDB implements DataAccess {
             }
         } catch (SQLException exception) {
             throw new DataAccessException("Error: Could not join game");
+        }
+    }
+
+    public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException {
+        var game = getGameByID(gameID);
+        if (game == null) {
+            throw new NotFoundException("Error: Game not found");
+        } else {
+            var board = game.board();
+            //TODO: Run the move through a chess game object first
+            board.movePiece(move);
         }
     }
 

@@ -42,7 +42,7 @@ public class GameServiceTests {
     @DisplayName("Default game data returns correctly")
     public void getGameData() {
         ArrayList<GameData> result = null;
-        var game = new GameData(12345, "Al", "Darin", "The Game", new ArrayList<>());
+        var game = new GameData(12345, "Al", "Darin", "The Game", new ArrayList<>(), null);
         var expected = new ArrayList<GameData>();
         try {
             AuthData authData = sessionService.loginUser(dataAccess, regularUser);

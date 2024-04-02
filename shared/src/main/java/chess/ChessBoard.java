@@ -9,11 +9,20 @@ import java.util.Arrays;
  * signature of the existing methods.
  */
 public class ChessBoard {
-
-    private ChessPiece[][] board = new ChessPiece[9][9];
+    private final int boardNumRows = 8;
+    private final int boardNumCols = 8;
+    private ChessPiece[][] board = new ChessPiece[boardNumRows + 1][boardNumCols + 1];
 
     public ChessBoard() {
 
+    }
+
+    public int getBoardNumRows() {
+        return this.boardNumRows;
+    }
+
+    public int getBoardNumCols() {
+        return this.boardNumCols;
     }
 
     /**
@@ -41,6 +50,20 @@ public class ChessBoard {
         var col = position.getColumn();
 
         return this.board[row][col];
+    }
+
+    private void removePiece(ChessPosition position) {
+        this.board[position.getRow()][position.getColumn()] = null;
+    }
+
+    public void movePiece(ChessMove move) {
+        var pieceToMove = getPiece(move.getStartPosition());
+        if (move.getPromotionPiece() != null) {
+            this.addPiece(move.getEndPosition(), new ChessPiece(pieceToMove.getTeamColor(), move.getPromotionPiece()));
+        } else {
+            this.addPiece(move.getEndPosition(), pieceToMove);
+        }
+        this.removePiece(move.getStartPosition());
     }
 
     /**

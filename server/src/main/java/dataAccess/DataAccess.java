@@ -1,7 +1,9 @@
 package dataAccess;
 
+import chess.ChessMove;
 import exceptions.AlreadyTakenException;
 import exceptions.NotFoundException;
+import exceptions.UnauthorizedException;
 import model.AuthData;
 import exceptions.DataAccessException;
 import requests.JoinGameRequest;
@@ -36,6 +38,8 @@ public interface DataAccess {
     void createGame(String gameName, long gameID) throws DataAccessException;
 
     void joinGame(AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException, NotFoundException, AlreadyTakenException;
+
+    void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException;
 
 
     Object clear() throws DataAccessException;

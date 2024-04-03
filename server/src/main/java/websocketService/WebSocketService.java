@@ -23,7 +23,7 @@ public class WebSocketService {
     private GameService gameService;
     private RegistrationService registrationService;
     private DataAccess dataAccess;
-    private ConcurrentHashMap<String, Session> sessions = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, WebSocketConnection> sessions = new ConcurrentHashMap<>();
 
     public WebSocketService(DataAccess dataAccess, GameService gameService, RegistrationService registrationService) {
         this.dataAccess = dataAccess;
@@ -39,10 +39,12 @@ public class WebSocketService {
             var commandType = jsonObject.get("commandType").toString();
             switch (commandType) {
                 case "\"JOIN_PLAYER\"", "\"JOIN_OBSERVER\"":
-                    addConnection(authToken, session);
-                    userLoadGame(session, jsonObject.get("gameID").getAsLong());
+                    long gameID = jsonObject.get("gameID").getAsLong();
                     var username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
                     var playerColor = jsonObject.get("playerColor").getAsString();
+                    userLoadGame(session, gameID);
+                    var wsSession = new WebSocketConnection(gameID, session);
+                    addConnection(authToken, wsSession);
                     if (Objects.equals(playerColor, "") || playerColor == null) {
                         playerColor = "an observer";
                     }
@@ -69,14 +71,14 @@ public class WebSocketService {
         System.out.println("Sent message");
     }
 
-    private void addConnection(String authToken, Session session) {
+    private void addConnection(String authToken, WebSocketConnection session) {
         sessions.put(authToken, session);
     }
 
     private void broadcast(String message, String excludedAuthToken) throws Exception {
         for (var authToken : sessions.keySet()) {
             if (!Objects.equals(authToken, excludedAuthToken)) {
-                sessions.get(authToken).getRemote().sendString(new Gson().toJson(new ServerNotification(message)));
+                sessions.get(authToken).session().getRemote().sendString(new Gson().toJson(new ServerNotification(message)));
             }
         }
     }

@@ -7,7 +7,7 @@ public class WebsocketConnectionClient extends Endpoint {
     private Session session;
 
     public WebsocketConnectionClient(String URL) throws Exception {
-        URI uri = new URI(URL + "/joinws");
+        URI uri = new URI(URL + "/connect");
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
         this.session = container.connectToServer(this, uri);
 

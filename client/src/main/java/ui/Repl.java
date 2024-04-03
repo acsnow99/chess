@@ -110,7 +110,7 @@ public class Repl {
     private void initializeWebsocket(int port) {
         try {
             var websocket = "ws";
-            facadeWebsocket = new ServerFacadeWebsocket(websocket + serverURL + port);
+            facadeWebsocket = new ServerFacadeWebsocket(websocket + serverURL + port + "/connect");
         } catch (Exception exception) {
             System.out.println("Error: Could not connect to server because " + exception.getMessage());
         }

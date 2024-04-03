@@ -25,4 +25,9 @@ public class RegistrationService {
         return dataAccess.registerUser(user);
     }
 
+    public String getUsernameFromToken(DataAccess dataAccess, AuthData authData) throws DataAccessException {
+        var authDataNew = dataAccess.getAuthDataFromToken(authData);
+        return authDataNew.username();
+    }
+
 }

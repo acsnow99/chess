@@ -33,7 +33,7 @@ public class Server {
     private RegistrationService registrationService = new RegistrationService();
     private SessionService sessionService = new SessionService();
     private GameService gameService = new GameService();
-    private WebSocketService webSocketService = new WebSocketService(this.dataAccess, this.gameService);
+    private WebSocketService webSocketService = new WebSocketService(this.dataAccess, this.gameService, this.registrationService);
 
     public int run(int desiredPort) {
         Spark.port(desiredPort);

@@ -211,8 +211,16 @@ public class Repl {
             var games = facadeGame.getGames(authorization);
             for (GameData game : games) {
                 // TODO: replace nulls with "none"
-                gameDataStrings.add(game.gameName() + " " + game.gameID() + " " + game.whiteUsername() + " "
-                        + game.blackUsername() + " " + game.watchers());
+                var white = game.whiteUsername();
+                if (white == null || white.isEmpty()) {
+                    white = "none";
+                }
+                var black = game.whiteUsername();
+                if (black == null || black.isEmpty()) {
+                    black = "none";
+                }
+                gameDataStrings.add(game.gameName() + " " + game.gameID() + " " + white + " "
+                        + black + " " + game.watchers());
             }
             for (String gameDataString : gameDataStrings) {
                 System.out.println(gameDataString);
@@ -253,9 +261,9 @@ public class Repl {
 
     private void leaveGame() {
         loggedInStatus = userState.LOGGED_IN;
-        this.gameID = 0;
         try {
             facadeWebsocket.leavePlayer(authorization, gameID);
+            this.gameID = 0;
             System.out.println("Left the game");
         } catch (Exception exception) {
             System.out.println("Error: Could not communicate with the server");

@@ -43,6 +43,10 @@ public class WebSocketService {
                     var username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
                     var playerColor = jsonObject.get("playerColor").getAsString();
                     var game = gameService.getGameByID(dataAccess, gameID);
+                    if (game == null) {
+                        sendError(session, "Error: Game does not exist");
+                        break;
+                    }
                     if (Objects.equals(playerColor, "WHITE")) {
                         if (!(Objects.equals(game.whiteUsername(), username))) {
                             sendError(session, "Error: Spot taken");

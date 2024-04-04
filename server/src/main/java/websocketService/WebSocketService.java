@@ -7,6 +7,7 @@ import com.google.gson.JsonParser;
 import dataAccess.DataAccess;
 import exceptions.DataAccessException;
 import model.AuthData;
+import model.GameData;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
@@ -38,9 +39,11 @@ public class WebSocketService {
         if (jsonObject.has("commandType")) {
             var authToken = jsonObject.get("authToken").getAsString();
             var commandType = jsonObject.get("commandType").toString();
+            String username;
+            long gameID;
             switch (commandType) {
                 case "\"JOIN_PLAYER\"", "\"JOIN_OBSERVER\"":
-                    String username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
+                    username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
                     if (Objects.equals(username, "")) {
                         sendError(session, "Error: Bad token");
                         break;
@@ -53,7 +56,7 @@ public class WebSocketService {
                         playerColor = "an observer";
                     }
 
-                    long gameID = jsonObject.get("gameID").getAsLong();
+                    gameID = jsonObject.get("gameID").getAsLong();
                     var game = gameService.getGameByID(dataAccess, gameID);
                     if (game == null) {
                         sendError(session, "Error: Game does not exist");
@@ -77,10 +80,20 @@ public class WebSocketService {
                     broadcast(username + " joined the game as " + playerColor.toLowerCase(), authToken);
                     break;
                 case "\"MAKE_MOVE\"":
+                    System.out.println("Trying to make move");
+                    username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
+                    if (Objects.equals(username, "")) {
+                        sendError(session, "Error: Bad token");
+                        break;
+                    }
+                    gameID = jsonObject.get("gameID").getAsLong();
                     gameService.makeMoveGame(dataAccess, new AuthData("", authToken),
-                            jsonObject.get("gameID").getAsLong(),
+                            gameID,
                             new Gson().fromJson(jsonObject.get("move"), ChessMove.class));
-                    userLoadGame(session, jsonObject.get("gameID").getAsLong());
+                    System.out.println("Trying to broadcast loadgame message");
+                    // send game to everyone, including the one doing the move
+                    broadcastLoadGame(gameID, "");
+                    broadcast("Hey a move was made", authToken);
                     break;
                 default:
                     sendError(session, "Error: Command type does not exist");
@@ -93,22 +106,49 @@ public class WebSocketService {
 
     private void userLoadGame(Session session, long gameID) throws Exception {
         var game = gameService.getGameByID(dataAccess, gameID);
-        session.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
-        System.out.println("Sent message");
+        if (session.isOpen()) {
+            session.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
+            System.out.println("Loaded game individually");
+        }
+    }
+
+    private void broadcastLoadGame(long gameID, String excludedAuthToken) throws DataAccessException {
+        var game = gameService.getGameByID(dataAccess, gameID);
+        for (var authToken : sessions.keySet()) {
+            if (!Objects.equals(authToken, excludedAuthToken)) {
+                try (var s = sessions.get(authToken).session()) {
+                    if (s.isOpen()) {
+                        s.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
+                    }
+                } catch (Exception exception) {
+                    System.out.println("Error: Json conversion failed");
+                }
+            }
+        }
     }
 
     private void sendError(Session session, String message) throws Exception {
-        session.getRemote().sendString(new Gson().toJson(new ServerError(message)));
+        System.out.println("Trying to send error message");
+        if (session.isOpen()) {
+            session.getRemote().sendString(new Gson().toJson(new ServerError(message)));
+        }
     }
 
     private void addConnection(String authToken, WebSocketConnection session) {
         sessions.put(authToken, session);
     }
 
-    private void broadcast(String message, String excludedAuthToken) throws Exception {
+    private void broadcast(String message, String excludedAuthToken) {
+        System.out.println("Trying to broadcast message");
         for (var authToken : sessions.keySet()) {
             if (!Objects.equals(authToken, excludedAuthToken)) {
-                sessions.get(authToken).session().getRemote().sendString(new Gson().toJson(new ServerNotification(message)));
+                try (var s = sessions.get(authToken).session()) {
+                    if (s.isOpen()) {
+                        s.getRemote().sendString(new Gson().toJson(new ServerNotification(message)));
+                    }
+                } catch (Exception exception) {
+                    System.out.println("Error: Json conversion failed");
+                }
             }
         }
     }

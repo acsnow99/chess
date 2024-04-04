@@ -15,6 +15,12 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Repl {
+    enum userState {
+        LOGGED_IN,
+        LOGGED_OUT,
+        IN_GAME
+    }
+
     private String serverURL = "://127.0.0.1:";
     private AuthData authorization;
     private boolean loggedIn = false;
@@ -23,6 +29,7 @@ public class Repl {
     private ServerFacadeSession facadeSession;
     private ServerFacadeGame facadeGame;
     private String boardString = EscapeSequences.DEFAULT_BOARD_WHITE + "\n" + EscapeSequences.DEFAULT_BOARD_BLACK;
+    private userState loggedInStatus;
 
     public void run(int port) {
         initializeFacade(port);
@@ -33,13 +40,7 @@ public class Repl {
         String lineFirst;
         System.out.println(EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR);
         while (true) {
-            String loggedInStatusString = "LOGGED OUT";
-            if (loggedIn) {
-                loggedInStatusString = "LOGGED IN";
-            } else {
-                loggedInStatusString = "LOGGED OUT";
-            }
-            String cliString = "[" + loggedInStatusString + "] >>> ";
+            String cliString = "[" + loggedInStatus + "] >>> ";
             System.out.print(cliString);
             line = clientReader.nextLine();
             lineItems = line.split(" ");
@@ -47,54 +48,62 @@ public class Repl {
 
             if (Objects.equals(lineFirst, "q") || Objects.equals(lineFirst, "quit")) {
                 return;
-            } else if (!loggedIn) {
-                if (Objects.equals(lineFirst, "help")) {
-                    printHelpLoggedOut();
-                } else if (Objects.equals(lineFirst, "register")) {
-                    if (lineItems.length < 4) {
-                        System.out.println("Missing username, password, or email");
-                    } else {
-                        registerUser(lineItems[1], lineItems[2], lineItems[3]);
+            } else if (loggedInStatus == userState.LOGGED_OUT) {
+                switch (lineFirst) {
+                    case "help" -> printHelpLoggedOut();
+                    case "register" -> {
+                        if (lineItems.length < 4) {
+                            System.out.println("Missing username, password, or email");
+                        } else {
+                            registerUser(lineItems[1], lineItems[2], lineItems[3]);
+                        }
                     }
-                } else if (Objects.equals(lineFirst, "login")) {
-                    if (lineItems.length < 3) {
-                        System.out.println("Missing username or password");
-                    } else {
-                        loginUser(lineItems[1], lineItems[2]);
+                    case "login" -> {
+                        if (lineItems.length < 3) {
+                            System.out.println("Missing username or password");
+                        } else {
+                            loginUser(lineItems[1], lineItems[2]);
+                        }
                     }
-                } else {
-                    System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+                    case null, default ->
+                            System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
-            } else {
-                if (Objects.equals(lineFirst, "help")) {
-                    printHelpLoggedIn();
-                } else if (Objects.equals(lineFirst, "create")) {
-                    if (lineItems.length < 2) {
-                        System.out.println("Missing game name");
-                    } else {
-                        createGame(lineItems[1]);
+            } else if (loggedInStatus == userState.LOGGED_IN) {
+                switch (lineFirst) {
+                    case "help" -> printHelpLoggedIn();
+                    case "create" -> {
+                        if (lineItems.length < 2) {
+                            System.out.println("Missing game name");
+                        } else {
+                            createGame(lineItems[1]);
+                        }
                     }
-                } else if (Objects.equals(lineFirst, "list")) {
-                    getGames();
-                } else if (Objects.equals(lineFirst, "join")) {
-                    if (lineItems.length < 2) {
-                        System.out.println("Missing game ID number");
-                    } else if (lineItems.length < 3) {
-                        joinGame(null, lineItems[1]);
-                    } else {
-                        initializeWebsocket(port);
-                        joinGame(lineItems[2], lineItems[1]);
+                    case "list" -> getGames();
+                    case "join" -> {
+                        if (lineItems.length < 2) {
+                            System.out.println("Missing game ID number");
+                        } else if (lineItems.length < 3) {
+                            joinGame(port, null, lineItems[1]);
+                        } else {
+                            joinGame(port, lineItems[2], lineItems[1]);
+                        }
                     }
-                } else if (Objects.equals(lineFirst, "observe")) {
-                    if (lineItems.length < 2) {
-                        System.out.println("Missing game ID number");
-                    } else {
-                        joinGame(null, lineItems[1]);
+                    case "observe" -> {
+                        if (lineItems.length < 2) {
+                            System.out.println("Missing game ID number");
+                        } else {
+                            joinGame(port, null, lineItems[1]);
+                        }
                     }
-                } else if (Objects.equals(lineFirst, "logout")) {
-                    logoutUser();
-                } else {
-                    System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+                    case "logout" -> logoutUser();
+                    case null, default ->
+                            System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+                }
+            } else if (loggedInStatus == userState.IN_GAME) {
+                switch (lineFirst) {
+                    case "help" -> printHelpInGame();
+                    case null, default ->
+                            System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
             }
         }
@@ -141,6 +150,16 @@ public class Repl {
         System.out.println("help - list possible commands (you just called this one)");
     }
 
+    private void printHelpInGame() {
+        System.out.println("redraw - draw the chess board again");
+        System.out.println("leave - leave the game (stay logged in)");
+        System.out.println("move <start position> <end position> - make a move. Type positions as lowercase followed by #");
+        System.out.println("resign - ends the game; you will still have to leave the game");
+        System.out.println("show <position> - shows valid moves for a specific piece");
+        System.out.println("quit - exit the chess CLI");
+        System.out.println("help - list possible commands (you just called this one)");
+    }
+
     private void registerUser(String username, String password, String email) {
         try {
             var authData = facadeRegistration.register(new User(username, password, email));
@@ -154,8 +173,7 @@ public class Repl {
 
     private void loginUser(String username, String password) {
         try {
-            var authData = facadeSession.login(new User(username, password, null));
-            authorization = authData;
+            authorization = facadeSession.login(new User(username, password, null));
             loggedIn = true;
             System.out.println("User " + username + " logged in. Type help to see available commands");
         } catch (HttpResponseException exception) {
@@ -201,10 +219,12 @@ public class Repl {
         }
     }
 
-    private void joinGame(String playerColor, String gameID) {
+    private void joinGame(int port, String playerColor, String gameID) {
         try {
             var gameIDLong = Long.parseLong(gameID);
             facadeGame.joinGame(authorization, playerColor, gameIDLong);
+
+            initializeWebsocket(port);
 
             try {
                 facadeWebsocket.joinPlayer(authorization, gameIDLong, playerColor);
@@ -220,6 +240,8 @@ public class Repl {
                 System.out.println("Joined game " + gameID + " as observer");
             }
             System.out.println(boardString);
+
+            loggedInStatus = userState.IN_GAME;
         } catch (HttpResponseException exception) {
             System.out.println("Spot taken. Try joining with a different color.");
         }

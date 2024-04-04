@@ -61,4 +61,12 @@ public class GameService {
             throw new UnauthorizedException("Error: Unauthorized");
         }
     }
+
+    public void removePlayer(DataAccess dataAccess, String authToken, long gameID) {
+        try {
+            dataAccess.removePlayer(new AuthData("", authToken), gameID);
+        } catch (Exception exception) {
+
+        }
+    }
 }

@@ -41,6 +41,8 @@ public interface DataAccess {
 
     void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException;
 
+    void removePlayer(AuthData authData, long gameID) throws DataAccessException, NotFoundException;
+
 
     Object clear() throws DataAccessException;
 }

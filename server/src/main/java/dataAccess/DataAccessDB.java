@@ -215,6 +215,22 @@ public class DataAccessDB implements DataAccess {
         }
     }
 
+    public void removePlayer(AuthData authData, long gameID) throws NotFoundException, DataAccessException {
+        var gameToUpdate = getGameByID(gameID);
+        GameData gameToInsert;
+        var authDataNew = getAuthDataFromToken(authData);
+        if (Objects.equals(authDataNew.username(), gameToUpdate.whiteUsername())) {
+            gameToInsert = new GameData(gameID, "",
+                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+        } else if (Objects.equals(authDataNew.username(), gameToUpdate.blackUsername())) {
+            gameToInsert = new GameData(gameID, gameToUpdate.whiteUsername(),
+                    "", gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+        } else {
+            gameToInsert = new GameData(gameID, gameToUpdate.whiteUsername(),
+                    "", gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+        }
+    }
+
     @Override
     public Object clear() throws DataAccessException {
         try (var connection = DatabaseManager.getConnection()) {

@@ -15,12 +15,14 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Repl {
+
     enum userState {
         LOGGED_IN,
         LOGGED_OUT,
         IN_GAME
     }
 
+    private long gameID;
     private String serverURL = "://127.0.0.1:";
     private AuthData authorization;
     private boolean loggedIn = false;
@@ -102,6 +104,7 @@ public class Repl {
             } else if (loggedInStatus == userState.IN_GAME) {
                 switch (lineFirst) {
                     case "help" -> printHelpInGame();
+                    case "leave" -> leaveGame();
                     case null, default ->
                             System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
@@ -222,6 +225,7 @@ public class Repl {
     private void joinGame(int port, String playerColor, String gameID) {
         try {
             var gameIDLong = Long.parseLong(gameID);
+            this.gameID = gameIDLong;
             facadeGame.joinGame(authorization, playerColor, gameIDLong);
 
             initializeWebsocket(port);
@@ -244,6 +248,17 @@ public class Repl {
             loggedInStatus = userState.IN_GAME;
         } catch (HttpResponseException exception) {
             System.out.println("Spot taken. Try joining with a different color.");
+        }
+    }
+
+    private void leaveGame() {
+        loggedInStatus = userState.LOGGED_IN;
+        this.gameID = 0;
+        try {
+            facadeWebsocket.leavePlayer(authorization, gameID);
+            System.out.println("Left the game");
+        } catch (Exception exception) {
+            System.out.println("Error: Could not communicate with the server");
         }
     }
 }

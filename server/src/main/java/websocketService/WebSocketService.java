@@ -41,6 +41,7 @@ public class WebSocketService {
             var commandType = jsonObject.get("commandType").toString();
             String username;
             long gameID;
+            GameData game;
             switch (commandType) {
                 case "\"JOIN_PLAYER\"", "\"JOIN_OBSERVER\"":
                     username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
@@ -57,7 +58,7 @@ public class WebSocketService {
                     }
 
                     gameID = jsonObject.get("gameID").getAsLong();
-                    var game = gameService.getGameByID(dataAccess, gameID);
+                    game = gameService.getGameByID(dataAccess, gameID);
                     if (game == null) {
                         sendError(session, "Error: Game does not exist");
                         break;
@@ -87,6 +88,11 @@ public class WebSocketService {
                         break;
                     }
                     gameID = jsonObject.get("gameID").getAsLong();
+                    game = gameService.getGameByID(dataAccess, gameID);
+                    if (game == null) {
+                        sendError(session, "Error: Game does not exist");
+                        break;
+                    }
                     gameService.makeMoveGame(dataAccess, new AuthData("", authToken),
                             gameID,
                             new Gson().fromJson(jsonObject.get("move"), ChessMove.class));
@@ -94,6 +100,22 @@ public class WebSocketService {
                     // send game to everyone, including the one doing the move
                     broadcastLoadGame(gameID, "");
                     broadcast("Hey a move was made", authToken);
+                    break;
+                case "\"LEAVE\"":
+                    System.out.println("Player leaving");
+                    username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
+                    if (Objects.equals(username, "")) {
+                        sendError(session, "Error: Bad token");
+                        break;
+                    }
+                    gameID = jsonObject.get("gameID").getAsLong();
+                    game = gameService.getGameByID(dataAccess, gameID);
+                    if (game == null) {
+                        sendError(session, "Error: Game does not exist");
+                        break;
+                    }
+                    broadcast(username + " left the game", authToken);
+                    gameService.removePlayer(authToken, gameID);
                     break;
                 default:
                     sendError(session, "Error: Command type does not exist");

@@ -130,9 +130,12 @@ public class DataAccessMemory implements DataAccess {
     }
 
     public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException {
-        
+
     }
 
+    public void removePlayer(AuthData authData, long gameID) {
+
+    }
 
     public Object clear() {
         userDB = new ArrayList<>();

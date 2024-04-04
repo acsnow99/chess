@@ -44,12 +44,12 @@ public class WebSocketService {
                     var playerColor = jsonObject.get("playerColor").getAsString();
                     var game = gameService.getGameByID(dataAccess, gameID);
                     if (Objects.equals(playerColor, "WHITE")) {
-                        if (!(Objects.equals(game.whiteUsername(), username) || Objects.equals(game.whiteUsername(), "") || game.whiteUsername() == null)) {
+                        if (!(Objects.equals(game.whiteUsername(), username))) {
                             sendError(session, "Error: Spot taken");
                             break;
                         }
                     } else if (Objects.equals(playerColor, "BLACK")) {
-                        if (!(Objects.equals(game.blackUsername(), username) || Objects.equals(game.blackUsername(), "") || game.blackUsername() == null)) {
+                        if (!(Objects.equals(game.blackUsername(), username))) {
                             sendError(session, "Error: Spot taken");
                             break;
                         }

@@ -42,12 +42,23 @@ public class WebSocketService {
                     long gameID = jsonObject.get("gameID").getAsLong();
                     var username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
                     var playerColor = jsonObject.get("playerColor").getAsString();
+                    var game = gameService.getGameByID(dataAccess, gameID);
+                    if (Objects.equals(playerColor, "WHITE")) {
+                        if (!(Objects.equals(game.whiteUsername(), username) || Objects.equals(game.whiteUsername(), "") || game.whiteUsername() == null)) {
+                            sendError(session, "Error: Spot taken");
+                            break;
+                        }
+                    } else if (Objects.equals(playerColor, "BLACK")) {
+                        if (!(Objects.equals(game.blackUsername(), username) || Objects.equals(game.blackUsername(), "") || game.blackUsername() == null)) {
+                            sendError(session, "Error: Spot taken");
+                            break;
+                        }
+                    } else {
+                        playerColor = "an observer";
+                    }
                     userLoadGame(session, gameID);
                     var wsSession = new WebSocketConnection(gameID, session);
                     addConnection(authToken, wsSession);
-                    if (Objects.equals(playerColor, "") || playerColor == null) {
-                        playerColor = "an observer";
-                    }
                     broadcast(username + " joined the game as " + playerColor.toLowerCase(), authToken);
                     break;
                 case "\"MAKE_MOVE\"":
@@ -57,11 +68,11 @@ public class WebSocketService {
                     userLoadGame(session, jsonObject.get("gameID").getAsLong());
                     break;
                 default:
-                    session.getRemote().sendString(new Gson().toJson(new ServerError("Error: Command type does not exist")));
+                    sendError(session, "Error: Command type does not exist");
                     break;
             }
         } else {
-            session.getRemote().sendString(new Gson().toJson(new ServerError("Error: Command type not included")));
+            sendError(session, "Error: Command type not included");
         }
     }
 
@@ -69,6 +80,10 @@ public class WebSocketService {
         var game = gameService.getGameByID(dataAccess, gameID);
         session.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
         System.out.println("Sent message");
+    }
+
+    private void sendError(Session session, String message) throws Exception {
+        session.getRemote().sendString(new Gson().toJson(new ServerError(message)));
     }
 
     private void addConnection(String authToken, WebSocketConnection session) {

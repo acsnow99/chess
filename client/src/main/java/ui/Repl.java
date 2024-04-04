@@ -29,7 +29,7 @@ public class Repl {
     private ServerFacadeSession facadeSession;
     private ServerFacadeGame facadeGame;
     private String boardString = EscapeSequences.DEFAULT_BOARD_WHITE + "\n" + EscapeSequences.DEFAULT_BOARD_BLACK;
-    private userState loggedInStatus;
+    private userState loggedInStatus = userState.LOGGED_OUT;
 
     public void run(int port) {
         initializeFacade(port);
@@ -40,7 +40,7 @@ public class Repl {
         String lineFirst;
         System.out.println(EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR);
         while (true) {
-            String cliString = "[" + loggedInStatus + "] >>> ";
+            String cliString = "[" + loggedInStatus.toString() + "] >>> ";
             System.out.print(cliString);
             line = clientReader.nextLine();
             lineItems = line.split(" ");
@@ -164,7 +164,7 @@ public class Repl {
         try {
             var authData = facadeRegistration.register(new User(username, password, email));
             authorization = authData;
-            loggedIn = true;
+            loggedInStatus = userState.LOGGED_IN;
             System.out.println("User " + username + " logged in. Don't forget your password!");
         } catch (HttpResponseException exception) {
             System.out.println("Username already taken \nTry with a different name");
@@ -174,7 +174,7 @@ public class Repl {
     private void loginUser(String username, String password) {
         try {
             authorization = facadeSession.login(new User(username, password, null));
-            loggedIn = true;
+            loggedInStatus = userState.LOGGED_IN;
             System.out.println("User " + username + " logged in. Type help to see available commands");
         } catch (HttpResponseException exception) {
             System.out.println("Username or password didn't match our records... \nTry the register keyword to make a new account");
@@ -185,7 +185,7 @@ public class Repl {
         try {
             facadeSession.logout(authorization);
             authorization = null;
-            loggedIn = false;
+            loggedInStatus = userState.LOGGED_OUT;
             System.out.println("User logged out");
         } catch (HttpResponseException exception) {
             System.out.println("Could not logout. Token is invalid.");

@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dataAccess.DataAccess;
+import exceptions.DataAccessException;
 import model.AuthData;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
@@ -39,14 +40,21 @@ public class WebSocketService {
             var commandType = jsonObject.get("commandType").toString();
             switch (commandType) {
                 case "\"JOIN_PLAYER\"", "\"JOIN_OBSERVER\"":
-                    long gameID = jsonObject.get("gameID").getAsLong();
-                    var username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
+                    String username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
+                    if (Objects.equals(username, "")) {
+                        sendError(session, "Error: Bad token");
+                        break;
+                    }
+
                     var playerColor = jsonObject.get("playerColor").getAsString();
+
+                    long gameID = jsonObject.get("gameID").getAsLong();
                     var game = gameService.getGameByID(dataAccess, gameID);
                     if (game == null) {
                         sendError(session, "Error: Game does not exist");
                         break;
                     }
+
                     if (Objects.equals(playerColor, "WHITE")) {
                         if (!(Objects.equals(game.whiteUsername(), username))) {
                             sendError(session, "Error: Spot taken");

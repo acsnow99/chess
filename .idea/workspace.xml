@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,6 +141,7 @@
     "JUnit.StandardAPITests.successLogout.executor": "Run",
     "JUnit.StandardAPITests.successRegister.executor": "Run",
     "JUnit.StandardAPITests.uniqueAuthorizationTokens.executor": "Debug",
+    "JUnit.WebSocketTests.joinObserverGood.executor": "Run",
     "JUnit.WebSocketTests.joinPlayerBadAuthToken.executor": "Debug",
     "JUnit.WebSocketTests.joinPlayerBadGameID.executor": "Run",
     "JUnit.WebSocketTests.joinPlayerEmpty.executor": "Run",
@@ -173,7 +175,23 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WebSocketTests.joinPlayerBadAuthToken">
+  <component name="RunManager" selected="JUnit.WebSocketTests.joinObserverGood">
+    <configuration name="WebSocketTests.joinObserverGood" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="METHOD_NAME" value="joinObserverGood" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WebSocketTests.joinPlayerBadAuthToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -238,36 +256,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WebSocketTests.joinPlayerSteal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
-      <option name="METHOD_NAME" value="joinPlayerSteal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="JUnit.WebSocketTests.joinObserverGood" />
       <item itemvalue="JUnit.WebSocketTests.joinPlayerBadAuthToken" />
       <item itemvalue="JUnit.WebSocketTests.joinPlayerBadGameID" />
       <item itemvalue="JUnit.WebSocketTests.joinPlayerEmpty" />
-      <item itemvalue="JUnit.WebSocketTests.joinPlayerSteal" />
       <item itemvalue="JUnit.WebSocketTests.joinPlayerGood" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WebSocketTests.joinObserverGood" />
         <item itemvalue="JUnit.WebSocketTests.joinPlayerBadAuthToken" />
         <item itemvalue="JUnit.WebSocketTests.joinPlayerBadGameID" />
         <item itemvalue="JUnit.WebSocketTests.joinPlayerEmpty" />
         <item itemvalue="JUnit.WebSocketTests.joinPlayerGood" />
-        <item itemvalue="JUnit.WebSocketTests.joinPlayerSteal" />
       </list>
     </recent_temporary>
   </component>
@@ -325,13 +327,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="80" />
+          <line>39</line>
+          <option name="timeStamp" value="81" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

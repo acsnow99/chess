@@ -46,7 +46,12 @@ public class WebSocketService {
                         break;
                     }
 
-                    var playerColor = jsonObject.get("playerColor").getAsString();
+                    String playerColor;
+                    try {
+                        playerColor = jsonObject.get("playerColor").getAsString();
+                    } catch (Exception exception) {
+                        playerColor = "an observer";
+                    }
 
                     long gameID = jsonObject.get("gameID").getAsLong();
                     var game = gameService.getGameByID(dataAccess, gameID);
@@ -65,8 +70,6 @@ public class WebSocketService {
                             sendError(session, "Error: Spot taken");
                             break;
                         }
-                    } else {
-                        playerColor = "an observer";
                     }
                     userLoadGame(session, gameID);
                     var wsSession = new WebSocketConnection(gameID, session);

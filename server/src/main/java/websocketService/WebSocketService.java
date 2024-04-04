@@ -115,7 +115,7 @@ public class WebSocketService {
                         break;
                     }
                     broadcast(username + " left the game", authToken);
-                    gameService.removePlayer(authToken, gameID);
+                    gameService.removePlayer(dataAccess, authToken, gameID);
                     break;
                 default:
                     sendError(session, "Error: Command type does not exist");

@@ -226,8 +226,24 @@ public class DataAccessDB implements DataAccess {
             gameToInsert = new GameData(gameID, gameToUpdate.whiteUsername(),
                     "", gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
         } else {
+            var watchers = gameToUpdate.watchers();
+            for (var i = 0; i < watchers.size(); i++) {
+                if (Objects.equals(watchers.get(i), authDataNew.username())) {
+                    watchers.remove(i);
+                    i = watchers.size();
+                }
+            }
             gameToInsert = new GameData(gameID, gameToUpdate.whiteUsername(),
                     "", gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+        }
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("UPDATE game SET gamedatajson = ? WHERE gameid = ?")) {
+                preparedStatement.setString(1, new Gson().toJson(gameToInsert));
+                preparedStatement.setLong(2, gameID);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException exception) {
+            throw new DataAccessException("Error: Could not leave game");
         }
     }
 

@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/lib/passoff-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/server/lib/passoff-dependencies.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/passoffTests/TestFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test/java/passoffTests/TestFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +143,8 @@
     "JUnit.StandardAPITests.successLogout.executor": "Run",
     "JUnit.StandardAPITests.successRegister.executor": "Run",
     "JUnit.StandardAPITests.uniqueAuthorizationTokens.executor": "Debug",
-    "JUnit.WebSocketTests.joinObserverBadAuthToken.executor": "Run",
+    "JUnit.WebSocketTests.invalidMoveBadMove.executor": "Run",
+    "JUnit.WebSocketTests.joinObserverBadAuthToken.executor": "Debug",
     "JUnit.WebSocketTests.joinObserverBadGameID.executor": "Run",
     "JUnit.WebSocketTests.joinObserverGood.executor": "Run",
     "JUnit.WebSocketTests.joinPlayerBadAuthToken.executor": "Debug",
@@ -148,6 +152,7 @@
     "JUnit.WebSocketTests.joinPlayerEmpty.executor": "Run",
     "JUnit.WebSocketTests.joinPlayerGood.executor": "Run",
     "JUnit.WebSocketTests.joinPlayerSteal.executor": "Run",
+    "JUnit.WebSocketTests.leaveGame.executor": "Run",
     "JUnit.WebSocketTests.validMove.executor": "Run",
     "JUnit.java in server.executor": "Run",
     "JUnit.java in shared.executor": "Run",
@@ -160,7 +165,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/acsno_/Desktop/school/cs240/chess/chess/shared/src/main/java",
+    "last_opened_file_path": "C:/Users/acsno_/Desktop/school/cs240/chess/chess/server/lib",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -168,6 +173,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\acsno_\Desktop\school\cs240\chess\chess\server\lib" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -178,15 +186,8 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="client" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WebSocketTests.joinObserverBadAuthToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.WebSocketTests.leaveGame">
+    <configuration name="WebSocketTests.invalidMoveBadMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -196,23 +197,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
-      <option name="METHOD_NAME" value="joinObserverBadAuthToken" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WebSocketTests.joinObserverBadGameID" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
-      <option name="METHOD_NAME" value="joinObserverBadGameID" />
+      <option name="METHOD_NAME" value="invalidMoveBadMove" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -229,6 +214,38 @@
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
       <option name="METHOD_NAME" value="joinObserverGood" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebSocketTests.joinPlayerGood" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="METHOD_NAME" value="joinPlayerGood" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebSocketTests.leaveGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="METHOD_NAME" value="leaveGame" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -251,19 +268,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.WebSocketTests.joinObserverBadAuthToken" />
-      <item itemvalue="JUnit.WebSocketTests.joinObserverBadGameID" />
+      <item itemvalue="JUnit.WebSocketTests.invalidMoveBadMove" />
       <item itemvalue="JUnit.WebSocketTests.joinObserverGood" />
+      <item itemvalue="JUnit.WebSocketTests.leaveGame" />
       <item itemvalue="JUnit.WebSocketTests.validMove" />
+      <item itemvalue="JUnit.WebSocketTests.joinPlayerGood" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.WebSocketTests.leaveGame" />
+        <item itemvalue="JUnit.WebSocketTests.invalidMoveBadMove" />
         <item itemvalue="JUnit.WebSocketTests.validMove" />
-        <item itemvalue="JUnit.WebSocketTests.joinObserverBadAuthToken" />
-        <item itemvalue="JUnit.WebSocketTests.joinObserverBadGameID" />
         <item itemvalue="JUnit.WebSocketTests.joinObserverGood" />
+        <item itemvalue="JUnit.WebSocketTests.joinPlayerGood" />
       </list>
     </recent_temporary>
   </component>
@@ -311,18 +328,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
-          <line>137</line>
+          <line>152</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
-          <line>83</line>
+          <line>85</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/server/src/test/java/passoffTests/serverTests/WebSocketTests.java</url>
+          <line>178</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="91" />
+          <line>133</line>
+          <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

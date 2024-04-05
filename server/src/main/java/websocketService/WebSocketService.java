@@ -9,6 +9,8 @@ import exceptions.DataAccessException;
 import model.AuthData;
 import model.GameData;
 import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketError;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import services.GameService;
@@ -114,6 +116,7 @@ public class WebSocketService {
                         sendError(session, "Error: Game does not exist");
                         break;
                     }
+                    sessions.remove(authToken);
                     broadcast(username + " left the game", authToken);
                     gameService.removePlayer(dataAccess, authToken, gameID);
                     break;
@@ -126,11 +129,23 @@ public class WebSocketService {
         }
     }
 
+    @OnWebSocketClose
+    public void onWebsocketClose(Session session, int statusCode, String reason) {
+        System.out.println("Closed connection");
+    }
+
+    @OnWebSocketError
+    public void onWebsocketError(Throwable exception) {
+        exception.printStackTrace();
+    }
+
     private void userLoadGame(Session session, long gameID) throws Exception {
         var game = gameService.getGameByID(dataAccess, gameID);
         if (session.isOpen()) {
             session.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
             System.out.println("Loaded game individually");
+        } else {
+            System.out.println("Connection closed...");
         }
     }
 
@@ -138,9 +153,12 @@ public class WebSocketService {
         var game = gameService.getGameByID(dataAccess, gameID);
         for (var authToken : sessions.keySet()) {
             if (!Objects.equals(authToken, excludedAuthToken)) {
-                try (var s = sessions.get(authToken).session()) {
+                try {
+                    var s = sessions.get(authToken).session();
                     if (s.isOpen()) {
                         s.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
+                    } else {
+                        System.out.println("Connection closed...");
                     }
                 } catch (Exception exception) {
                     System.out.println("Error: Json conversion failed");
@@ -153,6 +171,8 @@ public class WebSocketService {
         System.out.println("Trying to send error message");
         if (session.isOpen()) {
             session.getRemote().sendString(new Gson().toJson(new ServerError(message)));
+        } else {
+            System.out.println("Connection closed...");
         }
     }
 
@@ -164,9 +184,12 @@ public class WebSocketService {
         System.out.println("Trying to broadcast message");
         for (var authToken : sessions.keySet()) {
             if (!Objects.equals(authToken, excludedAuthToken)) {
-                try (var s = sessions.get(authToken).session()) {
+                try {
+                    var s = sessions.get(authToken).session();
                     if (s.isOpen()) {
                         s.getRemote().sendString(new Gson().toJson(new ServerNotification(message)));
+                    } else {
+                        System.out.println("Connection closed...");
                     }
                 } catch (Exception exception) {
                     System.out.println("Error: Json conversion failed");

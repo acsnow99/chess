@@ -1,7 +1,6 @@
 package chess;
 
 import java.util.Collection;
-import java.util.function.Predicate;
 
 /**
  * For a class that can manage a chess game, making moves on a board
@@ -14,7 +13,6 @@ public class ChessGame {
     private TeamColor currentTeamTurn = TeamColor.WHITE;
 
     public ChessGame() {
-
     }
 
     /**

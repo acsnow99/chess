@@ -1,6 +1,7 @@
 package services;
 
 import chess.ChessMove;
+import chess.InvalidMoveException;
 import exceptions.*;
 import model.AuthData;
 import dataAccess.DataAccess;
@@ -54,7 +55,7 @@ public class GameService {
         }
     }
 
-    public void makeMoveGame(DataAccess dataAccess, AuthData authData, long gameID, ChessMove move) throws DataAccessException, UnauthorizedException, NotFoundException {
+    public void makeMoveGame(DataAccess dataAccess, AuthData authData, long gameID, ChessMove move) throws DataAccessException, UnauthorizedException, NotFoundException, InvalidMoveException {
         if (dataAccess.authDataIsAuthorized(authData)) {
             dataAccess.makeMoveGame(authData, gameID, move);
         } else {

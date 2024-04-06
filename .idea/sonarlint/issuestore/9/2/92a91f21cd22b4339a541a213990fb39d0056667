@@ -1,0 +1,8 @@
+
+
+java:S1192"TDefine a constant instead of duplicating this literal "Error: Unauthorized" 4 times.(βιλϊϋÿÿÿÿ8›Ήλ1J$e35b995d-23e3-40e7-a08f-bbdf62f18d04
+³
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¨ΪςΫ8 ›Ήλ1J$3338314b-542d-4ace-a287-e337bedc3313
+
+java:S1130:"sRemove the declaration of thrown exception 'chess.InvalidMoveException', as it cannot be thrown from method's body.(ªΣΎ„8±ΰΊλ1
+k	java:S108E")Either remove or fill this block of code.(®ΛϊΓ8Έ›Ήλ1J$5929867e-b612-40f0-8491-a4b18ce88c18

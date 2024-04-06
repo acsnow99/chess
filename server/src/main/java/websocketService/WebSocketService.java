@@ -1,6 +1,8 @@
 package websocketService;
 
+import chess.ChessGame;
 import chess.ChessMove;
+import chess.InvalidMoveException;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -95,9 +97,14 @@ public class WebSocketService {
                         sendError(session, "Error: Game does not exist");
                         break;
                     }
-                    gameService.makeMoveGame(dataAccess, new AuthData("", authToken),
-                            gameID,
-                            new Gson().fromJson(jsonObject.get("move"), ChessMove.class));
+
+                    try {
+                        gameService.makeMoveGame(dataAccess, new AuthData("", authToken),
+                                gameID,
+                                new Gson().fromJson(jsonObject.get("move"), ChessMove.class));
+                    } catch (InvalidMoveException exception) {
+                        sendError(session, "Error: Invalid move because " + exception.getMessage());
+                    }
                     System.out.println("Trying to broadcast loadgame message");
                     // send game to everyone, including the one doing the move
                     broadcastLoadGame(gameID, "");

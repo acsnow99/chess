@@ -1,0 +1,35 @@
+
+‡	java:S112•"FDefine and throw a dedicated exception instead of using a generic one.(ôÍ”ÃüÿÿÿÿJ$6a3dfe01-00ab-4f98-b8c8-d85bc777bed8
+‚	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(±œûĞJ$da2b02c9-ddc5-4d3f-b3a3-a48698c3dc60
+ˆ
+java:S1192@"GDefine a constant instead of duplicating this literal "gameID" 3 times.(Åí²öüÿÿÿÿJ$b0e03554-c36a-42b9-ba5d-1a7a8fc6276e
+œ
+java:S1192C"[Define a constant instead of duplicating this literal "Error: Game does not exist" 3 times.(Ã±ø´úÿÿÿÿJ$9aa678fd-f925-4818-b9a2-c1e59aa9a9b1
+’
+java:S1192›"UDefine a constant instead of duplicating this literal "Connection closed..." 4 times.(òù´‰J$58e3724f-f6af-4cb9-9208-1a59fd6e1b5d
+
+java:S11925"QDefine a constant instead of duplicating this literal "Error: Bad token" 3 times.(¹Í¹–J$4040b1de-ace0-4fe5-a4f2-da4c252d3922
+p
+java:S1066M"/Merge this if statement with the enclosing one.(ÑóÏéùÿÿÿÿJ$e98494de-c3c4-4e7f-8d25-350c0f7a549b
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚¤şæûÿÿÿÿJ$f19bd62d-9eb5-46e5-8ebc-d0b2312b1d82
+
+java:S3776)"RRefactor this method to reduce its Cognitive Complexity from 40 to the 15 allowed.(ğêÚJ$78209986-ff54-476f-b745-81b806690906
+f	java:S106X"+Replace this use of System.out by a logger.(½¶…üJ$0cf7173b-9fa9-465d-904d-72c86b8cb432
+k	java:S106l"+Replace this use of System.out by a logger.(Ê­Ç°üÿÿÿÿJ$f766dbed-345c-45bb-bc7c-c1de83c2c892
+k	java:S106r"+Replace this use of System.out by a logger.(ŞƒÿØıÿÿÿÿJ$aef57ee4-ecfe-4d35-9546-f93027c4bc8f
+l	java:S106"+Replace this use of System.out by a logger.(õˆúÿÿÿÿJ$8c58b1ad-ab87-4f16-8559-5b192ebec941
+g	java:S106™"+Replace this use of System.out by a logger.(³‚¡­J$21c4811b-7c9c-4991-b139-7338542cebf1
+g	java:S106›"+Replace this use of System.out by a logger.(òù´‰J$64774d6e-e6d7-4d72-a272-2fbcb64579c8
+v
+java:S2864¡"4Iterate over the "entrySet" instead of the "keySet".(Ê‚ÑƒıÿÿÿÿJ$da4b7a7c-26de-487d-a746-253a40f27535
+g	java:S106¨"+Replace this use of System.out by a logger.(òù´‰J$bffd28fe-9fb9-4a4c-80af-f5e9582a8194
+f	java:S106«"+Replace this use of System.out by a logger.(é»³J$9a6ba08d-a23c-4f7f-ac4f-602663ab9d71
+l	java:S106²"+Replace this use of System.out by a logger.(Ù³¬»ıÿÿÿÿJ$dc33d72e-451d-47bf-ab0c-86995b4c6214
+g	java:S106¶"+Replace this use of System.out by a logger.(òù´‰J$c94a28af-e8d4-4695-a42e-ac88e397b7f1
+g	java:S106¿"+Replace this use of System.out by a logger.(—â•×J$4db3a111-ce29-4138-a74f-b86abd8ddfe7
+v
+java:S2864À"4Iterate over the "entrySet" instead of the "keySet".(Ê‚ÑƒıÿÿÿÿJ$4f348478-76d3-4bd7-b8ce-e1c08bb40bf4
+g	java:S106Ç"+Replace this use of System.out by a logger.(òù´‰J$61980c40-30c7-4a3f-8bfd-bd5d805f2373
+f	java:S106Ê"+Replace this use of System.out by a logger.(é»³J$88eb969c-ba11-4fca-b3b0-2d69ac07236b
+
+java:S6541)"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 92 to 64, Complexity from 15 to 14, Nesting Level from 4 to 2, Number of Variables from 12 to 6.(ğêÚJ$fff1fa1c-2bd5-4e39-b147-39c0022f53fb

@@ -1,6 +1,7 @@
 package dataAccess;
 
 import chess.ChessBoard;
+import chess.ChessGame;
 import chess.ChessMove;
 import exceptions.AlreadyTakenException;
 import exceptions.NotFoundException;
@@ -94,7 +95,9 @@ public class DataAccessMemory implements DataAccess {
     public void createGame(String gameName, long gameID) throws DataAccessException {
         var boardDefault = new ChessBoard();
         boardDefault.resetBoard();
-        var newGame = new GameData(gameID, null, null, gameName, new ArrayList<String>(), boardDefault);
+        var gameDefault = new ChessGame();
+        gameDefault.setBoard(boardDefault);
+        var newGame = new GameData(gameID, null, null, gameName, new ArrayList<String>(), gameDefault);
         gameDB.add(newGame);
     }
 
@@ -108,16 +111,16 @@ public class DataAccessMemory implements DataAccess {
                     if (game.whiteUsername() != null && !Objects.equals(game.whiteUsername(), authData.username())) {
                         throw new AlreadyTakenException("Error: Already taken");
                     }
-                    newGame = new GameData(joinGameRequest.gameID(), authData.username(), game.blackUsername(), game.gameName(), game.watchers(), game.board());
+                    newGame = new GameData(joinGameRequest.gameID(), authData.username(), game.blackUsername(), game.gameName(), game.watchers(), game.game());
                 } else if (Objects.equals(joinGameRequest.playerColor(), "BLACK")) {
                     if (game.blackUsername() != null && !Objects.equals(game.blackUsername(), authData.username())) {
                         throw new AlreadyTakenException("Error: Already taken");
                     }
-                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), authData.username(), game.gameName(), game.watchers(), game.board());
+                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), authData.username(), game.gameName(), game.watchers(), game.game());
                 } else {
                     var newWatchers = game.watchers();
                     newWatchers.add(authData.username());
-                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), game.blackUsername(), game.gameName(), newWatchers, game.board());
+                    newGame = new GameData(joinGameRequest.gameID(), game.whiteUsername(), game.blackUsername(), game.gameName(), newWatchers, game.game());
                 }
                 gameDB.remove(game);
                 gameDB.add(newGame);

@@ -1,0 +1,22 @@
+
+[	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(Ÿ…ªŒ
+i
+java:S1192@"NDefine a constant instead of duplicating this literal "Authorization" 4 times.(²ÄØ«ÿÿÿÿÿ
+a
+java:S11926"FDefine a constant instead of duplicating this literal "/game" 3 times.(×ú÷ßùÿÿÿÿ
+G
+java:S1128",Remove this unused import 'chess.ChessMove'.(›æÔüşÿÿÿÿ
+M
+java:S1128"7Remove this unused import 'com.google.gson.JsonObject'.(µÊ´½
+M
+java:S1128"7Remove this unused import 'com.google.gson.JsonParser'.(Œƒ¸Æ
+Z
+java:S1128"DRemove this unused import 'org.eclipse.jetty.websocket.api.Session'.(Ãô¼«
+d
+java:S1128"NRemove this unused import 'org.eclipse.jetty.websocket.api.WebSocketListener'.(ô¿¬—
+v
+java:S1128"[Remove this unused import 'org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage'.(üÀëùÿÿÿÿ
+_
+java:S1128"IRemove this unused import 'webSocketMessages.serverMessages.ServerError'.(…“åù
+b
+java:S1128"LRemove this unused import 'webSocketMessages.serverMessages.ServerLoadGame'.(šã±¼

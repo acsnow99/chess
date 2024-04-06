@@ -1,0 +1,69 @@
+
+•
+java:S1192"yDefine a constant instead of duplicating this literal "help - list possible commands (you just called this one)" 3 times.(üå½øÿÿÿÿÿ
+v
+java:S1192"ZDefine a constant instead of duplicating this literal "quit - exit the chess CLI" 3 times.(‹»È¯ıÿÿÿÿ
+¨
+java:S1192G"’Define a constant instead of duplicating this literal "Could not recognize command - try typing 'help' for a list of available commands." 3 times.(õÄ°Z
+d
+java:S1192ø"MDefine a constant instead of duplicating this literal "Joined game " 3 times.(â Ö‡
+Q
+java:S1141ñ"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+m
+java:S3776$"RRefactor this method to reduce its Cognitive Complexity from 42 to the 15 allowed.(ïµ‚úÿÿÿÿ
+@	java:S106+"+Replace this use of System.out by a logger.(ş¤àü
+E	java:S106."+Replace this use of System.out by a logger.(ã±Ğ÷üÿÿÿÿ
+E	java:S106:"+Replace this use of System.out by a logger.(Şİ·–øÿÿÿÿ
+E	java:S106A"+Replace this use of System.out by a logger.(Ôïåóÿÿÿÿÿ
+?	java:S106G"+Replace this use of System.out by a logger.(õÄ°Z
+E	java:S106N"+Replace this use of System.out by a logger.(—¡¥„ÿÿÿÿÿ
+?	java:S106V"+Replace this use of System.out by a logger.(²ÉôM
+?	java:S106_"+Replace this use of System.out by a logger.(²ÉôM
+?	java:S106f"+Replace this use of System.out by a logger.(õÄ°Z
+?	java:S106m"+Replace this use of System.out by a logger.(õÄ°Z
+@	java:S106"+Replace this use of System.out by a logger.(Â±½º
+A	java:S106‡"+Replace this use of System.out by a logger.(½í‹
+F	java:S106Œ"+Replace this use of System.out by a logger.(½¥³şşÿÿÿÿ
+F	java:S106"+Replace this use of System.out by a logger.(‰½Í„úÿÿÿÿ
+F	java:S106"+Replace this use of System.out by a logger.(‹»È¯ıÿÿÿÿ
+F	java:S106"+Replace this use of System.out by a logger.(üå½øÿÿÿÿÿ
+@	java:S106“"+Replace this use of System.out by a logger.(Ìáî2
+A	java:S106”"+Replace this use of System.out by a logger.(Ñ¸Ã“
+F	java:S106•"+Replace this use of System.out by a logger.(×îÜ³ıÿÿÿÿ
+A	java:S106–"+Replace this use of System.out by a logger.(½’ü 
+F	java:S106—"+Replace this use of System.out by a logger.(ì›´¸úÿÿÿÿ
+F	java:S106˜"+Replace this use of System.out by a logger.(‹»È¯ıÿÿÿÿ
+F	java:S106™"+Replace this use of System.out by a logger.(üå½øÿÿÿÿÿ
+F	java:S106"+Replace this use of System.out by a logger.(åïÀêıÿÿÿÿ
+A	java:S106"+Replace this use of System.out by a logger.(÷÷ÖÒ
+A	java:S106Ÿ"+Replace this use of System.out by a logger.(ƒÆ¯…
+@	java:S106 "+Replace this use of System.out by a logger.(Œ™¦
+A	java:S106¡"+Replace this use of System.out by a logger.(àÍÚ¸
+F	java:S106¢"+Replace this use of System.out by a logger.(‹»È¯ıÿÿÿÿ
+F	java:S106£"+Replace this use of System.out by a logger.(üå½øÿÿÿÿÿ
+A	java:S106«"+Replace this use of System.out by a logger.(Ñú·Â
+F	java:S106­"+Replace this use of System.out by a logger.(šú¨Ğûÿÿÿÿ
+F	java:S106µ"+Replace this use of System.out by a logger.(šÌÛüÿÿÿÿ
+F	java:S106·"+Replace this use of System.out by a logger.(ñÈ›¼úÿÿÿÿ
+F	java:S106À"+Replace this use of System.out by a logger.(Óé—Åıÿÿÿÿ
+A	java:S106Â"+Replace this use of System.out by a logger.(Â‡¯‰
+A	java:S106É"+Replace this use of System.out by a logger.(–›ı
+A	java:S106Ë"+Replace this use of System.out by a logger.(ÆîŸÑ
+I
+java:S1135Õ"2Complete the task associated to this TODO comment.(ˆ˜ı²
+F	java:S106â"+Replace this use of System.out by a logger.(ç°“™øÿÿÿÿ
+A	java:S106å"+Replace this use of System.out by a logger.(«Âñ“
+F	java:S106ô"+Replace this use of System.out by a logger.(³ßÕÒüÿÿÿÿ
+A	java:S106ø"+Replace this use of System.out by a logger.(â Ö‡
+F	java:S106ú"+Replace this use of System.out by a logger.(‚´á©şÿÿÿÿ
+F	java:S106ü"+Replace this use of System.out by a logger.(ªº®ûÿÿÿÿ
+A	java:S106ş"+Replace this use of System.out by a logger.(¦©ÿÎ
+F	java:S106‚"+Replace this use of System.out by a logger.(÷Õ –üÿÿÿÿ
+F	java:S106‹"+Replace this use of System.out by a logger.(§À½µûÿÿÿÿ
+A	java:S106"+Replace this use of System.out by a logger.(”¶¼í
+f
+java:S1128"KRemove this unused import 'org.springframework.security.core.parameters.P'.(Æ­Åıÿÿÿÿ
+A
+java:S1068",Remove this unused "loggedIn" private field.(»ç€,
+U
+java:S1144ƒ"9Remove this unused private "sendWebsocketMessage" method.(Ì÷ÑŠüÿÿÿÿ

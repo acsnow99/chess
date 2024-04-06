@@ -1,12 +1,12 @@
 package model;
 
-import chess.ChessBoard;
+import chess.ChessGame;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public record GameData(long gameID, String whiteUsername, String blackUsername, String gameName,
-                       ArrayList<String> watchers, ChessBoard board) {
+                       ArrayList<String> watchers, ChessGame game) {
 
     @Override
     public boolean equals(Object o) {
@@ -18,7 +18,7 @@ public record GameData(long gameID, String whiteUsername, String blackUsername, 
 
     @Override
     public int hashCode() {
-        return Objects.hash(gameID, whiteUsername, blackUsername, gameName, watchers, board);
+        return Objects.hash(gameID, whiteUsername, blackUsername, gameName, watchers, game);
     }
 
     @Override

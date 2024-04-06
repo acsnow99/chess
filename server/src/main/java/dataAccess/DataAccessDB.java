@@ -1,7 +1,9 @@
 package dataAccess;
 
 import chess.ChessBoard;
+import chess.ChessGame;
 import chess.ChessMove;
+import chess.InvalidMoveException;
 import com.google.gson.Gson;
 import exceptions.AlreadyTakenException;
 import exceptions.DataAccessException;
@@ -155,7 +157,9 @@ public class DataAccessDB implements DataAccess {
     public void createGame(String gameName, long gameID) throws DataAccessException {
         var boardDefault = new ChessBoard();
         boardDefault.resetBoard();
-        var newGame = new GameData(gameID, null, null, gameName, null, boardDefault);
+        var gameDefault = new ChessGame();
+        gameDefault.setBoard(boardDefault);
+        var newGame = new GameData(gameID, null, null, gameName, null, gameDefault);
         var newGameJson = new Gson().toJson(newGame);
         try (var connection = DatabaseManager.getConnection()) {
             try (var preparedStatement = connection.prepareStatement("INSERT INTO game (gameid, gamedatajson) VALUES ( ?, ? );")) {
@@ -177,13 +181,13 @@ public class DataAccessDB implements DataAccess {
                 throw new AlreadyTakenException("Error: Already taken");
             }
             gameToInsert = new GameData(joinGameRequest.gameID(), authData.username(),
-                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.game());
         } else if (Objects.equals(joinGameRequest.playerColor(), "BLACK")) {
             if (!(gameToUpdate.blackUsername() == null || gameToUpdate.blackUsername().isEmpty())) {
                 throw new AlreadyTakenException("Error: Already taken");
             }
             gameToInsert = new GameData(joinGameRequest.gameID(), gameToUpdate.whiteUsername(),
-                    authData.username(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+                    authData.username(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.game());
         } else {
             var watchersUpdated = gameToUpdate.watchers();
             if (watchersUpdated == null) {
@@ -191,7 +195,7 @@ public class DataAccessDB implements DataAccess {
             }
             watchersUpdated.add(authData.username());
             gameToInsert = new GameData(joinGameRequest.gameID(), gameToUpdate.whiteUsername(),
-                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), watchersUpdated, gameToUpdate.board());
+                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), watchersUpdated, gameToUpdate.game());
         }
         try (var connection = DatabaseManager.getConnection()) {
             try (var preparedStatement = connection.prepareStatement("UPDATE game SET gamedatajson = ? WHERE gameid = ?")) {
@@ -204,14 +208,13 @@ public class DataAccessDB implements DataAccess {
         }
     }
 
-    public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException {
-        var game = getGameByID(gameID);
-        if (game == null) {
+    public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException, InvalidMoveException {
+        var gameData = getGameByID(gameID);
+        if (gameData == null) {
             throw new NotFoundException("Error: Game not found");
         } else {
-            var board = game.board();
-            //TODO: Run the move through a chess game object first
-            board.movePiece(move);
+            var game = gameData.game();
+            game.makeMove(move);
         }
     }
 
@@ -221,10 +224,10 @@ public class DataAccessDB implements DataAccess {
         var authDataNew = getAuthDataFromToken(authData);
         if (Objects.equals(authDataNew.username(), gameToUpdate.whiteUsername())) {
             gameToInsert = new GameData(gameID, "",
-                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+                    gameToUpdate.blackUsername(), gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.game());
         } else if (Objects.equals(authDataNew.username(), gameToUpdate.blackUsername())) {
             gameToInsert = new GameData(gameID, gameToUpdate.whiteUsername(),
-                    "", gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+                    "", gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.game());
         } else {
             var watchers = gameToUpdate.watchers();
             for (var i = 0; i < watchers.size(); i++) {
@@ -234,7 +237,7 @@ public class DataAccessDB implements DataAccess {
                 }
             }
             gameToInsert = new GameData(gameID, gameToUpdate.whiteUsername(),
-                    "", gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.board());
+                    "", gameToUpdate.gameName(), gameToUpdate.watchers(), gameToUpdate.game());
         }
         try (var connection = DatabaseManager.getConnection()) {
             try (var preparedStatement = connection.prepareStatement("UPDATE game SET gamedatajson = ? WHERE gameid = ?")) {

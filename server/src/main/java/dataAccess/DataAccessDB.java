@@ -214,7 +214,12 @@ public class DataAccessDB implements DataAccess {
             throw new NotFoundException("Error: Game not found");
         } else {
             var game = gameData.game();
+            if ((game.getTeamTurn() == ChessGame.TeamColor.WHITE && !Objects.equals(authData.username(), gameData.whiteUsername())) ||
+                    (game.getTeamTurn() == ChessGame.TeamColor.BLACK && !Objects.equals(authData.username(), gameData.blackUsername()))) {
+                throw new InvalidMoveException("Move is made on opponent's piece");
+            }
             game.makeMove(move);
+            saveGame(gameID, gameData);
         }
     }
 
@@ -247,6 +252,18 @@ public class DataAccessDB implements DataAccess {
             }
         } catch (SQLException exception) {
             throw new DataAccessException("Error: Could not leave game");
+        }
+    }
+
+    private void saveGame(long gameID, GameData game) throws DataAccessException {
+        try (var connection = DatabaseManager.getConnection()) {
+            try (var preparedStatement = connection.prepareStatement("UPDATE game SET gamedatajson = ? WHERE gameid = ?")) {
+                preparedStatement.setString(1, new Gson().toJson(game));
+                preparedStatement.setLong(2, gameID);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException exception) {
+            throw new DataAccessException("Error: Could not update game");
         }
     }
 

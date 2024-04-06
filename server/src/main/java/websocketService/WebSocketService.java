@@ -104,6 +104,7 @@ public class WebSocketService {
                                 new Gson().fromJson(jsonObject.get("move"), ChessMove.class));
                     } catch (InvalidMoveException exception) {
                         sendError(session, "Error: Invalid move because " + exception.getMessage());
+                        break;
                     }
                     System.out.println("Trying to broadcast loadgame message");
                     // send game to everyone, including the one doing the move

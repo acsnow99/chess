@@ -1,7 +1,11 @@
 
- 	java:S127ì"XRefactor the code in order to not assign to this loop counter from within the loop body.(¯€‘¸úÿÿÿÿ8ƒÑ·ˆë1J$3d776b96-cc86-4b29-959a-1ace97f1c1ee
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8¥Ñ·ˆë1J$f2cb9a69-db2d-4a33-aeb9-52d5f39b4e8d
+•
+java:S1192É"rDefine a constant instead of duplicating this literal "UPDATE game SET gamedatajson = ? WHERE gameid = ?" 3 times.(Ä¿»şÿÿÿÿ8Ó‚…‰ë1
+z	java:S127ñ"XRefactor the code in order to not assign to this loop counter from within the loop body.(¯€‘¸úÿÿÿÿ8Ô‚…‰ë1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8Ù‚…‰ë1
 b
-java:S2583Õ"DChange this condition so that it does not always evaluate to "false"(¹¦­§8 ˜Çˆë1
-o
-java:S1168"+Return an empty collection instead of null.(¥¹ï8€Ó·ˆë1J$fbcde176-32fd-4a7e-a50f-b13791f32ee2
+java:S2583Õ"DChange this condition so that it does not always evaluate to "false"(¹¦­§8û‚…‰ë1
+I
+java:S1168"+Return an empty collection instead of null.(¥¹ï8–ƒ…‰ë1
+Z
+java:S1128"=Remove this unused import 'exceptions.UnauthorizedException'.(Õ÷½8ºƒ…‰ë1

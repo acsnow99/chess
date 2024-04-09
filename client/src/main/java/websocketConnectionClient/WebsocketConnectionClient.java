@@ -30,8 +30,11 @@ public class WebsocketConnectionClient extends Endpoint {
                     case "LOAD_GAME":
                         serverMessageObserver.loadGame(new Gson().fromJson(message, ServerLoadGame.class).game);
                         break;
+                    case "NOTIFICATION":
+                        serverMessageObserver.printMessage(jsonObject.get("message").getAsString());
+                        break;
                     default:
-                        serverMessageObserver.printMessage("Received unrecognized server message");
+                        serverMessageObserver.printMessage("Received unrecognized server message: " + message);
                         break;
                 }
 

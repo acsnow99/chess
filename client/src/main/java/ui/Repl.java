@@ -122,6 +122,9 @@ public class Repl {
                             this.makeMove(lineItems[1], lineItems[2]);
                         }
                         break;
+                    case "resign":
+                        resign();
+                        break;
                     case null, default:
                         System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
@@ -302,6 +305,14 @@ public class Repl {
             facadeWebsocket.leavePlayer(authorization, gameID);
             this.gameID = 0;
             System.out.println("Left the game");
+        } catch (Exception exception) {
+            System.out.println("Error: Could not communicate with the server");
+        }
+    }
+
+    private void resign() {
+        try {
+            facadeWebsocket.resign(authorization, gameID);
         } catch (Exception exception) {
             System.out.println("Error: Could not communicate with the server");
         }

@@ -7,6 +7,7 @@ import serverMessageObserver.ServerMessageObserver;
 import webSocketMessages.userCommands.JoinPlayerGameCommand;
 import webSocketMessages.userCommands.LeaveCommand;
 import webSocketMessages.userCommands.MakeMoveGameCommand;
+import webSocketMessages.userCommands.ResignCommand;
 import websocketConnectionClient.WebsocketConnectionClient;
 
 import javax.websocket.OnMessage;
@@ -38,6 +39,12 @@ public class ServerFacadeWebsocket {
 
     public void makeMove(AuthData authData, long gameID, ChessMove move) throws Exception {
         var command = new MakeMoveGameCommand(authData.authToken(), gameID, move);
+        var message = new Gson().toJson(command);
+        websocketConnection.send(message);
+    }
+
+    public void resign(AuthData authorization, long gameID) throws Exception {
+        var command = new ResignCommand(authorization.authToken(), gameID);
         var message = new Gson().toJson(command);
         websocketConnection.send(message);
     }

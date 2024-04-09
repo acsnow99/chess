@@ -48,3 +48,7 @@ Hshared/src/main/java/webSocketMessages/serverMessages/ServerMessage.java,1\f\1
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+x
+Hshared/src/main/java/webSocketMessages/userCommands/UserGameCommand.java,f\d\fd5d3f9e763609cfb286ca69a85ab6dd76e0f1bf
+v
+Fshared/src/main/java/webSocketMessages/userCommands/ResignCommand.java,f\e\fe9cf257d44c9da05fde98cd0e88559324f9b130

@@ -210,17 +210,17 @@ public class DataAccessDB implements DataAccess {
 
     public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException, InvalidMoveException {
         var gameData = getGameByID(gameID);
-        if (gameData == null) {
-            throw new NotFoundException("Error: Game not found");
-        } else {
-            var game = gameData.game();
-            if ((game.getTeamTurn() == ChessGame.TeamColor.WHITE && !Objects.equals(authData.username(), gameData.whiteUsername())) ||
-                    (game.getTeamTurn() == ChessGame.TeamColor.BLACK && !Objects.equals(authData.username(), gameData.blackUsername()))) {
-                throw new InvalidMoveException("Move is made on opponent's piece");
-            }
-            game.makeMove(move);
-            saveGame(gameID, gameData);
+        var game = gameData.game();
+        if ((game.getTeamTurn() == ChessGame.TeamColor.WHITE && !Objects.equals(authData.username(), gameData.whiteUsername())) ||
+                (game.getTeamTurn() == ChessGame.TeamColor.BLACK && !Objects.equals(authData.username(), gameData.blackUsername()))) {
+            throw new InvalidMoveException("Move is made on opponent's piece");
         }
+        game.makeMove(move);
+        if (game.isInCheckmate(ChessGame.TeamColor.WHITE) || game.isInCheckmate(ChessGame.TeamColor.BLACK) ||
+                game.isInStalemate(ChessGame.TeamColor.WHITE) || game.isInStalemate(ChessGame.TeamColor.BLACK)) {
+            game.setFinished(true);
+        }
+        saveGame(gameID, gameData);
     }
 
     public void removePlayer(AuthData authData, long gameID) throws NotFoundException, DataAccessException {

@@ -81,6 +81,9 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
+        if (this.finished) {
+            throw new InvalidMoveException("Game is over; no more moves can be made");
+        }
         var endPosition = move.getEndPosition();
         if (!endPosition.isInBounds()) {
             throw new InvalidMoveException("Move tries to move piece out of bounds");

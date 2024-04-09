@@ -1,36 +1,36 @@
 
-	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(ôÍ”Ãüÿÿÿÿ8…Ï¼‚ì1J$9ac66fef-b4d1-4638-804c-77f2255fecbb
-‰	java:S112É"FDefine and throw a dedicated exception instead of using a generic one.(±œûĞ8†Ï¼‚ì1J$cb082ee7-95cd-4e23-ac99-510ac0e87015
+	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(ôÍ”Ãüÿÿÿÿ8…Ï¼‚ì1J$37a56427-4348-4f96-8996-a6df69d8020a
+‰	java:S112É"FDefine and throw a dedicated exception instead of using a generic one.(±œûĞ8†Ï¼‚ì1J$bcd2df93-3a2c-4863-b562-e32dd0d1ec53
 
-java:S1192?"GDefine a constant instead of duplicating this literal "gameID" 4 times.(Åí²öüÿÿÿÿ8‡Ï¼‚ì1J$cadbfd50-69e7-4784-ba89-bc15cff9b821
+java:S1192?"GDefine a constant instead of duplicating this literal "gameID" 4 times.(Åí²öüÿÿÿÿ8‡Ï¼‚ì1J$eaf91b1e-c83c-42ba-a002-24ec57bca77e
 £
-java:S1192B"[Define a constant instead of duplicating this literal "Error: Game does not exist" 4 times.(Ã±ø´úÿÿÿÿ8‡Ï¼‚ì1J$a7775830-a998-4434-9c28-e8cacdf47cb5
+java:S1192B"[Define a constant instead of duplicating this literal "Error: Game does not exist" 4 times.(Ã±ø´úÿÿÿÿ8‡Ï¼‚ì1J$955e2e98-3906-4981-a773-c00e00c31d9a
 ™
-java:S1192³"UDefine a constant instead of duplicating this literal "Connection closed..." 4 times.(òù´‰8‡Ï¼‚ì1J$31e35ca8-3bc4-43ce-b14e-190060ad536f
+java:S1192³"UDefine a constant instead of duplicating this literal "Connection closed..." 4 times.(òù´‰8‡Ï¼‚ì1J$00bf09e1-db80-490a-b7ea-d368c789d712
 ”
-java:S11924"QDefine a constant instead of duplicating this literal "Error: Bad token" 4 times.(¹Í¹–8‡Ï¼‚ì1J$4581db69-4462-4491-a025-97c8a494a9a3
+java:S11924"QDefine a constant instead of duplicating this literal "Error: Bad token" 4 times.(¹Í¹–8‡Ï¼‚ì1J$70c24c15-07da-43b2-bfbe-36d17f9b60c8
 w
-java:S1066L"/Merge this if statement with the enclosing one.(ÑóÏéùÿÿÿÿ8ˆÏ¼‚ì1J$5713332e-d714-497f-8edf-b056b45b233a
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚¤şæûÿÿÿÿ8‹Ï¼‚ì1J$c0b3eca0-8d4d-4c07-8355-12f9461c44c3
+java:S1066L"/Merge this if statement with the enclosing one.(ÑóÏéùÿÿÿÿ8ˆÏ¼‚ì1J$3aab6a61-80da-46d8-a59b-8686c1c66a67
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚¤şæûÿÿÿÿ8‹Ï¼‚ì1J$b9063a3e-73a6-4952-ac36-3ea40fa4f66d
 ”
-java:S3776("RRefactor this method to reduce its Cognitive Complexity from 53 to the 15 allowed.(ğêÚ8ŠĞ¼‚ì1J$038a7a87-001e-4679-a2ea-b90f22b791c0
-m	java:S106W"+Replace this use of System.out by a logger.(½¶…ü8Ğ¼‚ì1J$c56e068e-c400-4a93-9998-09fe227ae93c
-r	java:S106l"+Replace this use of System.out by a logger.(Ê­Ç°üÿÿÿÿ8•Ğ¼‚ì1J$4d393b91-1398-48a8-b097-219f2f252a85
-r	java:S106r"+Replace this use of System.out by a logger.(ŞƒÿØıÿÿÿÿ8•Ğ¼‚ì1J$7840703a-7fe6-4b58-ab2d-6661424069e0
-s	java:S106ƒ"+Replace this use of System.out by a logger.(‘Í‹©øÿÿÿÿ8˜Ğ¼‚ì1J$38bc8cbf-00d4-432c-89b6-d3a142b240e1
-s	java:S106¥"+Replace this use of System.out by a logger.(õˆúÿÿÿÿ8šĞ¼‚ì1J$3add0ac9-8ac8-43a6-9348-1e4fb1feb0ab
-n	java:S106±"+Replace this use of System.out by a logger.(³‚¡­8œĞ¼‚ì1J$10bd8c4e-875b-4f40-8ae3-d39ae87fafe6
-n	java:S106³"+Replace this use of System.out by a logger.(òù´‰8œĞ¼‚ì1J$ed568ab7-9154-48af-bc43-066787cc0b38
+java:S3776("RRefactor this method to reduce its Cognitive Complexity from 53 to the 15 allowed.(ğêÚ8ŠĞ¼‚ì1J$032d8b44-bfda-41b0-9df7-30f603af74cd
+m	java:S106W"+Replace this use of System.out by a logger.(½¶…ü8Ğ¼‚ì1J$83c3ee2c-eaa9-4da0-8fc1-924565c5214f
+r	java:S106l"+Replace this use of System.out by a logger.(Ê­Ç°üÿÿÿÿ8•Ğ¼‚ì1J$47239b69-3f07-4eae-a3f6-af6d70135360
+r	java:S106r"+Replace this use of System.out by a logger.(ŞƒÿØıÿÿÿÿ8•Ğ¼‚ì1J$b5fd54de-d80a-4778-b1a2-e91d828fa62b
+s	java:S106ƒ"+Replace this use of System.out by a logger.(‘Í‹©øÿÿÿÿ8˜Ğ¼‚ì1J$0b4489ce-e1d7-44bd-bf68-3f961d0499d4
+s	java:S106¥"+Replace this use of System.out by a logger.(õˆúÿÿÿÿ8šĞ¼‚ì1J$bb297c89-8478-4436-994c-dc0acd2e6724
+n	java:S106±"+Replace this use of System.out by a logger.(³‚¡­8œĞ¼‚ì1J$2011e554-736a-43ba-bdb8-c3d421e75556
+n	java:S106³"+Replace this use of System.out by a logger.(òù´‰8œĞ¼‚ì1J$3785d96d-08dd-43bb-a25f-0695d1cbf0df
 }
-java:S2864¹"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8Ğ¼‚ì1J$86a5e663-aedf-467b-9169-d03cfcce5c1c
-n	java:S106À"+Replace this use of System.out by a logger.(òù´‰8Ğ¼‚ì1J$13fce16d-12f4-47d2-8b64-cd2e317f7851
-m	java:S106Ã"+Replace this use of System.out by a logger.(é»³8Ğ¼‚ì1J$f0f00b1a-6fee-47bc-88bb-cea1c8616973
-s	java:S106Ê"+Replace this use of System.out by a logger.(Ù³¬»ıÿÿÿÿ8ŸĞ¼‚ì1J$ffa411d9-166a-46aa-985c-f65a9354f67b
-n	java:S106Î"+Replace this use of System.out by a logger.(òù´‰8ŸĞ¼‚ì1J$fd5b4a86-9582-422a-a099-ad172dfb5e19
-n	java:S106×"+Replace this use of System.out by a logger.(—â•×8¡Ğ¼‚ì1J$2a7fae5d-786d-4676-bd5d-5724710d4d53
+java:S2864¹"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8Ğ¼‚ì1J$0b5eca74-d5ad-4074-b318-8ac9d129dd7b
+n	java:S106À"+Replace this use of System.out by a logger.(òù´‰8Ğ¼‚ì1J$3eb67456-454d-4411-bc24-fd97a111356f
+m	java:S106Ã"+Replace this use of System.out by a logger.(é»³8Ğ¼‚ì1J$4b48cb7a-f2c7-49af-b6e1-0692855897f5
+s	java:S106Ê"+Replace this use of System.out by a logger.(Ù³¬»ıÿÿÿÿ8ŸĞ¼‚ì1J$ac31ca89-0a91-41ac-b45c-d4a6b153ed6c
+n	java:S106Î"+Replace this use of System.out by a logger.(òù´‰8ŸĞ¼‚ì1J$8fe95285-bd79-444f-b7f0-2d30bb60e5e5
+n	java:S106×"+Replace this use of System.out by a logger.(—â•×8¡Ğ¼‚ì1J$20c8e06e-2216-467a-8d62-847b2309caa6
 }
-java:S2864Ø"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8¡Ğ¼‚ì1J$5cd1344f-fdb2-4efa-9759-b74724256e84
-n	java:S106ß"+Replace this use of System.out by a logger.(òù´‰8£Ğ¼‚ì1J$a5f4566c-9a54-497c-8984-cb371ee21dea
-m	java:S106â"+Replace this use of System.out by a logger.(é»³8£Ğ¼‚ì1J$ea996fd8-b657-4bbf-9fa4-babc4c46129a
+java:S2864Ø"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8¡Ğ¼‚ì1J$16826c7e-87c7-449b-b81e-2001328017b8
+n	java:S106ß"+Replace this use of System.out by a logger.(òù´‰8£Ğ¼‚ì1J$f9b2a30c-d769-439f-95fb-fa5e695d16dd
+m	java:S106â"+Replace this use of System.out by a logger.(é»³8£Ğ¼‚ì1J$dda9bf48-6442-42f4-9527-af3a7d66ffa3
 ‰
-java:S6541("ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 117 to 64, Complexity from 21 to 14, Nesting Level from 4 to 2, Number of Variables from 12 to 6.(ğêÚ8¥Ğ¼‚ì1J$7c8615af-9b02-46f1-8df3-ff2fbd5cc9b8
+java:S6541("ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 117 to 64, Complexity from 21 to 14, Nesting Level from 4 to 2, Number of Variables from 12 to 6.(ğêÚ8¥Ğ¼‚ì1J$be6fb907-dc24-446a-b33f-1f4382158318

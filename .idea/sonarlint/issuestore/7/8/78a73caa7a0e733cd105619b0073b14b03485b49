@@ -1,9 +1,11 @@
 
 »
-java:S1192Ι"rDefine a constant instead of duplicating this literal "UPDATE game SET gamedatajson = ? WHERE gameid = ?" 3 times.(ΔΏ»ώÿÿÿÿ8“Λ‚μ1J$daf68e14-7e39-4289-9d19-97740191eaf0
- 	java:S127ρ"XRefactor the code in order to not assign to this loop counter from within the loop body.(―€‘Έϊÿÿÿÿ8”Λ‚μ1J$3f95733f-3d0b-43e5-9c4b-ff176f7d6960
-	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(δεσ8Λ‚μ1J$278b6e4d-a196-4d3e-959c-7d930ea05737
+java:S1192Ι"rDefine a constant instead of duplicating this literal "UPDATE game SET gamedatajson = ? WHERE gameid = ?" 3 times.(ΔΏ»ώÿÿÿÿ8»Ιƒμ1J$430bef90-3b57-467b-8205-e496c52f2ddd
+ 	java:S127υ"XRefactor the code in order to not assign to this loop counter from within the loop body.(―€‘Έϊÿÿÿÿ8 »Ιƒμ1J$408269e2-1e1c-487c-9dea-dd30cad574e1
+x
+java:S1066Ψ"/Merge this if statement with the enclosing one.(«ορ¬ϋÿÿÿÿ8΅»Ιƒμ1J$6ec280be-5238-4527-9dd2-c9719bd4026f
+	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(δεσ8¥»Ιƒμ1J$536d6dfb-fac4-4d88-ab95-ca871e1ab73c
 o
-java:S1168"+Return an empty collection instead of null.(¥Ήο8ίΛ‚μ1J$e0542279-20b4-411f-9479-4ba77e1271b9
+java:S1168"+Return an empty collection instead of null.(¥Ήο8ι»Ιƒμ1J$dd39fc68-7c31-4dd2-8f89-bd10f722a6f5
 €
-java:S1128"=Remove this unused import 'exceptions.UnauthorizedException'.(Υχ½8ªΟΝ‚μ1J$2c4551b7-289a-46cc-9926-be1fccbdada5
+java:S1128"=Remove this unused import 'exceptions.UnauthorizedException'.(Υχ½8ύ»Ιƒμ1J$1b00fe40-e818-4605-9a2e-749b4e984cf0

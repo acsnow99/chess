@@ -33,3 +33,5 @@ n
 >server/src/main/java/websocketService/WebSocketConnection.java,f\8\f8c5c2f0c698dac06b5e34511ed774382159603d
 N
 client/src/main/java/Main.java,e\c\ecb7a1924b25558f5bedb6f53e4d6092557bd541
+v
+Fshared/src/main/java/webSocketMessages/serverMessages/ServerError.java,4\c\4c24e7f43b2de6bbaa97306312eff193c8c7e851

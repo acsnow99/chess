@@ -246,7 +246,7 @@ public class Repl {
 
     private void joinGame(int port, String playerColor, String gameID) {
         try {
-            var gameIDLong = Long.parseLong(gameID);
+            long gameIDLong = Long.parseLong(gameID);
             this.gameID = gameIDLong;
             facadeGame.joinGame(authorization, playerColor, gameIDLong);
 
@@ -270,6 +270,8 @@ public class Repl {
             loggedInStatus = userState.IN_GAME;
         } catch (HttpResponseException exception) {
             System.out.println("Spot taken. Try joining with a different color.");
+        } catch (NumberFormatException exception) {
+            System.out.println("Please provide the game ID number, not its name");
         }
     }
 

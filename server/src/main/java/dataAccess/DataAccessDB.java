@@ -211,10 +211,14 @@ public class DataAccessDB implements DataAccess {
     public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException, InvalidMoveException {
         var gameData = getGameByID(gameID);
         var game = gameData.game();
-        if ((game.getTeamTurn() == ChessGame.TeamColor.WHITE && !Objects.equals(authData.username(), gameData.whiteUsername())) ||
-                (game.getTeamTurn() == ChessGame.TeamColor.BLACK && !Objects.equals(authData.username(), gameData.blackUsername()))) {
-            throw new InvalidMoveException("Move is made on opponent's piece");
+        var pieceAtStart = game.getBoard().getPiece(move.getStartPosition());
+        if (pieceAtStart != null) {
+            if ((pieceAtStart.getTeamColor() == ChessGame.TeamColor.WHITE && !Objects.equals(authData.username(), gameData.whiteUsername())) ||
+                    (pieceAtStart.getTeamColor() == ChessGame.TeamColor.BLACK && !Objects.equals(authData.username(), gameData.blackUsername()))) {
+                throw new InvalidMoveException("Piece is on opponent's team");
+            }
         }
+
         game.makeMove(move);
         if (game.isInCheckmate(ChessGame.TeamColor.WHITE) || game.isInCheckmate(ChessGame.TeamColor.BLACK) ||
                 game.isInStalemate(ChessGame.TeamColor.WHITE) || game.isInStalemate(ChessGame.TeamColor.BLACK)) {

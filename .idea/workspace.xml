@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12ee2b2e0577bf40c2f0f09ceb1e2b3d9b36bd7a" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12ee2b2e0577bf40c2f0f09ceb1e2b3d9b36bd7a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12fb14c8f3f96b003658ced72608bdfc484a2484" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12fb14c8f3f96b003658ced72608bdfc484a2484" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/8/78a73caa7a0e733cd105619b0073b14b03485b49" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/8/78a73caa7a0e733cd105619b0073b14b03485b49" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/services/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/services/GameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +145,7 @@
     "JUnit.WebSocketTests.invalidMoveBadMove.executor": "Run",
     "JUnit.WebSocketTests.invalidMoveGameOver.executor": "Run",
     "JUnit.WebSocketTests.invalidMoveObserver.executor": "Run",
-    "JUnit.WebSocketTests.invalidMoveOpponent.executor": "Debug",
+    "JUnit.WebSocketTests.invalidMoveOpponent.executor": "Run",
     "JUnit.WebSocketTests.invalidMoveWrongTurn.executor": "Run",
     "JUnit.WebSocketTests.invalidResignGameOver.executor": "Run",
     "JUnit.WebSocketTests.invalidResignObserver.executor": "Run",
@@ -200,7 +194,7 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WebSocketTests.invalidMoveObserver">
+  <component name="RunManager" selected="JUnit.WebSocketTests.multipleLobbies">
     <configuration name="WebSocketTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -248,22 +242,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WebSocketTests.invalidResignGameOver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
-      <option name="METHOD_NAME" value="invalidResignGameOver" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="WebSocketTests.leaveGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -280,20 +258,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WebSocketTests.multipleLobbies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="METHOD_NAME" value="multipleLobbies" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.WebSocketTests" />
-      <item itemvalue="JUnit.WebSocketTests.invalidResignGameOver" />
       <item itemvalue="JUnit.WebSocketTests.leaveGame" />
+      <item itemvalue="JUnit.WebSocketTests.multipleLobbies" />
       <item itemvalue="JUnit.WebSocketTests.invalidMoveObserver" />
       <item itemvalue="JUnit.WebSocketTests.invalidMoveOpponent" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WebSocketTests.multipleLobbies" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveObserver" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveOpponent" />
         <item itemvalue="JUnit.WebSocketTests" />
         <item itemvalue="JUnit.WebSocketTests.leaveGame" />
-        <item itemvalue="JUnit.WebSocketTests.invalidResignGameOver" />
       </list>
     </recent_temporary>
   </component>
@@ -368,11 +362,6 @@
           <url>file://$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java</url>
           <line>118</line>
           <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java</url>
-          <line>218</line>
-          <option name="timeStamp" value="116" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

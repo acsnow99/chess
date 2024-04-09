@@ -82,7 +82,7 @@ public class WebSocketService {
                     userLoadGame(session, gameID);
                     var wsSession = new WebSocketConnection(gameID, session);
                     addConnection(authToken, wsSession);
-                    broadcast(username + " joined the game as " + playerColor.toLowerCase(), authToken);
+                    broadcast(username + " joined the game as " + playerColor.toLowerCase(), gameID, authToken);
                     break;
                 case "\"MAKE_MOVE\"":
                     System.out.println("Trying to make move");
@@ -109,7 +109,7 @@ public class WebSocketService {
                     System.out.println("Trying to broadcast loadgame message");
                     // send game to everyone, including the one doing the move
                     broadcastLoadGame(gameID, "");
-                    broadcast("Hey a move was made", authToken);
+                    broadcast("Hey a move was made", gameID, authToken);
                     break;
                 case "\"LEAVE\"":
                     System.out.println("Player leaving");
@@ -125,7 +125,7 @@ public class WebSocketService {
                         break;
                     }
                     sessions.remove(authToken);
-                    broadcast(username + " left the game", authToken);
+                    broadcast(username + " left the game", gameID, authToken);
                     gameService.removePlayer(dataAccess, authToken, gameID);
                     break;
                 case "\"RESIGN\"":
@@ -149,7 +149,7 @@ public class WebSocketService {
                         sendError(session, "Error: Game is already over");
                         break;
                     }
-                    broadcast(username + " forfeited the game", "");
+                    broadcast(username + " forfeited the game", gameID, "");
                     gameService.setGameFinished(dataAccess, gameID);
                     break;
                 default:
@@ -184,7 +184,7 @@ public class WebSocketService {
     private void broadcastLoadGame(long gameID, String excludedAuthToken) throws DataAccessException {
         var game = gameService.getGameByID(dataAccess, gameID);
         for (var authToken : sessions.keySet()) {
-            if (!Objects.equals(authToken, excludedAuthToken)) {
+            if (Objects.equals(sessions.get(authToken).gameID(), gameID) && !Objects.equals(authToken, excludedAuthToken)) {
                 try {
                     var s = sessions.get(authToken).session();
                     if (s.isOpen()) {
@@ -212,10 +212,10 @@ public class WebSocketService {
         sessions.put(authToken, session);
     }
 
-    private void broadcast(String message, String excludedAuthToken) {
+    private void broadcast(String message, long gameID, String excludedAuthToken) {
         System.out.println("Trying to broadcast message");
         for (var authToken : sessions.keySet()) {
-            if (!Objects.equals(authToken, excludedAuthToken)) {
+            if (Objects.equals(sessions.get(authToken).gameID(), gameID) && !Objects.equals(authToken, excludedAuthToken)) {
                 try {
                     var s = sessions.get(authToken).session();
                     if (s.isOpen()) {

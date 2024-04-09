@@ -29,3 +29,5 @@ b
 2shared/src/test/java/passoffTests/TestFactory.java,e\9\e9394cf4f23ef8e3e7f7d6cf9f7b3605ba345448
 e
 5server/src/main/java/dataAccess/DataAccessMemory.java,b\a\ba9fe96b0c9460516e5c2f05594837809265aef8
+n
+>server/src/main/java/websocketService/WebSocketConnection.java,f\8\f8c5c2f0c698dac06b5e34511ed774382159603d

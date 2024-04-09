@@ -45,3 +45,6 @@ Ishared/src/main/java/webSocketMessages/serverMessages/ServerLoadGame.java,3\6\
 Mshared/src/main/java/webSocketMessages/serverMessages/ServerNotification.java,a\5\a5e37124f26f785be0720abbe4ffd653a48d7468
 x
 Hshared/src/main/java/webSocketMessages/serverMessages/ServerMessage.java,1\f\1f47ab5bc97ec5c3c682cb514ee17051ff425b83
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

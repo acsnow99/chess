@@ -47,8 +47,7 @@ public class Repl {
         String lineFirst;
         System.out.println(EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR);
         while (true) {
-            String cliString = "[" + loggedInStatus.toString() + "] >>> ";
-            System.out.print(cliString);
+            printStatus();
             line = clientReader.nextLine();
             lineItems = line.split(" ");
             lineFirst = lineItems[0];
@@ -153,6 +152,11 @@ public class Repl {
         } catch (Exception exception) {
             System.out.println("Error: could not send message to server because " + exception.getMessage());
         }
+    }
+
+    private void printStatus() {
+        String cliString = "[" + loggedInStatus.toString() + "] >>> ";
+        System.out.print(cliString);
     }
 
     private void printHelpLoggedOut() {
@@ -306,6 +310,7 @@ public class Repl {
     public void loadGame(GameData game) {
         this.gameDataLocal = game;
         printBoard(game);
+        printStatus();
     }
 
     private void printBoard(GameData game) {
@@ -314,6 +319,7 @@ public class Repl {
 
     public void printMessage(String message) {
         System.out.println("\n" + message);
+        printStatus();
     }
 
     private int getNumberFromLetter(String letter) {

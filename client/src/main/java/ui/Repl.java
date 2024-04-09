@@ -229,7 +229,7 @@ public class Repl {
                 if (white == null || white.isEmpty()) {
                     white = "none";
                 }
-                var black = game.whiteUsername();
+                var black = game.blackUsername();
                 if (black == null || black.isEmpty()) {
                     black = "none";
                 }

@@ -141,6 +141,14 @@ public class WebSocketService {
                         sendError(session, "Error: Game does not exist");
                         break;
                     }
+                    if (!Objects.equals(game.whiteUsername(), username) && !Objects.equals(game.blackUsername(), username)) {
+                        sendError(session, "Error: User is an observer");
+                        break;
+                    }
+                    if (game.game().isFinished()) {
+                        sendError(session, "Error: Game is already over");
+                        break;
+                    }
                     broadcast(username + " forfeited the game", "");
                     gameService.setGameFinished(dataAccess, gameID);
                     break;

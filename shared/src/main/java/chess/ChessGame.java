@@ -236,4 +236,8 @@ public class ChessGame {
     public void setFinished(boolean isFinished) {
         this.finished = isFinished;
     }
+
+    public boolean isFinished() {
+        return this.finished;
+    }
 }

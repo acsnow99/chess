@@ -6,7 +6,6 @@ import exceptions.HttpResponseException;
 import model.AuthData;
 import model.GameData;
 import model.User;
-import org.springframework.security.core.parameters.P;
 import serverFacade.ServerFacadeGame;
 import serverFacade.ServerFacadeRegistration;
 import serverFacade.ServerFacadeSession;
@@ -325,7 +324,7 @@ public class Repl {
     }
 
     private void printBoard(GameData game) {
-        System.out.println("\n" + boardString);
+        System.out.println(new BoardArtist().drawBoard(game));
     }
 
     public void printMessage(String message) {

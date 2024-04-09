@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/shared/src/main/java/webSocketMessages/userCommands/ResignCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/ui/BoardArtist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/27403be7d87ae9d5cb79e37cd188fe6e7c9f43f7" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/27403be7d87ae9d5cb79e37cd188fe6e7c9f43f7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5e37124f26f785be0720abbe4ffd653a48d7468" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5e37124f26f785be0720abbe4ffd653a48d7468" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/c/dc524d3b019bd2d0c243e852b7a30ea0d9870599" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/c/dc524d3b019bd2d0c243e852b7a30ea0d9870599" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/f/ffd750a03b6519d13ba42d9adb800d8637e1deae" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/f/ffd750a03b6519d13ba42d9adb800d8637e1deae" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeWebsocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeWebsocket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/websocketConnectionClient/WebsocketConnectionClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/websocketConnectionClient/WebsocketConnectionClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +53,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main (1).executor": "Debug",
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "JUnit.All in client.executor": "Run",
     "JUnit.DataAccessDBTests.authDataIsAuthorized.executor": "Run",
     "JUnit.DataAccessDBTests.authDataIsAuthorizedNeg.executor": "Run",
@@ -362,6 +357,11 @@
           <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
           <line>131</line>
           <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/ui/BoardArtist.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="127" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

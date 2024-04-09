@@ -52,3 +52,9 @@ x
 Hshared/src/main/java/webSocketMessages/userCommands/UserGameCommand.java,f\d\fd5d3f9e763609cfb286ca69a85ab6dd76e0f1bf
 v
 Fshared/src/main/java/webSocketMessages/userCommands/ResignCommand.java,f\e\fe9cf257d44c9da05fde98cd0e88559324f9b130
+\
+,client/src/main/java/ui/EscapeSequences.java,b\6\b6823e781e53d487887c1ba9760d63892cdd044c
+X
+(client/src/main/java/ui/BoardArtist.java,3\a\3a096a8957c9999f457ef92043df25f399048f5a
+]
+-shared/src/main/java/chess/ChessPosition.java,3\b\3b013a24b64d343e15bac32b29d3d69c6c135d82

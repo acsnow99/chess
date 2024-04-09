@@ -1,5 +1,7 @@
 package ui;
 
+import chess.ChessMove;
+import chess.ChessPosition;
 import exceptions.HttpResponseException;
 import model.AuthData;
 import model.GameData;
@@ -103,10 +105,23 @@ public class Repl {
                 }
             } else if (loggedInStatus == userState.IN_GAME) {
                 switch (lineFirst) {
-                    case "help" -> printHelpInGame();
-                    case "leave" -> leaveGame();
-                    case null, default ->
-                            System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+                    case "help":
+                        printHelpInGame();
+                        break;
+                    case "leave":
+                        leaveGame();
+                        break;
+                    case "move":
+                        if (lineItems.length < 2) {
+                            System.out.println("Missing start and end positions");
+                        } else if (lineItems.length < 3) {
+                            System.out.println("Missing end position");
+                        } else {
+                            this.makeMove(this.gameID, lineItems[1], lineItems[2]);
+                        }
+                        break;
+                    case null, default:
+                        System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
             }
         }
@@ -210,7 +225,6 @@ public class Repl {
             gameDataStrings.add("Name:            ID:          White:          Black:           Watchers:");
             var games = facadeGame.getGames(authorization);
             for (GameData game : games) {
-                // TODO: replace nulls with "none"
                 var white = game.whiteUsername();
                 if (white == null || white.isEmpty()) {
                     white = "none";
@@ -259,6 +273,20 @@ public class Repl {
         }
     }
 
+    private void makeMove(long gameID, String start, String end) {
+        var startSplit = start.split("");
+        var endSplit = end.split("");
+        var startColumn = this.getNumberFromLetter(startSplit[0]);
+        var endColumn = this.getNumberFromLetter(endSplit[0]);
+        var startPos = new ChessPosition(Integer.parseInt(startSplit[1]), startColumn);
+        var endPos = new ChessPosition(Integer.parseInt(endSplit[1]), endColumn);
+        try {
+            this.facadeWebsocket.makeMove(this.authorization, this.gameID, new ChessMove(startPos, endPos, null));
+        } catch (Exception exception) {
+            System.out.println("Could not make move because " + exception.getMessage());
+        }
+    }
+
     private void leaveGame() {
         loggedInStatus = userState.LOGGED_IN;
         try {
@@ -267,6 +295,29 @@ public class Repl {
             System.out.println("Left the game");
         } catch (Exception exception) {
             System.out.println("Error: Could not communicate with the server");
+        }
+    }
+
+    private int getNumberFromLetter(String letter) {
+        switch (letter) {
+            case "a":
+                return 1;
+            case "b":
+                return 2;
+            case "c":
+                return 3;
+            case "d":
+                return 4;
+            case "e":
+                return 5;
+            case "f":
+                return 6;
+            case "g":
+                return 7;
+            case "h":
+                return 8;
+            default:
+                return 0;
         }
     }
 }

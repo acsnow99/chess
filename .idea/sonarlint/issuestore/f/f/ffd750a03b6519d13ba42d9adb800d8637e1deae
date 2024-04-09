@@ -1,6 +1,7 @@
 
-‹	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œŞÕ]J$8c33a411-a8b5-4965-8ff2-79e46d381966
-š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å“¢šÿÿÿÿÿJ$3c7a8b98-dc25-4721-a7f5-8f58755779bb
-n
-java:S1068
-"-Remove this unused "serverURL" private field.(›¥ˆôüÿÿÿÿJ$23a9a321-2033-4b60-a017-c96a00aece94
+’	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œŞÕ]8Âûƒì1J$fee71fdf-96b2-4a6c-991e-fb22a9cdca13
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å“¢šÿÿÿÿÿ8Éûƒì1J$6a4cd3e7-282f-445e-ace9-1705e4c1645b
+É
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Í—¯Ùÿÿÿÿÿ8¢‚¤ƒì1J$06f28c1e-4deb-4b8d-8ec9-d7cfccb12d57
+u
+java:S1068"-Remove this unused "serverURL" private field.(›¥ˆôüÿÿÿÿ8æûƒì1J$48c16d05-21d1-4bfe-a2b6-05c8cdeea9f8

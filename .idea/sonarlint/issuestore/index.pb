@@ -31,3 +31,5 @@ e
 5server/src/main/java/dataAccess/DataAccessMemory.java,b\a\ba9fe96b0c9460516e5c2f05594837809265aef8
 n
 >server/src/main/java/websocketService/WebSocketConnection.java,f\8\f8c5c2f0c698dac06b5e34511ed774382159603d
+N
+client/src/main/java/Main.java,e\c\ecb7a1924b25558f5bedb6f53e4d6092557bd541

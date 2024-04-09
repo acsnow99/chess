@@ -1,10 +1,14 @@
 package serverFacade;
 
+import chess.ChessMove;
 import com.google.gson.Gson;
 import model.AuthData;
 import webSocketMessages.userCommands.JoinPlayerGameCommand;
 import webSocketMessages.userCommands.LeaveCommand;
+import webSocketMessages.userCommands.MakeMoveGameCommand;
 import websocketConnectionClient.WebsocketConnectionClient;
+
+import javax.websocket.OnMessage;
 
 public class ServerFacadeWebsocket {
     private final String serverURL;
@@ -15,6 +19,7 @@ public class ServerFacadeWebsocket {
         websocketConnection = new WebsocketConnectionClient(URL);
     }
 
+    
     public void send(String message) throws Exception {
         websocketConnection.send(message);
     }
@@ -27,6 +32,12 @@ public class ServerFacadeWebsocket {
 
     public void leavePlayer(AuthData authData, long gameID) throws Exception {
         var command = new LeaveCommand(authData.authToken(), gameID);
+        var message = new Gson().toJson(command);
+        websocketConnection.send(message);
+    }
+
+    public void makeMove(AuthData authData, long gameID, ChessMove move) throws Exception {
+        var command = new MakeMoveGameCommand(authData.authToken(), gameID, move);
         var message = new Gson().toJson(command);
         websocketConnection.send(message);
     }

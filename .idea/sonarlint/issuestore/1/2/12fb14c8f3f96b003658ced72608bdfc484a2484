@@ -1,36 +1,34 @@
 
-	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(ôÍ”Ãüÿÿÿÿ8…Ï¼‚ì1J$37a56427-4348-4f96-8996-a6df69d8020a
-‰	java:S112É"FDefine and throw a dedicated exception instead of using a generic one.(±œûĞ8†Ï¼‚ì1J$bcd2df93-3a2c-4863-b562-e32dd0d1ec53
+h	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(ôÍ”Ãüÿÿÿÿ8Ùğ§ì1
+c	java:S112É"FDefine and throw a dedicated exception instead of using a generic one.(±œûĞ8Úğ§ì1
 
-java:S1192?"GDefine a constant instead of duplicating this literal "gameID" 4 times.(Åí²öüÿÿÿÿ8‡Ï¼‚ì1J$eaf91b1e-c83c-42ba-a002-24ec57bca77e
+java:S1192?"GDefine a constant instead of duplicating this literal "gameID" 4 times.(Åí²öüÿÿÿÿ8‡Ï¼‚ì1J$f5f2ceea-5036-444f-a8d8-6585d398c343
 £
-java:S1192B"[Define a constant instead of duplicating this literal "Error: Game does not exist" 4 times.(Ã±ø´úÿÿÿÿ8‡Ï¼‚ì1J$955e2e98-3906-4981-a773-c00e00c31d9a
-™
-java:S1192³"UDefine a constant instead of duplicating this literal "Connection closed..." 4 times.(òù´‰8‡Ï¼‚ì1J$00bf09e1-db80-490a-b7ea-d368c789d712
+java:S1192B"[Define a constant instead of duplicating this literal "Error: Game does not exist" 4 times.(Ã±ø´úÿÿÿÿ8‡Ï¼‚ì1J$b04686a2-4c24-41fa-b06d-de58785f6f52
 ”
-java:S11924"QDefine a constant instead of duplicating this literal "Error: Bad token" 4 times.(¹Í¹–8‡Ï¼‚ì1J$70c24c15-07da-43b2-bfbe-36d17f9b60c8
+java:S11924"QDefine a constant instead of duplicating this literal "Error: Bad token" 4 times.(¹Í¹–8‡Ï¼‚ì1J$cdc038b8-c99d-4983-9203-8945bbe7fe88
 w
-java:S1066L"/Merge this if statement with the enclosing one.(ÑóÏéùÿÿÿÿ8ˆÏ¼‚ì1J$3aab6a61-80da-46d8-a59b-8686c1c66a67
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚¤şæûÿÿÿÿ8‹Ï¼‚ì1J$b9063a3e-73a6-4952-ac36-3ea40fa4f66d
+java:S1066L"/Merge this if statement with the enclosing one.(ÑóÏéùÿÿÿÿ8ˆÏ¼‚ì1J$e9d2c741-5db5-4f7a-a30b-a7baaee87f45
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚¤şæûÿÿÿÿ8‹Ï¼‚ì1J$bb71d1f1-b47f-4386-9855-b76aa14f50fe
 ”
-java:S3776("RRefactor this method to reduce its Cognitive Complexity from 53 to the 15 allowed.(ğêÚ8ŠĞ¼‚ì1J$032d8b44-bfda-41b0-9df7-30f603af74cd
-m	java:S106W"+Replace this use of System.out by a logger.(½¶…ü8Ğ¼‚ì1J$83c3ee2c-eaa9-4da0-8fc1-924565c5214f
-r	java:S106l"+Replace this use of System.out by a logger.(Ê­Ç°üÿÿÿÿ8•Ğ¼‚ì1J$47239b69-3f07-4eae-a3f6-af6d70135360
-r	java:S106r"+Replace this use of System.out by a logger.(ŞƒÿØıÿÿÿÿ8•Ğ¼‚ì1J$b5fd54de-d80a-4778-b1a2-e91d828fa62b
-s	java:S106ƒ"+Replace this use of System.out by a logger.(‘Í‹©øÿÿÿÿ8˜Ğ¼‚ì1J$0b4489ce-e1d7-44bd-bf68-3f961d0499d4
-s	java:S106¥"+Replace this use of System.out by a logger.(õˆúÿÿÿÿ8šĞ¼‚ì1J$bb297c89-8478-4436-994c-dc0acd2e6724
-n	java:S106±"+Replace this use of System.out by a logger.(³‚¡­8œĞ¼‚ì1J$2011e554-736a-43ba-bdb8-c3d421e75556
-n	java:S106³"+Replace this use of System.out by a logger.(òù´‰8œĞ¼‚ì1J$3785d96d-08dd-43bb-a25f-0695d1cbf0df
-}
-java:S2864¹"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8Ğ¼‚ì1J$0b5eca74-d5ad-4074-b318-8ac9d129dd7b
-n	java:S106À"+Replace this use of System.out by a logger.(òù´‰8Ğ¼‚ì1J$3eb67456-454d-4411-bc24-fd97a111356f
-m	java:S106Ã"+Replace this use of System.out by a logger.(é»³8Ğ¼‚ì1J$4b48cb7a-f2c7-49af-b6e1-0692855897f5
-s	java:S106Ê"+Replace this use of System.out by a logger.(Ù³¬»ıÿÿÿÿ8ŸĞ¼‚ì1J$ac31ca89-0a91-41ac-b45c-d4a6b153ed6c
-n	java:S106Î"+Replace this use of System.out by a logger.(òù´‰8ŸĞ¼‚ì1J$8fe95285-bd79-444f-b7f0-2d30bb60e5e5
-n	java:S106×"+Replace this use of System.out by a logger.(—â•×8¡Ğ¼‚ì1J$20c8e06e-2216-467a-8d62-847b2309caa6
-}
-java:S2864Ø"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8¡Ğ¼‚ì1J$16826c7e-87c7-449b-b81e-2001328017b8
-n	java:S106ß"+Replace this use of System.out by a logger.(òù´‰8£Ğ¼‚ì1J$f9b2a30c-d769-439f-95fb-fa5e695d16dd
-m	java:S106â"+Replace this use of System.out by a logger.(é»³8£Ğ¼‚ì1J$dda9bf48-6442-42f4-9527-af3a7d66ffa3
+java:S3776("RRefactor this method to reduce its Cognitive Complexity from 53 to the 15 allowed.(ğêÚ8ŠĞ¼‚ì1J$b1917120-af83-44df-a54a-dcae7e2031a1
+X	java:S125W"<This block of commented-out lines of code should be removed.(íòæÜ8üñ§ì1
+]	java:S125l"<This block of commented-out lines of code should be removed.(¶å¤‹şÿÿÿÿ8„ò§ì1
+]	java:S125r"<This block of commented-out lines of code should be removed.(Ÿ•¬¬øÿÿÿÿ8…ò§ì1
+Y	java:S125ƒ"<This block of commented-out lines of code should be removed.(½îÄÄ8‡ò§ì1
+^	java:S125¥"<This block of commented-out lines of code should be removed.(–¥ş‰şÿÿÿÿ8‹ò§ì1
+Y	java:S125±"<This block of commented-out lines of code should be removed.(§²İÜ8ò§ì1
+^	java:S125³"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8ò§ì1
+W
+java:S2864¹"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8ò§ì1
+^	java:S125À"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8ò§ì1
+^	java:S125Ã"<This block of commented-out lines of code should be removed.(êà¿ùÿÿÿÿ8ò§ì1
+Y	java:S125Ê"<This block of commented-out lines of code should be removed.(ËŸäµ8‘ò§ì1
+^	java:S125Î"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8’ò§ì1
+W
+java:S2864Ø"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8“ò§ì1
+Y	java:S125×"<This block of commented-out lines of code should be removed.(£ÉÜ¼8“ò§ì1
+^	java:S125ß"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8•ò§ì1
+^	java:S125â"<This block of commented-out lines of code should be removed.(êà¿ùÿÿÿÿ8•ò§ì1
 ‰
-java:S6541("ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 117 to 64, Complexity from 21 to 14, Nesting Level from 4 to 2, Number of Variables from 12 to 6.(ğêÚ8¥Ğ¼‚ì1J$be6fb907-dc24-446a-b33f-1f4382158318
+java:S6541("ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 113 to 64, Complexity from 21 to 14, Nesting Level from 4 to 2, Number of Variables from 12 to 6.(ğêÚ8¥Ğ¼‚ì1J$7fd83fd1-a448-414b-916b-8cf87cf673c6

@@ -2,10 +2,8 @@ package serverFacade;
 
 import chess.ChessMove;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import model.AuthData;
-import org.eclipse.jetty.websocket.api.Session;
+import serverMessageObserver.ServerMessageObserver;
 import webSocketMessages.userCommands.JoinPlayerGameCommand;
 import webSocketMessages.userCommands.LeaveCommand;
 import webSocketMessages.userCommands.MakeMoveGameCommand;
@@ -17,22 +15,9 @@ public class ServerFacadeWebsocket {
     private final String serverURL;
     private WebsocketConnectionClient websocketConnection;
 
-    public ServerFacadeWebsocket(String URL) throws Exception {
+    public ServerFacadeWebsocket(String URL, ServerMessageObserver serverMessageObserver) throws Exception {
         serverURL = URL;
-        websocketConnection = new WebsocketConnectionClient(URL);
-    }
-
-    @OnMessage
-    public void onServerMessage(Session session, String message) {
-        JsonObject jsonObject = JsonParser.parseString(message).getAsJsonObject();
-        switch (jsonObject.get("commandType").getAsString()) {
-            case "\"ERROR\"":
-                System.out.println(jsonObject.get("errorMessage"));
-                break;
-            default:
-                System.out.println("Received unrecognized server message");
-                break;
-        }
+        websocketConnection = new WebsocketConnectionClient(URL, serverMessageObserver);
     }
 
     public void send(String message) throws Exception {

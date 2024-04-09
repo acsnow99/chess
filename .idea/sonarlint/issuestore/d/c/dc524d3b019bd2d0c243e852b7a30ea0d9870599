@@ -1,0 +1,9 @@
+
+ˆ	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(£‰Éò8—ü¸§ì1J$ff17465c-339d-4980-941e-d28d8308da5c
+	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(ÉØ³¡ÿÿÿÿÿ8—ü¸§ì1J$6c92fe90-7ceb-4013-b00b-2a3b62d06a58
+“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£‰Éò8™ü¸§ì1J$7938ad16-9f83-4853-8f25-49a2a12ffed6
+p
+java:S1604"(Make this anonymous inner class a lambda(ÆÏ¹úÿÿÿÿ8šü¸§ì1J$b1ad269c-c54d-4928-80e2-4a590d521a22
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ñ†¢8›ü¸§ì1J$124e77e8-4baa-4d29-a413-43a456cf0d7a
+É
+java:S1186."€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òø¨œøÿÿÿÿ8¨ü¸§ì1J$f76696e8-754c-4a1a-9931-c1fb34aa00da

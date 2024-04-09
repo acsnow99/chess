@@ -1,9 +1,5 @@
 
-’	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œÞÕ]8¤Æ°ƒì1J$7938380f-430e-4c32-aea5-3f259e6feac6
-“
-java:S1301"KReplace this "switch" statement by "if" statements to increase readability.(‘î²ûýÿÿÿÿ8¥Æ°ƒì1J$73da937f-e085-4fc8-82e2-387e937754e4
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å“¢šÿÿÿÿÿ8§Æ°ƒì1J$5f0ccbd7-44e3-41c6-aec6-6c400a748085
-r	java:S106"+Replace this use of System.out by a logger.(áï‰Ùùÿÿÿÿ8³Æ°ƒì1J$0845e1f8-fd1d-4fe0-9588-24255af36e72
-m	java:S106!"+Replace this use of System.out by a logger.(ŠÃµò8˜ç±ƒì1J$fdc64230-1f3f-4682-b7a8-2a9bbc1b284a
+“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¿‹Æ8¤Æ°ƒì1J$aa566b68-e6fa-42de-86d1-85712caca987
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å“¢šÿÿÿÿÿ8§Æ°ƒì1J$43c24878-3be6-4e4c-8090-f0e9a2845684
 u
-java:S1068"-Remove this unused "serverURL" private field.(›¥ˆôüÿÿÿÿ8¾Æ°ƒì1J$238371c2-a160-4cb5-b59e-b4590883302b
+java:S1068"-Remove this unused "serverURL" private field.(›¥ˆôüÿÿÿÿ8¾Æ°ƒì1J$f4f3c9e1-83bf-4f8a-811c-9f95c0231ced

@@ -35,3 +35,13 @@ N
 client/src/main/java/Main.java,e\c\ecb7a1924b25558f5bedb6f53e4d6092557bd541
 v
 Fshared/src/main/java/webSocketMessages/serverMessages/ServerError.java,4\c\4c24e7f43b2de6bbaa97306312eff193c8c7e851
+}
+Mclient/src/main/java/websocketConnectionClient/WebsocketConnectionClient.java,d\c\dc524d3b019bd2d0c243e852b7a30ea0d9870599
+u
+Eclient/src/main/java/serverMessageObserver/ServerMessageObserver.java,a\2\a2e766a2a064fdb74e2273f28e6ade85194a0191
+y
+Ishared/src/main/java/webSocketMessages/serverMessages/ServerLoadGame.java,3\6\363a129bf2a21471aaef509be4ee6dcaa33f9f40
+}
+Mshared/src/main/java/webSocketMessages/serverMessages/ServerNotification.java,a\5\a5e37124f26f785be0720abbe4ffd653a48d7468
+x
+Hshared/src/main/java/webSocketMessages/serverMessages/ServerMessage.java,1\f\1f47ab5bc97ec5c3c682cb514ee17051ff425b83

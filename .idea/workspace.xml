@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/serverMessageObserver/ServerMessageObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12fb14c8f3f96b003658ced72608bdfc484a2484" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12fb14c8f3f96b003658ced72608bdfc484a2484" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/27403be7d87ae9d5cb79e37cd188fe6e7c9f43f7" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/27403be7d87ae9d5cb79e37cd188fe6e7c9f43f7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/f/ffd750a03b6519d13ba42d9adb800d8637e1deae" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/f/ffd750a03b6519d13ba42d9adb800d8637e1deae" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeWebsocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/serverFacade/ServerFacadeWebsocket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/websocketConnectionClient/WebsocketConnectionClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/websocketConnectionClient/WebsocketConnectionClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/webSocketMessages/serverMessages/ServerLoadGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/webSocketMessages/serverMessages/ServerLoadGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +59,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main (1).executor": "Debug",
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "JUnit.All in client.executor": "Run",
     "JUnit.DataAccessDBTests.authDataIsAuthorized.executor": "Run",
     "JUnit.DataAccessDBTests.authDataIsAuthorizedNeg.executor": "Run",
@@ -331,11 +341,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
           <line>158</line>
           <option name="timeStamp" value="105" />
         </line-breakpoint>
@@ -346,23 +351,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java</url>
           <line>96</line>
           <option name="timeStamp" value="118" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java</url>
-          <line>138</line>
-          <option name="timeStamp" value="120" />
+          <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/websocketConnectionClient/WebsocketConnectionClient.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/websocketConnectionClient/WebsocketConnectionClient.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="125" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -84,7 +84,7 @@ public class WebSocketService {
                     broadcast(username + " joined the game as " + playerColor.toLowerCase(), gameID, authToken);
                     break;
                 case "\"MAKE_MOVE\"":
-                    System.out.println("Trying to make move");
+                    //System.out.println("Trying to make move");
                     username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
                     if (Objects.equals(username, "")) {
                         sendError(session, "Error: Bad token");
@@ -105,13 +105,13 @@ public class WebSocketService {
                         sendError(session, "Error: Invalid move because " + exception.getMessage());
                         break;
                     }
-                    System.out.println("Trying to broadcast loadgame message");
+                    //System.out.println("Trying to broadcast loadgame message");
                     // send game to everyone, including the one doing the move
                     broadcastLoadGame(gameID, "");
                     broadcast("Hey a move was made", gameID, authToken);
                     break;
                 case "\"LEAVE\"":
-                    System.out.println("Player leaving");
+                    //System.out.println("Player leaving");
                     username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
                     if (Objects.equals(username, "")) {
                         sendError(session, "Error: Bad token");
@@ -128,7 +128,7 @@ public class WebSocketService {
                     gameService.removePlayer(dataAccess, authToken, gameID);
                     break;
                 case "\"RESIGN\"":
-                    System.out.println("Player resigning");
+                    //System.out.println("Player resigning");
                     username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
                     if (Objects.equals(username, "")) {
                         sendError(session, "Error: Bad token");
@@ -162,7 +162,7 @@ public class WebSocketService {
 
     @OnWebSocketClose
     public void onWebsocketClose(Session session, int statusCode, String reason) {
-        System.out.println("Closed connection");
+        //System.out.println("Closed connection");
     }
 
     @OnWebSocketError
@@ -174,9 +174,9 @@ public class WebSocketService {
         var game = gameService.getGameByID(dataAccess, gameID);
         if (session.isOpen()) {
             session.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
-            System.out.println("Loaded game individually");
+            //System.out.println("Loaded game individually");
         } else {
-            System.out.println("Connection closed...");
+            //System.out.println("Connection closed...");
         }
     }
 
@@ -189,21 +189,21 @@ public class WebSocketService {
                     if (s.isOpen()) {
                         s.getRemote().sendString(new Gson().toJson(new ServerLoadGame(game)));
                     } else {
-                        System.out.println("Connection closed...");
+                        //System.out.println("Connection closed...");
                     }
                 } catch (Exception exception) {
-                    System.out.println("Error: Json conversion failed");
+                    //System.out.println("Error: Json conversion failed");
                 }
             }
         }
     }
 
     private void sendError(Session session, String message) throws Exception {
-        System.out.println("Trying to send error message");
+        //System.out.println("Trying to send error message");
         if (session.isOpen()) {
             session.getRemote().sendString(new Gson().toJson(new ServerError(message)));
         } else {
-            System.out.println("Connection closed...");
+            //System.out.println("Connection closed...");
         }
     }
 
@@ -212,7 +212,7 @@ public class WebSocketService {
     }
 
     private void broadcast(String message, long gameID, String excludedAuthToken) {
-        System.out.println("Trying to broadcast message");
+        //System.out.println("Trying to broadcast message");
         for (var authToken : sessions.keySet()) {
             if (Objects.equals(sessions.get(authToken).gameID(), gameID) && !Objects.equals(authToken, excludedAuthToken)) {
                 try {
@@ -220,10 +220,10 @@ public class WebSocketService {
                     if (s.isOpen()) {
                         s.getRemote().sendString(new Gson().toJson(new ServerNotification(message)));
                     } else {
-                        System.out.println("Connection closed...");
+                        //System.out.println("Connection closed...");
                     }
                 } catch (Exception exception) {
-                    System.out.println("Error: Json conversion failed");
+                    //System.out.println("Error: Json conversion failed");
                 }
             }
         }

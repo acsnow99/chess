@@ -11,6 +11,7 @@ import serverFacade.ServerFacadeGame;
 import serverFacade.ServerFacadeRegistration;
 import serverFacade.ServerFacadeSession;
 import serverFacade.ServerFacadeWebsocket;
+import serverMessageObserver.ServerMessageObserver;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -24,6 +25,8 @@ public class Repl {
         IN_GAME
     }
 
+    private ServerMessageObserver serverMessageObserver;
+    private GameData gameDataLocal;
     private long gameID;
     private String serverURL = "://127.0.0.1:";
     private AuthData authorization;
@@ -117,7 +120,7 @@ public class Repl {
                         } else if (lineItems.length < 3) {
                             System.out.println("Missing end position");
                         } else {
-                            this.makeMove(this.gameID, lineItems[1], lineItems[2]);
+                            this.makeMove(lineItems[1], lineItems[2]);
                         }
                         break;
                     case null, default:
@@ -132,12 +135,13 @@ public class Repl {
         facadeRegistration = new ServerFacadeRegistration(http + serverURL + port);
         facadeSession = new ServerFacadeSession(http + serverURL + port);
         facadeGame = new ServerFacadeGame(http + serverURL + port);
+        serverMessageObserver = new ServerMessageObserver(this);
     }
 
     private void initializeWebsocket(int port) {
         try {
             var websocket = "ws";
-            facadeWebsocket = new ServerFacadeWebsocket(websocket + serverURL + port + "/connect");
+            facadeWebsocket = new ServerFacadeWebsocket(websocket + serverURL + port + "/connect", serverMessageObserver);
         } catch (Exception exception) {
             System.out.println("Error: Could not connect to server because " + exception.getMessage());
         }
@@ -265,7 +269,6 @@ public class Repl {
             } else {
                 System.out.println("Joined game " + gameID + " as observer");
             }
-            System.out.println(boardString);
 
             loggedInStatus = userState.IN_GAME;
         } catch (HttpResponseException exception) {
@@ -275,7 +278,7 @@ public class Repl {
         }
     }
 
-    private void makeMove(long gameID, String start, String end) {
+    private void makeMove(String start, String end) {
         var startSplit = start.split("");
         var endSplit = end.split("");
         var startColumn = this.getNumberFromLetter(startSplit[0]);
@@ -298,6 +301,19 @@ public class Repl {
         } catch (Exception exception) {
             System.out.println("Error: Could not communicate with the server");
         }
+    }
+
+    public void loadGame(GameData game) {
+        this.gameDataLocal = game;
+        printBoard(game);
+    }
+
+    private void printBoard(GameData game) {
+        System.out.println("\n" + boardString);
+    }
+
+    public void printMessage(String message) {
+        System.out.println("\n" + message);
     }
 
     private int getNumberFromLetter(String letter) {

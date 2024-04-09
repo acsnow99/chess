@@ -46,4 +46,6 @@ public interface DataAccess {
 
 
     Object clear() throws DataAccessException;
+
+    void endGame(long gameID) throws DataAccessException, NotFoundException;
 }

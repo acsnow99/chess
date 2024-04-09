@@ -128,6 +128,22 @@ public class WebSocketService {
                     broadcast(username + " left the game", authToken);
                     gameService.removePlayer(dataAccess, authToken, gameID);
                     break;
+                case "\"RESIGN\"":
+                    System.out.println("Player resigning");
+                    username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
+                    if (Objects.equals(username, "")) {
+                        sendError(session, "Error: Bad token");
+                        break;
+                    }
+                    gameID = jsonObject.get("gameID").getAsLong();
+                    game = gameService.getGameByID(dataAccess, gameID);
+                    if (game == null) {
+                        sendError(session, "Error: Game does not exist");
+                        break;
+                    }
+                    broadcast(username + " forfeited the game", "");
+                    gameService.setGameFinished(dataAccess, gameID);
+                    break;
                 default:
                     sendError(session, "Error: Command type does not exist");
                     break;

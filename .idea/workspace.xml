@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12fb14c8f3f96b003658ced72608bdfc484a2484" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12fb14c8f3f96b003658ced72608bdfc484a2484" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/8/78a73caa7a0e733cd105619b0073b14b03485b49" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/8/78a73caa7a0e733cd105619b0073b14b03485b49" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12ee2b2e0577bf40c2f0f09ceb1e2b3d9b36bd7a" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12ee2b2e0577bf40c2f0f09ceb1e2b3d9b36bd7a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/2/8212c5f3bd43aa4842f1cd8445cbf69f55deafa7" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/2/8212c5f3bd43aa4842f1cd8445cbf69f55deafa7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/2/92a91f21cd22b4339a541a213990fb39d0056667" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/2/92a91f21cd22b4339a541a213990fb39d0056667" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/dataAccess/DataAccessMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/services/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/services/GameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +151,8 @@
     "JUnit.StandardAPITests.uniqueAuthorizationTokens.executor": "Debug",
     "JUnit.WebSocketTests.executor": "Run",
     "JUnit.WebSocketTests.invalidMoveBadMove.executor": "Run",
+    "JUnit.WebSocketTests.invalidMoveGameOver.executor": "Run",
+    "JUnit.WebSocketTests.invalidMoveObserver.executor": "Run",
     "JUnit.WebSocketTests.invalidMoveOpponent.executor": "Run",
     "JUnit.WebSocketTests.invalidMoveWrongTurn.executor": "Run",
     "JUnit.WebSocketTests.joinObserverBadAuthToken.executor": "Debug",
@@ -159,6 +166,7 @@
     "JUnit.WebSocketTests.leaveGame.executor": "Run",
     "JUnit.WebSocketTests.multipleLobbies.executor": "Run",
     "JUnit.WebSocketTests.validMove.executor": "Run",
+    "JUnit.WebSocketTests.validResign.executor": "Run",
     "JUnit.java in server.executor": "Run",
     "JUnit.java in shared.executor": "Run",
     "JUnit.passoffTests in server.executor": "Run",
@@ -191,23 +199,7 @@
       <recent name="otherExceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.WebSocketTests.invalidMoveGameOver">
-    <configuration name="WebSocketTests.invalidMoveBadMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
-      <option name="METHOD_NAME" value="invalidMoveBadMove" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.WebSocketTests.validResign">
     <configuration name="WebSocketTests.invalidMoveGameOver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -256,7 +248,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WebSocketTests.invalidMoveWrongTurn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WebSocketTests.leaveGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
         <pattern>
@@ -266,26 +258,42 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
-      <option name="METHOD_NAME" value="invalidMoveWrongTurn" />
+      <option name="METHOD_NAME" value="leaveGame" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebSocketTests.validResign" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="METHOD_NAME" value="validResign" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.WebSocketTests.leaveGame" />
+      <item itemvalue="JUnit.WebSocketTests.validResign" />
       <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
       <item itemvalue="JUnit.WebSocketTests.invalidMoveObserver" />
       <item itemvalue="JUnit.WebSocketTests.invalidMoveOpponent" />
-      <item itemvalue="JUnit.WebSocketTests.invalidMoveWrongTurn" />
-      <item itemvalue="JUnit.WebSocketTests.invalidMoveBadMove" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WebSocketTests.validResign" />
+        <item itemvalue="JUnit.WebSocketTests.leaveGame" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveObserver" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveOpponent" />
-        <item itemvalue="JUnit.WebSocketTests.invalidMoveWrongTurn" />
-        <item itemvalue="JUnit.WebSocketTests.invalidMoveBadMove" />
       </list>
     </recent_temporary>
   </component>

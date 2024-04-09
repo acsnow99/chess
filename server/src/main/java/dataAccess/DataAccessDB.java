@@ -267,6 +267,13 @@ public class DataAccessDB implements DataAccess {
         }
     }
 
+    public void endGame(long gameID) throws DataAccessException, NotFoundException {
+        var game = this.getGameByID(gameID);
+        game.game().setFinished(true);
+        this.saveGame(gameID, game);
+    }
+
+
     @Override
     public Object clear() throws DataAccessException {
         try (var connection = DatabaseManager.getConnection()) {

@@ -140,6 +140,10 @@ public class DataAccessMemory implements DataAccess {
 
     }
 
+    public void endGame(long gameID) {
+
+    }
+
     public Object clear() {
         userDB = new ArrayList<>();
         authDB = new ArrayList<>();

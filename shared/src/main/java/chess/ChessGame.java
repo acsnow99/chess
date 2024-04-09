@@ -11,6 +11,7 @@ import java.util.Collection;
 public class ChessGame {
     private ChessBoard board;
     private TeamColor currentTeamTurn = TeamColor.WHITE;
+    private boolean finished = false;
 
     public ChessGame() {
     }
@@ -227,5 +228,9 @@ public class ChessGame {
      */
     public ChessBoard getBoard() {
         return this.board;
+    }
+
+    public void setFinished(boolean isFinished) {
+        this.finished = isFinished;
     }
 }

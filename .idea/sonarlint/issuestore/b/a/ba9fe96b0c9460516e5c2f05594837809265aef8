@@ -1,12 +1,14 @@
 
+œ
+java:S2293d"YReplace the type specification in this constructor call with the diamond operator ("<>").(±©³ş8ãÈÎì1J$86135431-a36c-4ae2-abff-1477f63e6370
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8çÈÎì1J$60647fef-25b7-4d0b-8903-bb8649c66223
+É
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(÷ãûûÿÿÿÿ8ÿÈÎì1J$d69955e7-cb25-4ea3-8c96-6307d04e742d
+Å
+java:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(’˜Íñ8ÿÈÎì1J$1a9be608-fab6-484f-adcd-3965f3902f17
+Å
+java:S1186‹"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(£ÂĞ¨8ÿÈÎì1J$0b1874e5-4027-4f92-9dba-2915577315ec
+Ê
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ë™¤ıÿÿÿÿ8ÿÈÎì1J$c0c69811-913d-4e31-85a9-c86d258d0679
 •
-java:S2293d"YReplace the type specification in this constructor call with the diamond operator ("<>").(±©³şJ$909143ad-5fa6-4d89-b033-a83e09f98b61
-•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåóJ$13812199-5784-4d14-809d-2ec414ef4cd7
-Â
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(÷ãûûÿÿÿÿJ$a4f7d540-b807-4ee7-9208-f6e5d0b39087
-¾
-java:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(’˜ÍñJ$5015a547-56b1-44c1-82fe-67c53327c840
-¾
-java:S1186‹"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(£ÂĞ¨J$077dad39-6f4e-455b-a3ef-4aee54425659
-
-java:S3776h"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(Óƒ¦¯J$1d139e52-e24a-44be-8983-695cb1cef80e
+java:S3776h"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(Óƒ¦¯8ÉÎì1J$f29f2fc7-8020-451f-a5e9-80b2f35bb989

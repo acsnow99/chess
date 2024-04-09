@@ -70,4 +70,8 @@ public class GameService {
 
         }
     }
+
+    public void setGameFinished(DataAccess dataAccess, long gameID) throws DataAccessException, NotFoundException {
+        dataAccess.endGame(gameID);
+    }
 }

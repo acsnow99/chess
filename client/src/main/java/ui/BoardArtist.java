@@ -93,6 +93,12 @@ public class BoardArtist {
     }
 
     private String getCurrentColor(ChessPosition position) {
+        // Alternate between the gray colors
+        if (Objects.equals(currentColor, EscapeSequences.SET_BG_COLOR_DARK_GREY)) {
+            currentColor = EscapeSequences.SET_BG_COLOR_LIGHT_GREY;
+        } else {
+            currentColor = EscapeSequences.SET_BG_COLOR_DARK_GREY;
+        }
         if (willHighlight && position != null) {
             // Highlight moves that the piece can make
             var moves = game.validMoves(highlightPosition);
@@ -101,12 +107,6 @@ public class BoardArtist {
                     return EscapeSequences.SET_BG_COLOR_MAGENTA;
                 }
             }
-        }
-        // Alternate between the gray colors
-        if (Objects.equals(currentColor, EscapeSequences.SET_BG_COLOR_DARK_GREY)) {
-            currentColor = EscapeSequences.SET_BG_COLOR_LIGHT_GREY;
-        } else {
-            currentColor = EscapeSequences.SET_BG_COLOR_DARK_GREY;
         }
         return currentColor;
     }

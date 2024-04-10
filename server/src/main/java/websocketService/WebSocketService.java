@@ -110,7 +110,7 @@ public class WebSocketService {
                     //System.out.println("Trying to broadcast loadgame message");
                     // send game to everyone, including the one doing the move
                     broadcastLoadGame(gameID, "");
-                    broadcast(username + " moved " + move.toString() + "\n" + gameConditionMessage, gameID, authToken);
+                    broadcast(username + " moved" + move.toString() + "\n" + (gameConditionMessage != null ? gameConditionMessage : ""), gameID, authToken);
                     break;
                 case "\"LEAVE\"":
                     //System.out.println("Player leaving");

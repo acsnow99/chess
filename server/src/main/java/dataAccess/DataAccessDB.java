@@ -221,17 +221,23 @@ public class DataAccessDB implements DataAccess {
         game.makeMove(move);
         if (game.isInCheck(ChessGame.TeamColor.WHITE) || game.isInCheck(ChessGame.TeamColor.BLACK)) {
             if (checkGameFinished(game)) {
+                saveGame(gameID, gameData);
                 if (game.isInCheckmate(ChessGame.TeamColor.WHITE)) {
+                    saveGame(gameID, gameData);
                     return gameData.whiteUsername() + " is in checkmate! GAME OVER";
                 } else if (game.isInCheckmate(ChessGame.TeamColor.BLACK)) {
+                    saveGame(gameID, gameData);
                     return gameData.blackUsername() + " is in checkmate! GAME OVER";
                 } else if (game.isInStalemate(ChessGame.TeamColor.WHITE) || game.isInStalemate(ChessGame.TeamColor.BLACK)) {
+                    saveGame(gameID, gameData);
                     return "Stalemate! GAME OVER";
                 }
             }
             if (game.isInCheck(ChessGame.TeamColor.WHITE)) {
+                saveGame(gameID, gameData);
                 return gameData.whiteUsername() + " is in check! Look out!";
             } else if (game.isInCheck(ChessGame.TeamColor.BLACK)) {
+                saveGame(gameID, gameData);
                 return gameData.blackUsername() + " is in check! Look out!";
             }
         }

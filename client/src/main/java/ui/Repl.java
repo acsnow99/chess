@@ -130,7 +130,7 @@ public class Repl {
                     case "redraw":
                         printBoard(gameDataLocal);
                         break;
-                    case "highlight":
+                    case "show":
                         if (lineItems.length < 2) {
                             System.out.println("Missing position");
                         } else {
@@ -147,6 +147,16 @@ public class Repl {
                         break;
                     case "leave":
                         leaveGame();
+                        break;
+                    case "redraw":
+                        printBoard(gameDataLocal);
+                        break;
+                    case "show":
+                        if (lineItems.length < 2) {
+                            System.out.println("Missing position");
+                        } else {
+                            this.printBoardHighlight(gameDataLocal, lineItems[1]);
+                        }
                         break;
                     default:
                         System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");

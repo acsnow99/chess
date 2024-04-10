@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c8ff5cf-628d-411e-9138-aa57d3d7a0db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12fb14c8f3f96b003658ced72608bdfc484a2484" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/2/12fb14c8f3f96b003658ced72608bdfc484a2484" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/27403be7d87ae9d5cb79e37cd188fe6e7c9f43f7" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/7/27403be7d87ae9d5cb79e37cd188fe6e7c9f43f7" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/ui/Repl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -204,7 +202,7 @@
       <command value="mvn compile" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.WebSocketTests.joinObserverBadAuthToken">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="server" />
@@ -250,6 +248,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WebSocketTests.joinObserverBadAuthToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.WebSocketTests" />
+      <option name="METHOD_NAME" value="joinObserverBadAuthToken" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WebSocketTests.multipleLobbies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="server" />
       <extension name="coverage">
@@ -269,14 +283,16 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Main (1)" />
+      <item itemvalue="JUnit.WebSocketTests.joinObserverBadAuthToken" />
       <item itemvalue="JUnit.WebSocketTests" />
       <item itemvalue="JUnit.WebSocketTests.multipleLobbies" />
       <item itemvalue="JUnit.WebSocketTests.invalidMoveObserver" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="JUnit.WebSocketTests.joinObserverBadAuthToken" />
         <item itemvalue="JUnit.WebSocketTests" />
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="JUnit.WebSocketTests.multipleLobbies" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveObserver" />
       </list>
@@ -331,13 +347,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
-          <line>162</line>
+          <line>145</line>
           <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/server/src/main/java/websocketService/WebSocketService.java</url>
-          <line>158</line>
-          <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/shared/src/main/java/chess/ChessGame.java</url>

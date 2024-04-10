@@ -4,3 +4,5 @@ java:S1192"TDefine a constant instead of duplicating this literal "Error: Unau
 ³
 java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¨ÚòÛ8Ü•Ý¯ì1J$eda47a86-098b-4fa3-a416-9407f860d60b
 p	java:S108G")Either remove or fill this block of code.(Æ¸Û‚øÿÿÿÿ8í•Ý¯ì1J$d69d963a-0f87-41a1-ad47-1e12482379b4
+I
+java:S1128",Remove this unused import 'chess.ChessGame'.(†¶ØŸ8Æä©Ñì1

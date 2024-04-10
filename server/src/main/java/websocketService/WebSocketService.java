@@ -7,6 +7,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dataAccess.DataAccess;
 import exceptions.DataAccessException;
+import exceptions.NotFoundException;
+import exceptions.UnauthorizedException;
 import model.AuthData;
 import model.GameData;
 import org.eclipse.jetty.websocket.api.Session;
@@ -42,122 +44,96 @@ public class WebSocketService {
         if (jsonObject.has("commandType")) {
             var authToken = jsonObject.get("authToken").getAsString();
             var commandType = jsonObject.get("commandType").toString();
-            String username;
+            String username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
             long gameID;
             GameData game;
-            switch (commandType) {
-                case "\"JOIN_PLAYER\"", "\"JOIN_OBSERVER\"":
-                    username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
-                    if (Objects.equals(username, "")) {
-                        sendError(session, "Error: Bad token");
+
+            try {
+                switch (commandType) {
+                    case "\"JOIN_PLAYER\"", "\"JOIN_OBSERVER\"":
+                        if (Objects.equals(username, "") || username == null) {
+                            throw new UnauthorizedException("Error: bad token");
+                        }
+                        String playerColor;
+                        try {
+                            playerColor = jsonObject.get("playerColor").getAsString();
+                        } catch (Exception exception) {
+                            playerColor = "an observer";
+                        }
+
+                        gameID = jsonObject.get("gameID").getAsLong();
+                        game = gameService.getGameByID(dataAccess, gameID);
+                        if (game == null) {
+                            throw new NotFoundException("Error: game not found");
+                        }
+
+                        if (Objects.equals(playerColor, "WHITE")) {
+                            if (!(Objects.equals(game.whiteUsername(), username))) {
+                                sendError(session, "Error: Spot taken");
+                                break;
+                            }
+                        } else if (Objects.equals(playerColor, "BLACK")) {
+                            if (!(Objects.equals(game.blackUsername(), username))) {
+                                sendError(session, "Error: Spot taken");
+                                break;
+                            }
+                        }
+                        userLoadGame(session, gameID);
+                        var wsSession = new WebSocketConnection(gameID, session);
+                        addConnection(authToken, wsSession);
+                        broadcast(username + " joined the game as " + playerColor.toLowerCase(), gameID, authToken);
                         break;
-                    }
-
-                    String playerColor;
-                    try {
-                        playerColor = jsonObject.get("playerColor").getAsString();
-                    } catch (Exception exception) {
-                        playerColor = "an observer";
-                    }
-
-                    gameID = jsonObject.get("gameID").getAsLong();
-                    game = gameService.getGameByID(dataAccess, gameID);
-                    if (game == null) {
-                        sendError(session, "Error: Game does not exist");
-                        break;
-                    }
-
-                    if (Objects.equals(playerColor, "WHITE")) {
-                        if (!(Objects.equals(game.whiteUsername(), username))) {
-                            sendError(session, "Error: Spot taken");
+                    case "\"MAKE_MOVE\"":
+                        gameID = jsonObject.get("gameID").getAsLong();
+                        game = gameService.getGameByID(dataAccess, gameID);
+                        if (game == null) {
+                            throw new NotFoundException("Error: game not found");
+                        }
+                        var move = new Gson().fromJson(jsonObject.get("move"), ChessMove.class);
+                        String gameConditionMessage = null;
+                        try {
+                            gameConditionMessage = gameService.makeMoveGame(dataAccess, new AuthData("", authToken),
+                                    gameID,
+                                    move);
+                        } catch (InvalidMoveException exception) {
+                            sendError(session, "Error: Invalid move because " + exception.getMessage());
                             break;
                         }
-                    } else if (Objects.equals(playerColor, "BLACK")) {
-                        if (!(Objects.equals(game.blackUsername(), username))) {
-                            sendError(session, "Error: Spot taken");
+                        // send game to everyone, including the one doing the move
+                        broadcastLoadGame(gameID, "");
+                        broadcast(username + " moved" + move.toString() + "\n" +
+                                        (gameConditionMessage != null ? gameConditionMessage : ""),
+                                gameID, (gameConditionMessage != null ? "" : authToken));
+                        break;
+                    case "\"LEAVE\"":
+                        gameID = jsonObject.get("gameID").getAsLong();
+                        game = gameService.getGameByID(dataAccess, gameID);
+                        if (game == null) {
+                            throw new NotFoundException("Error: game not found");
+                        }
+                        sessions.remove(authToken);
+                        broadcast(username + " left the game", gameID, authToken);
+                        gameService.removePlayer(dataAccess, authToken, gameID);
+                        break;
+                    case "\"RESIGN\"":
+                        gameID = jsonObject.get("gameID").getAsLong();
+                        game = gameService.getGameByID(dataAccess, gameID);
+                        if (game == null) {
+                            throw new NotFoundException("Error: game not found");
+                        }
+                        if (!Objects.equals(game.whiteUsername(), username) && !Objects.equals(game.blackUsername(), username)) {
+                            sendError(session, "Error: User is an observer");
                             break;
                         }
-                    }
-                    userLoadGame(session, gameID);
-                    var wsSession = new WebSocketConnection(gameID, session);
-                    addConnection(authToken, wsSession);
-                    broadcast(username + " joined the game as " + playerColor.toLowerCase(), gameID, authToken);
-                    break;
-                case "\"MAKE_MOVE\"":
-                    //System.out.println("Trying to make move");
-                    username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
-                    if (Objects.equals(username, "")) {
-                        sendError(session, "Error: Bad token");
+                        broadcast(username + " forfeited the game", gameID, "");
+                        gameService.setGameFinished(dataAccess, gameID);
                         break;
-                    }
-                    gameID = jsonObject.get("gameID").getAsLong();
-                    game = gameService.getGameByID(dataAccess, gameID);
-                    if (game == null) {
-                        sendError(session, "Error: Game does not exist");
+                    default:
+                        sendError(session, "Error: Command type does not exist");
                         break;
-                    }
-
-                    var move = new Gson().fromJson(jsonObject.get("move"), ChessMove.class);
-                    String gameConditionMessage = null;
-                    try {
-                        gameConditionMessage = gameService.makeMoveGame(dataAccess, new AuthData("", authToken),
-                                gameID,
-                                move);
-                    } catch (InvalidMoveException exception) {
-                        sendError(session, "Error: Invalid move because " + exception.getMessage());
-                        break;
-                    }
-                    //System.out.println("Trying to broadcast loadgame message");
-                    // send game to everyone, including the one doing the move
-                    broadcastLoadGame(gameID, "");
-                    broadcast(username + " moved" + move.toString() + "\n" +
-                                    (gameConditionMessage != null ? gameConditionMessage : ""),
-                            gameID, (gameConditionMessage != null ? "" : authToken));
-                    break;
-                case "\"LEAVE\"":
-                    //System.out.println("Player leaving");
-                    username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
-                    if (Objects.equals(username, "")) {
-                        sendError(session, "Error: Bad token");
-                        break;
-                    }
-                    gameID = jsonObject.get("gameID").getAsLong();
-                    game = gameService.getGameByID(dataAccess, gameID);
-                    if (game == null) {
-                        sendError(session, "Error: Game does not exist");
-                        break;
-                    }
-                    sessions.remove(authToken);
-                    broadcast(username + " left the game", gameID, authToken);
-                    gameService.removePlayer(dataAccess, authToken, gameID);
-                    break;
-                case "\"RESIGN\"":
-                    //System.out.println("Player resigning");
-                    username = registrationService.getUsernameFromToken(dataAccess, new AuthData("", authToken));
-                    if (Objects.equals(username, "")) {
-                        sendError(session, "Error: Bad token");
-                        break;
-                    }
-                    gameID = jsonObject.get("gameID").getAsLong();
-                    game = gameService.getGameByID(dataAccess, gameID);
-                    if (game == null) {
-                        sendError(session, "Error: Game does not exist");
-                        break;
-                    }
-                    if (!Objects.equals(game.whiteUsername(), username) && !Objects.equals(game.blackUsername(), username)) {
-                        sendError(session, "Error: User is an observer");
-                        break;
-                    }
-                    if (game.game().isFinished()) {
-                        sendError(session, "Error: Game is already over");
-                        break;
-                    }
-                    broadcast(username + " forfeited the game", gameID, "");
-                    gameService.setGameFinished(dataAccess, gameID);
-                    break;
-                default:
-                    sendError(session, "Error: Command type does not exist");
-                    break;
+                }
+            } catch (Exception exception) {
+                sendError(session, exception.getMessage());
             }
         } else {
             sendError(session, "Error: Command type not included");

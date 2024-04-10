@@ -1,34 +1,32 @@
 
-	java:S112±"FDefine and throw a dedicated exception instead of using a generic one.(ôÍ”Ãüÿÿÿÿ8‚éĞì1J$bc068c45-3782-45fa-b52a-7c25a053aa86
-‰	java:S112Í"FDefine and throw a dedicated exception instead of using a generic one.(±œûĞ8ƒéĞì1J$2fa39cb0-c183-4e54-99e9-44dc1e07f5f3
+	java:S112™"FDefine and throw a dedicated exception instead of using a generic one.(ôÍ”Ãüÿÿÿÿ8İ”Ñì1J$b19147b8-316c-42d5-ad5a-d62f397ddcae
+‰	java:S112µ"FDefine and throw a dedicated exception instead of using a generic one.(±œûĞ8‘İ”Ñì1J$78fecc4c-eab1-4df5-b7d9-edc359b70fc9
 
-java:S1192?"GDefine a constant instead of duplicating this literal "gameID" 4 times.(Åí²öüÿÿÿÿ8¾ÆÖ¯ì1J$398384fc-b9a7-4cc4-892e-f2126cbc93cb
-£
-java:S1192B"[Define a constant instead of duplicating this literal "Error: Game does not exist" 4 times.(Ã±ø´úÿÿÿÿ8¾ÆÖ¯ì1J$128b255f-ce9f-4b03-b600-372202c0c8c0
-”
-java:S11924"QDefine a constant instead of duplicating this literal "Error: Bad token" 4 times.(¹Í¹–8¾ÆÖ¯ì1J$303fa1d9-312a-4ac8-8a0b-335d50e7346d
+java:S1192@"GDefine a constant instead of duplicating this literal "gameID" 4 times.(Åí²öüÿÿÿÿ8’İ”Ñì1J$1b45bbfa-04e9-4c7d-aea1-3a021b0477b6
+™
+java:S1192C"VDefine a constant instead of duplicating this literal "Error: game not found" 4 times.(°Õö£8ıÈ±Ñì1J$bd409f02-505e-4368-b51e-cb01bd7de98f
 w
-java:S1066L"/Merge this if statement with the enclosing one.(ÑóÏéùÿÿÿÿ8¿ÆÖ¯ì1J$1bbef4f5-1cf9-46a2-86bb-7b286bf3025d
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚¤şæûÿÿÿÿ8ÂÆÖ¯ì1J$e0fd0704-6cbc-4ae5-9132-39c62467b39d
+java:S1066L"/Merge this if statement with the enclosing one.(ÑóÏéùÿÿÿÿ8“İ”Ñì1J$e20a5f82-352a-40bd-8a83-08b8e8951a1e
+}
+java:S1141:"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8”İ”Ñì1J$304b053f-e04f-45ca-b62a-07a70584dd68
+}
+java:S1141^"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8•İ”Ñì1J$2c030583-1465-4702-9917-380a472ca289
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‚¤şæûÿÿÿÿ8—İ”Ñì1J$aeeface5-e863-41d0-8b88-5147fc6af424
 ”
-java:S3776("RRefactor this method to reduce its Cognitive Complexity from 59 to the 15 allowed.(ğêÚ8ÿÆÖ¯ì1J$7a7f61bc-de74-43d4-a353-1dda959c2ebf
-~	java:S125W"<This block of commented-out lines of code should be removed.(íòæÜ8†ÇÖ¯ì1J$c52ffcbe-3b3c-4761-8396-69bce9230194
-ƒ	java:S125n"<This block of commented-out lines of code should be removed.(¶å¤‹şÿÿÿÿ8ÇÖ¯ì1J$7675894b-4a2e-45cd-89e5-3e748438c2a9
-ƒ	java:S125v"<This block of commented-out lines of code should be removed.(Ÿ•¬¬øÿÿÿÿ8²ŸéĞì1J$56bfb60b-5927-4c4b-9371-51e1296a82d8
-	java:S125‡"<This block of commented-out lines of code should be removed.(½îÄÄ8¶ŸéĞì1J$1b071f50-0929-4c82-90f1-f90f47c4bb51
-„	java:S125©"<This block of commented-out lines of code should be removed.(–¥ş‰şÿÿÿÿ8ºŸéĞì1J$dd05b333-47c5-47cd-aa86-15a131d3362e
-	java:S125µ"<This block of commented-out lines of code should be removed.(§²İÜ8½ŸéĞì1J$dadf0660-42ec-41ee-b0b3-b0025b2ed94f
-„	java:S125·"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8¾ŸéĞì1J$b817d494-5770-492d-8432-28c6547504cf
+java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 50 to the 15 allowed.(ğêÚ8¶Ş”Ñì1J$11984ffa-2552-4a47-a5fe-4bf55cee750e
+„	java:S125‘"<This block of commented-out lines of code should be removed.(–¥ş‰şÿÿÿÿ8óŞ”Ñì1J$d04be6ab-191d-402d-bb1f-e5b08e03aaa0
+	java:S125"<This block of commented-out lines of code should be removed.(§²İÜ8õŞ”Ñì1J$d157ad34-05eb-4a95-a613-ad0f83bcab56
+„	java:S125Ÿ"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8õŞ”Ñì1J$8ff0e722-af98-48d6-a641-9ac0431b426e
 }
-java:S2864½"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8ÁŸéĞì1J$5cb4a1b4-5cab-4402-9547-ff5974d02fe7
-„	java:S125Ä"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8ÄŸéĞì1J$6fdb066b-cd72-42c2-9e65-c7195ea7ae2d
-„	java:S125Ç"<This block of commented-out lines of code should be removed.(êà¿ùÿÿÿÿ8ÅŸéĞì1J$9b2f2d36-0df8-4739-9050-0ed0092b65bf
-	java:S125Î"<This block of commented-out lines of code should be removed.(ËŸäµ8ÆŸéĞì1J$c08dd5e1-2b36-4885-a28b-4d19bb045c1c
-„	java:S125Ò"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8ÈŸéĞì1J$4c1ffb74-d9b7-4800-ae24-878a1ed9ad4a
+java:S2864¥"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8÷Ş”Ñì1J$1f04f258-da4d-4f3a-8b8c-9636c55c0853
+„	java:S125¬"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8ùŞ”Ñì1J$d524b598-b665-4f21-9d0d-0f5321381cab
+„	java:S125¯"<This block of commented-out lines of code should be removed.(êà¿ùÿÿÿÿ8ùŞ”Ñì1J$5eb7bb83-78a0-4332-8668-76711d715b81
+	java:S125¶"<This block of commented-out lines of code should be removed.(ËŸäµ8úŞ”Ñì1J$d4d6ebd7-4a1c-4dd6-a497-0baaeb92ea66
+„	java:S125º"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8úŞ”Ñì1J$640d0e91-ad22-4690-80b0-47e8cf202944
 }
-java:S2864Ü"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8ÊŸéĞì1J$a08bf5c2-0152-4b6d-917e-c1a337a9f68b
-	java:S125Û"<This block of commented-out lines of code should be removed.(£ÉÜ¼8ÊŸéĞì1J$d4f1f368-a9da-4041-9d24-593d3f104683
-„	java:S125ã"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8ÍŸéĞì1J$16dfb95a-486d-415c-a561-268b255f2b45
-„	java:S125æ"<This block of commented-out lines of code should be removed.(êà¿ùÿÿÿÿ8ÍŸéĞì1J$050dda4b-308f-46ae-836d-21fa8c556110
-‰
-java:S6541("ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 117 to 64, Complexity from 23 to 14, Nesting Level from 4 to 2, Number of Variables from 14 to 6.(ğêÚ8 ÇÖ¯ì1J$458528d4-e5db-4e67-977f-a6762e693371
+java:S2864Ä"4Iterate over the "entrySet" instead of the "keySet".(Ê‚Ñƒıÿÿÿÿ8üŞ”Ñì1J$c99fbde4-a521-499e-9425-f0e95163191c
+	java:S125Ã"<This block of commented-out lines of code should be removed.(£ÉÜ¼8üŞ”Ñì1J$4552c1fd-7fc4-4cd1-b421-634d2f1c537d
+„	java:S125Ë"<This block of commented-out lines of code should be removed.(ƒÇ‰ğøÿÿÿÿ8şŞ”Ñì1J$d40d9be8-d0fa-4432-94d1-87bedc68cf71
+„	java:S125Î"<This block of commented-out lines of code should be removed.(êà¿ùÿÿÿÿ8şŞ”Ñì1J$4448ea90-81e3-430b-9a36-11605a4baf5a
+ˆ
+java:S6541*"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 96 to 64, Complexity from 20 to 14, Nesting Level from 5 to 2, Number of Variables from 15 to 6.(ğêÚ8€ß”Ñì1J$a19dffe1-23d0-451d-a9f3-8393d5943203

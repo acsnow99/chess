@@ -22,7 +22,8 @@ public class Repl {
     enum userState {
         LOGGED_IN,
         LOGGED_OUT,
-        IN_GAME
+        IN_GAME,
+        OBSERVING
     }
 
     private ServerMessageObserver serverMessageObserver;
@@ -129,6 +130,17 @@ public class Repl {
                     case null, default:
                         System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
+            } else if (loggedInStatus == userState.OBSERVING) {
+                switch (lineFirst) {
+                    case "help":
+                        printHelpObserving();
+                        break;
+                    case "leave":
+                        leaveGame();
+                        break;
+                    case null, default:
+                        System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+                }
             }
         }
     }
@@ -185,6 +197,14 @@ public class Repl {
         System.out.println("leave - leave the game (stay logged in)");
         System.out.println("move <start position> <end position> - make a move. Type positions as lowercase followed by #");
         System.out.println("resign - ends the game; you will still have to leave the game");
+        System.out.println("show <position> - shows valid moves for a specific piece");
+        System.out.println("quit - exit the chess CLI");
+        System.out.println("help - list possible commands (you just called this one)");
+    }
+
+    private void printHelpObserving() {
+        System.out.println("redraw - draw the chess board again");
+        System.out.println("leave - leave the game (stay logged in)");
         System.out.println("show <position> - shows valid moves for a specific piece");
         System.out.println("quit - exit the chess CLI");
         System.out.println("help - list possible commands (you just called this one)");
@@ -260,10 +280,17 @@ public class Repl {
         try {
             long gameIDLong = Long.parseLong(gameID);
             this.gameID = gameIDLong;
+            loggedInStatus = userState.IN_GAME;
             if (Objects.equals(playerColor, "WHITE")) {
                 this.color = ChessGame.TeamColor.WHITE;
+                System.out.println("Joined game " + gameID + " as white");
             } else if (Objects.equals(playerColor, "BLACK")) {
                 this.color = ChessGame.TeamColor.BLACK;
+                System.out.println("Joined game " + gameID + " as black");
+            } else {
+                this.color = null;
+                loggedInStatus = userState.OBSERVING;
+                System.out.println("Joined game " + gameID + " as observer");
             }
             facadeGame.joinGame(authorization, playerColor, gameIDLong);
 
@@ -274,16 +301,6 @@ public class Repl {
             } catch (Exception exception) {
                 System.out.println("Error: could not connect to server because " + exception.getMessage());
             }
-
-            if (Objects.equals(playerColor, "WHITE")) {
-                System.out.println("Joined game " + gameID + " as white");
-            } else if (Objects.equals(playerColor, "BLACK")) {
-                System.out.println("Joined game " + gameID + " as black");
-            } else {
-                System.out.println("Joined game " + gameID + " as observer");
-            }
-
-            loggedInStatus = userState.IN_GAME;
         } catch (HttpResponseException exception) {
             System.out.println("Spot taken. Try joining with a different color.");
         } catch (NumberFormatException exception) {
@@ -331,7 +348,7 @@ public class Repl {
     }
 
     private void printBoard(GameData game) {
-        System.out.println(new BoardArtist().drawBoard(game, color));
+        System.out.println(new BoardArtist().drawBoard(game, color == null ? ChessGame.TeamColor.WHITE : color));
     }
 
     public void printMessage(String message) {

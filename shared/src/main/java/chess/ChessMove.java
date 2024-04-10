@@ -53,6 +53,29 @@ public class ChessMove {
         return Objects.equals(startPosition, chessMove.startPosition) && Objects.equals(endPosition, chessMove.endPosition) && promotionPiece == chessMove.promotionPiece;
     }
 
+    private String getLetterFromColumn(int column) {
+        switch (column) {
+            case 1:
+                return "a";
+            case 2:
+                return "b";
+            case 3:
+                return "c";
+            case 4:
+                return "d";
+            case 5:
+                return "e";
+            case 6:
+                return "f";
+            case 7:
+                return "g";
+            case 8:
+                return "h";
+            default:
+                return "";
+        }
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(startPosition, endPosition, promotionPiece);
@@ -60,10 +83,7 @@ public class ChessMove {
 
     @Override
     public String toString() {
-        return "ChessMove{" +
-                "startPosition=" + startPosition +
-                ", endPosition=" + endPosition +
-                ", promotionPiece=" + promotionPiece +
-                '}';
+        return " " + getLetterFromColumn(startPosition.getColumn()) + startPosition.getRow() +
+                " to " + getLetterFromColumn(endPosition.getColumn()) + endPosition.getRow();
     }
 }

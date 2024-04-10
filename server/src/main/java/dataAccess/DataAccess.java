@@ -4,7 +4,6 @@ import chess.ChessMove;
 import chess.InvalidMoveException;
 import exceptions.AlreadyTakenException;
 import exceptions.NotFoundException;
-import exceptions.UnauthorizedException;
 import model.AuthData;
 import exceptions.DataAccessException;
 import requests.JoinGameRequest;
@@ -40,7 +39,7 @@ public interface DataAccess {
 
     void joinGame(AuthData authData, JoinGameRequest joinGameRequest) throws DataAccessException, NotFoundException, AlreadyTakenException;
 
-    void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException, InvalidMoveException;
+    String makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException, InvalidMoveException;
 
     void removePlayer(AuthData authData, long gameID) throws DataAccessException, NotFoundException;
 

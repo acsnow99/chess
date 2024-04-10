@@ -1,11 +1,11 @@
 
 »
-java:S1192É"rDefine a constant instead of duplicating this literal "UPDATE game SET gamedatajson = ? WHERE gameid = ?" 3 times.(Ä¿»şÿÿÿÿ8Ÿ»Éƒì1J$430bef90-3b57-467b-8205-e496c52f2ddd
- 	java:S127õ"XRefactor the code in order to not assign to this loop counter from within the loop body.(¯€‘¸úÿÿÿÿ8 »Éƒì1J$408269e2-1e1c-487c-9dea-dd30cad574e1
+java:S1192È"rDefine a constant instead of duplicating this literal "UPDATE game SET gamedatajson = ? WHERE gameid = ?" 3 times.(Ä¿»şÿÿÿÿ8ÁÁö¯ì1J$cb89cfe7-cd20-42cd-9c36-0fff9b7fd1a8
+ 	java:S127Š"XRefactor the code in order to not assign to this loop counter from within the loop body.(¯€‘¸úÿÿÿÿ8ÂÁö¯ì1J$0b75147d-7811-4911-a3a8-9815fed20ef3
 x
-java:S1066Ø"/Merge this if statement with the enclosing one.(«ïñ¬ûÿÿÿÿ8¡»Éƒì1J$6ec280be-5238-4527-9dd2-c9719bd4026f
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8¥»Éƒì1J$536d6dfb-fac4-4d88-ab95-ca871e1ab73c
+java:S1066×"/Merge this if statement with the enclosing one.(«ïñ¬ûÿÿÿÿ8ÂÁö¯ì1J$1e4dcf4d-2250-4d0c-befa-f2013db517f9
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó8ÅÁö¯ì1J$024a2b56-57da-4ebd-9e75-6e902bd8ec67
 o
-java:S1168"+Return an empty collection instead of null.(¥¹ï8é»Éƒì1J$dd39fc68-7c31-4dd2-8f89-bd10f722a6f5
-€
-java:S1128"=Remove this unused import 'exceptions.UnauthorizedException'.(Õ÷½8ı»Éƒì1J$1b00fe40-e818-4605-9a2e-749b4e984cf0
+java:S1168"+Return an empty collection instead of null.(¥¹ï8úÁö¯ì1J$7c915e6d-d692-447d-87a5-7fd4886155fc
+›
+java:S3776Ò"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(è€±ºÿÿÿÿÿ8ÕØö¯ì1J$fc748014-2832-43f5-8178-b8abe34efcf2

@@ -73,7 +73,7 @@ public class Repl {
                             loginUser(lineItems[1], lineItems[2]);
                         }
                     }
-                    case null, default ->
+                    default ->
                             System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
             } else if (loggedInStatus == userState.LOGGED_IN) {
@@ -104,7 +104,7 @@ public class Repl {
                         }
                     }
                     case "logout" -> logoutUser();
-                    case null, default ->
+                    default ->
                             System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
             } else if (loggedInStatus == userState.IN_GAME) {
@@ -127,7 +127,7 @@ public class Repl {
                     case "resign":
                         resign();
                         break;
-                    case null, default:
+                    default:
                         System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
             } else if (loggedInStatus == userState.OBSERVING) {
@@ -138,7 +138,7 @@ public class Repl {
                     case "leave":
                         leaveGame();
                         break;
-                    case null, default:
+                    default:
                         System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
             }

@@ -58,3 +58,9 @@ X
 (client/src/main/java/ui/BoardArtist.java,3\a\3a096a8957c9999f457ef92043df25f399048f5a
 ]
 -shared/src/main/java/chess/ChessPosition.java,3\b\3b013a24b64d343e15bac32b29d3d69c6c135d82
+Y
+)shared/src/main/java/chess/ChessMove.java,c\5\c52f67c55315a844e23611bb848b35269aaedb66
+N
+server/src/main/java/Main.java,f\4\f49eb7b67ea6fd5de7d54f4d8e080215196bedf3
+>
+shared/pom.xml,b\a\ba2c82abfadd18e3d9d5240df233d9684925a7cd

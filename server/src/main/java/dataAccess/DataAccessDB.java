@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 import exceptions.AlreadyTakenException;
 import exceptions.DataAccessException;
 import exceptions.NotFoundException;
-import exceptions.UnauthorizedException;
 import generators.AuthTokenGenerator;
 import model.AuthData;
 import model.GameData;
@@ -208,7 +207,7 @@ public class DataAccessDB implements DataAccess {
         }
     }
 
-    public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException, InvalidMoveException {
+    public String makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException, InvalidMoveException {
         var gameData = getGameByID(gameID);
         var game = gameData.game();
         var pieceAtStart = game.getBoard().getPiece(move.getStartPosition());
@@ -220,11 +219,33 @@ public class DataAccessDB implements DataAccess {
         }
 
         game.makeMove(move);
+        if (game.isInCheck(ChessGame.TeamColor.WHITE) || game.isInCheck(ChessGame.TeamColor.BLACK)) {
+            if (checkGameFinished(game)) {
+                if (game.isInCheckmate(ChessGame.TeamColor.WHITE)) {
+                    return gameData.whiteUsername() + " is in checkmate! GAME OVER";
+                } else if (game.isInCheckmate(ChessGame.TeamColor.BLACK)) {
+                    return gameData.blackUsername() + " is in checkmate! GAME OVER";
+                } else if (game.isInStalemate(ChessGame.TeamColor.WHITE) || game.isInStalemate(ChessGame.TeamColor.BLACK)) {
+                    return "Stalemate! GAME OVER";
+                }
+            }
+            if (game.isInCheck(ChessGame.TeamColor.WHITE)) {
+                return gameData.whiteUsername() + " is in check! Look out!";
+            } else if (game.isInCheck(ChessGame.TeamColor.BLACK)) {
+                return gameData.blackUsername() + " is in check! Look out!";
+            }
+        }
+        saveGame(gameID, gameData);
+        return null;
+    }
+
+    private boolean checkGameFinished(ChessGame game) {
         if (game.isInCheckmate(ChessGame.TeamColor.WHITE) || game.isInCheckmate(ChessGame.TeamColor.BLACK) ||
                 game.isInStalemate(ChessGame.TeamColor.WHITE) || game.isInStalemate(ChessGame.TeamColor.BLACK)) {
             game.setFinished(true);
+            return true;
         }
-        saveGame(gameID, gameData);
+        return false;
     }
 
     public void removePlayer(AuthData authData, long gameID) throws NotFoundException, DataAccessException {

@@ -1,5 +1,6 @@
 package services;
 
+import chess.ChessGame;
 import chess.ChessMove;
 import chess.InvalidMoveException;
 import exceptions.*;
@@ -55,10 +56,10 @@ public class GameService {
         }
     }
 
-    public void makeMoveGame(DataAccess dataAccess, AuthData authData, long gameID, ChessMove move) throws DataAccessException, UnauthorizedException, NotFoundException, InvalidMoveException {
+    public String makeMoveGame(DataAccess dataAccess, AuthData authData, long gameID, ChessMove move) throws DataAccessException, UnauthorizedException, NotFoundException, InvalidMoveException {
         if (dataAccess.authDataIsAuthorized(authData)) {
             var authDataComplete = dataAccess.getAuthDataFromToken(authData);
-            dataAccess.makeMoveGame(authDataComplete, gameID, move);
+            return dataAccess.makeMoveGame(authDataComplete, gameID, move);
         } else {
             throw new UnauthorizedException("Error: Unauthorized");
         }

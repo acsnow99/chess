@@ -97,10 +97,12 @@ public class WebSocketService {
                         break;
                     }
 
+                    var move = new Gson().fromJson(jsonObject.get("move"), ChessMove.class);
+                    String gameConditionMessage;
                     try {
-                        gameService.makeMoveGame(dataAccess, new AuthData("", authToken),
+                        gameConditionMessage = gameService.makeMoveGame(dataAccess, new AuthData("", authToken),
                                 gameID,
-                                new Gson().fromJson(jsonObject.get("move"), ChessMove.class));
+                                move);
                     } catch (InvalidMoveException exception) {
                         sendError(session, "Error: Invalid move because " + exception.getMessage());
                         break;
@@ -108,7 +110,8 @@ public class WebSocketService {
                     //System.out.println("Trying to broadcast loadgame message");
                     // send game to everyone, including the one doing the move
                     broadcastLoadGame(gameID, "");
-                    broadcast("Hey a move was made", gameID, authToken);
+                    broadcast(username + " moved " + move.toString(), gameID, authToken);
+                    broadcast(gameConditionMessage, gameID, "");
                     break;
                 case "\"LEAVE\"":
                     //System.out.println("Player leaving");

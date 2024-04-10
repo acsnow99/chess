@@ -132,8 +132,9 @@ public class DataAccessMemory implements DataAccess {
         }
     }
 
-    public void makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException {
+    public String makeMoveGame(AuthData authData, long gameID, ChessMove move) throws DataAccessException, NotFoundException {
 
+        return null;
     }
 
     public void removePlayer(AuthData authData, long gameID) {

@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class Repl {
 
-    enum userState {
+    enum UserState {
         LOGGED_IN,
         LOGGED_OUT,
         IN_GAME,
@@ -38,7 +38,7 @@ public class Repl {
     private ServerFacadeSession facadeSession;
     private ServerFacadeGame facadeGame;
     private String boardString = EscapeSequences.DEFAULT_BOARD_WHITE + "\n" + EscapeSequences.DEFAULT_BOARD_BLACK;
-    private userState loggedInStatus = userState.LOGGED_OUT;
+    private UserState loggedInStatus = UserState.LOGGED_OUT;
 
     public void run(int port) {
         initializeFacade(port);
@@ -56,7 +56,7 @@ public class Repl {
 
             if (Objects.equals(lineFirst, "q") || Objects.equals(lineFirst, "quit")) {
                 return;
-            } else if (loggedInStatus == userState.LOGGED_OUT) {
+            } else if (loggedInStatus == UserState.LOGGED_OUT) {
                 switch (lineFirst) {
                     case "help" -> printHelpLoggedOut();
                     case "register" -> {
@@ -76,7 +76,7 @@ public class Repl {
                     default ->
                             System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
-            } else if (loggedInStatus == userState.LOGGED_IN) {
+            } else if (loggedInStatus == UserState.LOGGED_IN) {
                 switch (lineFirst) {
                     case "help" -> printHelpLoggedIn();
                     case "create" -> {
@@ -107,7 +107,7 @@ public class Repl {
                     default ->
                             System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
-            } else if (loggedInStatus == userState.IN_GAME) {
+            } else if (loggedInStatus == UserState.IN_GAME) {
                 switch (lineFirst) {
                     case "help":
                         printHelpInGame();
@@ -127,10 +127,13 @@ public class Repl {
                     case "resign":
                         resign();
                         break;
+                    case "redraw":
+                        printBoard(gameDataLocal);
+                        break;
                     default:
                         System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
-            } else if (loggedInStatus == userState.OBSERVING) {
+            } else if (loggedInStatus == UserState.OBSERVING) {
                 switch (lineFirst) {
                     case "help":
                         printHelpObserving();
@@ -214,7 +217,7 @@ public class Repl {
         try {
             var authData = facadeRegistration.register(new User(username, password, email));
             authorization = authData;
-            loggedInStatus = userState.LOGGED_IN;
+            loggedInStatus = UserState.LOGGED_IN;
             System.out.println("User " + username + " logged in. Don't forget your password!");
         } catch (HttpResponseException exception) {
             System.out.println("Username already taken \nTry with a different name");
@@ -224,7 +227,7 @@ public class Repl {
     private void loginUser(String username, String password) {
         try {
             authorization = facadeSession.login(new User(username, password, null));
-            loggedInStatus = userState.LOGGED_IN;
+            loggedInStatus = UserState.LOGGED_IN;
             System.out.println("User " + username + " logged in. Type help to see available commands");
         } catch (HttpResponseException exception) {
             System.out.println("Username or password didn't match our records... \nTry the register keyword to make a new account");
@@ -235,7 +238,7 @@ public class Repl {
         try {
             facadeSession.logout(authorization);
             authorization = null;
-            loggedInStatus = userState.LOGGED_OUT;
+            loggedInStatus = UserState.LOGGED_OUT;
             System.out.println("User logged out");
         } catch (HttpResponseException exception) {
             System.out.println("Could not logout. Token is invalid.");
@@ -280,7 +283,7 @@ public class Repl {
         try {
             long gameIDLong = Long.parseLong(gameID);
             this.gameID = gameIDLong;
-            loggedInStatus = userState.IN_GAME;
+            loggedInStatus = UserState.IN_GAME;
             if (Objects.equals(playerColor, "WHITE")) {
                 this.color = ChessGame.TeamColor.WHITE;
                 System.out.println("Joined game " + gameID + " as white");
@@ -289,7 +292,7 @@ public class Repl {
                 System.out.println("Joined game " + gameID + " as black");
             } else {
                 this.color = null;
-                loggedInStatus = userState.OBSERVING;
+                loggedInStatus = UserState.OBSERVING;
                 System.out.println("Joined game " + gameID + " as observer");
             }
             facadeGame.joinGame(authorization, playerColor, gameIDLong);
@@ -323,7 +326,7 @@ public class Repl {
     }
 
     private void leaveGame() {
-        loggedInStatus = userState.LOGGED_IN;
+        loggedInStatus = UserState.LOGGED_IN;
         try {
             facadeWebsocket.leavePlayer(authorization, gameID);
             this.gameID = 0;

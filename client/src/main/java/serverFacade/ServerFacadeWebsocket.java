@@ -16,9 +16,9 @@ public class ServerFacadeWebsocket {
     private final String serverURL;
     private WebsocketConnectionClient websocketConnection;
 
-    public ServerFacadeWebsocket(String URL, ServerMessageObserver serverMessageObserver) throws Exception {
-        serverURL = URL;
-        websocketConnection = new WebsocketConnectionClient(URL, serverMessageObserver);
+    public ServerFacadeWebsocket(String url, ServerMessageObserver serverMessageObserver) throws Exception {
+        serverURL = url;
+        websocketConnection = new WebsocketConnectionClient(url, serverMessageObserver);
     }
 
     public void send(String message) throws Exception {

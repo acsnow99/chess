@@ -64,3 +64,11 @@ N
 server/src/main/java/Main.java,f\4\f49eb7b67ea6fd5de7d54f4d8e080215196bedf3
 >
 shared/pom.xml,b\a\ba2c82abfadd18e3d9d5240df233d9684925a7cd
+g
+7client/src/main/java/serverFacade/ServerFacadeGame.java,b\e\be98ec174450ac122cae49967b905dfc82224921
+o
+?client/src/main/java/serverFacade/ServerFacadeRegistration.java,1\5\158053ce680f218fa95200f15adc9cfee82160c5
+c
+3client/src/main/java/serverFacade/ServerFacade.java,a\e\ae34a43d897703bd6e02af1cbce4b3d5566f0960
+j
+:client/src/main/java/serverFacade/ServerFacadeSession.java,6\4\64d2803229c6a94d1210710595527c1b6da9c4cb

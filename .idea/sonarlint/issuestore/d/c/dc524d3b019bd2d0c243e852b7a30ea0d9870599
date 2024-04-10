@@ -1,11 +1,10 @@
 
-ˆ	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(£‰Éò8—ü¸§ì1J$622c8e00-2954-482c-824d-db88aaa5b3f4
-	java:S112-"FDefine and throw a dedicated exception instead of using a generic one.(ÉØ³¡ÿÿÿÿÿ8—ü¸§ì1J$2c253f29-6e35-4381-bd67-989214dd36b7
-“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£‰Éò8™ü¸§ì1J$743d85e4-3a85-41c7-9164-6fb53e3fb56e
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(¦Ï·£ûÿÿÿÿ8—ü¸§ì1J$1cb6961e-ff29-47ac-bc8c-56bc5ce76e1c
+g	java:S112-"FDefine and throw a dedicated exception instead of using a generic one.(ÉØ³¡ÿÿÿÿÿ8èøã°ì1
 p
-java:S1604"(Make this anonymous inner class a lambda(ÆÏ¹úÿÿÿÿ8šü¸§ì1J$0b4488cb-c5d3-4fd5-93f0-15d005084b31
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ñ†¢8›ü¸§ì1J$5dfa7b3f-1e1a-4270-b353-c84f8b38ad8c
+java:S1604"(Make this anonymous inner class a lambda(ÆÏ¹úÿÿÿÿ8šü¸§ì1J$50e42b05-6845-421e-bd15-3093dc163514
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ñ†¢8›ü¸§ì1J$f0e21ae2-0458-4deb-b5e8-2a45f6b38257
 É
-java:S11861"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òø¨œøÿÿÿÿ8¨ü¸§ì1J$15fd658a-04c7-480d-b3e5-1ff2387f5fc0
+java:S11861"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òø¨œøÿÿÿÿ8¨ü¸§ì1J$58322e95-5bc8-4f30-93d3-fca750e568cb
 n
-java:S1128"+Remove this unused import 'model.GameData'.(Ãà—õ8˜„„¨ì1J$6dd38921-2644-49f5-befc-3d84d231d346
+java:S1128"+Remove this unused import 'model.GameData'.(Ãà—õ8˜„„¨ì1J$ab9cc63f-1deb-44c9-a33a-d787501863c5

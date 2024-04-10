@@ -5,8 +5,8 @@ import model.AuthData;
 import model.User;
 
 public class ServerFacadeRegistration extends ServerFacade {
-    public ServerFacadeRegistration(String URL) {
-        super(URL);
+    public ServerFacadeRegistration(String url) {
+        super(url);
     }
 
     public void clearDatabase() throws HttpResponseException {

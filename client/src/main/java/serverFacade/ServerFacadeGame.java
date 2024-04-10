@@ -11,8 +11,8 @@ import responses.GetGamesResponse;
 import java.util.ArrayList;
 
 public class ServerFacadeGame extends ServerFacade {
-    public ServerFacadeGame(String URL) {
-        super(URL);
+    public ServerFacadeGame(String url) {
+        super(url);
     }
 
     public ArrayList<GameData> getGames(AuthData authorization) throws HttpResponseException {

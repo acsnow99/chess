@@ -17,8 +17,8 @@ import java.util.Objects;
 public class ServerFacade {
     private final String serverURL;
 
-    public ServerFacade(String URL) {
-        serverURL = URL;
+    public ServerFacade(String url) {
+        serverURL = url;
     }
 
     public <T> T makeHttpRequest(String method, String path, Object requestObject, Class<T> responseClass, AuthData authorization) throws HttpResponseException {

@@ -1,5 +1,6 @@
 
-“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¿‹Æ8ÍÓó§ì1J$ca3516e6-efbc-40cc-8d64-206a2d866937
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å“¢šÿÿÿÿÿ8ÏÓó§ì1J$43608c98-0c95-4ef3-8620-ee68695d11bf
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Å“¢šÿÿÿÿÿ8ÏÓó§ì1J$c5dd2166-4a20-41ef-8acb-19d01b1cc69b
+X
+java:S1128"6Remove this unused import 'javax.websocket.OnMessage'.(ÏôŒ¸ùÿÿÿÿ8Ş„è°ì1
 u
-java:S1068"-Remove this unused "serverURL" private field.(›¥ˆôüÿÿÿÿ8êÓó§ì1J$33deb864-5058-4be4-b3be-9a20898ce207
+java:S1068"-Remove this unused "serverURL" private field.(›¥ˆôüÿÿÿÿ8êÓó§ì1J$00cbc769-875b-4bb5-8112-d431897c9dc4

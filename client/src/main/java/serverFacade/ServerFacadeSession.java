@@ -5,8 +5,8 @@ import model.AuthData;
 import model.User;
 
 public class ServerFacadeSession extends ServerFacade {
-    public ServerFacadeSession(String URL) {
-        super(URL);
+    public ServerFacadeSession(String url) {
+        super(url);
     }
 
     public AuthData login(User user) throws HttpResponseException {

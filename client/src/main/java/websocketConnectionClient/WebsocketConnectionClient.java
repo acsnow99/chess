@@ -14,8 +14,8 @@ public class WebsocketConnectionClient extends Endpoint {
     private Session session;
     private ServerMessageObserver serverMessageObserver;
 
-    public WebsocketConnectionClient(String URL, ServerMessageObserver serverMessageObserver) throws Exception {
-        URI uri = new URI(URL);
+    public WebsocketConnectionClient(String url, ServerMessageObserver serverMessageObserver) throws Exception {
+        URI uri = new URI(url);
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
         this.session = container.connectToServer(this, uri);
         this.serverMessageObserver = serverMessageObserver;

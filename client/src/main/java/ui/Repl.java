@@ -1,5 +1,6 @@
 package ui;
 
+import chess.ChessGame;
 import chess.ChessMove;
 import chess.ChessPosition;
 import exceptions.HttpResponseException;
@@ -27,6 +28,7 @@ public class Repl {
     private ServerMessageObserver serverMessageObserver;
     private GameData gameDataLocal;
     private long gameID;
+    private ChessGame.TeamColor color;
     private String serverURL = "://127.0.0.1:";
     private AuthData authorization;
     private boolean loggedIn = false;
@@ -258,6 +260,11 @@ public class Repl {
         try {
             long gameIDLong = Long.parseLong(gameID);
             this.gameID = gameIDLong;
+            if (Objects.equals(playerColor, "WHITE")) {
+                this.color = ChessGame.TeamColor.WHITE;
+            } else if (Objects.equals(playerColor, "BLACK")) {
+                this.color = ChessGame.TeamColor.BLACK;
+            }
             facadeGame.joinGame(authorization, playerColor, gameIDLong);
 
             initializeWebsocket(port);
@@ -324,7 +331,7 @@ public class Repl {
     }
 
     private void printBoard(GameData game) {
-        System.out.println(new BoardArtist().drawBoard(game));
+        System.out.println(new BoardArtist().drawBoard(game, color));
     }
 
     public void printMessage(String message) {

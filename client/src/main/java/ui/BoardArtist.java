@@ -12,33 +12,58 @@ import java.util.Objects;
 public class BoardArtist {
     private String currentColor = EscapeSequences.SET_BG_COLOR_DARK_GREY;
 
-    public String drawBoard(GameData game) {
+    public String drawBoard(GameData game, ChessGame.TeamColor color) {
         ChessBoard boardData = game.game().getBoard();
         String board = "";
 
-        board += EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR
-                + "\n    A  B  C  D  E  F  G  H  \n";
-        for (var row = 8; row > 0; row--) {
-            board += getRowString(row, boardData);
+
+        if (color == ChessGame.TeamColor.WHITE) {
+            board += EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR
+                    + "\n    A  B  C  D  E  F  G  H  \n";
+            for (var row = 8; row > 0; row--) {
+                board += getRowString(row, boardData, ChessGame.TeamColor.WHITE);
+            }
+            board += EscapeSequences.RESET_BG_COLOR + "    A  B  C  D  E  F  G  H  \n";
+        } else {
+            board += EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR
+                    + "\n    H  G  F  E  D  C  B  A  \n";
+            for (var row = 1; row <= 8; row++) {
+                board += getRowString(row, boardData, ChessGame.TeamColor.BLACK);
+            }
+            board += EscapeSequences.RESET_BG_COLOR + "    H  G  F  E  D  C  B  A  \n";
         }
-        board += EscapeSequences.RESET_BG_COLOR + "    A  B  C  D  E  F  G  H  \n";
 
         return board;
     }
 
-    private String getRowString(int row, ChessBoard boardData) {
-        int column = 1;
-        ArrayList<ChessPiece> rowPieces = new ArrayList<>(8);
-        getCurrentColor();
-        return (" " + row + " " + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column))) +
-                EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " " + row + "\n");
+    private String getRowString(int row, ChessBoard boardData, ChessGame.TeamColor color) {
+        if (color == ChessGame.TeamColor.WHITE) {
+            int column = 1;
+            ArrayList<ChessPiece> rowPieces = new ArrayList<>(8);
+            getCurrentColor();
+            return (" " + row + " " + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column))) +
+                    EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " " + row + "\n");
+        } else {
+            int column = 8;
+            ArrayList<ChessPiece> rowPieces = new ArrayList<>(8);
+            getCurrentColor();
+            return (" " + row + " " + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column))) +
+                    EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " " + row + "\n");
+        }
     }
 
     private String getPieceString(ChessPiece piece) {

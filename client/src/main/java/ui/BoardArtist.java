@@ -10,7 +10,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class BoardArtist {
+    private final ChessPosition highlightPosition;
+    private boolean willHighlight;
+    private ChessGame game;
     private String currentColor = EscapeSequences.SET_BG_COLOR_DARK_GREY;
+
+    public BoardArtist(ChessGame game, ChessPosition highlightPosition) {
+        this.willHighlight = highlightPosition != null;
+        this.highlightPosition = highlightPosition;
+        this.game = game;
+    }
 
     public String drawBoard(GameData game, ChessGame.TeamColor color) {
         ChessBoard boardData = game.game().getBoard();
@@ -40,28 +49,28 @@ public class BoardArtist {
         if (color == ChessGame.TeamColor.WHITE) {
             int column = 1;
             ArrayList<ChessPiece> rowPieces = new ArrayList<>(8);
-            getCurrentColor();
-            return (" " + row + " " + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column))) +
+            getCurrentColor(null);
+            return (" " + row + " " + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column++)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column))) +
                     EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " " + row + "\n");
         } else {
             int column = 8;
             ArrayList<ChessPiece> rowPieces = new ArrayList<>(8);
-            getCurrentColor();
-            return (" " + row + " " + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
-                    + getCurrentColor() + getPieceString(boardData.getPiece(new ChessPosition(row, column))) +
+            getCurrentColor(null);
+            return (" " + row + " " + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column--)))
+                    + getCurrentColor(new ChessPosition(row, column)) + getPieceString(boardData.getPiece(new ChessPosition(row, column))) +
                     EscapeSequences.RESET_TEXT_COLOR + EscapeSequences.RESET_BG_COLOR + " " + row + "\n");
         }
     }
@@ -83,7 +92,18 @@ public class BoardArtist {
         return returnString;
     }
 
-    private String getCurrentColor() {
+    private String getCurrentColor(ChessPosition position) {
+        if (willHighlight && position != null) {
+            // Highlight moves that the piece can make
+            var moves = game.validMoves(highlightPosition);
+            for (var move : moves) {
+                if (move.getEndPosition().equals(position)) {
+                    currentColor = EscapeSequences.SET_BG_COLOR_MAGENTA;
+                    break;
+                }
+            }
+        }
+        // Alternate between the gray colors
         if (Objects.equals(currentColor, EscapeSequences.SET_BG_COLOR_DARK_GREY)) {
             currentColor = EscapeSequences.SET_BG_COLOR_LIGHT_GREY;
         } else {

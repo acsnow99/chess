@@ -130,6 +130,13 @@ public class Repl {
                     case "redraw":
                         printBoard(gameDataLocal);
                         break;
+                    case "highlight":
+                        if (lineItems.length < 2) {
+                            System.out.println("Missing position");
+                        } else {
+                            this.printBoardHighlight(gameDataLocal, lineItems[1]);
+                        }
+                        break;
                     default:
                         System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
                 }
@@ -283,6 +290,16 @@ public class Repl {
         try {
             long gameIDLong = Long.parseLong(gameID);
             this.gameID = gameIDLong;
+            facadeGame.joinGame(authorization, playerColor, gameIDLong);
+
+            initializeWebsocket(port);
+
+            try {
+                facadeWebsocket.joinPlayer(authorization, gameIDLong, playerColor);
+            } catch (Exception exception) {
+                System.out.println("Error: could not connect to server because " + exception.getMessage());
+            }
+
             loggedInStatus = UserState.IN_GAME;
             if (Objects.equals(playerColor, "WHITE")) {
                 this.color = ChessGame.TeamColor.WHITE;
@@ -295,15 +312,7 @@ public class Repl {
                 loggedInStatus = UserState.OBSERVING;
                 System.out.println("Joined game " + gameID + " as observer");
             }
-            facadeGame.joinGame(authorization, playerColor, gameIDLong);
 
-            initializeWebsocket(port);
-
-            try {
-                facadeWebsocket.joinPlayer(authorization, gameIDLong, playerColor);
-            } catch (Exception exception) {
-                System.out.println("Error: could not connect to server because " + exception.getMessage());
-            }
         } catch (HttpResponseException exception) {
             System.out.println("Spot taken. Try joining with a different color.");
         } catch (NumberFormatException exception) {
@@ -351,7 +360,18 @@ public class Repl {
     }
 
     private void printBoard(GameData game) {
-        System.out.println(new BoardArtist().drawBoard(game, color == null ? ChessGame.TeamColor.WHITE : color));
+        if (game != null) {
+            System.out.println(new BoardArtist(game.game(), null).drawBoard(game, color == null ? ChessGame.TeamColor.WHITE : color));
+        }
+    }
+
+    private void printBoardHighlight(GameData game, String positionString) {
+        if (game != null) {
+            var positionSplit = positionString.split("");
+            var column = this.getNumberFromLetter(positionSplit[0]);
+            var position = new ChessPosition(Integer.parseInt(positionSplit[1]), column);
+            System.out.println(new BoardArtist(game.game(), position).drawBoard(game, color == null ? ChessGame.TeamColor.WHITE : color));
+        }
     }
 
     public void printMessage(String message) {

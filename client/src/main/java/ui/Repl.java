@@ -331,16 +331,20 @@ public class Repl {
     }
 
     private void makeMove(String start, String end) {
-        var startSplit = start.split("");
-        var endSplit = end.split("");
-        var startColumn = this.getNumberFromLetter(startSplit[0]);
-        var endColumn = this.getNumberFromLetter(endSplit[0]);
-        var startPos = new ChessPosition(Integer.parseInt(startSplit[1]), startColumn);
-        var endPos = new ChessPosition(Integer.parseInt(endSplit[1]), endColumn);
         try {
-            this.facadeWebsocket.makeMove(this.authorization, this.gameID, new ChessMove(startPos, endPos, null));
+            var startSplit = start.split("");
+            var endSplit = end.split("");
+            var startColumn = this.getNumberFromLetter(startSplit[0]);
+            var endColumn = this.getNumberFromLetter(endSplit[0]);
+            var startPos = new ChessPosition(Integer.parseInt(startSplit[1]), startColumn);
+            var endPos = new ChessPosition(Integer.parseInt(endSplit[1]), endColumn);
+            try {
+                this.facadeWebsocket.makeMove(this.authorization, this.gameID, new ChessMove(startPos, endPos, null));
+            } catch (Exception exception) {
+                System.out.println("Could not make move because " + exception.getMessage());
+            }
         } catch (Exception exception) {
-            System.out.println("Could not make move because " + exception.getMessage());
+            System.out.println("Move input was invalid format. Try \"move a# a#\"");
         }
     }
 

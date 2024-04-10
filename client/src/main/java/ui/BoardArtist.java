@@ -98,8 +98,7 @@ public class BoardArtist {
             var moves = game.validMoves(highlightPosition);
             for (var move : moves) {
                 if (move.getEndPosition().equals(position)) {
-                    currentColor = EscapeSequences.SET_BG_COLOR_MAGENTA;
-                    break;
+                    return EscapeSequences.SET_BG_COLOR_MAGENTA;
                 }
             }
         }

@@ -121,6 +121,9 @@ public class WebSocketService {
                         if (game == null) {
                             throw new NotFoundException("Error: game not found");
                         }
+                        if (game.game().isFinished()) {
+                            throw new UnauthorizedException("Error: game is already over");
+                        }
                         if (!Objects.equals(game.whiteUsername(), username) && !Objects.equals(game.blackUsername(), username)) {
                             sendError(session, "Error: User is an observer");
                             break;

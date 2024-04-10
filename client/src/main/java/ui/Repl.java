@@ -26,6 +26,7 @@ public class Repl {
         OBSERVING
     }
 
+    private int port;
     private ServerMessageObserver serverMessageObserver;
     private GameData gameDataLocal;
     private long gameID;
@@ -42,6 +43,7 @@ public class Repl {
 
     public void run(int port) {
         initializeFacade(port);
+        this.port = port;
 
         var clientReader = new Scanner(System.in);
         var line = "";
@@ -55,113 +57,132 @@ public class Repl {
             lineFirst = lineItems[0];
 
             if (Objects.equals(lineFirst, "q") || Objects.equals(lineFirst, "quit")) {
+                if (loggedInStatus == UserState.IN_GAME || loggedInStatus == UserState.OBSERVING) {
+                    leaveGame();
+                }
                 return;
             } else if (loggedInStatus == UserState.LOGGED_OUT) {
-                switch (lineFirst) {
-                    case "help" -> printHelpLoggedOut();
-                    case "register" -> {
-                        if (lineItems.length < 4) {
-                            System.out.println("Missing username, password, or email");
-                        } else {
-                            registerUser(lineItems[1], lineItems[2], lineItems[3]);
-                        }
-                    }
-                    case "login" -> {
-                        if (lineItems.length < 3) {
-                            System.out.println("Missing username or password");
-                        } else {
-                            loginUser(lineItems[1], lineItems[2]);
-                        }
-                    }
-                    default ->
-                            System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
-                }
+                loggedOutHandle(lineFirst, lineItems);
             } else if (loggedInStatus == UserState.LOGGED_IN) {
-                switch (lineFirst) {
-                    case "help" -> printHelpLoggedIn();
-                    case "create" -> {
-                        if (lineItems.length < 2) {
-                            System.out.println("Missing game name");
-                        } else {
-                            createGame(lineItems[1]);
-                        }
-                    }
-                    case "list" -> getGames();
-                    case "join" -> {
-                        if (lineItems.length < 2) {
-                            System.out.println("Missing game ID number");
-                        } else if (lineItems.length < 3) {
-                            joinGame(port, null, lineItems[1]);
-                        } else {
-                            joinGame(port, lineItems[2], lineItems[1]);
-                        }
-                    }
-                    case "observe" -> {
-                        if (lineItems.length < 2) {
-                            System.out.println("Missing game ID number");
-                        } else {
-                            joinGame(port, null, lineItems[1]);
-                        }
-                    }
-                    case "logout" -> logoutUser();
-                    default ->
-                            System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
-                }
+                loddedInHandle(lineFirst, lineItems);
             } else if (loggedInStatus == UserState.IN_GAME) {
-                switch (lineFirst) {
-                    case "help":
-                        printHelpInGame();
-                        break;
-                    case "leave":
-                        leaveGame();
-                        break;
-                    case "move":
-                        if (lineItems.length < 2) {
-                            System.out.println("Missing start and end positions");
-                        } else if (lineItems.length < 3) {
-                            System.out.println("Missing end position");
-                        } else {
-                            this.makeMove(lineItems[1], lineItems[2]);
-                        }
-                        break;
-                    case "resign":
-                        resign();
-                        break;
-                    case "redraw":
-                        printBoard(gameDataLocal);
-                        break;
-                    case "show":
-                        if (lineItems.length < 2) {
-                            System.out.println("Missing position");
-                        } else {
-                            this.printBoardHighlight(gameDataLocal, lineItems[1]);
-                        }
-                        break;
-                    default:
-                        System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
-                }
+                inGameHandle(lineFirst, lineItems);
             } else if (loggedInStatus == UserState.OBSERVING) {
-                switch (lineFirst) {
-                    case "help":
-                        printHelpObserving();
-                        break;
-                    case "leave":
-                        leaveGame();
-                        break;
-                    case "redraw":
-                        printBoard(gameDataLocal);
-                        break;
-                    case "show":
-                        if (lineItems.length < 2) {
-                            System.out.println("Missing position");
-                        } else {
-                            this.printBoardHighlight(gameDataLocal, lineItems[1]);
-                        }
-                        break;
-                    default:
-                        System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+                observingHandle(lineFirst, lineItems);
+            }
+        }
+    }
+
+    private void observingHandle(String lineFirst, String[] lineItems) {
+        switch (lineFirst) {
+            case "help":
+                printHelpObserving();
+                break;
+            case "leave":
+                leaveGame();
+                break;
+            case "redraw":
+                printBoard(gameDataLocal);
+                break;
+            case "show":
+                if (lineItems.length < 2) {
+                    System.out.println("Missing position");
+                } else {
+                    this.printBoardHighlight(gameDataLocal, lineItems[1]);
+                }
+                break;
+            default:
+                System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+        }
+    }
+
+    private void inGameHandle(String lineFirst, String[] lineItems) {
+        switch (lineFirst) {
+            case "help":
+                printHelpInGame();
+                break;
+            case "leave":
+                leaveGame();
+                break;
+            case "move":
+                if (lineItems.length < 2) {
+                    System.out.println("Missing start and end positions");
+                } else if (lineItems.length < 3) {
+                    System.out.println("Missing end position");
+                } else {
+                    this.makeMove(lineItems[1], lineItems[2]);
+                }
+                break;
+            case "resign":
+                resign();
+                break;
+            case "redraw":
+                printBoard(gameDataLocal);
+                break;
+            case "show":
+                if (lineItems.length < 2) {
+                    System.out.println("Missing position");
+                } else {
+                    this.printBoardHighlight(gameDataLocal, lineItems[1]);
+                }
+                break;
+            default:
+                System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+        }
+    }
+
+    private void loddedInHandle(String lineFirst, String[] lineItems) {
+        switch (lineFirst) {
+            case "help" -> printHelpLoggedIn();
+            case "create" -> {
+                if (lineItems.length < 2) {
+                    System.out.println("Missing game name");
+                } else {
+                    createGame(lineItems[1]);
                 }
             }
+            case "list" -> getGames();
+            case "join" -> {
+                if (lineItems.length < 2) {
+                    System.out.println("Missing game ID number");
+                } else if (lineItems.length < 3) {
+                    joinGame(port, null, lineItems[1]);
+                } else {
+                    joinGame(port, lineItems[2], lineItems[1]);
+                }
+            }
+            case "observe" -> {
+                if (lineItems.length < 2) {
+                    System.out.println("Missing game ID number");
+                } else {
+                    joinGame(port, null, lineItems[1]);
+                }
+            }
+            case "logout" -> logoutUser();
+            default ->
+                    System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
+        }
+    }
+
+    private void loggedOutHandle(String lineFirst, String[] lineItems) {
+        switch (lineFirst) {
+            case "help" -> printHelpLoggedOut();
+            case "register" -> {
+                if (lineItems.length < 4) {
+                    System.out.println("Missing username, password, or email");
+                } else {
+                    registerUser(lineItems[1], lineItems[2], lineItems[3]);
+                }
+            }
+            case "login" -> {
+                if (lineItems.length < 3) {
+                    System.out.println("Missing username or password");
+                } else {
+                    loginUser(lineItems[1], lineItems[2]);
+                }
+            }
+            default ->
+                    System.out.println("Could not recognize command - try typing 'help' for a list of available commands.");
         }
     }
 

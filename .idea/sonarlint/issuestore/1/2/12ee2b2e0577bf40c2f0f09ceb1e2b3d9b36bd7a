@@ -1,13 +1,11 @@
 
 É
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚïÖÆûÿÿÿÿ8›®òì1J$67249f84-6f1b-46a8-8ace-62aaa49a8153
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚïÖÆûÿÿÿÿ8Á©ãÑì1J$fd4c1e8d-b064-4ec1-8c56-add45356415a
 n
-java:S11685"+Return an empty collection instead of null.(¥¹ï8£®òì1J$d438c8b1-e6d1-417a-b47d-00a86920ac16
+java:S11685"+Return an empty collection instead of null.(¥¹ï8Ç©ãÑì1J$06b0094c-ac8a-499f-b721-7174e2bfd113
 –
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(„İÊ8©®òì1J$732a06ad-ef31-4611-93a8-4b56fe6f38be
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(„İÊ8Ğ©ãÑì1J$7d446e46-d1c7-42d8-92ce-05dd3d230713
 _
-java:S3626‹"Remove this redundant jump.(ÉŠ©ƒ8ª®òì1J$521ff91e-b64a-4e5e-ae4a-5f50c159f8b7
-–
-java:S3776¡"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(ÅÍ†õ8­®òì1J$c56fd21c-229b-4a80-8080-743ac9af7276
+java:S3626‹"Remove this redundant jump.(ÉŠ©ƒ8Ñ©ãÑì1J$0dc9fbf4-4678-4891-b5a9-88ec55165412
 ›
-java:S3776Á"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(ç¸Ûíûÿÿÿÿ8²®òì1J$22844b74-fa8e-44cc-b6c8-e2b5a6f29e0e
+java:S3776¶"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¦İÈ‹úÿÿÿÿ8Ö©ãÑì1J$697c4ffc-e71d-4723-8943-f57db3d1037a

@@ -160,25 +160,7 @@ public class ChessGame {
      */
     public boolean isInCheckmate(TeamColor teamColor) {
         if (this.isInCheck(teamColor)) {
-            var numRows = this.board.getBoardNumRows();
-            var numCols = this.board.getBoardNumCols();
-            ChessPiece pieceToCheck;
-            Collection<ChessMove> movesToCheck;
-            for (var r = 1; r <= numRows; r++) {
-                for (var c = 1; c <= numCols; c++) {
-                    var position = new ChessPosition(r, c);
-                    pieceToCheck = this.board.getPiece(position);
-                    if (pieceToCheck != null && pieceToCheck.getTeamColor() == teamColor) {
-                        movesToCheck = pieceToCheck.pieceMoves(this.board, position);
-                        for (var move : movesToCheck) {
-                            if (!this.moveResultsInCheckOnSelf(move, teamColor)) {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-            return true;
+            return kingCannotMove(teamColor);
         }
         return false;
     }
@@ -192,27 +174,31 @@ public class ChessGame {
      */
     public boolean isInStalemate(TeamColor teamColor) {
         if (!this.isInCheck(teamColor)) {
-            var numRows = this.board.getBoardNumRows();
-            var numCols = this.board.getBoardNumCols();
-            ChessPiece pieceToCheck;
-            Collection<ChessMove> movesToCheck;
-            for (var r = 1; r <= numRows; r++) {
-                for (var c = 1; c <= numCols; c++) {
-                    var position = new ChessPosition(r, c);
-                    pieceToCheck = this.board.getPiece(position);
-                    if (pieceToCheck != null && pieceToCheck.getTeamColor() == teamColor) {
-                        movesToCheck = pieceToCheck.pieceMoves(this.board, position);
-                        for (var move : movesToCheck) {
-                            if (!this.moveResultsInCheckOnSelf(move, teamColor)) {
-                                return false;
-                            }
+            return kingCannotMove(teamColor);
+        }
+        return false;
+    }
+    
+    public boolean kingCannotMove(TeamColor teamColor) {
+        var numRows = this.board.getBoardNumRows();
+        var numCols = this.board.getBoardNumCols();
+        ChessPiece pieceToCheck;
+        Collection<ChessMove> movesToCheck;
+        for (var r = 1; r <= numRows; r++) {
+            for (var c = 1; c <= numCols; c++) {
+                var position = new ChessPosition(r, c);
+                pieceToCheck = this.board.getPiece(position);
+                if (pieceToCheck != null && pieceToCheck.getTeamColor() == teamColor) {
+                    movesToCheck = pieceToCheck.pieceMoves(this.board, position);
+                    for (var move : movesToCheck) {
+                        if (!this.moveResultsInCheckOnSelf(move, teamColor)) {
+                            return false;
                         }
                     }
                 }
             }
-            return true;
         }
-        return false;
+        return true;
     }
 
     /**
